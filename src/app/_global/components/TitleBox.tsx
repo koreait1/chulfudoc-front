@@ -1,63 +1,25 @@
 'use client'
 import styled, { css } from 'styled-components'
-import ButtonType from '../types/ButtonType'
+import TitleType from '../types/TitleType'
 import color from '../styles/color'
 import fontsize from '../styles/fontsize'
+const { extra } = fontsize
+const { black } = color
 
-const commonStyle = css`
-  width: 120px;
-  height: 40px;
-  border: 0;
-  cursor: pointer;
-  border-radius: 3px;
-  & + & {
-    margin-left: 5px;
-  }
-
-  svg {
-    margin-right: 10px;
-  }
-`
-
-export const Button = styled.button<ButtonType>`
-  ${commonStyle}
-  ${({ width }) =>
-    width &&
+export const MainTitle = styled.h1<TitleType>`
+  font-size: ${extra};
+  padding: 0 10px 15px;
+  margin: 0;
+  color: ${black};
+  ${({ center }) =>
+    center &&
     css`
-      width: ${width}px;
+      text-align: center;
     `}
-    ${({ height }) =>
-    height &&
+  ${({ border }) =>
+    border &&
     css`
-      height: ${height}px;
+      border-bottom: 3px solid ${black};
+      margin-bottom: 25px;
     `}
-
-    ${({ color: c }) => {
-    c = c ?? 'primary'
-    const _color = color[c] ? color[c] : c
-    return css`
-      background: ${_color};
-    `
-  }}
-    
-    ${({ fontsize: size }) => {
-    size = size ?? 'medium'
-    return css`
-      font-size: ${fontsize[size] ?? size};
-      svg {
-        font-size: ${fontsize[size] ?? size};
-      }
-    `
-  }}
-
-  ${({ fontcolor }) => {
-    fontcolor = fontcolor ?? 'light'
-
-    return css`
-      color: ${color[fontcolor] ?? fontcolor};
-      svg {
-        color: ${color[fontcolor] ?? fontcolor};
-      }
-    `
-  }}
 `
