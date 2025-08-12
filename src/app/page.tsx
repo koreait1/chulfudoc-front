@@ -1,3 +1,5 @@
+import DetectBox from "./detect/_components/DetectBox"
+
 export default function MainPage() {
-  return <h1>철부닥 메인 페이지</h1>
+  return <DetectBox />
 }
