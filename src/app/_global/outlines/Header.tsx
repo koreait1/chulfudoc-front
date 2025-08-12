@@ -5,6 +5,9 @@ import styled from 'styled-components'
 import logo1 from '@/app/_global/assets/images/logo1.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Button } from '../components/Buttons'
+/* 나중에 바꿉시다 */
+import { FiUserPlus, FiLogIn } from 'react-icons/fi'
 
 const StyledHeader = styled.header`
   background: #fff;
@@ -30,6 +33,10 @@ const StyledHeader = styled.header`
 
     .right {
       text-align: right;
+
+      a + a {
+        margin-left: 5px;
+      }
     }
   }
 `
@@ -45,8 +52,18 @@ const Header = () => {
           </Link>
         </div>
         <div className="right">
-          <Link href="/member/join">회원가입</Link>
-          <Link href="/member/login">로그인</Link>
+          <Link href="/member/join">
+            <Button type="button">
+              <FiUserPlus />
+              회원가입
+            </Button>
+          </Link>
+          <Link href="/member/login">
+            <Button type="button" color="secondary">
+              <FiLogIn />
+              로그인
+            </Button>
+          </Link>
         </div>
       </div>
     </StyledHeader>
