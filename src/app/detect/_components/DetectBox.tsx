@@ -1,7 +1,9 @@
 'use client'
 
-import React, { useRef, useEffect } from 'react'
+import { Buffer } from 'buffer'
+import React, { useRef, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
+import { processDetect } from '../_services/actions'
 
 const DetectBox = () => {
   /* dom 객체를 직접적으로 수정하기 위해 */
@@ -31,6 +33,20 @@ const DetectBox = () => {
     })
   }, [videoRef, canvasRef])
 
+  const onClick = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    canvas.toBlob((blob) => {
+      blob?.arrayBuffer()
+      .then(data => {
+        processDetect(Buffer.from(data))
+        .then(items => console.log(items))
+      });
+    });
+
+  }, [canvasRef])
+
   return (
     <>
       <video
@@ -41,6 +57,7 @@ const DetectBox = () => {
         style={{ display: 'none' }}
       ></video>
       <canvas ref={canvasRef} width={640} height={480}></canvas>
+      <button type="button" onClick={onClick}>감지하기</button>
     </>
   )
 }
