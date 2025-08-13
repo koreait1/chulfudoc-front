@@ -1,9 +1,9 @@
 'use client'
 import styled, { css } from 'styled-components'
 import color from '../styles/color'
-import fontsize from '../styles/fontsize'
+import fontSize from '../styles/fontsize'
 const { dark, light } = color
-const { medium } = fontsize
+const { medium } = fontSize
 
 const commonStyle = css`
   color: ${dark};
@@ -12,10 +12,11 @@ const commonStyle = css`
   padding: 10px;
   border-radius: 3px;
   width: 100%;
-  &:hober,
+  &:hover,
   &:focus {
-    border-color: {dark};
+    border-color: ${dark};
   }
+
   & + & {
     margin-top: 10px;
   }
@@ -35,23 +36,21 @@ export const Input = styled.input<CommonType>`
     css`
       width: ${width}px;
     `}
-
   ${({ height }) =>
     height &&
     css`
       height: ${height}px;
     `}
 `
+
 export const Textarea = styled.textarea<CommonType>`
   ${commonStyle}
   height: 150px;
-
   ${({ width }) =>
     width &&
     css`
       width: ${width}px;
     `}
-
   ${({ height }) =>
     height &&
     css`

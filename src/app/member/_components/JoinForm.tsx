@@ -3,8 +3,13 @@ import styled from 'styled-components'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { Input } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
+import MessageBox from '@/app/_global/components/MessageBox'
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+  .message {
+    margin-bottom: 10px;
+  }
+`
 
 const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
   return (
@@ -17,6 +22,8 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         value={form.email}
         onChange={onChange}
       />
+      <MessageBox color="danger">{errors?.email}</MessageBox>
+
       <Input
         type="password"
         name="password"
@@ -24,6 +31,8 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         value={form.password}
         onChange={onChange}
       />
+      <MessageBox color="danger">{errors?.password}</MessageBox>
+
       <Input
         type="password"
         name="confirmPassword"
@@ -31,6 +40,8 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         value={form.confirmPassword}
         onChange={onChange}
       />
+      <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+
       <Input
         type="text"
         name="name"
@@ -38,6 +49,8 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         value={form.name}
         onChange={onChange}
       />
+      <MessageBox color="danger">{errors?.name}</MessageBox>
+
       <Input
         type="text"
         name="mobile"
@@ -45,16 +58,20 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         value={form.mobile}
         onChange={onChange}
       />
+      <MessageBox color="danger">{errors?.mobile}</MessageBox>
 
       <h3>약관동의</h3>
+      <div>약관 동의 작성...</div>
       <div className="terms-agree" onClick={onToggle}>
         {form.termsAgree ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />} 회원가입
         약관에 동의합니다.
       </div>
-      <div>약관 동의 작성...</div>
+      <MessageBox color="danger">{errors?.termsAgree}</MessageBox>
+
       <SubmitButton type="submit" disabled={pending}>
         가입하기
       </SubmitButton>
+      <MessageBox color="danger">{errors?.global}</MessageBox>
     </StyledForm>
   )
 }
