@@ -4,11 +4,16 @@ import { Input } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+  .message {
+    margin-bottom: 10px;
+  }
+`
 
 const LoginForm = ({ errors, action, pending, form, onChange }) => {
   return (
     <StyledForm action={action} autoComplete="off">
+      <input type="hidden" name="redirectUrl" value={form?.redirectUrl ?? ''} />
       <Input
         type="text"
         name="email"
