@@ -96,6 +96,7 @@ const DetectBox = ({ width, height, callback }) => {
         }, 1000)
       })
       .catch((err) => {
+        // 높은 확률로 모달창 + 스위트얼러트
         console.log(
           '웹캠이 설치되어 있지 않거나 웹캠 권한을 허용하지 않은 경우 입니다. 이때에는 사용자에게 안내 팝업을 띄어 줄 필요가 있습니다.',
           err,
@@ -128,7 +129,7 @@ const DetectBox = ({ width, height, callback }) => {
         ref={videoRef}
         width={width}
         height={height}
-        autoPlay
+        autoPlay // 직접 정의해서 버튼 클릭 시 작동하도록 가능 
         style={{ display: 'none' }}
       ></video>
       <canvas

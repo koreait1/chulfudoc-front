@@ -1,8 +1,5 @@
-'use client'
-import DetectBox from './detect/_components/DetectBox'
+import DetectContainer from "./detect/_containers/DetectContainer";
+
 export default function MainPage() {
-  const callback = (item) => {
-    console.log('item', item)
-  }
-  return <DetectBox width={500} height={500} callback={callback} />
+  return <DetectContainer />
 }
