@@ -24,7 +24,7 @@ export const Button = styled.button<ButtonType>`
   ${({ width }) =>
     width &&
     css`
-      width: ${width}px;
+      width: ${typeof width === 'string' ? width : width + 'px'};
     `}
     ${({ height }) =>
     height &&
@@ -61,3 +61,11 @@ export const Button = styled.button<ButtonType>`
     `
   }}
 `
+
+export const SubmitButton = (props) => {
+  return (
+    <Button {...props} width="100%" height={60} fontsize="extra">
+      {props.children}
+    </Button>
+  )
+}
