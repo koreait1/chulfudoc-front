@@ -24,12 +24,12 @@ export async function processJoin(errors, formData: FormData) {
   let hasErrors: boolean = false
   // 필수 항목 검증 S
   const requiredFields = {
-    email: '이메일을 입력하세요.',
-    password: '비밀번호를 입력하세요.',
-    confirmPassword: '비밀번호를 확인하세요.',
-    name: '회원이름을 입력하세요.',
-    mobile: '휴대전화번호를 입력하세요.',
-    termsAgree: '회원가입 약관에 동의하세요.',
+    email: '이메일을 입력하세요',
+    password: '비밀번호를 입력하세요',
+    confirmPassword: '비밀번호를 확인하세요',
+    name: '회원이름을 입력하세요',
+    mobile: '휴대전화번호를 입력하세요',
+    termsAgree: '회원가입 약관에 동의하세요',
   }
 
   for (const [field, message] of Object.entries(requiredFields)) {
@@ -49,7 +49,7 @@ export async function processJoin(errors, formData: FormData) {
   const password = params.password?.trim()
   if (password && password !== params.confirmPassword?.trim()) {
     errors.confirmPassword = errors.confirmPassword ?? []
-    errors.confirmPassword.push('비밀번호가 일치하지 않습니다.')
+    errors.confirmPassword.push('비밀번호가 일치하지 않습니다')
     hasErrors = true
   }
 
@@ -97,12 +97,12 @@ export async function processLogin(errors, formData: FormData) {
   }
   // 유효성 검사 S
   if (!params.userId || !params.userId.trim()) {
-    errors.email = '아이디를 입력하세요.'
+    errors.email = '아이디를 입력하세요'
     hasErrors = true
   }
 
   if (!params.password || !params.password.trim()) {
-    errors.password = '비밀번호를 입력하세요.'
+    errors.password = '비밀번호를 입력하세요'
     hasErrors = true
   }
   // 유효성 검사 E
@@ -116,6 +116,9 @@ export async function processLogin(errors, formData: FormData) {
   const res = await fetch(apiUrl, {
     method: 'POST',
     headers: {
+
+
+      
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
