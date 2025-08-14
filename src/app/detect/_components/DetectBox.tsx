@@ -129,7 +129,7 @@ const DetectBox = ({ width, height, callback }) => {
         ref={videoRef}
         width={width}
         height={height}
-        autoPlay // 직접 정의해서 버튼 클릭 시 작동하도록 가능 
+        autoPlay // 직접 정의해서 버튼 클릭 시 작동하도록 가능
         style={{ display: 'none' }}
       ></video>
       <canvas
