@@ -160,11 +160,14 @@ export async function getLoggedMember() {
       },
     })
 
-    if (res.status !== 200) {
+    if (res.status === 200) {
       return await res.json()
+
+    }else{
+      console.log('error-text : ', await res.json())
     }
 
-    return await res.json()
+
   } catch (err) {
     console.log('getLoggedMember() error:', err)
   }
