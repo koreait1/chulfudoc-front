@@ -1,7 +1,9 @@
 'use client'
+
 import { useContext, useEffect } from 'react'
 import UserContext from '../contexts/UserContext'
 import { getLoggedMember } from '@/app/member/_services/actions'
+
 export default function useUser() {
   const {
     states: { loggedMember, isLogin, isAdmin },
