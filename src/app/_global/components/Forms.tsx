@@ -2,24 +2,27 @@
 import styled, { css } from 'styled-components'
 import color from '../styles/color'
 import fontSize from '../styles/fontsize'
-const { dark, light } = color
+const { dark, info, gray } = color
 const { medium } = fontSize
 
 const commonStyle = css`
   color: ${dark};
-  border: 1px solid ${light};
-  font-size: ${medium};
-  padding: 10px;
-  border-radius: 3px;
-  width: 100%;
-  &:hover,
-  &:focus {
-    border-color: ${dark};
-  }
+    border: 1px solid ${gray};
+    font-size: ${medium};
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    &:hover, &:focus {
+        border-color: ${info};
+    }
+    
+    &::placeholder{
+      color: ${gray};
+    }
 
-  & + & {
-    margin-top: 10px;
-  }
+    & + & {
+        margin-top: 15px;
+    }
 `
 
 type CommonType = {

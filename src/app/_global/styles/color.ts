@@ -10,6 +10,7 @@ const color = {
   dark: '#212529',
   white: '#fff',
   black: '#000',
+  gray: '#ccc',
 }
 
 export default color
