@@ -25,6 +25,10 @@ const StyledHeader = styled.header`
 
     .logo-section {
       text-align: center;
+      .header-logo {
+        height: 120px;
+        width: auto;
+      }
     }
 
     .right {
@@ -45,7 +49,7 @@ const Header = () => {
         <div className="left"></div>
         <div className="logo-section">
           <Link href="/">
-            <Image src={logo} alt="logo" />
+            <Image src={logo} alt="logo" className="header-logo"/>
           </Link>
         </div>
         <div className="right">

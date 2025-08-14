@@ -18,13 +18,7 @@ const UserContext = createContext<UserContextType>({
 function UserProvider({ children, loggedMember }) {
   const [member, setLoggedMember] = useState(loggedMember)
   const [isLogin, setIsLogin] = useState(Boolean(loggedMember))
-<<<<<<< HEAD
-  const [isAdmin, setIsAdmin] = useState(
-    loggedMember && loggedMember.authority === 'ADMIN',
-  )
-=======
   const [isAdmin, setIsAdmin] = useState(loggedMember && loggedMember.authority === "ADMIN")
->>>>>>> c774449ed0894211fcec023a14d7c82b8a6a4641
 
   const value = {
     states: { loggedMember: member, isLogin, isAdmin },
