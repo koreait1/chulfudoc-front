@@ -2,7 +2,7 @@
 import styled, { css } from 'styled-components'
 import ButtonType from '../types/ButtonType'
 import color from '../styles/color'
-import fontsize from '../styles/fontsize'
+import fontSize from '../styles/fontsize'
 
 const commonStyle = css`
   width: 120px;
@@ -24,7 +24,7 @@ export const Button = styled.button<ButtonType>`
   ${({ width }) =>
     width &&
     css`
-      width: ${width}px;
+      width: ${typeof width === 'string' ? width : width + 'px'};
     `}
     ${({ height }) =>
     height &&
@@ -40,12 +40,12 @@ export const Button = styled.button<ButtonType>`
     `
   }}
     
-    ${({ fontsize: size }) => {
+    ${({ fontSize: size }) => {
     size = size ?? 'medium'
     return css`
-      font-size: ${fontsize[size] ?? size};
+      font-size: ${fontSize[size] ?? size};
       svg {
-        font-size: ${fontsize[size] ?? size};
+        font-size: ${fontSize[size] ?? size};
       }
     `
   }}
@@ -61,3 +61,11 @@ export const Button = styled.button<ButtonType>`
     `
   }}
 `
+
+export const SubmitButton = (props) => {
+  return (
+    <Button {...props} width="100%" height={60} fontSize="extra">
+      {props.children}
+    </Button>
+  )
+}

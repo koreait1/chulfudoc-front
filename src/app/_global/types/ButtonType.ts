@@ -1,10 +1,10 @@
 type ButtonType = {
   children: React.ReactNode | string
-  width?: number
+  width?: number | string
   height?: number
   color?: string
   fontcolor?: string
-  fontsize?: string
+  fontSize?: string
 }
 
 export default ButtonType

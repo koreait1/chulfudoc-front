@@ -2,8 +2,8 @@
 import styled, { css } from 'styled-components'
 import TitleType from '../types/TitleType'
 import color from '../styles/color'
-import fontsize from '../styles/fontsize'
-const { extra } = fontsize
+import fontSize from '../styles/fontsize'
+const { extra } = fontSize
 const { black } = color
 
 export const MainTitle = styled.h1<TitleType>`
