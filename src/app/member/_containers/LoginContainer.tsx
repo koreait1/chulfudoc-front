@@ -5,7 +5,7 @@ import { processLogin } from '../_services/actions'
 import LoginForm from '../_components/LoginForm'
 
 type FormType = {
-  email: string
+  userId: string
   password: string
   redirectUrl?: string
 }
@@ -13,7 +13,7 @@ type FormType = {
 const LoginContainer = () => {
   const [errors, action, pending] = useActionState<any, any>(processLogin, {})
   const [form, setForm] = useState<FormType>({
-    email: '',
+    userId: '',
     password: '',
   })
 

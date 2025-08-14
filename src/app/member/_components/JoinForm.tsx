@@ -6,15 +6,49 @@ import { SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
 
 const StyledForm = styled.form`
-  .message {
-    margin-bottom: 10px;
-  }
+
 `
 
 const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
   return (
     <StyledForm action={action} autoComplete="off">
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
+      <Input
+        type="text"
+        name="userId"
+        placeholder="아이디를 입력하세요"
+        value={form.userId}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.userId}</MessageBox>
+
+      <Input
+        type="password"
+        name="password"
+        placeholder="비밀번호를 입력하세요"
+        value={form.password}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.password}</MessageBox>
+
+      <Input
+        type="password"
+        name="confirmPassword"
+        placeholder="비밀번호를 확인하세요"
+        value={form.confirmPassword}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+
+      <Input
+        type="text"
+        name="name"
+        placeholder="회원이름을 입력하세요"
+        value={form.name}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.name}</MessageBox>
+
       <Input
         type="text"
         name="email"
@@ -25,36 +59,9 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
       <MessageBox color="danger">{errors?.email}</MessageBox>
 
       <Input
-        type="password"
-        name="password"
-        placeholder="비밀번호를 입력하세요."
-        value={form.password}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.password}</MessageBox>
-
-      <Input
-        type="password"
-        name="confirmPassword"
-        placeholder="비밀번호를 확인하세요."
-        value={form.confirmPassword}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
-
-      <Input
-        type="text"
-        name="name"
-        placeholder="회원이름을 입력하세요."
-        value={form.name}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.name}</MessageBox>
-
-      <Input
         type="text"
         name="mobile"
-        placeholder="휴대전화번호를 입력하세요."
+        placeholder="휴대전화번호를 입력하세요"
         value={form.mobile}
         onChange={onChange}
       />

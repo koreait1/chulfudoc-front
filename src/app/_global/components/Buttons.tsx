@@ -9,7 +9,7 @@ const commonStyle = css`
   height: 40px;
   border: 0;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 10px;
   & + & {
     margin-left: 5px;
   }
@@ -64,7 +64,7 @@ export const Button = styled.button<ButtonType>`
 
 export const SubmitButton = (props) => {
   return (
-    <Button {...props} width="100%" height={60} fontSize="extra">
+    <Button {...props} width="100%" height={60} fontSize="extra" className='btn'>
       {props.children}
     </Button>
   )

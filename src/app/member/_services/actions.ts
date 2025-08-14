@@ -91,13 +91,13 @@ export async function processJoin(errors, formData: FormData) {
 export async function processLogin(errors, formData: FormData) {
   errors = {}
   let hasErrors: boolean = false
-  const params: { email?: string; password?: string; redirectUrl?: string } = {
-    email: formData.get('email')?.toString(),
+  const params: { userId?: string; password?: string; redirectUrl?: string } = {
+    userId: formData.get('userId')?.toString(),
     password: formData.get('password')?.toString(),
   }
   // 유효성 검사 S
-  if (!params.email || !params.email.trim()) {
-    errors.email = '이메일을 입력하세요.'
+  if (!params.userId || !params.userId.trim()) {
+    errors.email = '아이디를 입력하세요.'
     hasErrors = true
   }
 

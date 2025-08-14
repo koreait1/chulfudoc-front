@@ -8,6 +8,10 @@ const StyledForm = styled.form`
   .message {
     margin-bottom: 10px;
   }
+
+  .btn {
+    margin-top: 15px;
+  }
 `
 
 const LoginForm = ({ errors, action, pending, form, onChange }) => {
@@ -16,12 +20,12 @@ const LoginForm = ({ errors, action, pending, form, onChange }) => {
       <input type="hidden" name="redirectUrl" value={form?.redirectUrl ?? ''} />
       <Input
         type="text"
-        name="email"
-        placeholder="이메일을 입력하세요."
-        value={form.email}
+        name="userId"
+        placeholder="아이디를 입력하세요."
+        value={form.userId}
         onChange={onChange}
       />
-      <MessageBox color="danger">{errors?.email}</MessageBox>
+      <MessageBox color="danger">{errors?.userId}</MessageBox>
 
       <Input
         type="password"
