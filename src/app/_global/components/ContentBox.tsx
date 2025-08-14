@@ -15,12 +15,9 @@ const StyledContentBox = styled.section<{
 `
 
 const ContentBox = ({ children, width }) => {
-  return (
-    <StyledContentBox className="layout-width" width={width}>
-      {children}
-    </StyledContentBox>
-  )
+  return <StyledContentBox className="layout-width" width={width}>
+    {children}
+  </StyledContentBox>
 }
-
 
 export default React.memo(ContentBox)

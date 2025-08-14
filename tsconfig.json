@@ -23,6 +23,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/_global/components/ContentBox.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/_global/components/ContentBox.tsx",
+    "src/app/kakaomap/_components/ERMap.js"
+  ],
   "exclude": ["node_modules"]
 }
