@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import useFetch from './_global/hooks/useFetch'
 import DetectContainer from './detect/_containers/DetectContainer'
+import { Button } from './_global/components/Buttons'
 
 export default function MainPage() {
   const data = useFetch('http://localhost:4000/api/v1/member')
@@ -10,9 +11,7 @@ export default function MainPage() {
     <>
       <DetectContainer />
       <div className="links">
-        {/* <Link href="/kakaomap/hospital" />
-        <Link href="/kakaomap/aed" />
-        버튼으로 만들어야하는지 링크로 할지 아직 모르겠음*/}
+        <Button width={'40%'}>병원 찾기</Button>
         <div className="board-link">
           <Link href="/board/notice" />
           <Link href="/board/freetalk" />
