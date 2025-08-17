@@ -73,7 +73,7 @@ export default function ERMap() {
                   })
 
                   window.kakao.maps.event.addListener(marker, 'click', () => {
-                    // 🔹 이미 같은 InfoWindow가 열려있으면 닫기
+                    // 이미 같은 InfoWindow가 열려있으면 닫기
                     if (openInfoWindow === info) {
                       info.close()
                       openInfoWindow = null
@@ -90,7 +90,7 @@ export default function ERMap() {
                       return
                     }
 
-                    // 🔹 기존 InfoWindow 닫기
+                    // 기존 InfoWindow 닫기
                     if (openInfoWindow) {
                       openInfoWindow.close()
                     }
