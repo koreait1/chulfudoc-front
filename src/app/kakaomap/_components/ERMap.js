@@ -19,6 +19,7 @@ export default function ERMap() {
 
             navigator.geolocation.getCurrentPosition(
               (p) => {
+
                 const container = document.getElementById('map')
                 const options = {
                   center: new window.kakao.maps.LatLng(
