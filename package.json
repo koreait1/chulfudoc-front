@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.16.7",
+    "axios": "^1.11.0",
     "classnames": "^2.5.1",
     "immer": "^10.1.1",
     "next": "15.4.6",
