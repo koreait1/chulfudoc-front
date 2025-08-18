@@ -9,7 +9,6 @@ import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
-import { GoogleAdSense } from './_global/components/adsense'
 
 export const metadata: Metadata = {
   title: '게시판',
@@ -29,10 +28,6 @@ export default async function RootLayout({
 
   return (
     <html lang="ko">
-      <head>
-        {/* 광고 */}
-        <GoogleAdSense />
-      </head>
       <body>
         <StyledComponentsRegistry>
           <CommonProvider>
