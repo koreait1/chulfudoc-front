@@ -25,6 +25,7 @@ export async function processJoin(errors, formData: FormData) {
   let hasErrors: boolean = false
   // 필수 항목 검증 S
   const requiredFields = {
+    userId: "아이디를 입력하세요",
     email: '이메일을 입력하세요',
     password: '비밀번호를 입력하세요',
     confirmPassword: '비밀번호를 확인하세요',
@@ -117,9 +118,6 @@ export async function processLogin(errors, formData: FormData) {
   const res = await fetch(apiUrl, {
     method: 'POST',
     headers: {
-
-
-      
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
