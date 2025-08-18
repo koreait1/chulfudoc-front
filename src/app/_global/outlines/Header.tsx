@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/Buttons'
 import useUser from '../hooks/useUser'
+import LinkLoading from '../components/LinkLoading'
 
 const StyledHeader = styled.header`
   background: #fff;
@@ -49,7 +50,7 @@ const Header = () => {
         <div className="left"></div>
         <div className="logo-section">
           <Link href="/">
-            <Image src={logo} alt="logo" className="header-logo"/>
+            <Image src={logo} alt="logo" className="header-logo" />
           </Link>
         </div>
         <div className="right">
@@ -59,10 +60,11 @@ const Header = () => {
               <span>
                 {loggedMember.name}({loggedMember.email})
               </span> */}
-              <Link href="/mypage">
+              <Link href="/mypage" prefetch={false}>
                 <Button type="button">
                   <CgProfile />
                   마이페이지
+                  <LinkLoading />
                 </Button>
               </Link>
               <a href="/member/api/logout">
@@ -82,16 +84,18 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link href="/member/join">
+              <Link href="/member/join" prefetch={false}>
                 <Button type="button">
                   <FiUserPlus />
                   회원가입
+                  <LinkLoading />
                 </Button>
               </Link>
-              <Link href="/member/login">
+              <Link href="/member/login" prefetch={false}>
                 <Button type="button" color="secondary">
                   <FiLogIn />
                   로그인
+                  <LinkLoading />
                 </Button>
               </Link>
             </>

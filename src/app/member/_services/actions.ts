@@ -1,6 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
+import { revalidateTag } from 'next/cache'
 
 /**
  * 회원가입 처리
@@ -97,7 +98,7 @@ export async function processLogin(errors, formData: FormData) {
   }
   // 유효성 검사 S
   if (!params.userId || !params.userId.trim()) {
-    errors.email = '아이디를 입력하세요'
+    errors.userId = '아이디를 입력하세요'
     hasErrors = true
   }
 
@@ -133,6 +134,8 @@ export async function processLogin(errors, formData: FormData) {
       httpOnly: true,
       path: '/',
     })
+
+    revalidateTag('loggedMember')
   } else {
     // 로그인 실패
     const json = await res.json()
@@ -161,16 +164,14 @@ export async function getLoggedMember() {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      next: {
+        tags: ['loggedMember'],
+      },
     })
 
     if (res.status === 200) {
       return await res.json()
-
-    }else{
-      console.log('error-text : ', await res.json())
     }
-
-
   } catch (err) {
     console.log('getLoggedMember() error:', err)
   }
