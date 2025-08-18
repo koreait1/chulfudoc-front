@@ -11,8 +11,8 @@ import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
-  title: '게시판',
-  description: '게시판 설명...',
+  title: '철푸닥',
+  description: '낙상 감지 서비스',
 }
 
 export default async function RootLayout({

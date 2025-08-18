@@ -1,11 +1,11 @@
 'use client'
-import ERMap from './_components/ERMapTMapV3'
+import ERMapTMapV3 from './_components/ERMapTMapV3'
 
 export default function TMapPage() {
   return (
     <div>
       <h1>ER 위치 지도</h1>
-      <ERMap />
+      <ERMapTMapV3 />
     </div>
   )
 }
