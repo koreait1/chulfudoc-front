@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Papa from 'papaparse'
 
 export default function ERLocate() {
-  const [nearest, setNearest] = useState(null)
+  const [nearestList, setNearestList] = useState([])
 
   useEffect(() => {
     const script = document.createElement('script')
@@ -27,8 +27,7 @@ export default function ERLocate() {
                   p.coords.longitude,
                 )
 
-                let nearestHospital = null
-                let minDistance = Infinity
+                const hospitals = []
 
                 data.forEach((loc) => {
                   if (!loc.위도 || !loc.경도) return
@@ -43,20 +42,19 @@ export default function ERLocate() {
                   })
                   const distance = polyline.getLength()
 
-                  if (distance < minDistance) {
-                    minDistance = distance
-                    nearestHospital = {
-                      name: loc['응급의료기관명']?.trim() || '이름 없음',
-                      address: loc['소재지']?.trim() || '주소 없음',
-                      phone: loc['연락처']?.trim() || '연락처 없음',
-                      distance: Math.round(distance),
-                    }
-                  }
+                  hospitals.push({
+                    name: (loc['응급의료기관명'] || '이름 없음').trim(),
+                    address: (loc['소재지'] || '주소 없음').trim(),
+                    phone: (loc['연락처'] || '연락처 없음').trim(),
+                    distance: Math.round(distance),
+                  })
                 })
 
-                if (nearestHospital) {
-                  setNearest(nearestHospital)
-                }
+                const nearestFive = hospitals
+                  .sort((a, b) => a.distance - b.distance)
+                  .slice(0, 5)
+
+                setNearestList(nearestFive)
               },
               (err) => {
                 console.error('위치를 가져올 수 없습니다.', err)
@@ -70,15 +68,31 @@ export default function ERLocate() {
     document.head.appendChild(script)
   }, [])
 
-  if (!nearest) return <p>가장 가까운 병원을 찾는 중...</p>
+  if (!nearestList.length) return null
 
   return (
-    <div style={{ padding: '16px', border: '1px solid #ddd', borderRadius: '8px', maxWidth: '400px' }}>
-      <h2 style={{ fontWeight: 'bold', marginBottom: '8px' }}>가장 가까운 병원</h2>
-      <p><b>이름:</b> {nearest.name}</p>
-      <p><b>주소:</b> {nearest.address}</p>
-      <p><b>연락처:</b> {nearest.phone}</p>
-      <p><b>거리:</b> {nearest.distance}m</p>
+    <div>
+      <h2>가장 가까운 병원 5곳</h2>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        {nearestList.map((h, idx) => (
+          <li key={idx}>
+            <p>
+              <b>
+                {idx + 1}. {h.name}
+              </b>
+            </p>
+            <p>
+              <b>주소:</b> {h.address}
+            </p>
+            <p>
+              <b>연락처:</b> {h.phone}
+            </p>
+            <p>
+              <b>거리:</b> {h.distance}m
+            </p>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
