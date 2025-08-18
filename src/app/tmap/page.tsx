@@ -1,5 +1,5 @@
 'use client'
-import ERMap from './_components/ERMap'
+import ERMap from './_components/ERMapTMapV3'
 
 export default function TMapPage() {
   return (
