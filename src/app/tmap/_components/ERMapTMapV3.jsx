@@ -131,7 +131,7 @@ export default function ERMapTMapV3() {
                       routeProps.totalDistance,
                     )}m / ${Math.round(routeProps.totalTime / 60)}분<br>`
                   } catch (err) {
-                    routeInfoHtml += `<b>${mode}</b>: 거리 계산 불가<br>`
+                    routeInfoHtml += `<b>${mode}</b>: 거리 X<br>`
                   }
                 }
 
