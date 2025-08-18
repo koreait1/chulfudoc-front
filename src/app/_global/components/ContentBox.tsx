@@ -2,22 +2,22 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const StyledContentBox = styled.section<{
+type ContentBoxType = {
   children: React.ReactNode
   width?: number
-}>`
+}
+
+const ContentBox = styled.section<ContentBoxType>`
   padding: 50px;
+  min-width: 320px;
+  max-width: 1150px;
+  padding: 0 10px;
+  margin: 0 auto;
   ${({ width }) =>
     width &&
     css`
-      width: ${width}px;
+      max-width: ${width}px;
     `}
 `
-
-const ContentBox = ({ children, width }) => {
-  return <StyledContentBox className="layout-width" width={width}>
-    {children}
-  </StyledContentBox>
-}
 
 export default React.memo(ContentBox)

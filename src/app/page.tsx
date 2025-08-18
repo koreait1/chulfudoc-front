@@ -1,5 +1,7 @@
-import DetectContainer from "./detect/_containers/DetectContainer";
-
+'use client'
+import useFetch from './_global/hooks/useFetch'
 export default function MainPage() {
-  return <DetectContainer />
+  const data = useFetch('http://localhost:4000/api/v1/member')
+  console.log(data)
+  return <></>
 }

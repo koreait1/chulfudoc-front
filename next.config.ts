@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   compiler: {
@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: '30mb',
     },
+    authInterrupts: true,
   },
 }
 
-export default nextConfig;
+export default nextConfig

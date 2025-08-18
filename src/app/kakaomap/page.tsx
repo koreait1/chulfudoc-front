@@ -1,6 +1,6 @@
 'use client'
-import ERLocate from "../location/_components/ERLocate"
-import ERMap from "./_components/ERMap"
+import ERLocate from '../location/_components/KERLocate'
+import ERMap from './_components/ERMap'
 
 export default function MapPage() {
   return (
