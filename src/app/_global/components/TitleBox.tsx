@@ -2,11 +2,12 @@
 import styled, { css } from 'styled-components'
 import TitleType from '../types/TitleType'
 import color from '../styles/color'
-import fontSize from '../styles/fontsize'
-const { extra } = fontSize
+import fontsize from '../styles/fontsize'
+const { extra } = fontsize
 const { black } = color
+import useTitle from '../hooks/useTitle'
 
-export const MainTitle = styled.h1<TitleType>`
+const StyledMainTitle = styled.h1<TitleType>`
   font-size: ${extra};
   padding: 0 10px 15px;
   margin: 0;
@@ -23,3 +24,9 @@ export const MainTitle = styled.h1<TitleType>`
       margin-bottom: 25px;
     `}
 `
+
+export function MainTitle(props) {
+  useTitle(props.children)
+
+  return <StyledMainTitle {...props} />
+}

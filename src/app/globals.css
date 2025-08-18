@@ -58,3 +58,24 @@ img {
 main.main-content {
   min-height: 650px;
 }
+
+/*** 로딩 스피너 ***/
+.spinner {
+  opacity: 0;
+  animation: fadeIn 500ms 100ms forwards, rotate 1s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
