@@ -9,7 +9,6 @@ export default function useUser() {
   } = useContext(UserContext)
 
   useEffect(() => {
-    
     if (!isLogin && token) {
       setToken(token)
     }
@@ -25,7 +24,7 @@ export default function useUser() {
         }
       })()
     }
-  }, [isLogin, setIsAdmin, setIsLogin, setLoggedMember])
+  }, [isLogin, setIsAdmin, setIsLogin, setLoggedMember, token, setToken])
 
   return { loggedMember, isLogin, isAdmin, token }
 }

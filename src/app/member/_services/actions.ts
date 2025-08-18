@@ -25,12 +25,13 @@ export async function processJoin(errors, formData: FormData) {
   let hasErrors: boolean = false
   // 필수 항목 검증 S
   const requiredFields = {
-    email: '이메일을 입력하세요.',
-    password: '비밀번호를 입력하세요.',
-    confirmPassword: '비밀번호를 확인하세요.',
-    name: '회원이름을 입력하세요.',
-    mobile: '휴대전화번호를 입력하세요.',
-    termsAgree: '회원가입 약관에 동의하세요.',
+    userId: "아이디를 입력하세요",
+    email: '이메일을 입력하세요',
+    password: '비밀번호를 입력하세요',
+    confirmPassword: '비밀번호를 확인하세요',
+    name: '회원이름을 입력하세요',
+    mobile: '휴대전화번호를 입력하세요',
+    termsAgree: '회원가입 약관에 동의하세요',
   }
 
   for (const [field, message] of Object.entries(requiredFields)) {
@@ -50,7 +51,7 @@ export async function processJoin(errors, formData: FormData) {
   const password = params.password?.trim()
   if (password && password !== params.confirmPassword?.trim()) {
     errors.confirmPassword = errors.confirmPassword ?? []
-    errors.confirmPassword.push('비밀번호가 일치하지 않습니다.')
+    errors.confirmPassword.push('비밀번호가 일치하지 않습니다')
     hasErrors = true
   }
 
@@ -92,18 +93,18 @@ export async function processJoin(errors, formData: FormData) {
 export async function processLogin(errors, formData: FormData) {
   errors = {}
   let hasErrors: boolean = false
-  const params: { email?: string; password?: string; redirectUrl?: string } = {
-    email: formData.get('email')?.toString(),
+  const params: { userId?: string; password?: string; redirectUrl?: string } = {
+    userId: formData.get('userId')?.toString(),
     password: formData.get('password')?.toString(),
   }
   // 유효성 검사 S
-  if (!params.email || !params.email.trim()) {
-    errors.email = '이메일을 입력하세요.'
+  if (!params.userId || !params.userId.trim()) {
+    errors.userId = '아이디를 입력하세요'
     hasErrors = true
   }
 
   if (!params.password || !params.password.trim()) {
-    errors.password = '비밀번호를 입력하세요.'
+    errors.password = '비밀번호를 입력하세요'
     hasErrors = true
   }
   // 유효성 검사 E
