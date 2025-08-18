@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link'
 import useFetch from './_global/hooks/useFetch'
-import DetectBox from './detect/_components/DetectBox'
 import DetectContainer from './detect/_containers/DetectContainer'
 
 export default function MainPage() {
