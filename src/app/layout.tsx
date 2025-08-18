@@ -6,11 +6,13 @@ import Footer from './_global/outlines/Footer'
 import StyledComponentsRegistry from './registry'
 import { getLoggedMember } from './member/_services/actions'
 import { UserProvider } from './_global/contexts/UserContext'
+import { CommonProvider } from './_global/contexts/CommonContext'
+import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
-  title: '철푸닥',
-  description: '낙상 감지 서비스',
+  title: '게시판',
+  description: '게시판 설명...',
 }
 
 export default async function RootLayout({
@@ -28,11 +30,14 @@ export default async function RootLayout({
     <html lang="ko">
       <body>
         <StyledComponentsRegistry>
-          <UserProvider loggedMember={member}>
-            <Header />
-            <main className="main-content">{children}</main>
-            <Footer />
-          </UserProvider>
+          <CommonProvider>
+            <UserProvider
+              loggedMember={member}
+              token={cookie.get('token')?.value}
+            >
+              <LayoutContainer>{children}</LayoutContainer>
+            </UserProvider>
+          </CommonProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
