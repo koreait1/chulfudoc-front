@@ -7,6 +7,7 @@ import StyledComponentsRegistry from './registry'
 import { getLoggedMember } from './member/_services/actions'
 import { UserProvider } from './_global/contexts/UserContext'
 import { redirect } from 'next/navigation'
+import { GoogleAdSense } from './_global/components/adsense'
 
 export const metadata: Metadata = {
   title: '철푸닥',
@@ -26,6 +27,10 @@ export default async function RootLayout({
 
   return (
     <html lang="ko">
+      <head>
+        {/* 광고 */}
+        <GoogleAdSense />
+      </head>
       <body>
         <StyledComponentsRegistry>
           <UserProvider loggedMember={member}>
