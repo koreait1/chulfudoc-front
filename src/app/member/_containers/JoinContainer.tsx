@@ -4,6 +4,7 @@ import { processJoin } from '../_services/actions'
 import JoinForm from '../_components/JoinForm'
 
 type FormType = {
+  userId: string
   email: string
   password: string
   confirmPassword: string
@@ -15,6 +16,7 @@ type FormType = {
 const JoinContainer = () => {
   const [errors, action, pending] = useActionState<any, any>(processJoin, {})
   const [form, setForm] = useState<FormType>({
+    userId: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -23,7 +25,7 @@ const JoinContainer = () => {
     termsAgree: false,
   })
 
-  const onChange = useCallback((e) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }, [])
 

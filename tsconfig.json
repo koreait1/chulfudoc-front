@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     "src/app/_global/components/ContentBox.tsx",
     "src/app/kakaomap/_components/ERMap.js"
-  ],
+, "src/app/location/_components/ERLocate.js"  ],
   "exclude": ["node_modules"]
 }
