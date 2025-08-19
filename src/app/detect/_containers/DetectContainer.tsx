@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useState, useRef, useEffect } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
 import DetectBox from '../_components/DetectBox'
 import KERLocate from '@/app/location/_components/KERLocate'
 
@@ -12,19 +12,20 @@ type DetectionItem = {
 
 const DetectContainer = () => {
   const [fallDetect, setFallDetect] = useState(false)
-  const detectionTimestamps = useRef<number[]>([])
+  const detectionCount = useRef<number[]>([])
 
   const detectCallback = useCallback((item: DetectionItem) => {
+    console.log(item)
     const now = Date.now()
-    detectionTimestamps.current.push(now)
+    detectionCount.current.push(now)
 
     // 10초 이상 지난 기록 삭제
-    detectionTimestamps.current = detectionTimestamps.current.filter(
+    detectionCount.current = detectionCount.current.filter(
       (time) => now - time <= 10000,
     )
 
     // 10초 안에 5번 이상 감지되면 fallDetect true
-    if (detectionTimestamps.current.length >= 5) {
+    if (detectionCount.current.length >= 5) {
       setFallDetect(true)
     }
   }, [])
