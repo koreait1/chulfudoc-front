@@ -2,6 +2,7 @@
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { revalidateTag } from 'next/cache'
+import { fetchSSR } from '@/app/_global/libs/utils'
 
 /**
  * 회원가입 처리
@@ -152,16 +153,8 @@ export async function processLogin(errors, formData: FormData) {
  */
 export async function getLoggedMember() {
   try {
-    const cookie = await cookies()
-    const token = cookie.get('token')?.value
-    if (!token) return
-
-    const apiUrl = `${process.env.API_URL}/member`
-    const res = await fetch(apiUrl, {
+    const res = await fetchSSR('/member', {
       method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
       next: {
         tags: ['loggedMember'],
       },

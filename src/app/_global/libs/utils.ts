@@ -13,6 +13,26 @@ export async function getToken() {
 }
 
 
-export function fetchSSR(url, options: RequestInit = {}) {
+export async function getUserHash() {
+  const cookie = await cookies()
+
+  return cookie.get('User-Hash')?.value
+}
+
+
+export async function fetchSSR(url, options: RequestInit = {}) {
+
+  const token = await getToken()
+  if (token) {
+    options.headers = options.headers ?? {}
+    options.headers['Authorization'] = `Bearer ${token}`
+  }
+
+  const userHash = await getUserHash()
+  if (userHash) {
+    options.headers = options.headers ?? {}
+    options.headers['User-Hash']
+  }
+
   return fetch(`${process.env.API_URL}${url}`, options)
 }

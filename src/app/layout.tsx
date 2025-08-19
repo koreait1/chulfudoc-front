@@ -7,8 +7,6 @@ import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
-import Header from './_global/outlines/Header'
-import Footer from './_global/outlines/Footer'
 
 export const metadata: Metadata = {
   title: '철푸닥',
