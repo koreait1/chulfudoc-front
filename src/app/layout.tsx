@@ -1,18 +1,18 @@
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import './globals.css'
-import Header from './_global/outlines/Header'
-import Footer from './_global/outlines/Footer'
 import StyledComponentsRegistry from './registry'
 import { getLoggedMember } from './member/_services/actions'
 import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
+import Header from './_global/outlines/Header'
+import Footer from './_global/outlines/Footer'
 
 export const metadata: Metadata = {
-  title: '게시판',
-  description: '게시판 설명...',
+  title: '철푸닥',
+  description: '낙상 감지 서비스',
 }
 
 export default async function RootLayout({
@@ -29,6 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <Header />
         <StyledComponentsRegistry>
           <CommonProvider>
             <UserProvider
@@ -39,6 +40,7 @@ export default async function RootLayout({
             </UserProvider>
           </CommonProvider>
         </StyledComponentsRegistry>
+        <Footer />
       </body>
     </html>
   )
