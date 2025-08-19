@@ -17,29 +17,29 @@ const StyledForm = styled.form`
 const SearchForm = ({ errors, action, pending, form, onChange }) => {
   return (
     <StyledForm action={action} autoComplete="off">
-      <input type="hidden" name="redirectUrl" value={form?.redirectUrl ?? ''} />
+      <select name="sopt">
+        {/* sopt - ALL : 통합검색 (SUBJECT + CONTENT + NAME)
+         * SUBJECT : 게시글 제목
+         * CONTENT : 게시글 내용
+         * SUBJECT_CONTENT : 게시글 제목 + 내용
+         * NAME : 작성자명(poster) + 회원명(name) + 이메일(email) */}
+        <option value={'ALL'}></option>
+        <option value={'SUBJECT' + 'CONTENT' + 'NAME'}></option>
+        <option value={'SUBJECT'}></option>
+        <option value={'CONTENT'}></option>
+        <option value={'SUBJECT_CONTENT'}></option>
+        <option value={'NAME'}></option>
+      </select>
       <Input
         type="text"
-        name="userId"
-        placeholder="아이디를 입력하세요."
-        value={form.userId}
+        name="skey"
+        placeholder="검색어를 입력해주세요"
+        value={form.skey}
         onChange={onChange}
       />
-      <MessageBox color="danger">{errors?.userId}</MessageBox>
-
-      <Input
-        type="password"
-        name="password"
-        placeholder="비밀번호를 입력하세요."
-        value={form.password}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.password}</MessageBox>
-
       <SubmitButton type="submit" disabled={pending}>
-        로그인
+        검색
       </SubmitButton>
-
       <MessageBox color="danger">{errors?.global}</MessageBox>
     </StyledForm>
   )

@@ -2,6 +2,7 @@
 import React, { useActionState, useState, useCallback, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import SearchForm from '../_components/SearchForm'
+import BoardList from '../_components/BoardList'
 
 type FormType = {
   bid: string
@@ -9,7 +10,7 @@ type FormType = {
   email?: string
 }
 
-const SearchContainer = () => {
+const BoardContainer = () => {
   const [errors, action, pending] = useActionState<any, any>(processBoard, {})
   const [form, setForm] = useState<FormType>({
     bid: '',
@@ -17,28 +18,22 @@ const SearchContainer = () => {
     email: '',
   })
 
-  const searchParams = useSearchParams()
-
-  useEffect(() => {
-    const redirectUrl = searchParams.get('redirectUrl')?.toString()
-    if (!redirectUrl) return
-
-    setForm((prev) => ({ ...prev, redirectUrl }))
-  }, [searchParams])
-
   const onChange = useCallback((e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }, [])
 
   return (
-    <SearchForm
-      errors={errors}
-      action={action}
-      pending={pending}
-      form={form}
-      onChange={onChange}
-    />
+    <>
+      <SearchForm
+        errors={errors}
+        action={action}
+        pending={pending}
+        form={form}
+        onChange={onChange}
+      />
+      <BoardList />
+    </>
   )
 }
 
-export default React.memo(SearchContainer)
+export default React.memo(BoardContainer)
