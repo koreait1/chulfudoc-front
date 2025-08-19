@@ -1,6 +1,7 @@
 'use client'
 import useSWR from 'swr'
 import useUser from './useUser'
+import { useCookies } from 'react-cookie'
 
 type FetchOptionType = RequestInit
 
@@ -9,6 +10,7 @@ const fetcher = (url: string, options: FetchOptionType) =>
 
 export default function useFetch(url) {
   const { token } = useUser()
+  const [cookies] = useCookies([])
 
   // token이 있다면 로그인한 회원 기반의 요청을 해야 하므로
   // 요청 헤더 Authorization: Bearer 토큰
