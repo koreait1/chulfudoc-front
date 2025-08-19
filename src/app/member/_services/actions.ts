@@ -2,7 +2,6 @@
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { revalidateTag } from 'next/cache'
-import { useRouter } from 'next/router'
 
 /**
  * 회원가입 처리
