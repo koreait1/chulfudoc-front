@@ -19,8 +19,11 @@ const LoginContainer = ({ redirectUrl }) => {
   })
 
   const searchParams = useSearchParams()
+
   useEffect(() => {
     const redirectUrl = searchParams.get('redirectUrl')?.toString()
+    if (!redirectUrl) return
+
     setForm((prev) => ({ ...prev, redirectUrl }))
   }, [searchParams])
 
