@@ -8,26 +8,15 @@ import logo from '../../assets/images/logo.png'
 import { Button } from '../../components/Buttons'
 import LinkLoading from '../../components/LinkLoading'
 import useUser from '../../hooks/useUser'
-import color from '../../styles/color'
-
-const { info } = color
 
 const StyledHeader = styled.header`
-  align-items: center;
-  padding: 0 20px;
-  justify-content: space-between;
-
-  .badge {
-    background: ${info};
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
+  background: #fff;
 
   .inner {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #bbbbbbff;
     height: 120px;
+    border-bottom: 1px solid #c4c4c4ff;
 
     div {
       width: 0;
@@ -44,18 +33,14 @@ const StyledHeader = styled.header`
 
     .right {
       text-align: right;
-      display: flex;
-      min-width: 0;
 
-      a {
+      a + a {
         margin-left: 5px;
       }
+    }
 
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        white-space: nowrap;
-      }
+    .badge {
+      margin-right: 5px;
     }
   }
 `
