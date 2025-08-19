@@ -1,10 +1,10 @@
-import { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
 
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 export function middleware(request: NextRequest) {
-    const response = NextResponse.next()
+  const response = NextResponse.next()
   if (!request.cookies.get('User-Hash')?.value) {
-    response.cookies.set('User-Hash',''+Date.now())
+    response.cookies.set('User-Hash', '' + Date.now())
   }
   return response
 }
