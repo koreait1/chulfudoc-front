@@ -3,7 +3,7 @@ import { MainTitle } from '../_global/components/TitleBox'
 export default function AdminPage() {
   return (
     <AdminOnlyContainer>
-      <MainTitle>관리자 메인</MainTitle>
+      <MainTitle border="true">관리자 메인</MainTitle>
     </AdminOnlyContainer>
   )
 }

@@ -29,7 +29,6 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Header />
         <StyledComponentsRegistry>
           <CommonProvider>
             <UserProvider
@@ -40,7 +39,6 @@ export default async function RootLayout({
             </UserProvider>
           </CommonProvider>
         </StyledComponentsRegistry>
-        <Footer />
       </body>
     </html>
   )
