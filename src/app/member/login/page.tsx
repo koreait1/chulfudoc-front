@@ -6,7 +6,7 @@ export default function LoginPage() {
   return (
     <ContentBox width={420}>
       <MainTitle center="true">로그인</MainTitle>
-      <LoginContainer />
+      <LoginContainer redirectUrl="" />
     </ContentBox>
   )
 }
