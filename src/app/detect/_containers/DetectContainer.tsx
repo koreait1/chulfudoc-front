@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useState, useRef, useEffect } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
 import DetectBox from '../_components/DetectBox'
 import KERLocate from '@/app/location/_components/KERLocate'
 
