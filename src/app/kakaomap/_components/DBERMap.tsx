@@ -1,6 +1,13 @@
 'use client'
 import { useEffect } from 'react'
 
+declare global {
+  interface Window {
+    kakao: any
+  }
+}
+
+
 export default function DBERMap() {
   useEffect(() => {
     const script = document.createElement('script')
@@ -38,9 +45,9 @@ export default function DBERMap() {
               })
               userInfo.open(map, userMarker)
 
-              let distanceLine = null
-              let distanceOverlay = null
-              let openInfoWindow = null
+              let distanceLine: any = null
+              let distanceOverlay: any = null
+              let openInfoWindow: any = null
 
               data.forEach((loc) => {
                 if (!loc.lat || !loc.lon) return
