@@ -1,0 +1,36 @@
+'use client'
+import { fetchSSR } from '@/app/_global/libs/utils'
+import { useEffect, useState } from 'react'
+export default function useBoardConfig(bid?: string) {
+  const [data, setData] = useState({
+    bid: '',
+    name: '',
+    rowsForPage: 20,
+    pageCount: 10,
+    skin: 'default',
+    category: '',
+    active: false,
+    editor: false,
+    imageUpload: false,
+    attachFile: false,
+    comment: false,
+    afterWritingRedirect: false,
+    showViewList: false,
+    listAuthority: 'ALL',
+    viewAuthority: 'ALL',
+    writeAuthority: 'ALL',
+    commentAuthority: 'ALL',
+  })
+  useEffect(() => {
+    if (!bid) return
+    ;(async () => {
+      const res = await fetchSSR(`/board/config/${bid}`)
+      if (res.status !== 200) {
+        return
+      }
+      const data = await res.json()
+      setData(data)
+    })()
+  }, [bid])
+  return data
+}

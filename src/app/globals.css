@@ -58,7 +58,10 @@ img {
 main.main-content {
   min-height: 650px;
 }
-
+/* 모달 배경 */
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
 /*** 로딩 스피너 ***/
 .spinner {
   opacity: 0;
