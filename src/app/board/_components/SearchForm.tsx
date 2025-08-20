@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Input } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
@@ -15,6 +15,11 @@ const StyledForm = styled.form`
 `
 
 const SearchForm = ({ errors, action, pending, form, onChange }) => {
+  const [skey, setSkey] = useState()
+  onChange = (e) => {
+    setSkey(e.target.value)
+  }
+  console.log(skey)
   return (
     <StyledForm action={action} autoComplete="off">
       <select name="sopt">
@@ -34,7 +39,7 @@ const SearchForm = ({ errors, action, pending, form, onChange }) => {
         type="text"
         name="skey"
         placeholder="검색어를 입력해주세요"
-        value={form.skey}
+        value={skey}
         onChange={onChange}
       />
       <SubmitButton type="submit" disabled={pending}>
