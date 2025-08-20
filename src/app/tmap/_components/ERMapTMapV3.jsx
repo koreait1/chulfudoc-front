@@ -9,7 +9,7 @@ export default function ERMapTMapV3() {
 
     const script = document.createElement('script')
     script.src =
-      'https://apis.openapi.sk.com/tmap/vectorjs?version=1&format=javascript&appKey=OgU5FAQ1KK7bWt4fvIGT96FZD0HiLCib53vsayaB'
+      'https://apis.openapi.sk.com/tmap/vectorjs?version=1&format=javascript&appKey=Zn5hqJeAaN1PnA3ovM8Y03NTGQ0uFQ3X7v1dl01M'
     script.async = true
 
     script.onload = () => {
