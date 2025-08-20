@@ -15,7 +15,8 @@ const StyledSubMenu = styled.nav`
   height: 45px;
   box-shadow: 2px 2px 5px ${dark};
   border-radius: 3px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+
   a {
     line-height: 45px;
     font-size: ${medium};
@@ -34,9 +35,9 @@ const SubMenu = () => {
   const pathname = usePathname()
 
   return (
-    <StyledSubMenu>
-      {items.length > 0 &&
-        items.map(({ link, text }, i) => (
+    items.length > 0 && (
+      <StyledSubMenu>
+        {items.map(({ link, text }, i) => (
           <Link
             href={link}
             key={link + '-' + i}
@@ -45,7 +46,8 @@ const SubMenu = () => {
             {text}
           </Link>
         ))}
-    </StyledSubMenu>
+      </StyledSubMenu>
+    )
   )
 }
 

@@ -53,7 +53,7 @@ const Header = () => {
       <div className="inner layout-width">
         <div className="left"></div>
         <div className="logo-section">
-          <Link href="/">
+          <Link href="/admin">
             <Image src={logo} alt="logo" className="header-logo" />
           </Link>
         </div>
