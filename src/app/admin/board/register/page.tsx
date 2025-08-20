@@ -1,4 +1,10 @@
-import ListContainer from './_containers/ListContainer'
+import { MainTitle } from '@/app/_global/components/TitleBox'
+import UpdateContainer from './_containers/UpdateContainer'
 export default function BoardRegisterPage() {
-  return <ListContainer />
+  return (
+    <>
+      <MainTitle border="true">게시판 설정 등록</MainTitle>
+      <UpdateContainer />
+    </>
+  )
 }

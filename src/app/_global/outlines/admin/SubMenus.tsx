@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import classNames from 'classnames'
@@ -6,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import useMenu from '../../hooks/useMenu'
 import fontSize from '../../styles/fontsize'
 import color from '../../styles/color'
+import React from 'react'
 const { medium } = fontSize
 const { dark, black, white } = color
 const StyledSubMenu = styled.nav`
@@ -13,7 +13,7 @@ const StyledSubMenu = styled.nav`
   height: 45px;
   box-shadow: 2px 2px 5px ${dark};
   border-radius: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   a {
     line-height: 45px;
     font-size: ${medium};
@@ -32,9 +32,9 @@ const SubMenu = () => {
   const pathname = usePathname()
 
   return (
-    <StyledSubMenu>
-      {items.length > 0 &&
-        items.map(({ link, text }, i) => (
+    items.length > 0 && (
+      <StyledSubMenu>
+        {items.map(({ link, text }, i) => (
           <Link
             href={link}
             key={link + '-' + i}
@@ -43,7 +43,8 @@ const SubMenu = () => {
             {text}
           </Link>
         ))}
-    </StyledSubMenu>
+      </StyledSubMenu>
+    )
   )
 }
 
