@@ -1,18 +1,45 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import classNames from 'classnames'
+import { usePathname } from 'next/navigation'
 import useMenu from '../../hooks/useMenu'
-
-const StyledSubMenu = styled.nav``
+import fontSize from '../../styles/fontsize'
+import color from '../../styles/color'
+const { medium } = fontSize
+const { dark, black, white } = color
+const StyledSubMenu = styled.nav`
+  display: flex;
+  height: 45px;
+  box-shadow: 2px 2px 5px ${dark};
+  border-radius: 5px;
+  margin-bottom: 15px;
+  a {
+    line-height: 45px;
+    font-size: ${medium};
+    padding: 0 25px;
+    background-color: ${white};
+    color: ${black};
+    &.on {
+      background-color: ${black};
+      color: ${white};
+    }
+  }
+`
 
 const SubMenu = () => {
   const items = useMenu()
+  const pathname = usePathname()
 
   return (
     <StyledSubMenu>
       {items.length > 0 &&
         items.map(({ link, text }, i) => (
-          <Link href={link} key={link + '-' + i}>
+          <Link
+            href={link}
+            key={link + '-' + i}
+            className={classNames('menu', { on: pathname === link })}
+          >
             {text}
           </Link>
         ))}
