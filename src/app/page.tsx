@@ -9,7 +9,7 @@ import { useCallback, useState } from 'react'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
-  const data = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/member`)
+  const data = useFetch('/member')
   return (
     <>
       <DetectContainer />
