@@ -26,7 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang="ko">
-      <body>
+      <body id="body">
         <StyledComponentsRegistry>
           <CommonProvider>
             <UserProvider

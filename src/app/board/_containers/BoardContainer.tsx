@@ -1,6 +1,5 @@
 'use client'
 import React, { useActionState, useState, useCallback, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
 import SearchForm from '../_components/SearchForm'
 import BoardList from '../_components/BoardList'
 
