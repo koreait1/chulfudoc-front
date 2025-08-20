@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styled from 'styled-components'
 import {
   MdOutlineRadioButtonChecked,
@@ -39,5 +40,6 @@ const BoardConfigForm = ({ form, errors, pending, action, onChange }) => {
     </StyledForm>
   )
 }
+
 
 export default React.memo(BoardConfigForm)

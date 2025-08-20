@@ -61,7 +61,7 @@ const DetectBox = ({ width, height, callback }) => {
             ctx?.clearRect(0, 0, layer.width, layer.height)
             for (const item of items) {
               const [x1, y1, x2, y2, _, cls] = item
-
+              console.log(_, ',', cls)
               // 쓰러진 경우가 아니라면 건너띄기
               if (cls !== 1) continue
 

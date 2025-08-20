@@ -1,3 +1,4 @@
+
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
@@ -14,6 +15,7 @@ const StyledSubMenu = styled.nav`
   display: flex;
   height: 45px;
   box-shadow: 2px 2px 5px ${dark};
+
   border-radius: 3px;
   margin-bottom: 25px;
 
@@ -21,7 +23,9 @@ const StyledSubMenu = styled.nav`
     line-height: 45px;
     font-size: ${medium};
     padding: 0 25px;
+
     color: ${black};
+    background-color: ${white};
 
     &.on {
       background: ${dark};
