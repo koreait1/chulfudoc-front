@@ -1,27 +1,34 @@
+
+import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import classNames from 'classnames'
 import { usePathname } from 'next/navigation'
 import useMenu from '../../hooks/useMenu'
-import fontSize from '../../styles/fontsize'
+import classNames from 'classnames'
 import color from '../../styles/color'
-import React from 'react'
+import fontSize from '../../styles/fontsize'
+
 const { medium } = fontSize
 const { dark, black, white } = color
+
 const StyledSubMenu = styled.nav`
   display: flex;
   height: 45px;
   box-shadow: 2px 2px 5px ${dark};
-  border-radius: 5px;
+
+  border-radius: 3px;
   margin-bottom: 25px;
+
   a {
     line-height: 45px;
     font-size: ${medium};
     padding: 0 25px;
-    background-color: ${white};
+
     color: ${black};
+    background-color: ${white};
+
     &.on {
-      background-color: ${black};
+      background: ${dark};
       color: ${white};
     }
   }
