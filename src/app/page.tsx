@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import useFetch from './_global/hooks/useFetch'
 import DetectContainer from './detect/_containers/DetectContainer'
 
 import { Button } from './_global/components/Buttons'
