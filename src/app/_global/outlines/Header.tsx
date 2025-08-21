@@ -33,6 +33,7 @@ const StyledHeader = styled.header`
         img {
           width: 40px;
           height: 40px;
+          box-sizing: border-box;
         }
       }
     }
