@@ -13,7 +13,6 @@ export default function MainPage() {
   return (
     <>
       <DetectContainer />
-
       <div className="links">
         <button type="button" onClick={() => setIsOpen(true)}>
           병원 찾기
