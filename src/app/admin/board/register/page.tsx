@@ -1,5 +1,6 @@
 import { MainTitle } from '@/app/_global/components/TitleBox'
-import UpdateContainer from './_containers/UpdateContainer'
+import UpdateContainer from '../_containers/UpdateContainer'
+
 export default function BoardRegisterPage() {
   return (
     <>

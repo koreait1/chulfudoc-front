@@ -1,4 +1,5 @@
-import ListContainer from './register/_containers/ListContainer'
+import ListContainer from './_containers/ListContainer'
+
 export default function BoardListPage() {
   return <ListContainer />
 }
