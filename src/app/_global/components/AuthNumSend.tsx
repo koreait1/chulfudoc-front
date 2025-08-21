@@ -1,33 +1,40 @@
 'use client'
-import React, { useCallback, useState } from "react"
+
+import React, { useCallback } from "react"
 import { Button } from './Buttons'
+
 import useFetchCSR from "../hooks/useFetchCSR"
+import styled from "styled-components"
+
+const StyledForm = styled.section`
+
+`
 
 type AuthType = {
     email?: string
     callback?: (item: any) => void
 }
 
-const EmailBox = ({email, callback}: AuthType) => {
+const AuthNumSend = ({email, callback}: AuthType) => {
     const fetchCSR = useFetchCSR()
 
     const onEmailSendClick = useCallback(() => {
+        if(!email) return
 
         function emailSendHandler(){
-            // email 외 다른 값 전송이 필요할 경우를 대비하여 formData를 이용해 값을 받게 설정
-            const formData = new FormData()
-            formData.append('email', '' + email)
-
-            fetchCSR('/email/verify', {
+            
+            fetchCSR(`/email/verify?email=${email}`, {
                 method: 'GET',
-                body: formData
             })
             .then((res) => res.json())
             .then((item) => {
-                const success = item.emailSuccess
-                console.log(success)
+                if(typeof callback === 'function'){
+                    callback(item)
+                }
             })
         }
+
+        emailSendHandler()
         
     }, [fetchCSR, email, callback])
 
@@ -40,4 +47,4 @@ const EmailBox = ({email, callback}: AuthType) => {
     )
 }
 
-export default React.memo(EmailBox)
+export default React.memo(AuthNumSend)

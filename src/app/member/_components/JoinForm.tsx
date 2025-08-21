@@ -4,7 +4,8 @@ import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { Input } from '@/app/_global/components/Forms'
 import { Button, SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
-import useFetch from '@/app/_global/hooks/useFetch'
+import AuthNumSend from '@/app/_global/components/AuthNumSend'
+import AuthNumCheck from '@/app/_global/components/AuthNumCheck'
 
 const StyledForm = styled.form`
 
@@ -68,15 +69,16 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         onChange={onChange}
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
-      <Button type='button' disabled={pending} onClick={() => fetch("/email/verify")}>인증번호 전송</Button>
+      <AuthNumSend email={form.email} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.emailSuccess)} />
 
       <Input 
         type='text'
-        name='auth_num'
+        name='authNum'
         placeholder='인증 번호를 입력하세요'
         value={form.authNum}
         onChange={onChange}
       />
+      <AuthNumCheck authNum={form.authNum} callback={(res) => console.log("이메일 체크 결과 : ", res.emailSuccess)} />
 
       <h3>약관동의</h3>
       <div>약관 동의 작성...</div>

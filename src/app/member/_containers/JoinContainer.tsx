@@ -10,7 +10,7 @@ type FormType = {
   name: string
   mobile: string
   email: string
-  authNum: number
+  authNum: number | undefined
   termsAgree: boolean
 }
 
@@ -23,7 +23,7 @@ const JoinContainer = () => {
     name: '',
     mobile: '',
     email: '',
-    authNum: 0,
+    authNum: undefined,
     termsAgree: false,
   })
 
