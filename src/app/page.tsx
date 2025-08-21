@@ -5,11 +5,10 @@ import DetectContainer from './detect/_containers/DetectContainer'
 
 import { Button } from './_global/components/Buttons'
 import LayerPopup from './_global/components/LayerPopup'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
-  const data = useFetch(`/member`)
   return (
     <>
       <DetectContainer />

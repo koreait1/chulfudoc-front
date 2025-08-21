@@ -1,54 +1,186 @@
 'use client'
 import { useEffect } from 'react'
+import Papa from 'papaparse'
 
 declare global {
   interface Window {
-    Tmapv3: any
+    kakao: any
   }
 }
 
-export default function SimpleMap() {
+export default function ERMapTMapV3() {
   useEffect(() => {
-    if (document.getElementById('tmap-script')) return
-
     const script = document.createElement('script')
-    script.id = 'tmap-script'
-    script.src =
-      'https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=Zn5hqJeAaN1PnA3ovM8Y03NTGQ0uFQ3X7v1dl01M'
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=e5b92d42b15969021e6f0020012e0173&autoload=false`
     script.async = true
 
     script.onload = () => {
-      console.log('Tmapv3 스크립트 로드 완료')
+      window.kakao.maps.load(() => {
+        Papa.parse('/ERPlusPlus.csv', {
+          download: true,
+          header: true,
+          complete: async (result) => {
+            const data = result.data
+            if (!data.length) return
 
-      const initMap = () => {
-        // Map 생성 전 반드시 객체 확인
-        if (
-          window.Tmapv3 &&
-          window.Tmapv3.LatLng &&
-          typeof window.Tmapv3.Map === 'function'
-        ) {
-          console.log('Tmapv3 객체 준비 완료:', window.Tmapv3)
+            navigator.geolocation.getCurrentPosition(
+              async (p) => {
+                const mapContainer = document.getElementById('map')
+                const mapOptions = {
+                  center: new window.kakao.maps.LatLng(
+                    p.coords.latitude,
+                    p.coords.longitude,
+                  ),
+                  level: 7,
+                }
+                const map = new window.kakao.maps.Map(mapContainer, mapOptions)
 
-          new window.Tmapv3.Map('map_div', {
-            center: new window.Tmapv3.LatLng(37.566474, 126.985022),
-            width: '100%',
-            height: '400px',
-          })
-        } else {
-          console.log('Tmapv3 아직 준비 안됨 → 재시도')
-          setTimeout(initMap, 100)
-        }
-      }
+                const userPos = new window.kakao.maps.LatLng(
+                  p.coords.latitude,
+                  p.coords.longitude,
+                )
 
-      initMap()
-    }
+                const userMarker = new window.kakao.maps.Marker({
+                  map,
+                  position: userPos,
+                })
 
-    script.onerror = () => {
-      console.error('Tmapv3 스크립트 로드 실패')
+                const userInfo = new window.kakao.maps.InfoWindow({
+                  content: `<div style="padding:5px;">현위치</div>`,
+                })
+                userInfo.open(map, userMarker)
+
+                let openInfoWindow: any = null
+                let distanceLine: any = null
+                let distanceOverlay: any = null
+
+                for (const loc of data) {
+                  if (!loc.위도 || !loc.경도) continue
+
+                  const hospitalPos = new window.kakao.maps.LatLng(
+                    parseFloat(loc.위도),
+                    parseFloat(loc.경도),
+                  )
+
+                  const marker = new window.kakao.maps.Marker({
+                    map,
+                    position: hospitalPos,
+                  })
+
+                  const address = loc['소재지']?.trim() || '주소 없음'
+                  const phone = loc['연락처']?.trim() || '연락처 없음'
+
+                  const info = new window.kakao.maps.InfoWindow({
+                    content: `<div style="padding:5px; min-width:200px; max-width:300px; height: 85px;">
+                      <b>${loc.응급의료기관명}</b><br>
+                      <div>${address}<br>${phone}</div>
+                    </div>`,
+                  })
+
+                  window.kakao.maps.event.addListener(
+                    marker,
+                    'click',
+                    async () => {
+                      if (openInfoWindow) openInfoWindow.close()
+                      openInfoWindow = info
+                      info.open(map, marker)
+
+                      if (distanceLine) {
+                        distanceLine.setMap(null)
+                        distanceLine = null
+                      }
+                      if (distanceOverlay) {
+                        distanceOverlay.setMap(null)
+                        distanceOverlay = null
+                      }
+
+                      const tmapRouteUrl =
+                        'https://apis.openapi.sk.com/tmap/routes?version=1&format=json&appKey=Zn5hqJeAaN1PnA3ovM8Y03NTGQ0uFQ3X7v1dl01M'
+                      const params = {
+                        startX: p.coords.longitude,
+                        startY: p.coords.latitude,
+                        endX: parseFloat(loc.경도),
+                        endY: parseFloat(loc.위도),
+                        reqCoordType: 'WGS84GEO',
+                        resCoordType: 'WGS84GEO',
+                        searchOption: 1, // 실시간 교통 반영
+                        trafficInfo: 'Y', // 교통정보 포함
+                      }
+                      const query = new URLSearchParams(
+                        params as any,
+                      ).toString()
+                      const routeData = await fetch(`${tmapRouteUrl}&${query}`)
+                        .then((res) => res.json())
+                        .catch(() => null)
+
+                      let distance = 0
+                      let duration = 0
+                      const pathCoords: any[] = []
+
+                      if (routeData?.features?.length) {
+                        distance =
+                          routeData.features[0].properties.totalDistance || 0
+                        duration =
+                          routeData.features[0].properties.totalTime || 0
+
+                        const geometry =
+                          routeData.features[0].geometry.coordinates
+                        const flatten = (arr: any[]) => {
+                          arr.forEach((item) => {
+                            if (Array.isArray(item[0])) flatten(item)
+                            else
+                              pathCoords.push(
+                                new window.kakao.maps.LatLng(item[1], item[0]),
+                              )
+                          })
+                        }
+                        flatten(geometry)
+                      }
+
+                      // Polyline 그리기
+                      if (pathCoords.length) {
+                        distanceLine = new window.kakao.maps.Polyline({
+                          map,
+                          path: pathCoords,
+                          strokeWeight: 5,
+                          strokeColor: '#FF0000',
+                          strokeOpacity: 0.7,
+                          strokeStyle: 'solid',
+                        })
+                      }
+
+                      const content = `
+                      <ul style="background:white; padding:5px; border-radius:5px; border:1px solid #ccc; position: relative; top: 25px; left: 30px;">
+                        <li>총거리 <span class="number">${distance}</span>m</li>
+                        <li>예상 소요시간 <span class="number">${Math.ceil(
+                          duration / 60,
+                        )}</span>분</li>
+                      </ul>
+                    `
+                      distanceOverlay = new window.kakao.maps.CustomOverlay({
+                        map,
+                        content,
+                        position: hospitalPos,
+                        xAnchor: 0,
+                        yAnchor: 1,
+                        zIndex: 3,
+                      })
+                    },
+                  )
+                }
+              },
+              (err) => {
+                alert('현재 위치를 가져올 수 없습니다.')
+                console.error(err)
+              },
+            )
+          },
+        })
+      })
     }
 
     document.head.appendChild(script)
   }, [])
 
-  return <div id="map_div" style={{ width: '100%', height: '400px' }} />
+  return <div id="map" style={{ width: 'auto', height: '600px' }} />
 }
