@@ -5,11 +5,12 @@ import JoinForm from '../_components/JoinForm'
 
 type FormType = {
   userId: string
-  email: string
   password: string
   confirmPassword: string
   name: string
   mobile: string
+  email: string
+  authNum: number
   termsAgree: boolean
 }
 
@@ -17,11 +18,12 @@ const JoinContainer = () => {
   const [errors, action, pending] = useActionState<any, any>(processJoin, {})
   const [form, setForm] = useState<FormType>({
     userId: '',
-    email: '',
     password: '',
     confirmPassword: '',
     name: '',
     mobile: '',
+    email: '',
+    authNum: 0,
     termsAgree: false,
   })
 

@@ -19,6 +19,7 @@ export async function getUserHash() {
   return cookie.get('User-Hash')?.value
 }
 
+// RequestInit은 브라우저의 fetch 함수에서 사용하는 옵션 객체 타입
 export async function fetchSSR(url, options: RequestInit = {}) {
   const token = await getToken()
   if (token) {
