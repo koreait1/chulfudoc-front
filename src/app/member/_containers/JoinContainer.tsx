@@ -40,7 +40,7 @@ const JoinContainer = () => {
   // 프로필 이미지 업로드 후 후속 처리
   const fileUploadCallback = useCallback((items) => {
     if (items && items.length > 0) {
-      setForm((prev) => ({ ...prev, profileImage: items[0] }))
+      setForm((prev) => ({ ...prev, profileImage: items }))
     }
   }, [])
 

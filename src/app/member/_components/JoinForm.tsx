@@ -5,6 +5,8 @@ import { Input } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
 import FileUpload from '@/app/_global/components/FileUpload'
+import FileImages from '@/app/_global/components/FileImages'
+import FileItems from '@/app/_global/components/FileItems'
 
 const StyledForm = styled.form``
 
@@ -76,10 +78,13 @@ const JoinForm = ({
       <MessageBox color="danger">{errors?.mobile}</MessageBox>
 
       <h3>프로필 이미지</h3>
+
+      <FileImages items={form.profileImage} />
+      <FileItems items={form.profileImage} />
       <FileUpload
         gid={form.gid}
         imageOnly={true}
-        single={true}
+        single={false}
         callback={fileUploadCallback}
       />
 

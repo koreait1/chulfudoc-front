@@ -12,7 +12,7 @@ type LayerPopupType = {
   title?: string
   isOpen: boolean
   onClose: () => void
-  width?: string
+  width?: string | number
   height?: string
 }
 const Wrapper = styled.div`
