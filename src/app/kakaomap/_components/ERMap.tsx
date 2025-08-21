@@ -2,6 +2,12 @@
 import { useEffect } from 'react'
 import Papa from 'papaparse'
 
+declare global {
+  interface Window {
+    kakao: any
+  }
+}
+
 export default function ERMap() {
   useEffect(() => {
     const script = document.createElement('script')
@@ -45,9 +51,9 @@ export default function ERMap() {
                 })
                 userInfo.open(map, userMarker)
 
-                let distanceLine = null
-                let distanceOverlay = null
-                let openInfoWindow = null // 현재 열려 있는 InfoWindow 추적
+                let distanceLine: any = null
+                let distanceOverlay: any = null
+                let openInfoWindow: any = null // 현재 열려 있는 InfoWindow 추적
 
                 data.forEach((loc) => {
                   if (!loc.위도 || !loc.경도) return

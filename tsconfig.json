@@ -29,8 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/_global/components/ContentBox.tsx",
-    "src/app/kakaomap/_components/ERMap.js",
-    "src/app/location/_components/KERLocate.js"
+    "src/app/kakaomap/_components/ERMap.tsx",
+    "src/app/location/_components/KERLocate.jsx"
   ],
   "exclude": ["node_modules"]
 }
