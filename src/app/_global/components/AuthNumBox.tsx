@@ -3,12 +3,12 @@ import React, { useCallback, useState } from "react"
 import { Button } from './Buttons'
 import useFetchCSR from "../hooks/useFetchCSR"
 
-type EmailAuthType = {
+type AuthType = {
     email?: string
     callback?: (item: any) => void
 }
 
-const EmailBox = ({email, callback}: EmailAuthType) => {
+const EmailBox = ({email, callback}: AuthType) => {
     const fetchCSR = useFetchCSR()
 
     const onEmailSendClick = useCallback(() => {
