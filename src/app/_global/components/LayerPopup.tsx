@@ -1,9 +1,9 @@
 import Modal from 'react-modal'
 import React from 'react'
 import styled from 'styled-components'
-import { FaRegWindowClose } from 'react-icons/fa'
 import fontSize from '../styles/fontsize'
 import color from '../styles/color'
+import { MdClose } from 'react-icons/md'
 const { big } = fontSize
 const { dark } = color
 Modal.setAppElement('#body')
@@ -12,12 +12,16 @@ type LayerPopupType = {
   title?: string
   isOpen: boolean
   onClose: () => void
-  width?: number
-  height?: number
+  width?: string
+  height?: string
+  top?: string
+  left?: string
 }
-const Wrapper = styled.div<{ width?: number; height?: number }>`
-  width: ${({ width }) => (width ? width : 300)}px;
-  height: ${({ height }) => height && `${height}px`};
+const Wrapper = styled.div`
+  width: 100%;
+  max-height: calc(100% - 65px);
+  overflow-y: auto;
+
   h2 {
     margin: 0 0 20px;
     padding: 0 10px 12px;
@@ -35,32 +39,45 @@ const Wrapper = styled.div<{ width?: number; height?: number }>`
     cursor: pointer;
   }
 `
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    backgroud: '#fff',
-    borderRadius: '30px',
-  },
-}
 const LayerPopup = ({
   children,
   title,
   onClose,
   isOpen,
+  top,
+  left,
   width,
   height,
 }: LayerPopupType) => {
+  const customStyles = {
+    content: {
+      top: top ?? '50%',
+      left: left ?? '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      background: '#fff',
+      borderRadius: '30px',
+      width: width ?? '90%',
+      height: height ?? '70%',
+    },
+  }
   return (
     isOpen && (
-      <Modal isOpen={isOpen} style={customStyles}>
-        <Wrapper width={width} height={height}>
-          <FaRegWindowClose onClick={onClose} className="close" />
-          {title && <h2>{title}</h2>}
+      <Modal
+        isOpen={isOpen}
+        style={customStyles}
+        top={top}
+        left={left}
+        width={width}
+        height={height}
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
+      >
+        {title && <h2>{title}</h2>}
+        <Wrapper>
+          <MdClose onClick={onClose} className="close" />
           {children}
         </Wrapper>
       </Modal>
