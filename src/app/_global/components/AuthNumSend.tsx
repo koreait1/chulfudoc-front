@@ -6,7 +6,7 @@ import { Button } from './Buttons'
 import useFetchCSR from "../hooks/useFetchCSR"
 import styled from "styled-components"
 
-const StyledForm = styled.section`
+const StyledSection = styled.section`
 
 `
 

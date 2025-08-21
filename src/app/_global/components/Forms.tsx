@@ -21,7 +21,7 @@ const commonStyle = css`
     color: ${gray};
   }
 
-  & + & {
+  & ~ & {
     margin-top: 15px;
   }
 `
@@ -34,6 +34,7 @@ type CommonType = {
 
 export const Input = styled.input<CommonType>`
   ${commonStyle}
+  maring-top: 10px;
   height: 50px;
   ${({ width }) =>
     width &&
