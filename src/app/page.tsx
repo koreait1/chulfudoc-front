@@ -6,11 +6,10 @@ import DetectContainer from './detect/_containers/DetectContainer'
 import { Button } from './_global/components/Buttons'
 import LayerPopup from './_global/components/LayerPopup'
 import { useCallback, useState } from 'react'
-import SearchForm from './board/_components/SearchForm'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
-  const data = useFetch('http://localhost:4000/api/v1/member')
+  const data = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/member`)
   return (
     <>
       <DetectContainer />
