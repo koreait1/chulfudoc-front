@@ -76,7 +76,7 @@ const Header = () => {
               </span> */}
               <div className="profile">
                 <Image
-                  src={lo31go}
+                  src={lo13go}
                   alt="썸네일"
                   onClick={() => setIsOpen(true)}
                 />
