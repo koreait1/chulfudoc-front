@@ -14,6 +14,8 @@ type LayerPopupType = {
   onClose: () => void
   width?: string | number
   height?: string
+  top?: string
+  left?: string
 }
 const Wrapper = styled.div`
   width: 100%;
@@ -42,13 +44,15 @@ const LayerPopup = ({
   title,
   onClose,
   isOpen,
+  top,
+  left,
   width,
   height,
 }: LayerPopupType) => {
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
+      top: top ?? '50%',
+      left: left ?? '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
@@ -64,6 +68,8 @@ const LayerPopup = ({
       <Modal
         isOpen={isOpen}
         style={customStyles}
+        top={top}
+        left={left}
         width={width}
         height={height}
         shouldCloseOnOverlayClick={true}
