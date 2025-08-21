@@ -1,8 +1,8 @@
 'use client'
 import React, { useState, useCallback, useActionState } from 'react'
-import BoardConfigform from '../../_components/BoardConfigForm'
+import BoardConfigform from '../_components/BoardConfigForm'
 import useBoardConfig from '@/app/board/_hooks/useBoardConfig'
-import { processBoardConfig } from '../../services/action'
+import { processBoardConfig } from '../services/action'
 
 type PropType = {
   bid?: string

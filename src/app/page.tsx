@@ -5,12 +5,10 @@ import DetectContainer from './detect/_containers/DetectContainer'
 
 import LayerPopup from './_global/components/LayerPopup'
 import { useState } from 'react'
-import MapContainer from './kakaomap/_containers/MapContainer'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
-  const data = useFetch('http://localhost:4000/api/v1/member')
-  console.log(data)
+  const data = useFetch(`/member`)
   return (
     <>
       <DetectContainer />
