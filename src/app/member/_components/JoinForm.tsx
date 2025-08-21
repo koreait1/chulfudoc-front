@@ -4,10 +4,9 @@ import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { Input } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
+import FileBox from '@/app/_global/components/FileBox'
 
-const StyledForm = styled.form`
-
-`
+const StyledForm = styled.form``
 
 const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
   return (
@@ -66,6 +65,9 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         onChange={onChange}
       />
       <MessageBox color="danger">{errors?.mobile}</MessageBox>
+
+      <h3>프로필 이미지</h3>
+      <FileBox />
 
       <h3>약관동의</h3>
       <div>약관 동의 작성...</div>

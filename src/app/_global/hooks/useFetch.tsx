@@ -15,6 +15,7 @@ export default function useFetch(url) {
   const [cookies] = useCookies(['User-Hash'])
   // token이 있다면 로그인한 회원 기반의 요청을 해야 하므로
   // 요청 헤더 Authorization: Bearer 토큰
+  
   const options = {
     method: 'GET',
     headers: {},
