@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import BoardConfigForm from '../../_components/BoardConfigForm'
+import BoardConfigForm from '../_components/BoardConfigForm'
 type PropType = {
   bid?: string
 }

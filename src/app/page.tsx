@@ -3,29 +3,31 @@ import Link from 'next/link'
 import useFetch from './_global/hooks/useFetch'
 import DetectContainer from './detect/_containers/DetectContainer'
 
-import { Button } from './_global/components/Buttons'
 import LayerPopup from './_global/components/LayerPopup'
-import { useCallback, useState } from 'react'
-import SearchForm from './board/_components/SearchForm'
+import { useState } from 'react'
+import MapContainer from './kakaomap/_containers/MapContainer'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
   const data = useFetch('http://localhost:4000/api/v1/member')
+  console.log(data)
   return (
     <>
       <DetectContainer />
-      <button type="button" onClick={() => setIsOpen(true)}>
-        열기
-      </button>
-      <LayerPopup
-        isOpen={isOpen}
-        title="xptmxm"
-        onClose={() => setIsOpen(false)}
-      >
-        sodyd
-      </LayerPopup>
+
       <div className="links">
-        <Button width={'40%'}>병원 찾기</Button>
+        <button type="button" onClick={() => setIsOpen(true)}>
+          병원 찾기
+        </button>
+        <LayerPopup
+          isOpen={isOpen}
+          title="병원 안내"
+          onClose={() => setIsOpen(false)}
+          width={'80%'}
+          height={'60%'}
+        >
+          <MapContainer />
+        </LayerPopup>
         <div className="board-link">
           <Link href="/board/notice" />
           <Link href="/board/freetalk" />
