@@ -5,6 +5,7 @@ import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
 import logo from '../assets/images/logo.png'
+import lo13go from '../assets/images/lo13go.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/Buttons'
@@ -75,7 +76,7 @@ const Header = () => {
               </span> */}
               <div className="profile">
                 <Image
-                  src={logo}
+                  src={lo31go}
                   alt="썸네일"
                   onClick={() => setIsOpen(true)}
                 />
