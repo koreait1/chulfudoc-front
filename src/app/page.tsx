@@ -5,6 +5,7 @@ import DetectContainer from './detect/_containers/DetectContainer'
 
 import LayerPopup from './_global/components/LayerPopup'
 import { useState } from 'react'
+import MapContainer from './kakaomap/_containers/MapContainer'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
