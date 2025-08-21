@@ -18,6 +18,7 @@ const JoinForm = ({
   onToggle,
   form,
   fileUploadCallback,
+  fileDeleteCallback,
 }) => {
   return (
     <StyledForm action={action} autoComplete="off">
@@ -79,12 +80,12 @@ const JoinForm = ({
 
       <h3>프로필 이미지</h3>
 
-      <FileImages items={form.profileImage} />
+      <FileImages items={form.profileImage} callback={fileDeleteCallback} />
       <FileItems items={form.profileImage} />
       <FileUpload
         gid={form.gid}
         imageOnly={true}
-        single={false}
+        single={true}
         callback={fileUploadCallback}
       />
 

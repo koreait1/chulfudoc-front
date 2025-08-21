@@ -40,8 +40,17 @@ const JoinContainer = () => {
   // 프로필 이미지 업로드 후 후속 처리
   const fileUploadCallback = useCallback((items) => {
     if (items && items.length > 0) {
-      setForm((prev) => ({ ...prev, profileImage: items }))
+      setForm((prev) => ({ ...prev, profileImage: items[0] }))
     }
+  }, [])
+
+  // 프로필 이미지 삭제 후 후속 처리
+  const fileDeleteCallback = useCallback(() => {
+    setForm((prev) => {
+      const form = { ...prev }
+      delete form.profileImage
+      return form
+    })
   }, [])
 
   return (
@@ -52,6 +61,7 @@ const JoinContainer = () => {
       onChange={onChange}
       onToggle={onToggle}
       fileUploadCallback={fileUploadCallback}
+      fileDeleteCallback={fileDeleteCallback}
       form={form}
     />
   )
