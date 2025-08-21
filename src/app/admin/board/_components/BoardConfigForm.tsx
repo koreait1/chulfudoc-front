@@ -1,9 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  MdOutlineRadioButtonChecked,
-  MdOutlineRadioButtonUnchecked,
-} from 'react-icons/md'
 import MessageBox from '@/app/_global/components/MessageBox'
 import { Input, Textarea, TableCols } from '@/app/_global/components/Forms'
 
