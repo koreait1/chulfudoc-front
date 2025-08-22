@@ -20,7 +20,7 @@ const DetectContainer = () => {
 
     const now = Date.now()
 
-    // 너무 빠른 감지는 무시하도록
+    // 너무 빠른 감지는
     if (now - lastDetectTime.current < 1000) return
     lastDetectTime.current = now
 

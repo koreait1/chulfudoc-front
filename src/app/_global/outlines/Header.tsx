@@ -1,15 +1,17 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
 import logo from '../assets/images/logo.png'
+import lo13go from '../assets/images/lo13go.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/Buttons'
 import useUser from '../hooks/useUser'
 import LinkLoading from '../components/LinkLoading'
+import LayerPopup from '../components/LayerPopup'
 
 const StyledHeader = styled.header`
   background: #fff;
@@ -22,6 +24,18 @@ const StyledHeader = styled.header`
     div {
       width: 0;
       flex-grow: 1;
+      &.profile {
+        margin-left: 80px;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        cursor: pointer;
+        img {
+          width: 40px;
+          height: 40px;
+          box-sizing: border-box;
+        }
+      }
     }
 
     .logo-section {
@@ -33,9 +47,12 @@ const StyledHeader = styled.header`
     }
 
     .right {
-      text-align: right;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 120px;
 
-      a + a {
+      a {
         margin-left: 5px;
       }
     }
@@ -44,6 +61,7 @@ const StyledHeader = styled.header`
 
 const Header = () => {
   const { isLogin, isAdmin, loggedMember } = useUser()
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <StyledHeader>
       <div className="inner layout-width">
@@ -60,13 +78,32 @@ const Header = () => {
               <span>
                 {loggedMember.name}({loggedMember.email})
               </span> */}
-              <Link href="/mypage" prefetch={false}>
-                <Button type="button">
-                  <CgProfile />
-                  마이페이지
-                  <LinkLoading />
-                </Button>
-              </Link>
+              <div className="profile">
+                <Image
+                  src={lo13go}
+                  alt="썸네일"
+                  onClick={() => setIsOpen(true)}
+                />
+                <LayerPopup
+                  isOpen={isOpen}
+                  title="회원명"
+                  onClose={() => setIsOpen(false)}
+                  top="28%"
+                  left="70%"
+                  width={'20%'}
+                  height={'40%'}
+                >
+                  회원정보 <br />
+                  etc
+                  <Link href="/mypage" prefetch={false}>
+                    <Button type="button">
+                      <CgProfile />
+                      마이페이지
+                      <LinkLoading />
+                    </Button>
+                  </Link>
+                </LayerPopup>
+              </div>
               <a href="/member/api/logout">
                 <Button type="button" color="secondary">
                   <FiLogOut />

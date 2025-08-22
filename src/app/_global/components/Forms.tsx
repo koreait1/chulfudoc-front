@@ -21,7 +21,7 @@ const commonStyle = css`
     color: ${gray};
   }
 
-  & + & {
+  & ~ & {
     margin-top: 15px;
   }
 `
@@ -34,6 +34,7 @@ type CommonType = {
 
 export const Input = styled.input<CommonType>`
   ${commonStyle}
+  maring-top: 10px;
   height: 50px;
   ${({ width }) =>
     width &&
@@ -50,6 +51,7 @@ export const Input = styled.input<CommonType>`
 export const Textarea = styled.textarea<CommonType>`
   ${commonStyle}
   height: 150px;
+  resize: none;
   ${({ width }) =>
     width &&
     css`
@@ -88,5 +90,19 @@ export const TableCols = styled.table<TableType>`
     td {
       border-top: 1px solid #ccc;
     }
+  }
+
+  td {
+    svg {
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+      span.radio, span.checkbox {
+        margin-right: 15px;
+    }
+  }
+
+  & + & {
+    margin-top: 30px;
   }
 `
