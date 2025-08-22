@@ -10,7 +10,7 @@ export default function useBoardConfig(bid?: string) {
     name: '',
     rowsForPage: 20,
     pageCount: 10,
-    skin: 'defalut',
+    skin: 'default',
     category: '',
     active: false,
     editor: false,
