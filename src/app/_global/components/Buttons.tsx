@@ -60,11 +60,26 @@ export const Button = styled.button<ButtonType>`
       }
     `
   }}
+
+   ${({ center }) =>
+    center &&
+    css`
+      display: block;
+      margin: 0 auto;
+    `}
 `
 
 export const SubmitButton = (props) => {
+  const { width } = props
   return (
-    <Button {...props} width="100%" height={60} fontSize="extra" className='btn'>
+    <Button
+      {...props}
+      width={width ? `${width}px` : '100%'}
+      height={60}
+      fontSize="extra"
+      center="true"
+      className="btn"
+    >
       {props.children}
     </Button>
   )
