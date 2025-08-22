@@ -13,7 +13,7 @@ export default function useFetchCSR() {
     })()
   }, [])
 
-  return (url: string, options: RequestInit) => {
+  return (url: string, options: RequestInit = {}) => {
     if (token) {
       options.headers = options.headers ?? {}
       options.headers['Authorization'] = `Bearer ${token}`
