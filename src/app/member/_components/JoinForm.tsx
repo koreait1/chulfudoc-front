@@ -71,7 +71,6 @@ const JoinForm = ({
       />
       <MessageBox color="danger">{errors?.mobile}</MessageBox>
 
-
       <Input
         type="text"
         name="email"
@@ -89,7 +88,7 @@ const JoinForm = ({
         value={form.authNum}
         onChange={onChange}
       />
-      <AuthNumCheck authNum={form.authNum} callback={(res) => console.log("이메일 체크 결과 : ", res.emailSuccess)} />
+      <AuthNumCheck authNum={Number(form.authNum)} callback={(res) => console.log("이메일 체크 결과 : ", res.emailSuccess)} />
 
       <h3>프로필 이미지</h3>
 
