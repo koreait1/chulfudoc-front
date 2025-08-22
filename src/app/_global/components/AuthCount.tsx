@@ -2,10 +2,25 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Button } from './Buttons'
 
-export default function AuthCount() {
+type Props = {
+  startSignal?: number
+  duration?: number
+}
+
+export default function AuthCount({ startSignal = 0, duration = 180 }: Props) {
   const [count, setCount] = useState(181)
   const [sending, setSending] = useState(false)
   const timerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (startSignal <= 0) return
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = null
+    }
+    setCount(duration)
+    setSending(true)
+  }, [startSignal, duration])
 
   //타이머 형식 -> 분:초
   const formatTime = (sec: number) => {
@@ -17,16 +32,17 @@ export default function AuthCount() {
   //1초마다 count 감소
   useEffect(() => {
     //오류 나면 보내지 않음
-    if (!sending) return 
+    if (!sending) return
 
     timerRef.current = window.setInterval(() => {
       setCount((prev) => {
-        if (prev <= 1) { //0이 되면 멈춤
-             if (timerRef.current !== null) {
+        if (prev <= 1) {
+          //0이 되면 멈춤
+          if (timerRef.current !== null) {
             // null이 아닐 때만 정리
             clearInterval(timerRef.current)
             timerRef.current = null
-            }
+          }
           setSending(false)
           return 0
         }
@@ -39,17 +55,9 @@ export default function AuthCount() {
     }
   }, [sending])
 
-  // 타이머 시작 함수
-  const start = () => {
-    setCount(180)
-    setSending(true)
-  }
-
   return (
     <>
-      <span className="sendCount">
-        {sending ? formatTime(count) : ''}
-      </span>
+      <span className="sendCount">{sending ? formatTime(count) : ''}</span>
     </>
   )
 }
