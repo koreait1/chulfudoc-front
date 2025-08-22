@@ -9,6 +9,7 @@ import AuthNumCheck from '@/app/_global/components/AuthNumCheck'
 import FileUpload from '@/app/_global/components/FileUpload'
 import FileImages from '@/app/_global/components/FileImages'
 import FileItems from '@/app/_global/components/FileItems'
+import AuthCount from '@/app/_global/components/AuthCount'
 
 const StyledForm = styled.form``
 
@@ -80,6 +81,8 @@ const JoinForm = ({
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
       <AuthNumSend email={form.email} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.emailSuccess)} />
+
+      <AuthCount />
 
       <Input 
         type='text'

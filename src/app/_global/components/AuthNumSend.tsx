@@ -43,10 +43,10 @@ const AuthNumSend = ({email, callback}: AuthType) => {
 
     return(
         <>
-            <Button type="button" onClick={onEmailSendClick}>
-                인증번호 전송
-            </Button>
-            {loading && <Loading />}
+        {loading ? <Loading /> : 
+        <Button type="button" onClick={onEmailSendClick}>
+            인증번호 전송
+        </Button>}
         </>
     )
 }
