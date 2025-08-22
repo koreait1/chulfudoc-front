@@ -1,11 +1,10 @@
 'use client'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
 import logo from '../assets/images/logo.png'
-import lo13go from '../assets/images/lo13go.png'
+import defaultImg from '../assets/images/lo13go.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/Buttons'
@@ -13,6 +12,7 @@ import useUser from '../hooks/useUser'
 import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
+import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
 
 const StyledHeader = styled.header`
   background: #fff;
@@ -94,13 +94,21 @@ const Header = () => {
                 </a>
               )}
               <div className="profile" onClick={() => setIsOpen(true)}>
-                <FileImages
-                  items={loggedMember.profileImage}
-                  viewOnly={true}
-                  viewOrgImage={false}
-                  width={40}
-                  height={40}
-                />
+                {loggedMember.profileImage ? (
+                  <FileImages
+                    items={loggedMember.profileImage}
+                    viewOnly={true}
+                    viewOrgImage={false}
+                    width={40}
+                    height={40}
+                  />
+                ) : (
+                  <ul>
+                    <li>
+                      <Image src={defaultImg} alt="기본프로필" />
+                    </li>
+                  </ul>
+                )}
                 <LayerPopup
                   isOpen={isOpen}
                   title="회원명"

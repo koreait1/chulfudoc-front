@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import { FaDownload, FaRegWindowClose } from 'react-icons/fa'
 import styled from 'styled-components'
 import useFetchCSR from '../hooks/useFetchCSR'
+import useConfirmDialog from '../hooks/useConfirmDialog'
 import color from '../styles/color'
 import fontSize from '../styles/fontsize'
 const { light } = color
@@ -35,18 +36,24 @@ const StyledItems = styled.ul`
 `
 const FileItems = ({ items, callback }: FileType) => {
   const fetchCSR = useFetchCSR()
+  const confirmDialog = useConfirmDialog()
   const onRemove = useCallback(
     (seq) => {
-      fetchCSR(`/file/delete/${seq}`, { method: 'DELETE' })
-        .then((res) => res.json())
-        .then((item) => {
-          // 삭제 후 후속 처리
-          if (typeof callback === 'function') {
-            callback(item)
-          }
-        })
+      confirmDialog({
+        text: '정말 삭제하시겠습니까?',
+        confirmCallback: () => {
+          fetchCSR(`/file/delete/${seq}`, { method: 'DELETE' })
+            .then((res) => res.json())
+            .then((item) => {
+              // 삭제 후 후속 처리
+              if (typeof callback === 'function') {
+                callback(item)
+              }
+            })
+        },
+      })
     },
-    [fetchCSR, callback],
+    [fetchCSR, callback, confirmDialog],
   )
   items = Array.isArray(items) ? items : items ? [items] : []
   if (items.length === 0) return <></>

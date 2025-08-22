@@ -8,7 +8,6 @@ import AuthNumSend from '@/app/_global/components/AuthNumSend'
 import AuthNumCheck from '@/app/_global/components/AuthNumCheck'
 import FileUpload from '@/app/_global/components/FileUpload'
 import FileImages from '@/app/_global/components/FileImages'
-import FileItems from '@/app/_global/components/FileItems'
 
 const StyledForm = styled.form``
 
