@@ -15,9 +15,10 @@ type AuthType = {
     apiUrl: ApiUrl
     callback?: (item: any) => void
     children?: React.ReactNode
+    onStartTimer?: () => void
 }
 
-const AuthNumButton = ({data, apiUrl, callback, children}: AuthType) => {
+const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
 
@@ -29,6 +30,8 @@ const AuthNumButton = ({data, apiUrl, callback, children}: AuthType) => {
         }
 
         setLoading(true);
+
+        onStartTimer?.()
 
         function emailAuthNumHandler(){
             
@@ -44,7 +47,7 @@ const AuthNumButton = ({data, apiUrl, callback, children}: AuthType) => {
 
         emailAuthNumHandler()
         
-    }, [fetchCSR, data, callback])
+    }, [fetchCSR, data, callback, onStartTimer])
 
     return(
         <>
