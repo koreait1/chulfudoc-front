@@ -19,9 +19,12 @@ export async function processJoin(errors, formData: FormData) {
     if (['true', 'false'].includes(_value)) {
       _value = _value === 'true'
     }
+    if(key.startsWith('authNum')) continue
 
     params[key] = _value
   }
+
+  console.log(params)
 
   let hasErrors: boolean = false
   // 필수 항목 검증 S
