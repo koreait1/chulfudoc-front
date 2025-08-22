@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import useFetch from './_global/hooks/useFetch'
 import DetectContainer from './detect/_containers/DetectContainer'
 
 import LayerPopup from './_global/components/LayerPopup'
@@ -9,7 +8,6 @@ import MapContainer from './kakaomap/_containers/MapContainer'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
-  const data = useFetch(`/member`)
   return (
     <>
       <DetectContainer />

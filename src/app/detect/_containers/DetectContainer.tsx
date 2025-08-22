@@ -13,10 +13,17 @@ type DetectionItem = {
 const DetectContainer = () => {
   const [fallDetect, setFallDetect] = useState(false)
   const detectionCount = useRef<number[]>([])
+  const lastDetectTime = useRef(0) // 연속 감지 방지 차원에서 넣음
 
   const detectCallback = useCallback((item: DetectionItem) => {
-    console.log(item)
+    console.log(item) // 감지 확인용 item
+
     const now = Date.now()
+
+    // 너무 빠른 감지는
+    if (now - lastDetectTime.current < 1000) return
+    lastDetectTime.current = now
+
     detectionCount.current.push(now)
 
     // 10초 이상 지난 기록 삭제
