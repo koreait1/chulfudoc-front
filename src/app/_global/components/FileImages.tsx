@@ -42,10 +42,19 @@ type FileType = {
   items: any
   width?: number
   height?: number
+  viewOnly?: boolean
+  viewOrgImage?: boolean
   callback?: (item: any) => void
 }
 
-const ImageItem = ({ item, width, height, callback }) => {
+const ImageItem = ({
+  item,
+  width,
+  height,
+  callback,
+  viewOnly,
+  viewOrgImage,
+}) => {
   const { seq, fileUrl, thumbBaseUrl, fileName, image } = item
   const [open, setOpen] = useState<boolean>(false)
   const fetchCSR = useFetchCSR()
@@ -70,7 +79,9 @@ const ImageItem = ({ item, width, height, callback }) => {
   return (
     image && (
       <li>
-        <FaRegWindowClose className="remvoe" onClick={() => onRemove(seq)} />
+        {!viewOnly && (
+          <FaRegWindowClose className="remvoe" onClick={() => onRemove(seq)} />
+        )}
         <Image
           src={`${thumbBaseUrl}&width=${width}&height=${height}&crop=true`}
           alt={fileName}
@@ -78,21 +89,30 @@ const ImageItem = ({ item, width, height, callback }) => {
           height={height}
           onClick={onShow}
         />
-        <LayerPopup width={500} isOpen={open} onClose={onClose}>
-          <Image
-            className="org-image"
-            width={500}
-            height={500}
-            src={fileUrl}
-            alt={fileName}
-          />
-        </LayerPopup>
+        {viewOrgImage && (
+          <LayerPopup width={500} isOpen={open} onClose={onClose}>
+            <Image
+              className="org-image"
+              width={500}
+              height={500}
+              src={fileUrl}
+              alt={fileName}
+            />
+          </LayerPopup>
+        )}
       </li>
     )
   )
 }
 
-const FileImages = ({ items, width, height, callback }: FileType) => {
+const FileImages = ({
+  items,
+  width,
+  height,
+  callback,
+  viewOnly,
+  viewOrgImage,
+}: FileType) => {
   items = Array.isArray(items) ? items : items ? [items] : []
   if (items.length === 0) return <></>
   width = width ?? 100
@@ -106,6 +126,8 @@ const FileImages = ({ items, width, height, callback }: FileType) => {
           width={width}
           height={height}
           callback={callback}
+          viewOnly={viewOnly}
+          viewOrgImage={viewOrgImage}
         />
       ))}
     </ImageItems>

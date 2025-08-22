@@ -26,53 +26,32 @@ const JoinForm = ({
     <StyledForm action={action} autoComplete="off">
       <input type="hidden" name="gid" value={form.gid} />
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
-      {form?.socialChannel && form?.socialToken && (
-        <>
-          <input
-            type="hidden"
-            name="socialChannel"
-            value={form.socialChannel}
-          />
-          <input type="hidden" name="socialToken" value={form.socialToken} />
-          <div>KAKAO 계정 연결 회원가입</div>
-        </>
-      )}
-      {(!form?.socialChannel || !form?.socialToken) && (
-        <>
-          <Input
-            type="text"
-            name="userId"
-            placeholder="아이디를 입력하세요"
-            value={form.userId}
-            onChange={onChange}
-          />
-          <MessageBox color="danger">{errors?.userId}</MessageBox>
-          <input
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력하세요"
-            value={form.password}
-            onChange={onChange}
-          />
-          <MessageBox color="danger">{errors?.password}</MessageBox>
-          <Input
-            type="password"
-            name="confirmPassword"
-            placeholder="비밀번호를 확인하세요"
-            value={form.confirmPassword}
-            onChange={onChange}
-          />
-          <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
-          <Input
-            type="text"
-            name="mobile"
-            placeholder="휴대전화번호를 입력하세요"
-            value={form.mobile}
-            onChange={onChange}
-          />
-          <MessageBox color="danger">{errors?.mobile}</MessageBox>
-        </>
-      )}
+      <Input
+        type="text"
+        name="userId"
+        placeholder="아이디를 입력하세요"
+        value={form.userId}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.userId}</MessageBox>
+
+      <Input
+        type="password"
+        name="password"
+        placeholder="비밀번호를 입력하세요"
+        value={form.password}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.password}</MessageBox>
+
+      <Input
+        type="password"
+        name="confirmPassword"
+        placeholder="비밀번호를 확인하세요"
+        value={form.confirmPassword}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
 
       <Input
         type="text"
@@ -82,6 +61,15 @@ const JoinForm = ({
         onChange={onChange}
       />
       <MessageBox color="danger">{errors?.name}</MessageBox>
+
+      <Input
+        type="text"
+        name="mobile"
+        placeholder="휴대전화번호를 입력하세요"
+        value={form.mobile}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.mobile}</MessageBox>
 
       <Input
         type="text"
@@ -112,8 +100,11 @@ const JoinForm = ({
 
       <h3>프로필 이미지</h3>
 
-      <FileImages items={form.profileImage} callback={fileDeleteCallback} />
-      <FileItems items={form.profileImage} callback={fileDeleteCallback} />
+      <FileImages
+        items={form.profileImage}
+        callback={fileDeleteCallback}
+        viewOrgImage={true}
+      />
       <FileUpload
         gid={form.gid}
         imageOnly={true}
