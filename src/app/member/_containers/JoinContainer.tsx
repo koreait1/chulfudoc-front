@@ -7,11 +7,12 @@ import JoinForm from '../_components/JoinForm'
 type FormType = {
   gid: string
   userId: string
-  email: string
   password: string
   confirmPassword: string
   name: string
   mobile: string
+  email: string
+  authNum: number | undefined
   termsAgree: boolean
   profileImage?: any
 }
@@ -21,11 +22,12 @@ const JoinContainer = () => {
   const [form, setForm] = useState<FormType>({
     gid: uuid(),
     userId: '',
-    email: '',
     password: '',
     confirmPassword: '',
     name: '',
     mobile: '',
+    email: '',
+    authNum: undefined,
     termsAgree: false,
   })
 
