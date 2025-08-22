@@ -2,44 +2,56 @@
 
 import React, { useCallback, useState } from "react"
 import { Button } from './Buttons'
-
 import useFetchCSR from "../hooks/useFetchCSR"
 import styled from "styled-components"
 import Loading from "@/app/loading"
+import { ApiUrl } from "../constants/ApiUrl"
 
 const StyledSection = styled.section`
 
 `
+type AuthType = {
+    data?: any
+    apiUrl: ApiUrl
+    callback?: (item: any) => void
+    children?: React.ReactNode
+}
 
-const AuthNumButton = (data?: any) => {
+const AuthNumButton = ({data, apiUrl, callback, children}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
 
     const onEmailSendClick = useCallback(() => {
         if(!data) return
 
+        if(apiUrl == ApiUrl.CHECKCODE && isNaN(data)){
+            return
+        }
+
         setLoading(true);
 
-        function emailSendHandler(){
+        function emailAuthNumHandler(){
             
-            fetchCSR(`/email/verify?email=${data}`)
+            fetchCSR(`${apiUrl}${data}`)
             .then((res) => res.json())
-            .then(() => {
-                console.log("버튼 기능 완료")
+            .then((item) => {
+                if(typeof callback === 'function'){
+                    callback(item)
+                }
                 setLoading(false)
             })
         }
 
-        emailSendHandler()
+        emailAuthNumHandler()
         
-    }, [fetchCSR, data])
+    }, [fetchCSR, data, callback])
 
     return(
         <>
+            {loading ? <Loading /> :
             <Button type="button" onClick={onEmailSendClick}>
-                인증번호 전송
-            </Button>
-            {loading && <Loading />}
+                {children}
+            </Button>}
         </>
     )
 }

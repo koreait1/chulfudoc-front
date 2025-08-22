@@ -25,7 +25,11 @@
     "react-modal": "^3.16.3",
     "sass": "^1.90.0",
     "styled-components": "^6.1.19",
+<<<<<<< HEAD
     "sweetalert": "^2.1.2",
+=======
+    "sweetalert2": "^11.22.4",
+>>>>>>> c48a86cf550444f690b6e81f00f3a51683ba0cbb
     "swr": "^2.3.6",
     "uuid": "^11.1.0"
   },

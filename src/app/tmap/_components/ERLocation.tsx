@@ -57,14 +57,14 @@ export default function ERLocation() {
               ),
             }))
             .sort((a, b) => a.straightDistance - b.straightDistance)
-            .slice(0,20) // 후보 20개만 특정
+            .slice(0, 20) // 후보 20개만 특정
 
           const hospitalsWithDistance: Hospital[] = []
 
           for (const loc of candidates) {
             try {
               const res = await fetch(
-                `/tmap/api/getRoute?startX=${longitude}&startY=${latitude}&endX=${parseFloat(
+                `/tmap/api/mapRoute?startX=${longitude}&startY=${latitude}&endX=${parseFloat(
                   loc.경도,
                 )}&endY=${parseFloat(loc.위도)}`,
               )
