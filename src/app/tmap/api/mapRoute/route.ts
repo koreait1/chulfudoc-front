@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     console.error(err)
     return NextResponse.json(
-      { error: 'Tmap API request failed' },
+      { error: 'Tmap API 요청 실패' },
       { status: 500 },
     )
   }

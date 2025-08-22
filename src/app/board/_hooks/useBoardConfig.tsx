@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { fetchSSR } from '@/app/_global/libs/utils'
 
@@ -38,7 +37,6 @@ export default function useBoardConfig(bid?: string) {
       setData(data)
     })()
   }, [bid])
-
 
   return data
 }

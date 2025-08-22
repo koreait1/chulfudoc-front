@@ -42,7 +42,7 @@ const BoardConfigForm = ({
         value={form.commentAuthority}
       />
 
-      <MessageBox color="danger">{errors.global}</MessageBox>
+      <MessageBox color="danger">{errors?.global}</MessageBox>
       <TableCols thwidth={180}>
         <tbody>
           <tr>
@@ -61,7 +61,7 @@ const BoardConfigForm = ({
                   onChange={onChange}
                 />
               )}
-              <MessageBox color="danger">{errors.bid}</MessageBox>
+              <MessageBox color="danger">{errors?.bid}</MessageBox>
             </td>
           </tr>
           <tr>
@@ -73,7 +73,7 @@ const BoardConfigForm = ({
                 value={form.name}
                 onChange={onChange}
               />
-              <MessageBox color="danger">{errors.name}</MessageBox>
+              <MessageBox color="danger">{errors?.name}</MessageBox>
             </td>
           </tr>
           <tr>
