@@ -11,35 +11,28 @@ const StyledSection = styled.section`
 
 `
 
-type AuthType = {
-    email?: string
-    callback?: (item: any) => void
-}
-
-const AuthNumSend = ({email, callback}: AuthType) => {
+const AuthNumButton = (data?: any) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
 
     const onEmailSendClick = useCallback(() => {
-        if(!email) return
+        if(!data) return
 
         setLoading(true);
 
         function emailSendHandler(){
             
-            fetchCSR(`/email/verify?email=${email}`)
+            fetchCSR(`/email/verify?email=${data}`)
             .then((res) => res.json())
-            .then((item) => {
-                if(typeof callback === 'function'){
-                    callback(item)
-                }
+            .then(() => {
+                console.log("버튼 기능 완료")
                 setLoading(false)
             })
         }
 
         emailSendHandler()
         
-    }, [fetchCSR, email, callback])
+    }, [fetchCSR, data])
 
     return(
         <>
@@ -51,4 +44,4 @@ const AuthNumSend = ({email, callback}: AuthType) => {
     )
 }
 
-export default React.memo(AuthNumSend)
+export default React.memo(AuthNumButton)

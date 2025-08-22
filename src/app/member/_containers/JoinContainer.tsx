@@ -12,7 +12,7 @@ type FormType = {
   name: string
   mobile: string
   email: string
-  authNum: number | undefined
+  authNum: string
   termsAgree: boolean
   profileImage?: any
 }
@@ -27,7 +27,7 @@ const JoinContainer = () => {
     name: '',
     mobile: '',
     email: '',
-    authNum: undefined,
+    authNum: '',
     termsAgree: false,
   })
 

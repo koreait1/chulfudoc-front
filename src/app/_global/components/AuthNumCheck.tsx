@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback } from "react"
+import React, { useCallback, useState } from "react"
 import { Button } from './Buttons'
 
 import useFetchCSR from "../hooks/useFetchCSR"
@@ -11,26 +11,28 @@ const StyledSection = styled.section`
 `
 
 type AuthType = {
-    authNum?: number
+    authNum: any
     callback?: (item: any) => void
 }
 
 const AuthNumCheck = ({authNum , callback}: AuthType) => {
     const fetchCSR = useFetchCSR()
+    const [loading, setLoading] = useState(false);
 
     const onCodeCheckClick = useCallback(() => {
-        if(!authNum) return
+        if(!authNum || isNaN(authNum)) return
+
+        setLoading(true);
 
         function emailCheckHandler(){
             
-            fetchCSR(`/email/check?authNum=${authNum}`, {
-                method: 'GET',
-            })
+            fetchCSR(`/email/check?authNum=${authNum}`)
             .then((res) => res.json())
             .then((item) => {
                 if(typeof callback === 'function'){
                     callback(item)
                 }
+                setLoading(false)
             })
         }
 
