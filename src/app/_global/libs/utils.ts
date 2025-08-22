@@ -1,7 +1,6 @@
 'use server'
 
 import { cookies } from 'next/headers'
-import { headers } from 'next/headers'
 
 /**
  * token 쿠키값 조회

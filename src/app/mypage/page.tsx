@@ -6,7 +6,7 @@ import { MainTitle } from '../_global/components/TitleBox'
 import useUser from '../_global/hooks/useUser'
 import UserOnlyContainer from '../_global/wrappers/UserOnlyContainer'
 export default function Mypage() {
-  const { isLogin, isAdmin, loggedMember } = useUser()
+  const { loggedMember } = useUser()
   return (
     <UserOnlyContainer>
       <ContentBox width={0}>
