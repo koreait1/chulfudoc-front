@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import ContentBox from '../_global/components/ContentBox'
 import FileImages from '../_global/components/FileImages'
-import defaultImg from '../assets/images/lo13go.png'
+import defaultImg from '../_global/assets/images/lo13go.png'
 import { MainTitle } from '../_global/components/TitleBox'
 import useUser from '../_global/hooks/useUser'
 import UserOnlyContainer from '../_global/wrappers/UserOnlyContainer'
