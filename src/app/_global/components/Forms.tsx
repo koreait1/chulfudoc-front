@@ -34,7 +34,7 @@ type CommonType = {
 
 export const Input = styled.input<CommonType>`
   ${commonStyle}
-  maring-top: 10px;
+  margin-top: 10px;
   height: 50px;
   ${({ width }) =>
     width &&
@@ -45,6 +45,15 @@ export const Input = styled.input<CommonType>`
     height &&
     css`
       height: ${height}px;
+    `}
+  
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;   // 마우스 이벤트 차단
+      user-select: none;      // 드래그 방지
+      background-color: #f5f5f5; // 비활성화처럼 보이게
+      color: #ccc
     `}
 `
 

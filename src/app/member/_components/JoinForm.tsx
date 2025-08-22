@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { Input } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
-import AuthNumSend from '@/app/_global/components/AuthNumSend'
-import AuthNumCheck from '@/app/_global/components/AuthNumCheck'
 import FileUpload from '@/app/_global/components/FileUpload'
 import FileImages from '@/app/_global/components/FileImages'
+import FileItems from '@/app/_global/components/FileItems'
+import AuthNumButton from '@/app/_global/components/AuthNumButton'
+import { ApiUrl } from '@/app/_global/constants/ApiUrl'
 
 const StyledForm = styled.form``
+const sendCode = ApiUrl.SENDCODE
+const checkCode:ApiUrl = ApiUrl.CHECKCODE
 
 const JoinForm = ({
   errors,
@@ -21,6 +24,8 @@ const JoinForm = ({
   fileUploadCallback,
   fileDeleteCallback,
 }) => {
+  const [emailDisabled, setEmailDisabled] = useState(false)
+
   return (
     <StyledForm action={action} autoComplete="off">
       <input type="hidden" name="gid" value={form.gid} />
@@ -76,14 +81,10 @@ const JoinForm = ({
         placeholder="이메일을 입력하세요"
         value={form.email}
         onChange={onChange}
+        disabled={emailDisabled}         
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
-      <AuthNumSend
-        email={form.email}
-        callback={(res) =>
-          console.log('이메일 전송 성공 여부 : ', res.emailSuccess)
-        }
-      />
+      <AuthNumButton data={form.email} apiUrl={sendCode} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.emailSuccess)}>인증번호 발송</AuthNumButton>
 
       <Input
         type="text"
@@ -92,10 +93,7 @@ const JoinForm = ({
         value={form.authNum}
         onChange={onChange}
       />
-      <AuthNumCheck 
-        authNum={Number(form.authNum)} 
-        callback={(res) => console.log("이메일 체크 결과 : ", res.emailSuccess)} 
-      />
+      <AuthNumButton data={Number(form.authNum)} apiUrl={checkCode} callback={(res) => res.emailSuccess ? setEmailDisabled(true) : console.log('인증 실패')}>인증하기</AuthNumButton>
 
       <h3>프로필 이미지</h3>
 
