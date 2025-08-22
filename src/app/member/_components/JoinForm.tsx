@@ -9,6 +9,7 @@ import FileImages from '@/app/_global/components/FileImages'
 import FileItems from '@/app/_global/components/FileItems'
 import AuthNumButton from '@/app/_global/components/AuthNumButton'
 import { ApiUrl } from '@/app/_global/constants/ApiUrl'
+import AuthCount from '@/app/_global/components/AuthCount'
 
 const StyledForm = styled.form``
 const sendCode = ApiUrl.SENDCODE
@@ -93,6 +94,7 @@ const JoinForm = ({
       >
         인증번호 발송
       </AuthNumButton>
+      <AuthCount startSignal={1} duration={180} />
 
       <Input
         type="text"
