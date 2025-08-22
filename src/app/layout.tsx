@@ -6,9 +6,9 @@ import { getLoggedMember } from './member/_services/actions'
 import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
+import InstalledAd from './_global/components/InstalledAd'
 import { redirect } from 'next/navigation'
 import { GoogleAdSense } from './_global/components/adsense'
-
 export const metadata: Metadata = {
   title: '철푸닥',
   description: '낙상 감지 서비스',
@@ -24,12 +24,12 @@ export default async function RootLayout({
   if (member == null && cookie.has('token')) {
     redirect('/member/api/logout?redirectUrl=/')
   }
-
   return (
     <html lang="ko">
       <head>
         {/* 광고 */}
         <GoogleAdSense />
+        <InstalledAd />
       </head>
       <body id="body">
         <StyledComponentsRegistry>
