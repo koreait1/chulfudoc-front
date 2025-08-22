@@ -2,16 +2,29 @@ import React from 'react'
 import styled from 'styled-components'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { Input } from '@/app/_global/components/Forms'
-import { SubmitButton } from '@/app/_global/components/Buttons'
+import { Button, SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
+import AuthNumSend from '@/app/_global/components/AuthNumSend'
+import AuthNumCheck from '@/app/_global/components/AuthNumCheck'
+import FileUpload from '@/app/_global/components/FileUpload'
+import FileImages from '@/app/_global/components/FileImages'
+import FileItems from '@/app/_global/components/FileItems'
 
-const StyledForm = styled.form`
+const StyledForm = styled.form``
 
-`
-
-const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
+const JoinForm = ({
+  errors,
+  action,
+  pending,
+  onChange,
+  onToggle,
+  form,
+  fileUploadCallback,
+  fileDeleteCallback,
+}) => {
   return (
     <StyledForm action={action} autoComplete="off">
+      <input type="hidden" name="gid" value={form.gid} />
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
       <Input
         type="text"
@@ -51,21 +64,43 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
 
       <Input
         type="text"
-        name="email"
-        placeholder="이메일을 입력하세요"
-        value={form.email}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.email}</MessageBox>
-
-      <Input
-        type="text"
         name="mobile"
         placeholder="휴대전화번호를 입력하세요"
         value={form.mobile}
         onChange={onChange}
       />
       <MessageBox color="danger">{errors?.mobile}</MessageBox>
+
+
+      <Input
+        type="text"
+        name="email"
+        placeholder="이메일을 입력하세요"
+        value={form.email}
+        onChange={onChange}
+      />
+      <MessageBox color="danger">{errors?.email}</MessageBox>
+      <AuthNumSend email={form.email} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.emailSuccess)} />
+
+      <Input 
+        type='text'
+        name='authNum'
+        placeholder='인증 번호를 입력하세요'
+        value={form.authNum}
+        onChange={onChange}
+      />
+      <AuthNumCheck authNum={form.authNum} callback={(res) => console.log("이메일 체크 결과 : ", res.emailSuccess)} />
+
+      <h3>프로필 이미지</h3>
+
+      <FileImages items={form.profileImage} callback={fileDeleteCallback} />
+      <FileItems items={form.profileImage} />
+      <FileUpload
+        gid={form.gid}
+        imageOnly={true}
+        single={true}
+        callback={fileUploadCallback}
+      />
 
       <h3>약관동의</h3>
       <div>약관 동의 작성...</div>
