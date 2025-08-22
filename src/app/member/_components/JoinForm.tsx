@@ -6,14 +6,25 @@ import { Button, SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
 import AuthNumSend from '@/app/_global/components/AuthNumSend'
 import AuthNumCheck from '@/app/_global/components/AuthNumCheck'
+import FileUpload from '@/app/_global/components/FileUpload'
+import FileImages from '@/app/_global/components/FileImages'
+import FileItems from '@/app/_global/components/FileItems'
 
-const StyledForm = styled.form`
+const StyledForm = styled.form``
 
-`
-
-const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
+const JoinForm = ({
+  errors,
+  action,
+  pending,
+  onChange,
+  onToggle,
+  form,
+  fileUploadCallback,
+  fileDeleteCallback,
+}) => {
   return (
     <StyledForm action={action} autoComplete="off">
+      <input type="hidden" name="gid" value={form.gid} />
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
       <Input
         type="text"
@@ -79,6 +90,17 @@ const JoinForm = ({ errors, action, pending, onChange, onToggle, form }) => {
         onChange={onChange}
       />
       <AuthNumCheck authNum={form.authNum} callback={(res) => console.log("이메일 체크 결과 : ", res.emailSuccess)} />
+
+      <h3>프로필 이미지</h3>
+
+      <FileImages items={form.profileImage} callback={fileDeleteCallback} />
+      <FileItems items={form.profileImage} />
+      <FileUpload
+        gid={form.gid}
+        imageOnly={true}
+        single={true}
+        callback={fileUploadCallback}
+      />
 
       <h3>약관동의</h3>
       <div>약관 동의 작성...</div>

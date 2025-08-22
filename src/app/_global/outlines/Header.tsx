@@ -25,13 +25,15 @@ const StyledHeader = styled.header`
       width: 0;
       flex-grow: 1;
       &.profile {
-        margin-bottom: -10px;
+        margin-left: 80px;
         width: 40px;
-        height: 20px;
+        height: 40px;
         display: inline-block;
+        cursor: pointer;
         img {
           width: 40px;
           height: 40px;
+          box-sizing: border-box;
         }
       }
     }
@@ -45,8 +47,10 @@ const StyledHeader = styled.header`
     }
 
     .right {
-      text-align: right;
-      justify-content: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 120px;
 
       a {
         margin-left: 5px;
@@ -76,7 +80,7 @@ const Header = () => {
               </span> */}
               <div className="profile">
                 <Image
-                  src={lo31go}
+                  src={lo13go}
                   alt="썸네일"
                   onClick={() => setIsOpen(true)}
                 />

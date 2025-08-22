@@ -62,6 +62,11 @@ main.main-content {
 .ReactModal__Overlay {
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
+.ReactModal__Overlay .org-image {
+  width: 100% !important;
+  height: auto !important;
+}
+
 /*** 로딩 스피너 ***/
 .spinner {
   opacity: 0;
