@@ -83,7 +83,7 @@ export default function TmapTest3() {
               })
 
             const nearestFive = distances.sort((a, b) => a.dist - b.dist).slice(0, 5)
-            let distanceLines: any[] = []
+            const distanceLines: any[] = []
 
             // 모든 병원 마커 표시
             hospitals.forEach(h => {
