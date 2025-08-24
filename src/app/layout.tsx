@@ -8,6 +8,7 @@ import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
 import { GoogleAdSense } from './_global/components/adsense'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: '철푸닥',
@@ -30,6 +31,11 @@ export default async function RootLayout({
       <head>
         {/* 광고 */}
         <GoogleAdSense />
+        <script
+          src="https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=Zn5hqJeAaN1PnA3ovM8Y03NTGQ0uFQ3X7v1dl01M"
+          type="text/javascript"
+        >
+        </script>
       </head>
       <body id="body">
         <StyledComponentsRegistry>
