@@ -1,15 +1,18 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
 import logo from '../assets/images/logo.png'
+import defaultImg from '../assets/images/lo13go.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/Buttons'
 import useUser from '../hooks/useUser'
 import LinkLoading from '../components/LinkLoading'
+import LayerPopup from '../components/LayerPopup'
+import FileImages from '../components/FileImages'
+import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
 
 const StyledHeader = styled.header`
   background: #fff;
@@ -22,6 +25,19 @@ const StyledHeader = styled.header`
     div {
       width: 0;
       flex-grow: 1;
+      &.profile {
+        margin-left: 80px;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        cursor: pointer;
+        ul,
+        li,
+        img {
+          box-sizing: border-box;
+          border-radius: 50%;
+        }
+      }
     }
 
     .logo-section {
@@ -33,10 +49,16 @@ const StyledHeader = styled.header`
     }
 
     .right {
-      text-align: right;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 120px;
 
-      a + a {
+      a {
         margin-left: 5px;
+        button {
+          margin: 0;
+        }
       }
     }
   }
@@ -44,6 +66,7 @@ const StyledHeader = styled.header`
 
 const Header = () => {
   const { isLogin, isAdmin, loggedMember } = useUser()
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <StyledHeader>
       <div className="inner layout-width">
@@ -56,17 +79,6 @@ const Header = () => {
         <div className="right">
           {isLogin ? (
             <>
-              {/*
-              <span>
-                {loggedMember.name}({loggedMember.email})
-              </span> */}
-              <Link href="/mypage" prefetch={false}>
-                <Button type="button">
-                  <CgProfile />
-                  마이페이지
-                  <LinkLoading />
-                </Button>
-              </Link>
               <a href="/member/api/logout">
                 <Button type="button" color="secondary">
                   <FiLogOut />
@@ -81,6 +93,42 @@ const Header = () => {
                   </Button>
                 </a>
               )}
+              <div className="profile" onClick={() => setIsOpen(true)}>
+                {loggedMember.profileImage ? (
+                  <FileImages
+                    items={loggedMember.profileImage}
+                    viewOnly={true}
+                    viewOrgImage={false}
+                    width={40}
+                    height={40}
+                  />
+                ) : (
+                  <ul>
+                    <li>
+                      <Image src={defaultImg} alt="기본프로필" />
+                    </li>
+                  </ul>
+                )}
+                <LayerPopup
+                  isOpen={isOpen}
+                  title="회원명"
+                  onClose={() => setIsOpen(false)}
+                  top="28%"
+                  left="70%"
+                  width={'20%'}
+                  height={'40%'}
+                >
+                  회원정보 <br />
+                  etc
+                  <Link href="/mypage" prefetch={false}>
+                    <Button type="button">
+                      <CgProfile />
+                      마이페이지
+                      <LinkLoading />
+                    </Button>
+                  </Link>
+                </LayerPopup>
+              </div>
             </>
           ) : (
             <>
