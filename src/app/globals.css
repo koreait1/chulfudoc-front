@@ -53,7 +53,7 @@ img {
 }
 
 .mb30 {
-  margin-bottom: 30px;
+  margin-bottom: 30px !important;
 }
 
 /*** 공통 영역 E ***/
