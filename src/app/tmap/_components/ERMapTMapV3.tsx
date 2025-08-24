@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Papa from 'papaparse'
 
 declare global {
@@ -8,23 +8,34 @@ declare global {
   }
 }
 
+interface Hospital {
+  응급의료기관명: string
+  위도: string
+  경도: string
+  소재지: string
+  연락처: string
+}
+
 export default function ERMapTMapV3() {
+  const [currentAddress, setCurrentAddress] = useState('')
+
   useEffect(() => {
     const script = document.createElement('script')
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=e5b92d42b15969021e6f0020012e0173&autoload=false`
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=e5b92d42b15969021e6f0020012e0173&autoload=false&libraries=services`
     script.async = true
-
     script.onload = () => {
       window.kakao.maps.load(() => {
+        const geocoder = new window.kakao.maps.services.Geocoder()
+
         Papa.parse('/ERPlusPlus.csv', {
           download: true,
           header: true,
-          complete: async (result) => {
-            const data = result.data
+          complete: (result) => {
+            const data: Hospital[] = result.data
             if (!data.length) return
 
             navigator.geolocation.getCurrentPosition(
-              async (p) => {
+              (p) => {
                 const mapContainer = document.getElementById('map')
                 const mapOptions = {
                   center: new window.kakao.maps.LatLng(
@@ -38,6 +49,19 @@ export default function ERMapTMapV3() {
                 const userPos = new window.kakao.maps.LatLng(
                   p.coords.latitude,
                   p.coords.longitude,
+                )
+
+                // 현위치 주소 가져오기
+                geocoder.coord2Address(
+                  p.coords.longitude,
+                  p.coords.latitude,
+                  (result: any, status: any) => {
+                    if (status === window.kakao.maps.services.Status.OK) {
+                      setCurrentAddress(result[0].address.address_name)
+                    } else {
+                      setCurrentAddress('주소를 가져올 수 없음')
+                    }
+                  },
                 )
 
                 const userMarker = new window.kakao.maps.Marker({
@@ -54,8 +78,8 @@ export default function ERMapTMapV3() {
                 let distanceLine: any = null
                 let distanceOverlay: any = null
 
-                for (const loc of data) {
-                  if (!loc.위도 || !loc.경도) continue
+                data.forEach((loc) => {
+                  if (!loc.위도 || !loc.경도) return
 
                   const hospitalPos = new window.kakao.maps.LatLng(
                     parseFloat(loc.위도),
@@ -85,6 +109,7 @@ export default function ERMapTMapV3() {
                       openInfoWindow = info
                       info.open(map, marker)
 
+                      // 이전 Polyline 제거
                       if (distanceLine) {
                         distanceLine.setMap(null)
                         distanceLine = null
@@ -94,6 +119,7 @@ export default function ERMapTMapV3() {
                         distanceOverlay = null
                       }
 
+                      // TMap API 호출
                       const tmapRouteUrl =
                         'https://apis.openapi.sk.com/tmap/routes?version=1&format=json&appKey=Zn5hqJeAaN1PnA3ovM8Y03NTGQ0uFQ3X7v1dl01M'
                       const params = {
@@ -103,8 +129,8 @@ export default function ERMapTMapV3() {
                         endY: parseFloat(loc.위도),
                         reqCoordType: 'WGS84GEO',
                         resCoordType: 'WGS84GEO',
-                        searchOption: 1, // 실시간 교통 반영
-                        trafficInfo: 'Y', // 교통정보 포함
+                        searchOption: 1,
+                        trafficInfo: 'Y',
                       }
                       const query = new URLSearchParams(
                         params as any,
@@ -149,6 +175,7 @@ export default function ERMapTMapV3() {
                         })
                       }
 
+                      // 거리/시간 CustomOverlay
                       const content = `
                       <ul style="background:white; padding:5px; border-radius:5px; border:1px solid #ccc; position: relative; top: 25px; left: 30px;">
                         <li>총거리 <span class="number">${distance}</span>m</li>
@@ -167,7 +194,7 @@ export default function ERMapTMapV3() {
                       })
                     },
                   )
-                }
+                })
               },
               (err) => {
                 alert('현재 위치를 가져올 수 없습니다.')
@@ -182,5 +209,12 @@ export default function ERMapTMapV3() {
     document.head.appendChild(script)
   }, [])
 
-  return <div id="map" style={{ width: 'auto', height: '600px' }} />
+  return (
+    <div>
+      <p style={{ fontWeight: 'bold', marginBottom: '5px' }}>
+        현위치: {currentAddress || '위치 가져오는 중...'}
+      </p>
+      <div id="map" style={{ width: '100%', height: '600px' }} />
+    </div>
+  )
 }

@@ -11,7 +11,7 @@ import { ApiUrl } from '@/app/_global/constants/ApiUrl'
 
 const StyledForm = styled.form``
 const sendCode = ApiUrl.SENDCODE
-const checkCode:ApiUrl = ApiUrl.CHECKCODE
+const checkCode: ApiUrl = ApiUrl.CHECKCODE
 
 const JoinForm = ({
   errors,
@@ -91,7 +91,7 @@ const JoinForm = ({
         placeholder="이메일을 입력하세요"
         value={form.email}
         onChange={onChange}
-        disabled={emailDisabled}         
+        disabled={emailDisabled}
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
       <AuthNumButton data={form.email} apiUrl={sendCode} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.status)}>인증번호 발송</AuthNumButton>
