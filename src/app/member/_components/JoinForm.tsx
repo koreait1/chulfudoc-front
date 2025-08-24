@@ -6,7 +6,6 @@ import { SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
 import FileUpload from '@/app/_global/components/FileUpload'
 import FileImages from '@/app/_global/components/FileImages'
-import FileItems from '@/app/_global/components/FileItems'
 import AuthNumButton from '@/app/_global/components/AuthNumButton'
 import { ApiUrl } from '@/app/_global/constants/ApiUrl'
 
@@ -30,32 +29,43 @@ const JoinForm = ({
     <StyledForm action={action} autoComplete="off">
       <input type="hidden" name="gid" value={form.gid} />
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
-      <Input
-        type="text"
-        name="userId"
-        placeholder="아이디를 입력하세요"
-        value={form.userId}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.userId}</MessageBox>
+      {form.socialChannel && form.socialToken && (
+        <>
+          <input type="hidden" name="socialChannel" value={form.socialChannel} />
+          <input type="hidden" name="socialToken" value={form.socialToken} />
+          <div>{form.socialChannel} 연동 회원가입</div>
+        </>
+      )}
+      {(!form?.socialChannel || !form?.socialToken) && (
+        <>
+          <Input
+            type="text"
+            name="userId"
+            placeholder="아이디를 입력하세요"
+            value={form.userId}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.userId}</MessageBox>
 
-      <Input
-        type="password"
-        name="password"
-        placeholder="비밀번호를 입력하세요"
-        value={form.password}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.password}</MessageBox>
+          <Input
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력하세요"
+            value={form.password}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.password}</MessageBox>
 
-      <Input
-        type="password"
-        name="confirmPassword"
-        placeholder="비밀번호를 확인하세요"
-        value={form.confirmPassword}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+          <Input
+            type="password"
+            name="confirmPassword"
+            placeholder="비밀번호를 확인하세요"
+            value={form.confirmPassword}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+        </>
+      )}
 
       <Input
         type="text"
@@ -84,7 +94,7 @@ const JoinForm = ({
         disabled={emailDisabled}         
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
-      <AuthNumButton data={form.email} apiUrl={sendCode} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.emailSuccess)}>인증번호 발송</AuthNumButton>
+      <AuthNumButton data={form.email} apiUrl={sendCode} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.status)}>인증번호 발송</AuthNumButton>
 
       <Input
         type="text"
@@ -93,7 +103,7 @@ const JoinForm = ({
         value={form.authNum}
         onChange={onChange}
       />
-      <AuthNumButton data={Number(form.authNum)} apiUrl={checkCode} callback={(res) => res.emailSuccess ? setEmailDisabled(true) : console.log('인증 실패')}>인증하기</AuthNumButton>
+      <AuthNumButton data={Number(form.authNum)} apiUrl={checkCode} callback={(res) => res.status == 200 ? setEmailDisabled(true) : console.log('인증 실패')}>인증하기</AuthNumButton>
 
       <h3>프로필 이미지</h3>
 
