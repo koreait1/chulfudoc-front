@@ -1,10 +1,10 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
 import logo from '../assets/images/logo.png'
-import defaultImg from '../assets/images/lo13go.png'
+import noprofile from '../assets/images/noprofile.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/Buttons'
@@ -13,6 +13,9 @@ import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
 import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
+import { usePathname } from 'next/navigation'
+import color from '../styles/color'
+const { dark } = color
 
 const StyledHeader = styled.header`
   background: #fff;
@@ -25,18 +28,11 @@ const StyledHeader = styled.header`
     div {
       width: 0;
       flex-grow: 1;
-      &.profile {
-        margin-left: 80px;
+      .profile {
+        flex-grow: 0;
+        display: inline-block;
         width: 40px;
         height: 40px;
-        display: inline-block;
-        cursor: pointer;
-        ul,
-        li,
-        img {
-          box-sizing: border-box;
-          border-radius: 50%;
-        }
       }
     }
 
@@ -50,7 +46,7 @@ const StyledHeader = styled.header`
 
     .right {
       display: flex;
-      flex-direction: row;
+      flex-direction: row-reverse;
       align-items: center;
       height: 120px;
 
@@ -60,13 +56,41 @@ const StyledHeader = styled.header`
           margin: 0;
         }
       }
+      ul,
+      li {
+        border-radius: 50%;
+        display: inline-block;
+        text-align: right;
+        img {
+          border: 3px solid ${dark};
+          border-radius: 50%;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+  .modalProfile {
+    ul,
+    li {
+      border-radius: 50%;
+      display: inline-block;
+      text-align: right;
+      img {
+        border: 3px solid ${dark};
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
     }
   }
 `
-
 const Header = () => {
   const { isLogin, isAdmin, loggedMember } = useUser()
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+
+  useEffect(() => {
+    if (isOpen) setIsOpen(false) // 라우트 변경 시 자동 닫기
+  }, [pathname])
   return (
     <StyledHeader>
       <div className="inner layout-width">
@@ -93,40 +117,55 @@ const Header = () => {
                   </Button>
                 </a>
               )}
-              <div className="profile" onClick={() => setIsOpen(true)}>
-                {loggedMember.profileImage ? (
+              <div className="profile">
+                <div onClick={() => setIsOpen(true)}>
                   <FileImages
                     items={loggedMember.profileImage}
+                    fallbackImage={noprofile}
                     viewOnly={true}
                     viewOrgImage={false}
                     width={40}
                     height={40}
                   />
-                ) : (
-                  <ul>
-                    <li>
-                      <Image src={defaultImg} alt="기본프로필" />
-                    </li>
-                  </ul>
-                )}
+                </div>
                 <LayerPopup
                   isOpen={isOpen}
-                  title="회원명"
                   onClose={() => setIsOpen(false)}
-                  top="28%"
-                  left="70%"
-                  width={'20%'}
-                  height={'40%'}
+                  top="270px"
+                  right=" max(200px, calc(200px + (50vw - 575px))"
+                  width={'300px'}
+                  height={'350px'}
                 >
-                  회원정보 <br />
-                  etc
                   <Link href="/mypage" prefetch={false}>
+                    <FileImages
+                      items={loggedMember.profileImage}
+                      fallbackImage={noprofile}
+                      viewOnly={true}
+                      viewOrgImage={false}
+                      width={40}
+                      height={40}
+                    />
+                    <span>{loggedMember.userName} 님</span>
                     <Button type="button">
                       <CgProfile />
                       마이페이지
                       <LinkLoading />
                     </Button>
                   </Link>
+                  {/* <Link href="/mypage" prefetch={false}>
+                      <Button type="button">
+                        <CgProfile />
+                        개인정보 수정
+                        <LinkLoading />
+                      </Button>
+                    </Link> 
+                    <Link href="/mypage" prefetch={false}>
+                      <Button type="button">
+                        <CgProfile />
+                        문의하기
+                        <LinkLoading />
+                      </Button>
+                    </Link> */}
                 </LayerPopup>
               </div>
             </>

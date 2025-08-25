@@ -15,7 +15,7 @@ type LayerPopupType = {
   width?: string | number
   height?: string
   top?: string
-  left?: string
+  right?: string
 }
 const Wrapper = styled.div`
   width: 100%;
@@ -45,18 +45,17 @@ const LayerPopup = ({
   onClose,
   isOpen,
   top,
-  left,
+  right,
   width,
   height,
 }: LayerPopupType) => {
   const customStyles = {
     content: {
       top: top ?? '50%',
-      left: left ?? '50%',
-      right: 'auto',
+      right: right ?? '50%',
+      left: 'auto',
       bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      transform: 'translate(50%, -50%)',
       background: '#fff',
       borderRadius: '30px',
       width: width ?? '90%',
@@ -69,11 +68,9 @@ const LayerPopup = ({
         isOpen={isOpen}
         style={customStyles}
         top={top}
-        left={left}
+        right={right}
         width={width}
         height={height}
-        shouldCloseOnOverlayClick={true}
-        shouldCloseOnEsc={true}
       >
         {title && <h2>{title}</h2>}
         <Wrapper>

@@ -29,7 +29,7 @@ export default async function RootLayout({
       <head>
         {/* 광고 */}
         <GoogleAdSense />
-        <InstalledAd />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body id="body">
         <StyledComponentsRegistry>
@@ -38,7 +38,10 @@ export default async function RootLayout({
               loggedMember={member}
               token={cookie.get('token')?.value}
             >
-              <LayoutContainer>{children}</LayoutContainer>
+              <LayoutContainer>
+                <InstalledAd />
+                {children}
+              </LayoutContainer>
             </UserProvider>
           </CommonProvider>
         </StyledComponentsRegistry>
