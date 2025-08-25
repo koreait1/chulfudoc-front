@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { FaRegWindowClose } from 'react-icons/fa'
 import LayerPopup from './LayerPopup'
 import useConfirmDialog from '../hooks/useConfirmDialog'
@@ -46,6 +46,7 @@ type FileType = {
   viewOnly?: boolean
   viewOrgImage?: boolean
   callback?: (item: any) => void
+  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
 }
 
 const ImageItem = ({
@@ -118,11 +119,28 @@ const FileImages = ({
   callback,
   viewOnly,
   viewOrgImage,
+  fallbackImage,
 }: FileType) => {
-  items = Array.isArray(items) ? items : items ? [items] : []
-  if (items.length === 0) return <></>
   width = width ?? 100
   height = height ?? 100
+  items = Array.isArray(items) ? items : items ? [items] : []
+  if (items.length === 0) {
+    return fallbackImage ? (
+      <ImageItems>
+        <li>
+          <Image
+            src={fallbackImage}
+            alt="없는 이미지"
+            width={width}
+            height={height}
+          />
+        </li>
+      </ImageItems>
+    ) : (
+      <></>
+    )
+  }
+
   return (
     <ImageItems>
       {items.map((item) => (
