@@ -27,7 +27,7 @@ const JoinForm = ({
 }) => {
   const [emailDisabled, setEmailDisabled] = useState(false)
   const [verified, setverified] = useState(false)
-  const [trigger, setTrigger] = useState(0)
+  const [trigger, setTrigger] = useState(false)
   const [resend, setResend] = useState(false)
   const alertDialog = useAlertDialog()
 
@@ -103,10 +103,11 @@ const JoinForm = ({
       <AuthNumButton
         data={form.email}
         apiUrl={sendCode}
+        width={125}
         callback={(res) => {
           if (res.status >= 200 && res.status < 300) {
             setResend(true)
-            setTrigger((t) => t + 1)
+            setTrigger(true)
             alertDialog({
               title: '발송 완료',
               text: '인증번호가 이메일로 발송되었습니다.',
@@ -124,7 +125,7 @@ const JoinForm = ({
         {resend ? '인증번호 재발송' : '인증번호 발송'}
       </AuthNumButton>
 
-      {!verified && trigger > 0 && (
+      {!verified && trigger == true && (
         <AuthCount startSignal={trigger} duration={180} />
       )}
 

@@ -17,13 +17,13 @@ type AuthType = {
     children?: React.ReactNode
     onStartTimer?: () => void
     onRequestStart?: () => void
+    width?: number
 }
 
-const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart}: AuthType) => {
+const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart, width}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
     let status: number
-    let item : any
 
     const onEmailSendClick = useCallback(() => {
         if(!data) return
@@ -41,10 +41,10 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
                 if(typeof callback === 'function'){
                     callback({ status: res.status })
                 }
-                setLoading(false)
-                if (item?.emailSuccess) {
+                if (res.status >= 200 && res.status < 300) {
                     onStartTimer?.()
                 }
+                setLoading(false)
             })
             .catch((e) => {
                 console.error(e)
@@ -60,7 +60,7 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
     return(
         <>
             {loading ? <Loading /> :
-            <Button type="button" onClick={onEmailSendClick}>
+            <Button type="button" onClick={onEmailSendClick} width={width}>
                 {children}
             </Button>}
         </>
