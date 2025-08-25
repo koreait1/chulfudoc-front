@@ -1,15 +1,34 @@
 'use client'
-
-import React, { useActionState } from 'react'
+import React, { useActionState, useState, useCallback } from 'react'
 import { processFindPw } from '../_services/actions'
-import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import FindPwForm from '../_components/FindPwForm'
 
-const initialErrors: any = {}
-
-export default function FindPwContainer() {
-  const [errors, action] = useActionState(processFindPw, initialErrors)
-  const alertDialog = useAlertDialog()
-
-  return <FindPwForm errors={errors} action={action} />
+type FormType = {
+  userId: string
+  email: string
 }
+
+const FindPwContainer = () => {
+  const [errors, action, pending] = useActionState<any, any>(processFindPw, {})
+  const [form, setForm] = useState<FormType>({
+     userId: '',
+     email: '' 
+    })
+
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setForm(prev => ({ ...prev, [name]: value }))
+  }, [])
+
+  return (
+    <FindPwForm
+      errors={errors}
+      action={action}
+      pending={pending}
+      form={form}
+      onChange={onChange}
+    />
+  )
+}
+
+export default React.memo(FindPwContainer)

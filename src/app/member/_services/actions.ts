@@ -200,22 +200,16 @@ export async function processFindPw(errors, formData: FormData) {
     email: formData.get('email')?.toString().trim()
   }
 
+  //유효성 검증
   if (!params.userId) errors.userId = ['아이디를 입력하세요']
   if (!params.email)  errors.email  = ['이메일을 입력하세요']
   if (errors.userId || errors.email) return errors
-
-  // 환경변수 체크 (없으면 바로 에러 반환)
-  if (!process.env.API_URL) {
-    console.error('API_URL 환경변수가 없습니다.')
-    return { global: '설정 오류가 발생했습니다. (API_URL 누락)' }
-  }
 
   const res = await fetch(`${process.env.API_URL}/member/findpw`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params), 
     cache: 'no-store',
-    // credentials: 'include',
   })
 
   if (res.ok) {
@@ -223,7 +217,6 @@ export async function processFindPw(errors, formData: FormData) {
     redirect('/member/login')
   }
 
-  // 실패 케이스: 서버 메시지 최대한 노출
   const json = await res.json().catch(() => null)
   if (json?.messages) return json.messages
   if (json?.message)  return { global: json.message }
