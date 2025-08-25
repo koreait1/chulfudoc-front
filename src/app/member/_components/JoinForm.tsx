@@ -185,7 +185,7 @@ const JoinForm = ({
       </div>
       <MessageBox color="danger">{errors?.termsAgree}</MessageBox>
 
-      <SubmitButton type="submit" disabled={pending || !verified}>
+      <SubmitButton type="submit" disabled={pending}>
         가입하기
       </SubmitButton>
       <MessageBox color="danger">{errors?.global}</MessageBox>
