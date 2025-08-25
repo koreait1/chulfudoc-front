@@ -8,6 +8,7 @@ import FileUpload from '@/app/_global/components/FileUpload'
 import FileImages from '@/app/_global/components/FileImages'
 import AuthNumButton from '@/app/_global/components/AuthNumButton'
 import { ApiUrl } from '@/app/_global/constants/ApiUrl'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledForm = styled.form``
 const sendCode = ApiUrl.SENDCODE
@@ -24,6 +25,7 @@ const JoinForm = ({
   fileDeleteCallback,
 }) => {
   const [emailDisabled, setEmailDisabled] = useState(false)
+  const alertDialog = useAlertDialog()
 
   return (
     <StyledForm action={action} autoComplete="off">
@@ -94,7 +96,15 @@ const JoinForm = ({
         disabled={emailDisabled}
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
-      <AuthNumButton data={form.email} apiUrl={sendCode} callback={(res) => console.log("이메일 전송 성공 여부 : ", res.status)}>인증번호 발송</AuthNumButton>
+      <AuthNumButton 
+        data={form.email} 
+        apiUrl={sendCode} 
+        callback={(res) => alertDialog({
+          title: "인증번호 발송", 
+          text: res.status === 200 ? "메일이 발송되었습니다" : "메일 발송에 실패했습니다", 
+          icon: res.status === 200 ? 'success' : 'warning'})}>
+        인증번호 발송
+      </AuthNumButton>
 
       <Input
         type="text"
