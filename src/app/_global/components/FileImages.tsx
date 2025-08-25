@@ -45,7 +45,7 @@ type FileType = {
   viewOnly?: boolean
   viewOrgImage?: boolean
   callback?: (item: any) => void
-  fallbackImage?: string | StaticImageData
+  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
 }
 
 const ImageItem = ({
@@ -119,11 +119,12 @@ const FileImages = ({
   fallbackImage,
   viewOnly,
   viewOrgImage,
+  fallbackImage,
 }: FileType) => {
-  items = Array.isArray(items) ? items : items ? [items] : []
   width = width ?? 100
   height = height ?? 100
-  if (items.length === 0)
+  items = Array.isArray(items) ? items : items ? [items] : []
+  if (items.length === 0) {
     return fallbackImage ? (
       <ImageItems>
         <li>
@@ -138,6 +139,8 @@ const FileImages = ({
     ) : (
       <></>
     )
+  }
+
   return (
     <ImageItems>
       {items.map((item) => (
