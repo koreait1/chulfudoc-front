@@ -74,7 +74,7 @@ main.main-content {
 /*** 로딩 스피너 ***/
 .spinner {
   opacity: 0;
-  animation: fadeIn 500ms 100ms forwards, rotate 1s linear infinite;
+  animation: fadeIn 500ms 100ms forwards, rotate 2s linear infinite;
 }
 
 @keyframes fadeIn {
@@ -90,4 +90,17 @@ main.main-content {
   to {
     transform: rotate(360deg);
   }
+}
+
+/*** 인포윈도우 ***/
+.vsm-marker:not(:has(svg)) {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
+}
+
+.vsm-marker > :not(:first-child) {
+  display: none;
 }

@@ -8,11 +8,14 @@ import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
 import { GoogleAdSense } from './_global/components/adsense'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: '철푸닥',
   description: '낙상 감지 서비스',
 }
+
+const tmapApiUrl = `https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=${process.env.NEXT_PUBLIC_TMAP_API_KEY}`
 
 export default async function RootLayout({
   children,
@@ -30,6 +33,7 @@ export default async function RootLayout({
       <head>
         {/* 광고 */}
         <GoogleAdSense />
+        <script src={tmapApiUrl}></script>
       </head>
       <body id="body">
         <StyledComponentsRegistry>
