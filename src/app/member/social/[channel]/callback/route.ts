@@ -1,8 +1,8 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { redirect } from 'next/navigation'
-import KakaoApi from '../../_services/kakaoApi'
-import NaverApi from '../../_services/naverApi'
+import KakaoApi from '../../_services/KakaoApi'
+import NaverApi from '../../_services/NaverApi'
 
 export async function GET(request: NextRequest) {
   const channel = request.nextUrl.pathname.split('/')[3]

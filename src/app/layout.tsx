@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: '낙상 감지 서비스',
 }
 
+const tmapApiUrl = `https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=${process.env.NEXT_PUBLIC_TMAP_API_KEY}`
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -31,11 +33,7 @@ export default async function RootLayout({
       <head>
         {/* 광고 */}
         <GoogleAdSense />
-        <script
-          src="https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=Zn5hqJeAaN1PnA3ovM8Y03NTGQ0uFQ3X7v1dl01M"
-          type="text/javascript"
-        >
-        </script>
+        <script src={tmapApiUrl}></script>
       </head>
       <body id="body">
         <StyledComponentsRegistry>

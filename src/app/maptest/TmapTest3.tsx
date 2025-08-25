@@ -41,39 +41,43 @@ export default function TmapTest3() {
         navigator.geolocation.getCurrentPosition(
           async (pos) => {
             const map = new Tmapv3.Map('map3', {
-              center: new Tmapv3.LatLng(pos.coords.latitude, pos.coords.longitude),
+              center: new Tmapv3.LatLng(
+                pos.coords.latitude,
+                pos.coords.longitude,
+              ),
               width: '100%',
               height: '600px',
               zoom: 14,
             })
 
             // 현위치 마커 + InfoWindow
-            const userPos = new Tmapv3.LatLng(pos.coords.latitude, pos.coords.longitude)
+            const userPos = new Tmapv3.LatLng(
+              pos.coords.latitude,
+              pos.coords.longitude,
+            )
             const userMarker = new Tmapv3.Marker({
               map,
               position: userPos,
               title: '현위치',
             })
 
-            const userInfoWindow = new Tmapv3.InfoWindow({
-              position: userPos,
-              content: `<div style="padding:5px; min-width:150px;">
+            userMarker.on('Click', (e) => {
+              const userInfoWindow = new Tmapv3.InfoWindow({
+                position: userPos,
+                content: `<div style="padding:5px; min-width:150px;">
                 <b>현 위치</b><br>
                 위도: ${pos.coords.latitude}<br>
                 경도: ${pos.coords.longitude}
               </div>`,
-              type: 2,
-              map: map
-            })
-
-            userMarker.addListener('click', () => {
-              userInfoWindow.open(map)
+                type: 2,
+                map: map,
+              })
             })
 
             // 병원 거리 계산
             const distances = hospitals
-              .filter(h => h.위도 && h.경도)
-              .map(h => {
+              .filter((h) => h.위도 && h.경도)
+              .map((h) => {
                 const lat = parseFloat(h.위도)
                 const lng = parseFloat(h.경도)
                 const dLat = lat - pos.coords.latitude
@@ -82,24 +86,42 @@ export default function TmapTest3() {
                 return { hospital: h, dist }
               })
 
-            const nearestFive = distances.sort((a, b) => a.dist - b.dist).slice(0, 5)
+            const nearestFive = distances
+              .sort((a, b) => a.dist - b.dist)
+              .slice(0, 5)
             const distanceLines: any[] = []
 
             // 모든 병원 마커 표시
-            hospitals.forEach(h => {
+            hospitals.forEach((h) => {
               if (!h.위도 || !h.경도) return
-              const hospitalPos = new Tmapv3.LatLng(parseFloat(h.위도), parseFloat(h.경도))
-              new Tmapv3.Marker({ map, position: hospitalPos, title: h.응급의료기관명 })
+              const hospitalPos = new Tmapv3.LatLng(
+                parseFloat(h.위도),
+                parseFloat(h.경도),
+              )
+              new Tmapv3.Marker({
+                map,
+                position: hospitalPos,
+                title: h.응급의료기관명,
+              })
             })
 
             // Polyline 색상
-            const colors = ['#0f0f0fff', '#a4e4a4ff', '#15153dff', '#ff00b3ff', '#d4e446ff']
+            const colors = [
+              '#0f0f0fff',
+              '#a4e4a4ff',
+              '#15153dff',
+              '#ff00b3ff',
+              '#d4e446ff',
+            ]
 
             // 가까운 5개만 InfoWindow + Polyline
             for (let i = 0; i < nearestFive.length; i++) {
               const item = nearestFive[i]
               const h = item.hospital
-              const hospitalPos = new Tmapv3.LatLng(parseFloat(h.위도), parseFloat(h.경도))
+              const hospitalPos = new Tmapv3.LatLng(
+                parseFloat(h.위도),
+                parseFloat(h.경도),
+              )
 
               // 경로 API
               const tmapRouteUrl =
@@ -129,14 +151,23 @@ export default function TmapTest3() {
                 if (routeData.summary) {
                   totalTime = routeData.summary.totalTime || 0
                   totalDistance = routeData.summary.totalDistance || 0
-                } else if (routeData.features && routeData.features.length > 0 && routeData.features[0].properties) {
+                } else if (
+                  routeData.features &&
+                  routeData.features.length > 0 &&
+                  routeData.features[0].properties
+                ) {
                   totalTime = routeData.features[0].properties.totalTime || 0
-                  totalDistance = routeData.features[0].properties.totalDistance || 0
+                  totalDistance =
+                    routeData.features[0].properties.totalDistance || 0
                 }
               }
 
-              const timeText = totalTime ? `${Math.ceil(totalTime / 60)}분` : '정보 없음'
-              const distanceText = totalDistance ? `${totalDistance}m` : '정보 없음'
+              const timeText = totalTime
+                ? `${Math.ceil(totalTime / 60)}분`
+                : '정보 없음'
+              const distanceText = totalDistance
+                ? `${(totalDistance / 1000).toFixed(2)} km`
+                : '정보 없음'
 
               // Polyline 좌표
               const pathCoords: any[] = []
@@ -179,7 +210,7 @@ export default function TmapTest3() {
           (err) => {
             alert('현재 위치를 가져올 수 없습니다.')
             console.error(err)
-          }
+          },
         )
       },
     })

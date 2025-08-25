@@ -10,8 +10,7 @@ import React, {
 import { useSearchParams } from 'next/navigation'
 import { processLogin } from '../_services/actions'
 import LoginForm from '../_components/LoginForm'
-import KakaoApi from 
-'@/app/member/social/_services/kakaoApi'
+import KakaoApi from '@/app/member/social/_services/KakaoApi'
 import kakaoLoginButton from '../../_global/assets/images/kakao_login.png'
 
 type FormType = {

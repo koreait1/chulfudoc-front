@@ -1,7 +1,5 @@
-'use client'
-
-import TmapTest3 from './TmapTest3'
+import Map from "../_global/components/Map"
 
 export default function MapTestPage() {
-  return <TmapTest3 />
+  return <Map />
 }

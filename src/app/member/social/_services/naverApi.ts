@@ -1,4 +1,4 @@
-import SocialApi from './socialApi'
+import SocialApi from './SocialApi'
 
 export default class NaverApi implements SocialApi {
   async getToken(code: string) {
