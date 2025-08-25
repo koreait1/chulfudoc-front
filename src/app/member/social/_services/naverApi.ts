@@ -1,4 +1,4 @@
-import SocialApi from './SocialApi'
+import SocialApi from './socialApi'
 
 export default class NaverApi implements SocialApi {
   private state?: string
