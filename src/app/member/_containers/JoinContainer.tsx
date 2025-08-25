@@ -3,6 +3,7 @@ import React, { useActionState, useState, useCallback } from 'react'
 import { v4 as uuid } from 'uuid'
 import { processJoin } from '../_services/actions'
 import JoinForm from '../_components/JoinForm'
+import { useSearchParams } from 'next/navigation'
 
 type FormType = {
   gid: string
@@ -14,10 +15,14 @@ type FormType = {
   email: string
   authNum: string
   termsAgree: boolean
+  socialChannel?: string
+  socialToken?: string | number
   profileImage?: any
 }
 
 const JoinContainer = () => {
+  const searchParams = useSearchParams()
+
   const [errors, action, pending] = useActionState<any, any>(processJoin, {})
   const [form, setForm] = useState<FormType>({
     gid: uuid(),
@@ -29,6 +34,8 @@ const JoinContainer = () => {
     email: '',
     authNum: '',
     termsAgree: false,
+    socialChannel: searchParams.get('channel')?.toString(),
+    socialToken: searchParams.get('token')?.toString(),
   })
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
