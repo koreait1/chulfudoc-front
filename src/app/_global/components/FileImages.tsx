@@ -11,13 +11,11 @@ import color from '../styles/color'
 const { dark } = color
 
 const ImageItems = styled.ul`
-  display: flex;
+{items.length > 1 &&  
+  display: flex;}
   flex-wrap: wrap;
   li {
-    border: 3px solid ${dark};
     position: relative;
-    margin: 3px 0;
-    border-radius: 3px;
 
     .remove {
       position: absolute;
@@ -31,6 +29,7 @@ const ImageItems = styled.ul`
     img {
       cursor: pointer;
       display: block;
+      box-sizing: border-box;
     }
   }
 
@@ -117,6 +116,7 @@ const FileImages = ({
   width,
   height,
   callback,
+  fallbackImage,
   viewOnly,
   viewOrgImage,
   fallbackImage,
