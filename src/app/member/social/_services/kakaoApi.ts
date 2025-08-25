@@ -1,4 +1,4 @@
-import SocialApi from './socialApi'
+import SocialApi from './SocialApi'
 
 export default class KakaoApi implements SocialApi {
   constructor(
@@ -36,13 +36,14 @@ export default class KakaoApi implements SocialApi {
 
     if (res.status === 200) {
       const { id } = await res.json()
-      return { id }
+      return id
     }
 
     return null
   }
 
   getUrl(redirectUrl: string = '/') {
+    redirectUrl = redirectUrl ? redirectUrl : '/'
     return `https://kauth.kakao.com/oauth/authorize?client_id=${this.apiKey}&redirect_uri=${this.redirectUri}&response_type=code&state=${redirectUrl}`
   }
 }
