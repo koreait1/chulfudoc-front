@@ -2,7 +2,7 @@
 import styled, { css } from 'styled-components'
 import color from '../styles/color'
 import fontSize from '../styles/fontsize'
-const { dark, info, gray } = color
+const { dark, info, gray, white, black, light } = color
 const { medium } = fontSize
 
 const commonStyle = css`
@@ -50,10 +50,10 @@ export const Input = styled.input<CommonType>`
   ${({ disabled }) =>
     disabled &&
     css`
-      pointer-events: none;   // 마우스 이벤트 차단
-      user-select: none;      // 드래그 방지
+      pointer-events: none; // 마우스 이벤트 차단
+      user-select: none; // 드래그 방지
       background-color: #f5f5f5; // 비활성화처럼 보이게
-      color: #ccc
+      color: #ccc;
     `}
 `
 
@@ -106,12 +106,36 @@ export const TableCols = styled.table<TableType>`
       font-size: 2rem;
       vertical-align: middle;
     }
-      span.radio, span.checkbox {
-        margin-right: 15px;
+    span.radio,
+    span.checkbox {
+      margin-right: 15px;
     }
   }
 
   & + & {
     margin-top: 30px;
+  }
+`
+
+export const TableRows = styled.table`
+  ${tableCommonStyle}
+  thead {
+    th {
+      background: ${black};
+      color: ${white};
+      font-size: ${medium};
+      height: 45px;
+      padding: 0 10px;
+    }
+    th + th {
+      border-left: 1px solid ${light};
+    }
+  }
+
+  tbody {
+    td {
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+    }
   }
 `

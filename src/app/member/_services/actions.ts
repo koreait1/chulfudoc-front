@@ -24,11 +24,21 @@ export async function processJoin(errors, formData: FormData) {
     params[key] = _value
   }
 
-  console.log(params)
-
   let hasErrors: boolean = false
+  const isSocial = params?.socialChannel && params?.socialToken // 소셜 연결 회원가입 여부
+
   // 필수 항목 검증 S
-  const requiredFields = {
+  type RequiredFieldType = {
+    userId: string
+    email: string
+    password?: string
+    confirmPassword?: string
+    name: string
+    mobile: string
+    termsAgree: string
+  }
+
+  const requiredFields: RequiredFieldType = {
     userId: "아이디를 입력하세요",
     email: '이메일을 입력하세요',
     password: '비밀번호를 입력하세요',
@@ -36,6 +46,14 @@ export async function processJoin(errors, formData: FormData) {
     name: '회원이름을 입력하세요',
     mobile: '휴대전화번호를 입력하세요',
     termsAgree: '회원가입 약관에 동의하세요',
+  }
+
+  if (isSocial) {
+    // 소셜 연결 회원가입인 경우 비밀번호, 비밀번호 확인은 필수 X
+    delete requiredFields.password
+    delete requiredFields.confirmPassword
+    //requiredFields.userId = "user-" + params.socialToken
+    params.userId = "user-" + params.socialToken
   }
 
   for (const [field, message] of Object.entries(requiredFields)) {
@@ -52,11 +70,13 @@ export async function processJoin(errors, formData: FormData) {
   // 필수 항목 검증 E
 
   // 비밀번호, 비밀번호 확인 일치 여부
-  const password = params.password?.trim()
-  if (password && password !== params.confirmPassword?.trim()) {
-    errors.confirmPassword = errors.confirmPassword ?? []
-    errors.confirmPassword.push('비밀번호가 일치하지 않습니다')
-    hasErrors = true
+  if (!isSocial) {
+    const password = params.password?.trim()
+    if (password && password !== params.confirmPassword?.trim()) {
+      errors.confirmPassword = errors.confirmPassword ?? []
+      errors.confirmPassword.push('비밀번호가 일치하지 않습니다.')
+      hasErrors = true
+    }
   }
 
   // 검증 실패시에는 에레 메세지를 출력하기 위한 상태값을 반환
@@ -101,6 +121,7 @@ export async function processLogin(errors, formData: FormData) {
     userId: formData.get('userId')?.toString(),
     password: formData.get('password')?.toString(),
   }
+
   // 유효성 검사 S
   if (!params.userId || !params.userId.trim()) {
     errors.userId = '아이디를 입력하세요'
@@ -141,7 +162,7 @@ export async function processLogin(errors, formData: FormData) {
   } else {
     // 로그인 실패
     const json = await res.json()
-    return json.messages.global ? json.messages : { global: json.messages }
+    return json.messages ? json.messages : { global: json.messages }
   }
 
   // 로그인 성공시 페이지 이동 - redurectUrl이 있다면 그 주소로 이동 아니면 메인페이지(/)로 이동

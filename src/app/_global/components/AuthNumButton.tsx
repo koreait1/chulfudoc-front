@@ -15,11 +15,15 @@ type AuthType = {
     apiUrl: ApiUrl
     callback?: (item: any) => void
     children?: React.ReactNode
+    onStartTimer?: () => void
+    onRequestStart?: () => void
 }
 
-const AuthNumButton = ({data, apiUrl, callback, children}: AuthType) => {
+const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
+    let status: number
+    let item : any
 
     const onEmailSendClick = useCallback(() => {
         if(!data) return
@@ -28,23 +32,30 @@ const AuthNumButton = ({data, apiUrl, callback, children}: AuthType) => {
             return
         }
 
+        onRequestStart?.()
         setLoading(true);
-
+        
         function emailAuthNumHandler(){
-            
             fetchCSR(`${apiUrl}${data}`)
-            .then((res) => res.json())
-            .then((item) => {
+            .then((res) => {
                 if(typeof callback === 'function'){
-                    callback(item)
+                    callback({ status: res.status })
                 }
                 setLoading(false)
+                if (item?.emailSuccess) {
+                    onStartTimer?.()
+                }
             })
+            .catch((e) => {
+                console.error(e)
+                setLoading(false)
+            })
+            .finally(() => setLoading(false))
         }
 
         emailAuthNumHandler()
         
-    }, [fetchCSR, data, callback])
+    }, [fetchCSR, data, callback, onStartTimer, onRequestStart, item])
 
     return(
         <>

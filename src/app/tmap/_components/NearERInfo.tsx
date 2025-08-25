@@ -27,7 +27,7 @@ function calcDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
   return R * c
 }
 
-export default function ERLocation() {
+export default function NearERInfo() {
   const [nearestHospitals, setNearestHospitals] = useState<Hospital[]>([])
   const [loading, setLoading] = useState(false)
 

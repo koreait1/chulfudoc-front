@@ -1,10 +1,9 @@
 'use client'
 import Link from 'next/link'
 import DetectContainer from './detect/_containers/DetectContainer'
-
 import LayerPopup from './_global/components/LayerPopup'
 import { useState } from 'react'
-import MapContainer from './kakaomap/_containers/MapContainer'
+import ERMapContiner from './tmap/_containers/ERMapContainer'
 
 export default function MainPage() {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,7 +21,7 @@ export default function MainPage() {
           width={'80%'}
           height={'60%'}
         >
-          <MapContainer />
+          <ERMapContiner />
         </LayerPopup>
         <div className="board-link">
           <Link href="/board/notice" />

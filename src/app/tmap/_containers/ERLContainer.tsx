@@ -1,12 +1,12 @@
 'use client'
 
-import ERLocation from '../_components/ERLocation'
+import NearERInfo from '../_components/NearERInfo'
 
 export default function ERLContainer() {
   return (
     <div>
-      <h1>ER 위치 정보</h1>
-      <ERLocation />
+      <h1>가장 가까운 응급의료기관</h1>
+      <NearERInfo />
     </div>
   )
 }
