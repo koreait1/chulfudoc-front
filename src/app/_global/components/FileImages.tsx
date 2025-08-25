@@ -10,6 +10,16 @@ import color from '../styles/color'
 
 const { dark } = color
 
+type FileType = {
+  items: any
+  width?: number
+  height?: number
+  viewOnly?: boolean
+  viewOrgImage?: boolean
+  callback?: (item: any) => void
+  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
+}
+
 const ImageItems = styled.ul`
 {items.length > 1 &&  
   display: flex;}
@@ -38,15 +48,6 @@ const ImageItems = styled.ul`
   }
 `
 
-type FileType = {
-  items: any
-  width?: number
-  height?: number
-  viewOnly?: boolean
-  viewOrgImage?: boolean
-  callback?: (item: any) => void
-  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
-}
 
 const ImageItem = ({
   item,
@@ -116,9 +117,9 @@ const FileImages = ({
   width,
   height,
   callback,
-  fallbackImage,
   viewOnly,
   viewOrgImage,
+  fallbackImage,
 }: FileType) => {
   width = width ?? 100
   height = height ?? 100
