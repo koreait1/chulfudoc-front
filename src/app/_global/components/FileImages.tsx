@@ -116,6 +116,7 @@ const FileImages = ({
   width,
   height,
   callback,
+  fallbackImage,
   viewOnly,
   viewOrgImage,
 }: FileType) => {
