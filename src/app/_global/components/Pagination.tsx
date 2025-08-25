@@ -17,6 +17,7 @@ const { black, white } = color
 const Wrapper = styled.div`
   margin: 20px auto;
   display: flex;
+  justify-content: center;
   height: 45px;
   .page {
     border: 1px solid ${black};
