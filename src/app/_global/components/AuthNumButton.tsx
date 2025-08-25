@@ -55,7 +55,7 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
 
         emailAuthNumHandler()
         
-    }, [fetchCSR, data, callback, onStartTimer, onRequestStart, item])
+    }, [fetchCSR, data, callback, onStartTimer, onRequestStart])
 
     return(
         <>
