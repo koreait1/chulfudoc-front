@@ -19,7 +19,7 @@ type LayerPopupType = {
 }
 const Wrapper = styled.div`
   width: 100%;
-  max-height: calc(100% - 65px);
+  max-height: calc(100%);
   overflow-y: auto;
 
   h2 {

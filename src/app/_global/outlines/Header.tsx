@@ -142,8 +142,8 @@ const Header = () => {
                       fallbackImage={noprofile}
                       viewOnly={true}
                       viewOrgImage={false}
-                      width={40}
-                      height={40}
+                      width={230}
+                      height={230}
                     />
                     <span>{loggedMember.userName} 님</span>
                     <Button type="button">

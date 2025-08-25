@@ -50,10 +50,10 @@ export const Input = styled.input<CommonType>`
   ${({ disabled }) =>
     disabled &&
     css`
-      pointer-events: none;   // 마우스 이벤트 차단
-      user-select: none;      // 드래그 방지
+      pointer-events: none; // 마우스 이벤트 차단
+      user-select: none; // 드래그 방지
       background-color: #f5f5f5; // 비활성화처럼 보이게
-      color: #ccc
+      color: #ccc;
     `}
 `
 
@@ -106,8 +106,9 @@ export const TableCols = styled.table<TableType>`
       font-size: 2rem;
       vertical-align: middle;
     }
-      span.radio, span.checkbox {
-        margin-right: 15px;
+    span.radio,
+    span.checkbox {
+      margin-right: 15px;
     }
   }
 
