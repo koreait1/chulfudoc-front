@@ -54,7 +54,17 @@ export default function NearERMap() {
               pos.coords.latitude,
               pos.coords.longitude,
             )
-            new Tmapv3.Marker({ map, position: userPos, title: '현위치' })
+            const userMarker = new Tmapv3.Marker({ map, position: userPos, title: '현위치' })
+
+            // 현위치 인포
+            new Tmapv3.InfoWindow({
+              position: userPos,
+              content: `<div style="min-width:50px; min-height:50px;">
+              <b>현위치</b>
+              </div>`,
+            type: 2, // 마커 위
+            map,
+            })
 
             // 병원 거리 계산
             const distances = hospitals
