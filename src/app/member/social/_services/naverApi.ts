@@ -1,11 +1,12 @@
-import SocialApi from './socialApi'
+import SocialApi from './SocialApi'
 
 export default class NaverApi implements SocialApi {
   private state?: string
 
   constructor(
     private apiKey: string | undefined = process.env.NEXT_PUBLIC_NAVER_API_KEY,
-    private apiSecret: string | undefined = process.env.NEXT_PUBLIC_NAVER_API_SECRET,
+    private apiSecret: string | undefined = process.env
+      .NEXT_PUBLIC_NAVER_API_SECRET,
     private redirectUri: string = `${process.env.NEXT_PUBLIC_DOMAIN}/member/social/naver/callback`,
   ) {}
 
