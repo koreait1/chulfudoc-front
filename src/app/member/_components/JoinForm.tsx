@@ -8,6 +8,8 @@ import FileUpload from '@/app/_global/components/FileUpload'
 import FileImages from '@/app/_global/components/FileImages'
 import AuthNumButton from '@/app/_global/components/AuthNumButton'
 import { ApiUrl } from '@/app/_global/constants/ApiUrl'
+import AuthCount from '@/app/_global/components/AuthCount'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledForm = styled.form``
 const sendCode = ApiUrl.SENDCODE
@@ -24,37 +26,52 @@ const JoinForm = ({
   fileDeleteCallback,
 }) => {
   const [emailDisabled, setEmailDisabled] = useState(false)
+  const [verified, setverified] = useState(false)
+  const [trigger, setTrigger] = useState(0)
+  const [resend, setResend] = useState(false)
+  const alertDialog = useAlertDialog()
 
   return (
     <StyledForm action={action} autoComplete="off">
       <input type="hidden" name="gid" value={form.gid} />
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
-      <Input
-        type="text"
-        name="userId"
-        placeholder="아이디를 입력하세요"
-        value={form.userId}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.userId}</MessageBox>
+      {form.socialChannel && form.socialToken && (
+        <>
+          <input type="hidden" name="socialChannel" value={form.socialChannel} />
+          <input type="hidden" name="socialToken" value={form.socialToken} />
+          <div>{form.socialChannel} 연동 회원가입</div>
+        </>
+      )}
+      {(!form?.socialChannel || !form?.socialToken) && (
+        <>
+          <Input
+            type="text"
+            name="userId"
+            placeholder="아이디를 입력하세요"
+            value={form.userId}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.userId}</MessageBox>
 
-      <Input
-        type="password"
-        name="password"
-        placeholder="비밀번호를 입력하세요"
-        value={form.password}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.password}</MessageBox>
+          <Input
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력하세요"
+            value={form.password}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.password}</MessageBox>
 
-      <Input
-        type="password"
-        name="confirmPassword"
-        placeholder="비밀번호를 확인하세요"
-        value={form.confirmPassword}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+          <Input
+            type="password"
+            name="confirmPassword"
+            placeholder="비밀번호를 확인하세요"
+            value={form.confirmPassword}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+        </>
+      )}
 
       <Input
         type="text"
@@ -80,18 +97,38 @@ const JoinForm = ({
         placeholder="이메일을 입력하세요"
         value={form.email}
         onChange={onChange}
-        disabled={emailDisabled}
+        readOnly={emailDisabled}
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
       <AuthNumButton
         data={form.email}
         apiUrl={sendCode}
-        callback={(res) =>
-          console.log('이메일 전송 성공 여부 : ', res.emailSuccess)
+        onStartTimer={() => setTrigger(t => t + 1)} 
+        callback={(res) =>{
+          if (res.emailSuccess) {
+            setResend(true)
+            alertDialog({
+              title: '발송 완료',
+              text: '인증번호가 이메일로 발송되었습니다.',
+              icon: 'success',
+            })
+          } else {
+            alertDialog({
+              title: '발송 실패',
+              text: '이메일 발송에 실패했습니다. 다시 시도해주세요.',
+              icon: 'error',
+            })
+          }
         }
+      }
       >
-        인증번호 발송
+        {resend ? '인증번호 재발송' : '인증번호 발송'}
       </AuthNumButton>
+
+
+      {!verified && trigger > 0 && (
+        <AuthCount startSignal={trigger} duration={180} />
+      )}
 
       <Input
         type="text"
@@ -102,10 +139,17 @@ const JoinForm = ({
       />
       <AuthNumButton
         data={Number(form.authNum)}
-        apiUrl={checkCode}
-        callback={(res) =>
-          res.emailSuccess ? setEmailDisabled(true) : console.log('인증 실패')
+        apiUrl={checkCode}        
+        callback={(res) =>{
+          if (res.emailSuccess) {
+            setEmailDisabled(true)
+            setverified(true)
+            alertDialog({ title: '인증 성공', text: '이메일 인증이 완료되었습니다.', icon: 'success'})
+          } else {
+            alertDialog({title: '인증 실패', text: '인증 번호가 올바르지 않습니다.', icon: 'error'})
+          }
         }
+      }
       >
         인증하기
       </AuthNumButton>
