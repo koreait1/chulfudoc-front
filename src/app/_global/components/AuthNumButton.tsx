@@ -23,6 +23,7 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
     let status: number
+    let item : any
 
     const onEmailSendClick = useCallback(() => {
         if(!data) return
@@ -35,7 +36,6 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
         setLoading(true);
         
         function emailAuthNumHandler(){
-            
             fetchCSR(`${apiUrl}${data}`)
             .then((res) => {
                 if(typeof callback === 'function'){
@@ -55,7 +55,7 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
 
         emailAuthNumHandler()
         
-    }, [fetchCSR, data, callback, onStartTimer, onRequestStart])
+    }, [fetchCSR, data, callback, onStartTimer, onRequestStart, item])
 
     return(
         <>

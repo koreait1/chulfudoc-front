@@ -68,7 +68,7 @@ const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
         <Image src={kakaoLoginButton} alt="카카오 로그인" width={400} />
       </a>
       <a href={naverLoginUrl}>
-        <Image src={naverLoginButton} alt='네이버 로그인' width={400} />
+        <Image src={naverLoginButton} alt="네이버 로그인" width={400} />
       </a>
     </>
   )
