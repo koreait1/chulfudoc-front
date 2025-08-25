@@ -103,10 +103,10 @@ const JoinForm = ({
       <AuthNumButton
         data={form.email}
         apiUrl={sendCode}
-        onStartTimer={() => setTrigger((t) => t + 1)}
         callback={(res) => {
           if (res.status >= 200 && res.status < 300) {
             setResend(true)
+            setTrigger((t) => t + 1)
             alertDialog({
               title: '발송 완료',
               text: '인증번호가 이메일로 발송되었습니다.',
