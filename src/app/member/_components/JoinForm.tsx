@@ -35,32 +35,43 @@ const JoinForm = ({
     <StyledForm action={action} autoComplete="off">
       <input type="hidden" name="gid" value={form.gid} />
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
-      <Input
-        type="text"
-        name="userId"
-        placeholder="아이디를 입력하세요"
-        value={form.userId}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.userId}</MessageBox>
+      {form.socialChannel && form.socialToken && (
+        <>
+          <input type="hidden" name="socialChannel" value={form.socialChannel} />
+          <input type="hidden" name="socialToken" value={form.socialToken} />
+          <div>{form.socialChannel} 연동 회원가입</div>
+        </>
+      )}
+      {(!form?.socialChannel || !form?.socialToken) && (
+        <>
+          <Input
+            type="text"
+            name="userId"
+            placeholder="아이디를 입력하세요"
+            value={form.userId}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.userId}</MessageBox>
 
-      <Input
-        type="password"
-        name="password"
-        placeholder="비밀번호를 입력하세요"
-        value={form.password}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.password}</MessageBox>
+          <Input
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력하세요"
+            value={form.password}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.password}</MessageBox>
 
-      <Input
-        type="password"
-        name="confirmPassword"
-        placeholder="비밀번호를 확인하세요"
-        value={form.confirmPassword}
-        onChange={onChange}
-      />
-      <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+          <Input
+            type="password"
+            name="confirmPassword"
+            placeholder="비밀번호를 확인하세요"
+            value={form.confirmPassword}
+            onChange={onChange}
+          />
+          <MessageBox color="danger">{errors?.confirmPassword}</MessageBox>
+        </>
+      )}
 
       <Input
         type="text"
@@ -113,6 +124,7 @@ const JoinForm = ({
       >
         {resend ? '인증번호 재발송' : '인증번호 발송'}
       </AuthNumButton>
+
 
       {!verified && trigger > 0 && (
         <AuthCount startSignal={trigger} duration={180} />

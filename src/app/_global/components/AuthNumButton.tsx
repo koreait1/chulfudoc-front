@@ -22,6 +22,7 @@ type AuthType = {
 const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
+    let status: number
 
     const onEmailSendClick = useCallback(() => {
         if(!data) return
@@ -36,10 +37,9 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
         function emailAuthNumHandler(){
             
             fetchCSR(`${apiUrl}${data}`)
-            .then((res) => res.json())
-            .then((item) => {
+            .then((res) => {
                 if(typeof callback === 'function'){
-                    callback(item)
+                    callback({ status: res.status })
                 }
                 setLoading(false)
                 if (item?.emailSuccess) {
