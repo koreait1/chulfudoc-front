@@ -1,14 +1,14 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import { Button } from './Buttons'
 
 type Props = {
   startSignal?: number
   duration?: number
+  onExpire?: () => void 
 }
 
-export default function AuthCount({ startSignal = 0, duration = 180 }: Props) {
-  const [count, setCount] = useState(181)
+export default function AuthCount({ startSignal = 0, duration = 180, onExpire }: Props) {
+  const [count, setCount] = useState(duration)
   const [sending, setSending] = useState(false)
   const timerRef = useRef<number | null>(null)
 
@@ -44,6 +44,7 @@ export default function AuthCount({ startSignal = 0, duration = 180 }: Props) {
             timerRef.current = null
           }
           setSending(false)
+          onExpire?.()  
           return 0
         }
         return prev - 1
@@ -53,7 +54,7 @@ export default function AuthCount({ startSignal = 0, duration = 180 }: Props) {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [sending])
+  }, [sending, onExpire, startSignal])
 
   return (
     <>
