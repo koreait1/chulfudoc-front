@@ -141,7 +141,7 @@ export async function processLogin(errors, formData: FormData) {
   } else {
     // 로그인 실패
     const json = await res.json()
-    return json.messages.global ? json.messages : { global: json.messages }
+    return json.messages ? json.messages : { global: json.messages }
   }
 
   // 로그인 성공시 페이지 이동 - redurectUrl이 있다면 그 주소로 이동 아니면 메인페이지(/)로 이동

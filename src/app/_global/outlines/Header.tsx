@@ -13,6 +13,7 @@ import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
 import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
+import noprofile from '../assets/images/noprofile.png'
 
 const StyledHeader = styled.header`
   background: #fff;
@@ -101,6 +102,7 @@ const Header = () => {
                     viewOrgImage={false}
                     width={40}
                     height={40}
+                    fallbackImage={noprofile}
                   />
                 ) : (
                   <ul>
