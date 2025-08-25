@@ -1,7 +1,7 @@
 'use client'
 import React, { useCallback, useState, useRef } from 'react'
 import DetectBox from '../_components/DetectBox'
-import KERLocate from '@/app/location/_components/KERLocate'
+import ERLContainer from '@/app/tmap/_containers/ERLContainer'
 
 type DetectionItem = {
   x1: number
@@ -40,7 +40,7 @@ const DetectContainer = () => {
   return (
     <>
       <DetectBox width={640} height={640} callback={detectCallback} />
-      {fallDetect && <KERLocate />}
+      {fallDetect && <ERLContainer />}
     </>
   )
 }
