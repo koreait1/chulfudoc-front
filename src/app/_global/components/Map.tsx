@@ -67,7 +67,7 @@ const Map = ({ width, height, zoom }: MapType) => {
       // 현재 위치 InfoWindow
       new Tmapv3.InfoWindow({
         position: currentLatLon,
-        content: `<div style="padding:5px; min-width:80px; max-width:120px;">현위치</div>`,
+        content: `<div style="min-width:50px; min-height:50px;"">현위치</div>`,
         map,
       })
 
