@@ -192,33 +192,34 @@ export async function getLoggedMember() {
   }
 }
 
-export async function processFindPw(errors: any, formData: FormData) {
+export async function processFindPw(errors, formData: FormData) {
   errors = {}
 
-  const userId = formData.get('userId')?.toString().trim()
-  const email = formData.get('email')?.toString().trim()
+  const params: {userId?: string; email?: string;} ={
+    userId: formData.get('userId')?.toString().trim(),
+    email: formData.get('email')?.toString().trim()
+  }
 
-  if (!userId) {
-    errors.userId = ['아이디를 입력하세요']
-  }
-  if (!email) {
-    errors.email = ['이메일을 입력하세요']
-  }
+  //유효성 검증
+  if (!params.userId) errors.userId = ['아이디를 입력하세요']
+  if (!params.email)  errors.email  = ['이메일을 입력하세요']
   if (errors.userId || errors.email) return errors
 
-  // 백엔드 호출
-  const res = await fetch(`${process.env.API_URL}/api/v1/member/findpw`, {
+  const res = await fetch(`${process.env.API_URL}/member/findpw`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, email }),
+    body: JSON.stringify(params), 
+    cache: 'no-store',
   })
 
   if (res.ok) {
-    // 완료 페이지로 이동
-    redirect('/member/findpw/done')
-  } else {
-    const json = await res.json().catch(() => ({}))
-    // 백엔드에서 messages 형태로 내려오면 그대로 반환
-    return json?.messages ?? { global: '비밀번호 찾기에 실패했습니다.' }
+    // 성공 시 완료 페이지로 이동
+    redirect('/member/login')
   }
+
+  const json = await res.json().catch(() => null)
+  if (json?.messages) return json.messages
+  if (json?.message)  return { global: json.message }
+  return { global: `비밀번호 찾기에 실패했습니다. (status: ${res.status})` }
+
 }
