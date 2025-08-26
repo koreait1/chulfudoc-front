@@ -4,13 +4,12 @@ import styled from 'styled-components'
 import type { BoardConfigType } from '@/app/board/_types/BoardType'
 import { TableRows } from '@/app/_global/components/Forms'
 import { Button } from '@/app/_global/components/Buttons'
-import { MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md'
+import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 
 const StyledForm = styled.form`
   th:nth-of-type(1) {
     width: 45px;
   }
-
   th:nth-of-type(2) {
     width: 150px;
   }
@@ -32,7 +31,7 @@ const StyledForm = styled.form`
 
   .table-action {
     border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
+    padding: 10px;
   }
 `
 
@@ -40,9 +39,11 @@ const BoardItems = ({
   items,
   onToggle,
   isCheckAll,
+  onRemove,
 }: {
   items?: Array<BoardConfigType>
   onToggle: (bid?: string, mode?: 'check' | 'uncheck') => void
+  onRemove: () => void
   isCheckAll: boolean
 }) => {
   return (
@@ -92,11 +93,13 @@ const BoardItems = ({
           )}
         </tbody>
       </TableRows>
-      <div className='table-action'>
-        <Button type="button" color="warning" width={200}>
-          선택한 게시판 삭제하기
-        </Button>
-      </div>
+      {items && items.length > 0 && (
+        <div className="table-action">
+          <Button type="button" color="warning" width={200} onClick={onRemove}>
+            선택한 게시판 삭제하기
+          </Button>
+        </div>
+      )}
     </StyledForm>
   )
 }

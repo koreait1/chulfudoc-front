@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Papa from 'papaparse'
+import styled from 'styled-components'
 
 interface Hospital {
   응급의료기관명: string
@@ -9,6 +10,19 @@ interface Hospital {
   소재지: string
   연락처: string
 }
+
+const Tmapv3Div = styled.div`
+  min-width: 600px;
+  max-width: 1150px;
+  margin: 0 auto 20px auto;
+  h1 {
+    text-align: center;
+  }
+  .vsm-canvas {
+    border: 2px solid #333 !important;
+    border-radius: 8px;
+  }
+`
 
 declare global {
   interface Window {
@@ -54,7 +68,11 @@ export default function NearERMap() {
               pos.coords.latitude,
               pos.coords.longitude,
             )
-            const userMarker = new Tmapv3.Marker({ map, position: userPos, title: '현위치' })
+            const userMarker = new Tmapv3.Marker({
+              map,
+              position: userPos,
+              title: '현위치',
+            })
 
             // 현위치 인포
             new Tmapv3.InfoWindow({
@@ -62,8 +80,8 @@ export default function NearERMap() {
               content: `<div style="min-width:50px; min-height:50px;">
               <b>현위치</b>
               </div>`,
-            type: 2, // 마커 위
-            map,
+              type: 2, // 마커 위
+              map,
             })
 
             // 병원 거리 계산
@@ -135,14 +153,16 @@ export default function NearERMap() {
                 })
 
                 if (pathCoords.length) {
-                  new Tmapv3.Polyline({
-                    map,
-                    path: pathCoords,
-                    strokeWeight: 4,
-                    strokeColor: colors[i],
-                    strokeOpacity: 0.7,
-                    strokeStyle: 'solid',
-                  })
+                  setTimeout(() => {
+                    new Tmapv3.Polyline({
+                      map,
+                      path: pathCoords,
+                      strokeWeight: 4,
+                      strokeColor: colors[i],
+                      strokeOpacity: 0.7,
+                      strokeStyle: 'solid',
+                    })
+                  }, 500)
                 }
 
                 // InfoWindow 생성
@@ -172,8 +192,9 @@ export default function NearERMap() {
   }
 
   return (
-    <div id="map3" style={{ width: '100%', height: '600px' }}>
+    <Tmapv3Div id="map3" style={{ width: '80%', height: '600px' }}>
+      <h1>가까운 응급의료기관 위치 지도</h1>
       {!mapLoaded && <div>지도 불러오는 중...</div>}
-    </div>
+    </Tmapv3Div>
   )
 }
