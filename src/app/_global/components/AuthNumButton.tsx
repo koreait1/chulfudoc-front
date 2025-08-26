@@ -17,7 +17,7 @@ type AuthType = {
     children?: React.ReactNode
     onStartTimer?: () => void
     onRequestStart?: () => void
-    width?: number
+    width?: string
 }
 
 const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart, width}: AuthType) => {
