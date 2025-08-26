@@ -135,6 +135,7 @@ const JoinForm = ({
         onChange={onChange}
         readOnly={verified}
       />
+      <MessageBox color="danger">{errors?.authNum}</MessageBox>
 
       {!verified && (
         <AuthNumButton
