@@ -3,16 +3,18 @@ import styled from 'styled-components'
 import { Input } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
 import MessageBox from '@/app/_global/components/MessageBox'
+import AuthNumButton from '@/app/_global/components/AuthNumButton'
+import { ApiUrl } from '@/app/_global/constants/ApiUrl'
 
 const StyledForm = styled.form``
 
-const FindPwForm = ({errors, action, pending, form, onChange}) => {
-  return(
-    <StyledForm action={action}  autoComplete="off">
-      <Input 
-        type='text' 
-        name='userId'
-        placeholder='아이디를 입력하세요' 
+const FindPwForm = ({ errors, action, pending, form, onChange }) => {
+  return (
+    <StyledForm action={action} autoComplete="off">
+      <Input
+        type="text"
+        name="userId"
+        placeholder="아이디를 입력하세요"
         value={form.userId}
         onChange={onChange}
       />
@@ -26,12 +28,12 @@ const FindPwForm = ({errors, action, pending, form, onChange}) => {
         onChange={onChange}
       />
       <MessageBox color="danger">{errors?.email}</MessageBox>
-      
-      <SubmitButton type="submit" disabled={pending}>
-        로그인
-      </SubmitButton>
-      
-      <MessageBox color="danger">{errors?.global}</MessageBox> 
+
+      <AuthNumButton data={'userId='+ form.userId + "&email=" + form.email} apiUrl={ApiUrl.PWRESET}>
+        임시 비밀번호 보내기
+      </AuthNumButton>
+
+      <MessageBox color="danger">{errors?.global}</MessageBox>
     </StyledForm>
   )
 }

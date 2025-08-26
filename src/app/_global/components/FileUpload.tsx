@@ -3,6 +3,7 @@ import React, { useCallback } from 'react'
 import { MdOutlineFileUpload } from 'react-icons/md'
 import { Button } from './Buttons'
 import useFetchCSR from '../hooks/useFetchCSR'
+import useAlertDialog from '../hooks/useAlertDialog'
 
 type FileType = {
   gid: string | number
@@ -14,6 +15,7 @@ type FileType = {
 
 const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
   const FetchCSR = useFetchCSR()
+  const alertDialog = useAlertDialog()
 
   const onUploadClick = useCallback(() => {
     const fileEl = document.createElement('input')
@@ -60,7 +62,7 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
           }
         })
     }
-  }, [FetchCSR, gid, location, imageOnly, single, callback])
+  }, [FetchCSR, gid, location, imageOnly, single, callback, alertDialog])
 
   return (
     <>

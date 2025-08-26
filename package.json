@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.16.7",
+    "axios": "^1.11.0",
     "classnames": "^2.5.1",
     "fast-csv": "^5.0.5",
     "immer": "^10.1.1",
@@ -24,7 +25,8 @@
     "react-helmet-async": "^2.0.5",
     "react-icons": "^5.5.0",
     "react-modal": "^3.16.3",
-    "sass": "^1.90.0",
+    "react-router-dom": "^7.8.2",
+    "sass": "^1.91.0",
     "styled-components": "^6.1.19",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.22.4",
