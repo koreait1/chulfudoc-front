@@ -1,8 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import KakaoApi from '../../_Services/KakaoApi'
-import NaverApi from '../../_Services/NaverApi'
+import KakaoApi from '../../_services/kakaoApi'
+import NaverApi from '../../_services/NaverApi'
 import { fetchSSR } from '@/app/_global/libs/utils'
 
 export async function GET(request: NextRequest) {
