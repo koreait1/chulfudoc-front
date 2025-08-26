@@ -1,4 +1,4 @@
-import SocialApi from './SocialApi'
+import SocialApi from "./SocialApi"
 
 export default class KakaoApi implements SocialApi {
   constructor(

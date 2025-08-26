@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import type { BoardConfigType } from '@/app/board/_types/BoardType'
 import { TableRows } from '@/app/_global/components/Forms'
 import { Button } from '@/app/_global/components/Buttons'
+import { MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md'
 
 const StyledForm = styled.form`
   th:nth-of-type(1) {
@@ -28,15 +29,34 @@ const StyledForm = styled.form`
       margin-left: 5px;
     }
   }
+
+  .table-action {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
 `
 
-const BoardItems = ({ items }: { items?: Array<BoardConfigType> }) => {
+const BoardItems = ({
+  items,
+  onToggle,
+  isCheckAll,
+}: {
+  items?: Array<BoardConfigType>
+  onToggle: (bid?: string, mode?: 'check' | 'uncheck') => void
+  isCheckAll: boolean
+}) => {
   return (
     <StyledForm autoComplete="off">
       <TableRows>
         <thead>
           <tr>
-            <th></th>
+            <th
+              onClick={() =>
+                onToggle(undefined, isCheckAll ? 'uncheck' : 'check')
+              }
+            >
+              {isCheckAll ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+            </th>
             <th>게시판ID</th>
             <th>게시판이름</th>
             <th></th>
@@ -44,9 +64,11 @@ const BoardItems = ({ items }: { items?: Array<BoardConfigType> }) => {
         </thead>
         <tbody>
           {items && items.length > 0 ? (
-            items.map(({ bid, name }) => (
+            items.map(({ chk, bid, name }) => (
               <tr key={'board-' + bid}>
-                <td></td>
+                <td onClick={() => onToggle(bid)}>
+                  {chk ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+                </td>
                 <td>{bid}</td>
                 <td>{name}</td>
                 <td>
@@ -70,6 +92,11 @@ const BoardItems = ({ items }: { items?: Array<BoardConfigType> }) => {
           )}
         </tbody>
       </TableRows>
+      <div className='table-action'>
+        <Button type="button" color="warning" width={200}>
+          선택한 게시판 삭제하기
+        </Button>
+      </div>
     </StyledForm>
   )
 }

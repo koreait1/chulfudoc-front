@@ -149,17 +149,31 @@ const Map = ({ width, height, zoom }: MapType) => {
               // InfoWindow 표시
               const infoWindow = new Tmapv3.InfoWindow({
                 position: hospitalPos,
-                content: `<div style="padding:5px; min-width:200px; max-width:300px;">
+                content: `<div id="hospital-info" style="min-width:200px; max-width:300px;">
                   <b>${h.응급의료기관명}</b><br>
                   ${h.소재지}<br>
                   병원 전화 번호 : ${h.연락처}<br>
                   이동 거리: ${(totalDistance / 1000).toFixed(2)} km<br>
                   예상 소요 시간: ${Math.round(totalTime / 60)}분
+                  <div style="color: rgba(233, 33, 33, 1); cursor: pointer;" onmouseover="this.style.textDecoration='underline'" 
+                  onmouseout="this.style.textDecoration='none'">
+                  (병원 정보 닫기)
+                  </div>
                 </div>`,
                 map,
               })
 
               openInfoWindowRef.current = infoWindow
+
+              // InfoWindow 클릭 시 닫기
+              setTimeout(() => {
+                const el = document.getElementById('hospital-info')
+                if (el) {
+                  el.addEventListener('click', () => {
+                    infoWindow.setMap(null)
+                  })
+                }
+              }, 0)
             })
           })
         },
