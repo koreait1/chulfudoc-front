@@ -13,6 +13,8 @@ import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
 import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
+import { IoCall } from "react-icons/io5";
+import { LuUserPen } from "react-icons/lu";
 import { usePathname } from 'next/navigation'
 import color from '../styles/color'
 const { dark } = color
@@ -121,12 +123,10 @@ const Header = () => {
                 <div onClick={() => setIsOpen(true)}>
                   <FileImages
                     items={loggedMember.profileImage}
-                    fallbackImage={noprofile}
                     viewOnly={true}
                     viewOrgImage={false}
                     width={40}
                     height={40}
-                    fallbackImage={noprofile}
                   />
                 </div>
                 <LayerPopup
@@ -135,38 +135,38 @@ const Header = () => {
                   top="270px"
                   right=" max(200px, calc(200px + (50vw - 575px))"
                   width={'300px'}
-                  height={'350px'}
+                  height={'430px'}
                 >
-                  <Link href="/mypage" prefetch={false}>
                     <FileImages
                       items={loggedMember.profileImage}
-                      fallbackImage={noprofile}
                       viewOnly={true}
                       viewOrgImage={false}
                       width={230}
                       height={230}
+                      fallbackImage={noprofile}
                     />
-                    <span>{loggedMember.userName} 님</span>
-                    <Button type="button">
+                    <span><span>{loggedMember.userName}</span> 님</span>
+                  <Link href="/mypage" prefetch={false}>
+                    <Button type="button" width={'250px'}>
                       <CgProfile />
                       마이페이지
                       <LinkLoading />
                     </Button>
                   </Link>
-                  {/* <Link href="/mypage" prefetch={false}>
-                      <Button type="button">
-                        <CgProfile />
+                  <Link href="/mypage" prefetch={false}>
+                      <Button type="button" width={'250px'}>
+                        <LuUserPen />
                         개인정보 수정
                         <LinkLoading />
                       </Button>
                     </Link> 
                     <Link href="/mypage" prefetch={false}>
-                      <Button type="button">
-                        <CgProfile />
+                      <Button type="button" width={'250px'}>
+                        <IoCall />
                         문의하기
                         <LinkLoading />
                       </Button>
-                    </Link> */}
+                    </Link>
                 </LayerPopup>
               </div>
             </>
