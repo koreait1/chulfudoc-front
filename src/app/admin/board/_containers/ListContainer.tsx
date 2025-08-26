@@ -5,6 +5,8 @@ import type { BoardConfigType } from '@/app/board/_types/BoardType'
 import Pagination from '@/app/_global/components/Pagination'
 import BoardItems from '../_components/BoardItems'
 import BoardSearchForm from '../_components/BoardSearchForm'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
+import useConfirmDialog from '@/app/_global/hooks/useConfirmDialog'
 
 type PropType = {
   items?: Array<BoardConfigType>
@@ -15,6 +17,8 @@ const ListContainer = ({ items, pagination }: PropType) => {
   /* 08.26. 4교시 */
   const [_items, setItems] = useState<Array<BoardConfigType> | undefined>(items)
   const [isCheckAll, setCheckAll] = useState<boolean>(false)
+  const alerDialog = useAlertDialog()
+  const confirmDialog = useConfirmDialog()
 
   const onToggle = useCallback((bid?: string, mode?: 'check' | 'uncheck') => {
     setItems((prevItems) => {
@@ -35,6 +39,13 @@ const ListContainer = ({ items, pagination }: PropType) => {
     })
   }, [])
   /* 08.26. 4교시 */
+
+  const onRemove = useCallback(() => {
+    /**
+     * 1. 삭제할 게시판을 선택했는지 체크
+     * 2. 정말 삭제할것인지 물어보고 진행
+     */
+  }, []);
   return (
     <>
       <BoardSearchForm />
