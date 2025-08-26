@@ -24,6 +24,13 @@ type MapType = {
 }
 
 const Wrapper = styled.div<{ width?: number; height?: number }>`
+  min-width: 600px;
+  max-width: 1150px;
+  margin: 0 auto 20px auto;
+  .vsm-canvas {
+    border: 2px solid #333 !important;
+    border-radius: 8px;
+  }
   width: 100%;
   ${({ width }) =>
     width &&
@@ -41,15 +48,18 @@ const Map = ({ width, height, zoom }: MapType) => {
   height = height ?? 600
   zoom = zoom ?? 11
 
-  useEffect(() => {
-    if (!mapRef.current) return
-    const { Tmapv3 } = window
+  const initialized = useRef(false)
 
+  useEffect(() => {
+    if (!mapRef.current || initialized.current) return
+
+    initialized.current = true
+
+    const { Tmapv3 } = window
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords
       const currentLatLon = new Tmapv3.LatLng(latitude, longitude)
 
-      // 지도 생성
       const map = new Tmapv3.Map(mapRef.current, {
         center: currentLatLon,
         width: `100%`,
