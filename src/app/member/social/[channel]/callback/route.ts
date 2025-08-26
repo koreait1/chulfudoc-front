@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import KakaoApi from '../../_services/kakaoApi'
+import KakaoApi from '../../_services/KakaoApi'
 import NaverApi from '../../_services/NaverApi'
 import { fetchSSR } from '@/app/_global/libs/utils'
 
