@@ -9,7 +9,7 @@ import styled from 'styled-components'
 const DetectWrapper = styled('div').withConfig({
   shouldForwardProp: (prop) => prop !== 'fallDetect', // DOM으로 전달하지 않음
 })<{ fallDetect?: boolean }>`
-  width: 640px;
+  width: 800px;
   height: 640px;
   cursor: pointer;
   border: 2px solid #ccc;
@@ -96,12 +96,12 @@ const DetectContainer = () => {
       onClick={() => setWebcamAble((prev) => !prev)}
     >
       {webcamAble ? (
-        <DetectBox width={640} height={640} callback={detectCallback} />
+        <DetectBox width={800} height={640} callback={detectCallback} />
       ) : (
         <Image
           src={webcam_disabled}
           alt="웹캠 비활성화"
-          width={640}
+          width={800}
           height={640}
         />
       )}

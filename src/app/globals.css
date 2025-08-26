@@ -117,3 +117,8 @@ main.main-content {
 .vsm-marker > :not(:first-child) {
   display: none;
 }
+
+.current-location-info {
+  border-radius: 4px;
+  text-align: center;
+}

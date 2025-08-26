@@ -24,10 +24,10 @@ export default function MainPage() {
         </button>
         <LayerPopup
           isOpen={isOpen}
-          title="병원 안내"
+          title="응급의료기관"
           onClose={() => setIsOpen(false)}
           width={'80%'}
-          height={'60%'}
+          height={'800px'}
         >
           <GERMapContainer />
         </LayerPopup>
