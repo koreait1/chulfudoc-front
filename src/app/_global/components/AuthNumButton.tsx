@@ -13,13 +13,14 @@ const StyledSection = styled.section`
 type AuthType = {
     data?: any
     apiUrl: ApiUrl
+    width?: string
     callback?: (item: any) => void
     children?: React.ReactNode
     onStartTimer?: () => void
     onRequestStart?: () => void
 }
 
-const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart}: AuthType) => {
+const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, onRequestStart}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
     let status: number
@@ -60,7 +61,7 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
     return(
         <>
             {loading ? <Loading /> :
-            <Button type="button" onClick={onEmailSendClick}>
+            <Button type="button" onClick={onEmailSendClick} width={width}>
                 {children}
             </Button>}
         </>
