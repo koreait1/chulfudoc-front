@@ -101,7 +101,7 @@ const JoinForm = ({
       <AuthNumButton
         data={form.email}
         apiUrl={ApiUrl.SENDCODE}
-        width={resend ? '140px' : ''}
+        width={125}
         callback={(res) => {
           if (res.status >= 200 && res.status < 300) {
             setResend(true)
