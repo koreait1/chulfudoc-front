@@ -12,8 +12,6 @@ import AuthCount from '@/app/_global/components/AuthCount'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledForm = styled.form``
-const sendCode = ApiUrl.SENDCODE
-const checkCode: ApiUrl = ApiUrl.CHECKCODE
 
 const JoinForm = ({
   errors,
@@ -102,7 +100,7 @@ const JoinForm = ({
       <MessageBox color="danger">{errors?.email}</MessageBox>
       <AuthNumButton
         data={form.email}
-        apiUrl={sendCode}
+        apiUrl={ApiUrl.SENDCODE}
         onStartTimer={() => setTrigger((t) => t + 1)}
         callback={(res) => {
           if (res.status >= 200 && res.status < 300) {
@@ -140,7 +138,7 @@ const JoinForm = ({
       {!verified && (
         <AuthNumButton
           data={Number(form.authNum)}
-          apiUrl={checkCode}
+          apiUrl={ApiUrl.CHECKCODE}
           callback={(res) => {
             if (res.status >= 200 && res.status < 300) {
               setEmailDisabled(true)
