@@ -1,8 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import KakaoApi from '../../_services/KakaoApi'
-import NaverApi from '../../_services/NaverApi'
+import KakaoApi from '../../_Services/KakaoApi'
+import NaverApi from '../../_Services/NaverApi'
 import { fetchSSR } from '@/app/_global/libs/utils'
 
 export async function GET(request: NextRequest) {
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   const api = channel === 'NAVER' ? new NaverApi() : new KakaoApi()
 
   let redirectUrl = searchParams.get('state') ?? '/'
-  
+
   redirectUrl += redirectUrl.includes('?') ? '&' : '?'
   redirectUrl += 'reload=true'
 

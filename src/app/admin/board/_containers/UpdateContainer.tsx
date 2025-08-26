@@ -1,17 +1,11 @@
 'use client'
 import React, { useState, useCallback, useActionState } from 'react'
 import BoardConfigform from '../_components/BoardConfigForm'
-import useBoardConfig from '@/app/board/_hooks/useBoardConfig'
 import { processBoardConfig } from '../services/action'
+import type { BoardConfigType } from '@/app/board/_types/BoardType'
 
-type PropType = {
-  bid?: string
-}
-
-const UpdateContainer = ({ bid }: PropType) => {
-  const boardConfig = useBoardConfig(bid)
-  const [form, setForm] = useState(boardConfig)
-
+const UpdateContainer = ({ data }: { data: BoardConfigType }) => {
+  const [form, setForm] = useState(data)
   const [errors, action, pending] = useActionState<any, any>(
     processBoardConfig,
     {},
@@ -22,7 +16,7 @@ const UpdateContainer = ({ bid }: PropType) => {
   }, [])
 
   const onKeyValue = useCallback((key, value) => {
-    setForm((prev) => ({...prev, [key]: value }))
+    setForm((prev) => ({ ...prev, [key]: value }))
   }, [])
 
   return (
