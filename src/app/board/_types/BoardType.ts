@@ -23,6 +23,10 @@ export type BoardConfigType = {
   commentAuthority: AuthorityType
 }
 
-export type BoardFormType = {
+export type BoardType = {
   board: BoardConfigType
 }
+
+export type BoardFormType = {} & BoardType
+
+export type BoardListType = {} & BoardType
