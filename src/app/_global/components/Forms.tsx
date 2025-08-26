@@ -57,6 +57,22 @@ export const Input = styled.input<CommonType>`
     `}
 `
 
+export const Select = styled.select<CommonType>`
+  ${commonStyle}
+  height: 50px;
+  padding: 0;
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width}px;
+    `}
+  ${({ height }) =>
+    height &&
+    css`
+      height: ${height}px;
+    `}
+`
+
 export const Textarea = styled.textarea<CommonType>`
   ${commonStyle}
   height: 150px;

@@ -1,5 +1,5 @@
 import ListContainer from './_containers/ListContainer'
-import { getBoardConfig, getBoardList } from '@/app/board/_services/boardConfig'
+import { getBoardList } from '@/app/board/_services/boardConfig'
 import type CommonSearchType from '@/app/_global/types/CommonSearchType'
 
 export default async function BoardListPage({
@@ -9,6 +9,5 @@ export default async function BoardListPage({
 }) {
   const params = await searchParams
   const { items, pagination } = await getBoardList(params)
-
-  return <ListContainer items={items} pagination={pagination} />
+  return <ListContainer items={items} pagination={pagination} search={params} />
 }

@@ -11,9 +11,10 @@ import useConfirmDialog from '@/app/_global/hooks/useConfirmDialog'
 type PropType = {
   items?: Array<BoardConfigType>
   pagination?: any
+  search?: any
 }
 
-const ListContainer = ({ items, pagination }: PropType) => {
+const ListContainer = ({ items, pagination, search }: PropType) => {
   /* 08.26. 4교시 */
   const [_items, setItems] = useState<Array<BoardConfigType> | undefined>(items)
   const [isCheckAll, setCheckAll] = useState<boolean>(false)
@@ -38,18 +39,35 @@ const ListContainer = ({ items, pagination }: PropType) => {
       return items
     })
   }, [])
-  /* 08.26. 4교시 */
 
+  /* 08.26. 4교시 */
   const onRemove = useCallback(() => {
     /**
      * 1. 삭제할 게시판을 선택했는지 체크
      * 2. 정말 삭제할것인지 물어보고 진행
      */
-  }, []);
+    const isCheckedAny = _items ? _items.some(({ chk }) => Boolean(chk)) : false
+    if (!isCheckedAny) {
+      alerDialog({ text: '삭제할 게시판을 선택하세요.' })
+      return
+    }
+
+    confirmDialog({
+      text: '정말 삭제하겠습니까?',
+      confirmCallback: () => {
+        // 실제 삭제 처리 로직
+      },
+    })
+  }, [_items, alerDialog, confirmDialog])
   return (
     <>
-      <BoardSearchForm />
-      <BoardItems items={_items} onToggle={onToggle} isCheckAll={isCheckAll} />
+      <BoardSearchForm search={search}/>
+      <BoardItems
+        items={_items}
+        onToggle={onToggle}
+        isCheckAll={isCheckAll}
+        onRemove={onRemove}
+      />
       <Pagination pagination={pagination} />
     </>
   )

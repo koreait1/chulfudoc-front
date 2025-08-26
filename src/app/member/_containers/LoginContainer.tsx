@@ -10,7 +10,7 @@ import React, {
 import { useSearchParams } from 'next/navigation'
 import { processLogin } from '../_services/actions'
 import LoginForm from '../_components/LoginForm'
-import KakaoApi from '../social/_services/kakaoApi'
+import KakaoApi from '../social/_services/KakaoApi'
 import NaverApi from '../social/_services/NaverApi'
 import kakaoLoginButton from '../../_global/assets/images/kakao_login.png'
 import naverLoginButton from '../../_global/assets/images/naver_login.png'
