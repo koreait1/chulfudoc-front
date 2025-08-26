@@ -3,6 +3,7 @@ export type SkinType = 'default' | 'gallery'
 
 export type BoardConfigType = {
   mode?: 'register' | 'update'
+  chk?: boolean
   bid: string
   name: string
   rowsForPage: number
