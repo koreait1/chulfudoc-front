@@ -7,7 +7,7 @@ export default function TMapPage() {
   return (
     <>
       <ERMapContiner />
-      <ERLContainer />
+      {/*<ERLContainer />*/} {/* API 호출을 너무 잡아먹어서 주석 처리 */}
     </>
   )
 }

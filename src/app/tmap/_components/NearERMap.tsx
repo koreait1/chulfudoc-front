@@ -153,14 +153,16 @@ export default function NearERMap() {
                 })
 
                 if (pathCoords.length) {
-                  new Tmapv3.Polyline({
-                    map,
-                    path: pathCoords,
-                    strokeWeight: 4,
-                    strokeColor: colors[i],
-                    strokeOpacity: 0.7,
-                    strokeStyle: 'solid',
-                  })
+                  setTimeout(() => {
+                    new Tmapv3.Polyline({
+                      map,
+                      path: pathCoords,
+                      strokeWeight: 4,
+                      strokeColor: colors[i],
+                      strokeOpacity: 0.7,
+                      strokeStyle: 'solid',
+                    })
+                  }, 500)
                 }
 
                 // InfoWindow 생성
