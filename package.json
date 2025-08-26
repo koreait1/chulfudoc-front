@@ -12,7 +12,6 @@
   "dependencies": {
     "@loadable/component": "^5.16.7",
     "axios": "^1.11.0",
-    "axios": "^1.11.0",
     "classnames": "^2.5.1",
     "fast-csv": "^5.0.5",
     "immer": "^10.1.1",
