@@ -4,11 +4,7 @@ import styled from 'styled-components'
 import type { BoardConfigType } from '@/app/board/_types/BoardType'
 import { TableRows } from '@/app/_global/components/Forms'
 import { Button } from '@/app/_global/components/Buttons'
-import {
-  MdCheckCircle,
-  MdCheckBoxOutlineBlank,
-  MdCheckBox,
-} from 'react-icons/md'
+import { MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md'
 
 const StyledForm = styled.form`
   th:nth-of-type(1) {
@@ -38,16 +34,24 @@ const StyledForm = styled.form`
 const BoardItems = ({
   items,
   onToggle,
+  isCheckAll,
 }: {
   items?: Array<BoardConfigType>
-  onToggle: (bid: string) => void
+  onToggle: (bid?: string, mode?: 'check' | 'uncheck') => void
+  isCheckAll: boolean
 }) => {
   return (
     <StyledForm autoComplete="off">
       <TableRows>
         <thead>
           <tr>
-            <th></th>
+            <th
+              onClick={() =>
+                onToggle(undefined, isCheckAll ? 'uncheck' : 'check')
+              }
+            >
+              {isCheckAll ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+            </th>
             <th>게시판ID</th>
             <th>게시판이름</th>
             <th></th>
