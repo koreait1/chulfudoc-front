@@ -6,6 +6,7 @@ import { getLoggedMember } from './member/_services/actions'
 import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
+import InstalledAd from './_global/components/InstalledAd'
 import { redirect } from 'next/navigation'
 import { GoogleAdSense } from './_global/components/adsense'
 import Script from 'next/script'
@@ -27,12 +28,12 @@ export default async function RootLayout({
   if (member == null && cookie.has('token')) {
     redirect('/member/api/logout?redirectUrl=/')
   }
-
   return (
     <html lang="ko">
       <head>
         {/* 광고 */}
         <GoogleAdSense />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src={tmapApiUrl}></script>
       </head>
       <body id="body">
@@ -42,7 +43,10 @@ export default async function RootLayout({
               loggedMember={member}
               token={cookie.get('token')?.value}
             >
-              <LayoutContainer>{children}</LayoutContainer>
+              <LayoutContainer>
+                <InstalledAd />
+                {children}
+              </LayoutContainer>
             </UserProvider>
           </CommonProvider>
         </StyledComponentsRegistry>
