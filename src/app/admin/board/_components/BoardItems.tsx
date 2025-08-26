@@ -29,6 +29,11 @@ const StyledForm = styled.form`
       margin-left: 5px;
     }
   }
+
+  .table-action {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
 `
 
 const BoardItems = ({
@@ -87,6 +92,11 @@ const BoardItems = ({
           )}
         </tbody>
       </TableRows>
+      <div className='table-action'>
+        <Button type="button" color="warning" width={200}>
+          선택한 게시판 삭제하기
+        </Button>
+      </div>
     </StyledForm>
   )
 }
