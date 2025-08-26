@@ -121,7 +121,6 @@ const Header = () => {
                 <div onClick={() => setIsOpen(true)}>
                   <FileImages
                     items={loggedMember.profileImage}
-                    fallbackImage={noprofile}
                     viewOnly={true}
                     viewOrgImage={false}
                     width={40}
@@ -140,11 +139,11 @@ const Header = () => {
                   <Link href="/mypage" prefetch={false}>
                     <FileImages
                       items={loggedMember.profileImage}
-                      fallbackImage={noprofile}
                       viewOnly={true}
                       viewOrgImage={false}
                       width={230}
                       height={230}
+                      fallbackImage={noprofile}
                     />
                     <span>{loggedMember.userName} 님</span>
                     <Button type="button">

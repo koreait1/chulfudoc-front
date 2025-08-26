@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import type { BoardConfigType } from '@/app/board/_types/BoardType'
 import Pagination from '@/app/_global/components/Pagination'
 import BoardItems from '../_components/BoardItems'
@@ -12,10 +12,33 @@ type PropType = {
 }
 
 const ListContainer = ({ items, pagination }: PropType) => {
+  /* 08.26. 4교시 */
+  const [_items, setItems] = useState<Array<BoardConfigType> | undefined>(items)
+  const [isCheckAll, setCheckAll] = useState<boolean>(false)
+
+  const onToggle = useCallback((bid?: string, mode?: 'check' | 'uncheck') => {
+    setItems((prevItems) => {
+      if (mode) {
+        setCheckAll(mode === 'check')
+        return prevItems?.map((item) => ({ ...item, chk: mode === 'check' }))
+      }
+      const items = prevItems?.map((item) =>
+        item.bid === bid ? { ...item, chk: !Boolean(item.chk) } : item,
+      )
+
+      const total = items
+        ?.map<number>(({ chk }) => (chk ? 1 : 0))
+        .reduce((a, b) => a + b)
+      if (items) setCheckAll(total === items?.length)
+
+      return items
+    })
+  }, [])
+  /* 08.26. 4교시 */
   return (
     <>
       <BoardSearchForm />
-      <BoardItems items={items} />
+      <BoardItems items={_items} onToggle={onToggle} isCheckAll={isCheckAll} />
       <Pagination pagination={pagination} />
     </>
   )
