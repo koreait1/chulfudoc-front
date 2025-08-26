@@ -61,7 +61,7 @@ const ListContainer = ({ items, pagination, search }: PropType) => {
   }, [_items, alerDialog, confirmDialog])
   return (
     <>
-      <BoardSearchForm search={search}/>
+      <BoardSearchForm search={search} />
       <BoardItems
         items={_items}
         onToggle={onToggle}
