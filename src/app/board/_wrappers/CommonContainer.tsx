@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import type { BoardConfigType } from '../_types/BoardType'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
@@ -16,15 +16,15 @@ const CommonContainer = ({
   const router = useRouter()
 
   useEffect(() => {
-      if (!board || !board.bid) {
-        alertDialog({
-          text: '게시판을 찾을 수 없습니다.',
-          callback: () => {
-            router.back()
-          },
-        })
-      }
-    }, [board, alertDialog, router])
+    if (!board || !board.bid) {
+      alertDialog({
+        text: '게시판을 찾을 수 없습니다.',
+        callback: () => {
+          router.back()
+        },
+      })
+    }
+  }, [board, alertDialog, router])
 
   return children
 }
