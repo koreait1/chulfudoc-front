@@ -33,10 +33,6 @@ const StyledForm = styled.form`
     border-bottom: 1px solid #ccc;
     padding: 10px;
   }
-
-  .delete-btn {
-    margin-top: 0px;
-  }
 `
 
 const BoardItems = ({
@@ -62,9 +58,12 @@ const BoardItems = ({
             >
               {isCheckAll ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
             </th>
-            <th>게시판ID</th>
-            <th>게시판이름</th>
-            <th></th>
+            <th>PUUID</th>
+            <th>회원 이름</th>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>연락처</th>
+            <th>소셜 연동</th>
           </tr>
         </thead>
         <tbody>
@@ -99,13 +98,7 @@ const BoardItems = ({
       </TableRows>
       {items && items.length > 0 && (
         <div className="table-action">
-          <Button
-            type="button"
-            className="delete-btn"
-            color="warning"
-            width={200}
-            onClick={onRemove}
-          >
+          <Button type="button" color="warning" width={200} onClick={onRemove}>
             선택한 게시판 삭제하기
           </Button>
         </div>

@@ -18,18 +18,11 @@ type AuthType = {
   onRequestStart?: () => void
 }
 
-const AuthNumButton = ({
-  data,
-  apiUrl,
-  callback,
-  children,
-  onStartTimer,
-  onRequestStart,
-  width,
-}: AuthType) => {
-  const fetchCSR = useFetchCSR()
-  const [loading, setLoading] = useState(false)
-  let status: number
+const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart}: AuthType) => {
+    const fetchCSR = useFetchCSR()
+    const [loading, setLoading] = useState(false);
+    let status: number
+    let item : any
 
   const onEmailSendClick = useCallback(() => {
     if (!data) return
@@ -62,17 +55,14 @@ const AuthNumButton = ({
     emailAuthNumHandler()
   }, [fetchCSR, data, callback, onStartTimer, onRequestStart])
 
-  return (
-    <StyledSection>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Button type="button" onClick={onEmailSendClick} width={width}>
-          {children}
-        </Button>
-      )}
-    </StyledSection>
-  )
+    return(
+        <>
+            {loading ? <Loading /> :
+            <Button type="button" onClick={onEmailSendClick}>
+                {children}
+            </Button>}
+        </>
+    )
 }
 
 export default React.memo(AuthNumButton)

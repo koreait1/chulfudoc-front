@@ -10,8 +10,10 @@
     "server": "pm2 start server.config.js"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^11.0.0",
     "@loadable/component": "^5.16.7",
     "axios": "^1.11.0",
+    "ckeditor5": "^46.0.2",
     "classnames": "^2.5.1",
     "fast-csv": "^5.0.5",
     "immer": "^10.1.1",
