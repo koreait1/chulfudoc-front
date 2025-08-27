@@ -29,7 +29,7 @@ const BoardForm = ({
 
   return (
     <StyledForm action={action} autoComplete="off">
-      <input type="hidden" name="mode" defaultValue={data.mode} />A
+      <input type="hidden" name="mode" defaultValue={data.mode} />
       <input type="hidden" name="bid" defaultValue={data.bid} />
       <input type="hidden" name="gid" defaultValue={data.gid} />
       <input type="hidden" name="notice" defaultValue={'' + data.notice} />
@@ -110,6 +110,7 @@ const BoardForm = ({
         <dd>
           {board.editor ? (
             <>
+              <input type="hidden" name="content" defaultValue={data.content} />
               <Editor
                 height={350}
                 callback={editorCallback}
@@ -133,6 +134,7 @@ const BoardForm = ({
           ) : (
             <Textarea name="content" value={data.content} onChange={onChange} />
           )}
+          <MessageBox color="danger">{errors?.content}</MessageBox>
         </dd>
       </dl>
       {board.attachFile && (
