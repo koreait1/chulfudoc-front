@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
 import logo from '../assets/images/logo.png'
+import logo2 from '../assets/images/logo2.png'
+import logoWord from '../assets/images/logo-word.png'
 import noprofile from '../assets/images/noprofile.png'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -20,12 +22,16 @@ import color from '../styles/color'
 const { dark } = color
 
 const StyledHeader = styled.header`
-  background: #fff;
+  background: #FFD93D;
+  border-radius: 12px;
+  margin: 15px 20px 0 20px;
 
   .inner {
     display: flex;
     align-items: center;
-    height: 120px;
+    justify-content: space-between;
+    height: 60px;
+    max-width: 100% !important;
 
     div {
       width: 0;
@@ -39,10 +45,17 @@ const StyledHeader = styled.header`
     }
 
     .logo-section {
-      text-align: center;
+      display: flex;
+      text-align: left;
+      align-items: center;
       .header-logo {
-        height: 120px;
+        height: 45px;
         width: auto;
+      }
+      .linker{
+        min-width: 75px;
+        margin-left: 5px;
+        padding: 5px;
       }
     }
 
@@ -50,7 +63,7 @@ const StyledHeader = styled.header`
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
-      height: 120px;
+      height: 45px;
 
       a {
         margin-left: 5px;
@@ -96,12 +109,18 @@ const Header = () => {
   return (
     <StyledHeader>
       <div className="inner layout-width">
-        <div className="left"></div>
         <div className="logo-section">
           <Link href="/">
-            <Image src={logo} alt="logo" className="header-logo" />
+            <Image src={logoWord} alt="로고" className="header-logo" />
+          </Link>
+          <Link href="/">
+            <div className='linker'>Mypage</div>
+          </Link>
+          <Link href="/">
+            <div className='linker'>게시판</div>
           </Link>
         </div>
+        
         <div className="right">
           {isLogin ? (
             <>
@@ -172,17 +191,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link href="/member/join" prefetch={false}>
-                <Button type="button">
-                  <FiUserPlus />
-                  회원가입
-                  <LinkLoading />
-                </Button>
-              </Link>
               <Link href="/member/login" prefetch={false}>
-                <Button type="button" color="secondary">
+                <Button type="button" color="#111827" borderradius="25px">
                   <FiLogIn />
-                  로그인
+                    로그인
                   <LinkLoading />
                 </Button>
               </Link>
