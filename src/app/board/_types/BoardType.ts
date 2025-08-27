@@ -22,3 +22,11 @@ export type BoardConfigType = {
   writeAuthority: AuthorityType
   commentAuthority: AuthorityType
 }
+
+export type BoardType = {
+  board: BoardConfigType
+}
+
+export type BoardFormType = {} & BoardType
+
+export type BoardListType = {} & BoardType

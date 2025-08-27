@@ -56,6 +56,19 @@ img {
   margin-bottom: 30px !important;
 }
 
+.mr5 {
+  margin-right: 5px !important;
+}
+
+.w150 {
+  width: 150px !important;
+}
+
+.no-data {
+  padding: 100px 0 !important;
+  text-align: center !important;
+}
+
 /*** 공통 영역 E ***/
 
 /*** 메인 영역 ***/
