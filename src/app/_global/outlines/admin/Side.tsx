@@ -31,8 +31,8 @@ const Side = () => {
   return (
     <StyledAside>
       <Link
-        href="/admin/member"
-        className={classNames({ on: urlPath.startsWith('/admin/member') })}
+        href="/admin/membership"
+        className={classNames({ on: urlPath.startsWith('/admin/membership') })}
       >
         회원 관리
       </Link>
