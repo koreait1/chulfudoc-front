@@ -126,7 +126,6 @@ const Header = () => {
                     viewOrgImage={false}
                     width={40}
                     height={40}
-                    fallbackImage={noprofile}
                   />
                 </div>
                 <LayerPopup

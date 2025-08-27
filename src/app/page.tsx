@@ -19,7 +19,7 @@ export default function MainPage() {
           title="병원 안내"
           onClose={() => setIsOpen(false)}
           width={'80%'}
-          height={'60%'}
+          height={'80%'}
         >
           <ERMapContiner />
         </LayerPopup>
