@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
-import logo from '../assets/images/logo.png'
-import logo2 from '../assets/images/logo2.png'
 import logoWord from '../assets/images/logo-word.png'
 import noprofile from '../assets/images/noprofile.png'
 import Image from 'next/image'
@@ -114,13 +112,16 @@ const Header = () => {
             <Image src={logoWord} alt="로고" className="header-logo" />
           </Link>
           <Link href="/">
-            <div className='linker'>Mypage</div>
+            <div className="linker">Mypage</div>
           </Link>
           <Link href="/">
-            <div className='linker'>게시판</div>
+            <div className="linker">게시판</div>
+          </Link>
+          <Link href="/maptest2">
+            <div className="linker">병원 검색</div>
           </Link>
         </div>
-        
+
         <div className="right">
           {isLogin ? (
             <>
@@ -156,15 +157,17 @@ const Header = () => {
                   width={'300px'}
                   height={'430px'}
                 >
-                    <FileImages
-                      items={loggedMember.profileImage}
-                      viewOnly={true}
-                      viewOrgImage={false}
-                      width={230}
-                      height={230}
-                      fallbackImage={noprofile}
-                    />
-                    <span><span>{loggedMember.userName}</span> 님</span>
+                  <FileImages
+                    items={loggedMember.profileImage}
+                    viewOnly={true}
+                    viewOrgImage={false}
+                    width={230}
+                    height={230}
+                    fallbackImage={noprofile}
+                  />
+                  <span>
+                    <span>{loggedMember.userName}</span> 님
+                  </span>
                   <Link href="/mypage" prefetch={false}>
                     <Button type="button" width={'250px'}>
                       <CgProfile />
@@ -173,19 +176,19 @@ const Header = () => {
                     </Button>
                   </Link>
                   <Link href="/mypage" prefetch={false}>
-                      <Button type="button" width={'250px'}>
-                        <LuUserPen />
-                        개인정보 수정
-                        <LinkLoading />
-                      </Button>
-                    </Link> 
-                    <Link href="/mypage" prefetch={false}>
-                      <Button type="button" width={'250px'}>
-                        <IoCall />
-                        문의하기
-                        <LinkLoading />
-                      </Button>
-                    </Link>
+                    <Button type="button" width={'250px'}>
+                      <LuUserPen />
+                      개인정보 수정
+                      <LinkLoading />
+                    </Button>
+                  </Link>
+                  <Link href="/mypage" prefetch={false}>
+                    <Button type="button" width={'250px'}>
+                      <IoCall />
+                      문의하기
+                      <LinkLoading />
+                    </Button>
+                  </Link>
                 </LayerPopup>
               </div>
             </>
@@ -194,7 +197,7 @@ const Header = () => {
               <Link href="/member/login" prefetch={false}>
                 <Button type="button" color="#111827" borderradius="25px">
                   <FiLogIn />
-                    로그인
+                  로그인
                   <LinkLoading />
                 </Button>
               </Link>

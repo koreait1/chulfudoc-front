@@ -60,7 +60,7 @@ const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, o
 
     return(
         <>
-            {loading ? <Loading /> :
+            {loading ? <Loading text="이메일 발송 중" /> :
             <Button type="button" onClick={onEmailSendClick} width={width}>
                 {children}
             </Button>}

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import lineColors from '@/app/_global/styles/linecolor'
 import ERSearchForm from './ERSearchForm'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
+import Loading from '@/app/loading'
 
 interface Hospital {
   응급의료기관명: string
@@ -41,6 +42,7 @@ export default function SearchERMap() {
   const infosRef = useRef<any[]>([]) // InfoWindow 저장
   const errorRef = useRef(false) // 다중 알람 방지
   const alertDialog = useAlertDialog()
+  const [loading, setLoading] = useState(false)
 
   // CSV 불러오기
   useEffect(() => {
@@ -54,7 +56,11 @@ export default function SearchERMap() {
   // 맵 초기화 (최초 1회만)
   useEffect(() => {
     if (!window.Tmapv3) return
-    navigator.geolocation.getCurrentPosition((pos) => {
+    if (mapRef.current) return // 이미 map이 있으면 실행하지 않음
+
+    const geoSuccess = (pos: GeolocationPosition) => {
+      if (mapRef.current) return // 중복 생성 방지
+
       const map = new window.Tmapv3.Map('map3', {
         center: new window.Tmapv3.LatLng(
           pos.coords.latitude,
@@ -74,13 +80,13 @@ export default function SearchERMap() {
       new window.Tmapv3.Marker({ map, position: userPos, title: '현위치' })
       new window.Tmapv3.InfoWindow({
         position: userPos,
-        content: `<div style="min-width:50px; min-height:50px;">
-              <b>현위치</b>
-              </div>`,
+        content: `<div style="min-width:50px; min-height:50px;"><b>현위치</b></div>`,
         type: 2,
         map,
       })
-    })
+    }
+
+    navigator.geolocation.getCurrentPosition(geoSuccess)
   }, [])
 
   // 검색 실행
@@ -92,6 +98,8 @@ export default function SearchERMap() {
   const renderHospitals = async () => {
     const Tmapv3 = window.Tmapv3
     const map = mapRef.current
+
+    setLoading(true) // 로딩 시작
 
     // 기존 마커/라인/InfoWindow 제거
     markersRef.current.forEach((m) => m.setMap(null))
@@ -267,6 +275,7 @@ export default function SearchERMap() {
         }
       }
     }
+    setLoading(false) // 로딩 끝
   }
 
   const handleSearch = () => setSearch(keyword)
@@ -280,6 +289,7 @@ export default function SearchERMap() {
         setOption={setOption}
         onSearch={handleSearch}
       />
+      {loading && <Loading text="병원 찾는중" />} {/* 로딩 표시 */}
       <div id="map3"></div>
     </Wrapper>
   )
