@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
 import loadable from '@loadable/component'
 import styled from 'styled-components'
+import Aside from '../outlines/Aside'
 
 const AdminHeader = loadable(() => import('../outlines/admin/Header'))
 const AdminSide = loadable(() => import('../outlines/admin/Side'))
@@ -33,8 +34,9 @@ export default function LayoutContainer({ children }) {
       <AdminMain>
         <AdminSide />
         <section className="admin-content">
-          <AdminSubMenu />
+          <Aside className="rightAd" />
           {children}
+          <Aside className="leftAd" />
         </section>
       </AdminMain>
     </>

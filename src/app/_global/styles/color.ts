@@ -1,6 +1,6 @@
 /* 색깔 바꾸면 바꿨다고 얘기하기! */
 const color = {
-  primary: '#0d6efd',
+  primary: '#FFD93D',
   secondary: '#6c757d',
   success: '#198754',
   info: '#0dcaf0',
