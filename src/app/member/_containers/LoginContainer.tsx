@@ -72,7 +72,7 @@ const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
         <Image src={naverLoginButton} alt="네이버 로그인" width={400} />
       </a>
 
-      <Link href="/member/findId" className="findId">
+      <Link href="/member/findid" className="findid">
         아이디 찾기 
       </Link>
     
