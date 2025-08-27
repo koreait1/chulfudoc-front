@@ -101,6 +101,7 @@ const JoinForm = ({
       <AuthNumButton
         data={form.email}
         apiUrl={ApiUrl.SENDCODE}
+        width={resend ? '150px' : ''}
         onStartTimer={() => setTrigger((t) => t + 1)}
         callback={(res) => {
           if (res.status >= 200 && res.status < 300) {
