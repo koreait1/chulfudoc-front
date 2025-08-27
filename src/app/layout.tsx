@@ -9,7 +9,6 @@ import LayoutContainer from './_global/wrappers/LayoutContainer'
 import InstalledAd from './_global/components/InstalledAd'
 import { redirect } from 'next/navigation'
 import { GoogleAdSense } from './_global/components/adsense'
-import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: '철푸닥',
@@ -23,11 +22,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  
   const member = await getLoggedMember()
   const cookie = await cookies()
+
   if (member == null && cookie.has('token')) {
     redirect('/member/api/logout?redirectUrl=/')
   }
+
   return (
     <html lang="ko">
       <head>

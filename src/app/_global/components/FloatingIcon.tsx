@@ -1,12 +1,13 @@
 'use client'
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { GoMoveToTop } from "react-icons/go";
 
 type FloatingIconType = {
     visible?: string
     bottom?: number
+    background?: string
     children?: React.ReactNode
+    onClick?: () => void
 }
 
 const IconWrapper = styled.div<FloatingIconType>`
@@ -28,6 +29,10 @@ const IconWrapper = styled.div<FloatingIconType>`
     bottom: ${bottom ?? 30}px;
   `}
 
+  ${({ background }) => css`
+    background-color: ${background};
+  `}
+
   ${({ visible }) =>
     visible == "true"
         ? css`
@@ -45,16 +50,9 @@ const IconWrapper = styled.div<FloatingIconType>`
   }
 `;
 
-const FloatingIcon = ({bottom, children}: FloatingIconType) => {
+const FloatingIcon = ({bottom, background, children, onClick}: FloatingIconType) => {
     const [visible, setIsVisible] = useState("false");
     let scrollThreshold = 75;
-
-    const goTop = useCallback(() => {
-        window.scrollTo({
-        top: 0,           
-        behavior: "smooth",
-        });
-    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -67,7 +65,7 @@ const FloatingIcon = ({bottom, children}: FloatingIconType) => {
     }, [scrollThreshold]);
 
     return( 
-        <IconWrapper onClick={goTop} visible={visible} bottom={bottom}>
+        <IconWrapper onClick={onClick} visible={visible} bottom={bottom} background={background}>
             {children}
         </IconWrapper>
     )

@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
 import loadable from '@loadable/component'
 import styled from 'styled-components'
+import FloatingIconContainer from '../container/FloatingIconContainer'
 
 const AdminHeader = loadable(() => import('../outlines/admin/Header'))
 const AdminSide = loadable(() => import('../outlines/admin/Side'))
@@ -41,7 +42,8 @@ export default function LayoutContainer({ children }) {
   ) : (
     <>
       <Header />
-      <main className="main-content">{children}</main>
+        <main className="main-content">{children}</main>
+        <FloatingIconContainer/>
       <Footer />
     </>
   )
