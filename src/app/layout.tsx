@@ -44,7 +44,7 @@ export default async function RootLayout({
               token={cookie.get('token')?.value}
             >
               <LayoutContainer>
-                <InstalledAd />
+                {/* <InstalledAd /> */}
                 {children}
               </LayoutContainer>
             </UserProvider>

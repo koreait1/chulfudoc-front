@@ -6,6 +6,7 @@ type ButtonType = {
   fontcolor?: string
   fontSize?: string
   center?: boolean
+  borderradius?: number | string
 }
 
 export default ButtonType

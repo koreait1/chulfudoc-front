@@ -66,7 +66,7 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
 
   return (
     <>
-      <Button type="button" onClick={onUploadClick}>
+      <Button type="button" onClick={onUploadClick} width={120}>
         <MdOutlineFileUpload />
         파일 업로드
       </Button>

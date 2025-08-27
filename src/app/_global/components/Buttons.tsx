@@ -68,6 +68,14 @@ export const Button = styled.button<ButtonType>`
       display: block;
       margin: 0 auto;
     `}
+  
+    ${({ borderradius }) => {
+      borderradius = borderradius ?? '10px'
+
+      return css`
+        border-radius: ${borderradius};
+      `
+    }}
 `
 
 export const SubmitButton = (props) => {
@@ -80,6 +88,7 @@ export const SubmitButton = (props) => {
       fontSize="extra"
       center="true"
       className="btn"
+      boderRadius={props.boderRadius}
     >
       {props.children}
     </Button>
