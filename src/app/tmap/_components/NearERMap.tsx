@@ -208,7 +208,7 @@ export default function NearERMap() {
   return (
     <Tmapv3Div id="map3" style={{ width: '80%'}}>
       <h1>가까운 응급의료기관 위치 지도</h1>
-      {loading && <Loading text="지도 불러오는 중..." />}
+      {loading && <Loading text="지도 불러오는 중" />}
     </Tmapv3Div>
   )
 }

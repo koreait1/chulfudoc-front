@@ -1,15 +1,16 @@
 'use client'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Papa from 'papaparse'
 import styled from 'styled-components'
-import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
+import Loading from '@/app/loading'
+import LocalLoadingWrapper from '@/app/_global/styles/LocalLoadingWrapper'
 
 const TableWrap = styled.div`
   min-width: 600px;
   max-width: 1150px;
   padding: 40px 20px;
   margin: 0 auto;
-  
+
   h1 {
     text-align: center;
   }
@@ -72,8 +73,6 @@ function calcDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
 export default function NearERInfo() {
   const [nearestHospitals, setNearestHospitals] = useState<Hospital[]>([])
   const [loading, setLoading] = useState(false)
-  const alertDialog = useAlertDialog();
-  const errorRef = useRef(false) // 알람 여러번 방지
 
   useEffect(() => {
     Papa.parse('/ERPlusPlus.csv', {
@@ -117,19 +116,10 @@ export default function NearERInfo() {
                 routeData?.features?.[0]?.properties?.totalDistance ?? 0
               hospitalsWithDistance.push({ ...loc, distance })
 
+              // 텀 주기
               await new Promise((r) => setTimeout(r, 200))
             } catch (err) {
               console.error(err)
-              if (!errorRef.current) {
-                errorRef.current = true
-                alertDialog({
-                  text: '응급의료기관 거리 계산 중 오류가 발생했습니다. 다시 시도해 주세요.',
-                  icon: 'error',
-                  callback: () => {
-                    errorRef.current = false
-                  },
-                })
-              }
             }
           }
 
@@ -143,14 +133,16 @@ export default function NearERInfo() {
         })
       },
     })
-  }, [alertDialog])
+  }, [])
 
   return (
     <TableWrap>
       <h1>내 주변 응급의료기관</h1>
 
       {loading ? (
-        <p>거리 계산 중...</p>
+        <LocalLoadingWrapper width="80%" height="400px">
+          <Loading text="거리 계산 중" />
+        </LocalLoadingWrapper>
       ) : (
         <table>
           <thead>

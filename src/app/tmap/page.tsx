@@ -6,8 +6,9 @@ import ERLContainer from './_containers/ERLContainer'
 export default function TMapPage() {
   return (
     <>
-      <ERMapContiner />
+      {/*<ERMapContiner />*/}
       {/*<ERLContainer />*/} {/* API 호출을 너무 잡아먹어서 주석 처리 */}
+      <ERLContainer />
     </>
   )
 }

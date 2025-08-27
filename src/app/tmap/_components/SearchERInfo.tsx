@@ -6,13 +6,8 @@ import type { Hospital } from '../types/SearchERInfoTypes'
 const TableWrap = styled.div`
   min-width: 600px;
   max-width: 1150px;
-  padding: 40px 20px;
+  padding: 20px 20px;
   margin: 0 auto;
-
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
 
   table {
     width: 100%;
@@ -70,7 +65,6 @@ interface PropType {
 const SearchERInfo = ({ hospitals }: PropType) => {
   return (
     <TableWrap>
-      <h1>응급의료기관 검색</h1>
       <table>
         <thead>
           <tr>

@@ -6,7 +6,6 @@ export default function SearchERMapPage() {
     <>
       <h1>지도 검색</h1>
       <SearchERMap />
-      <h1>정보 검색</h1>
       <SearchERInfoContainer />
     </>
   )

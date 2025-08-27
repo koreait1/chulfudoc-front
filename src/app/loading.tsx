@@ -35,13 +35,21 @@ const LoadingText = styled.h1`
 
 interface LoadingProps {
   text?: string
+  size?: number
+  width?: string
+  height?: string
 }
 
-export default function Loading({ text = '로딩중' }: LoadingProps) {
+export default function Loading({
+  text = '로딩중',
+  size = 80,
+  width = '100%',
+  height = '100%',
+}: LoadingProps) {
   return (
-    <Overlay>
+    <Overlay style={{ width, height }}>
       <LoadingText>{text}</LoadingText>
-      <Spinner size={80} />
+      <Spinner size={size} />
     </Overlay>
   )
 }

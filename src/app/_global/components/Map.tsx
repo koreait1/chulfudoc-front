@@ -164,7 +164,7 @@ const Map = ({ width, height, zoom }: MapType) => {
                   ${h.소재지}<br>
                   병원 전화 번호 : ${h.연락처}<br>
                   이동 거리: ${(totalDistance / 1000).toFixed(2)} km<br>
-                  예상 소요 시간: ${Math.round(totalTime / 60)}분
+                  차량 소요 시간: ${Math.round(totalTime / 60)}분
                   <div style="color: rgba(233, 33, 33, 1); cursor: pointer;" onmouseover="this.style.textDecoration='underline'" 
                   onmouseout="this.style.textDecoration='none'">
                   (병원 정보 닫기)

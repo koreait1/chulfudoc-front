@@ -96,6 +96,7 @@ export default function SearchERInfoContainer() {
 
   return (
     <>
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>응급의료기관 검색</h1>
       <ERSearchForm
         keyword={keyword}
         setKeyword={setKeyword}
