@@ -71,7 +71,7 @@ export default function NearERMap() {
               pos.coords.latitude,
               pos.coords.longitude,
             )
-            const userMarker = new Tmapv3.Marker({
+            new Tmapv3.Marker({
               map,
               position: userPos,
               title: '현위치',
@@ -181,6 +181,7 @@ export default function NearERMap() {
               } catch (err) {
                 if (!errorRef.current) {
                   errorRef.current = true
+                  console.error(err)
                   alertDialog({
                     text: '경로 정보를 가져오는 중 오류가 발생했습니다.',
                     icon: 'error',
@@ -197,6 +198,7 @@ export default function NearERMap() {
           (err) => {
             if (!errorRef.current) {
               errorRef.current = true
+              console.error(err)
               alertDialog({
                 text: '현재 위치를 가져올 수 없습니다.',
                 icon: 'error',

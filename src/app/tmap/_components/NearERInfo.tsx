@@ -119,7 +119,7 @@ export default function NearERInfo() {
 
               await new Promise((r) => setTimeout(r, 200))
             } catch (err) {
-              // console.error(err)
+              console.error(err)
               if (!errorRef.current) {
                 errorRef.current = true
                 alertDialog({
@@ -143,7 +143,7 @@ export default function NearERInfo() {
         })
       },
     })
-  }, [])
+  }, [alertDialog])
 
   return (
     <TableWrap>

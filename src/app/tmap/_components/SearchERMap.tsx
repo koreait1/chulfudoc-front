@@ -256,6 +256,7 @@ export default function SearchERMap() {
       } catch (err) {
         if (!errorRef.current) {
           errorRef.current = true
+          console.log(err)
           alertDialog({
             text: '지도에 경로를 표시하는 중 오류가 발생했습니다.',
             icon: 'error',

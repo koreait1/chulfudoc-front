@@ -1,8 +1,6 @@
 'use client'
 import React, { useCallback, useState, useRef, useEffect } from 'react'
 import DetectBox from '../_components/DetectBox'
-import webcam_disabled from '@/app/_global/assets/images/webcam_disabled.png'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import styled from 'styled-components'
 import { IoCameraReverseOutline } from 'react-icons/io5'
