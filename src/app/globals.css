@@ -72,8 +72,12 @@ img {
 /*** 공통 영역 E ***/
 
 /*** 메인 영역 ***/
-main.main-content {
-  min-height: 650px;
+section.main-content {
+  width: 100%;
+  max-width: 900px;
+  min-width: 320px;
+  min-height: calc(100vh - 370px);
+  margin: 0 auto;
 }
 /* 모달 배경 */
 .ReactModal__Overlay {

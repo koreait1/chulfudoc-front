@@ -6,10 +6,8 @@ import { getLoggedMember } from './member/_services/actions'
 import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
-import InstalledAd from './_global/components/InstalledAd'
 import { redirect } from 'next/navigation'
 import { GoogleAdSense } from './_global/components/Adsense'
-import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: '철푸닥',
@@ -43,10 +41,7 @@ export default async function RootLayout({
               loggedMember={member}
               token={cookie.get('token')?.value}
             >
-              <LayoutContainer>
-                <InstalledAd />
-                {children}
-              </LayoutContainer>
+              <LayoutContainer>{children}</LayoutContainer>
             </UserProvider>
           </CommonProvider>
         </StyledComponentsRegistry>

@@ -32,7 +32,6 @@ const StyledHeader = styled.header`
     max-width: 100% !important;
 
     div {
-      width: 0;
       flex-grow: 1;
       .profile {
         flex-grow: 0;

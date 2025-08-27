@@ -14,6 +14,11 @@ const StyledAside = styled.aside`
   &.left {
     left: 10px;
   }
+  ins {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 `
 const Aside = ({ className }) => {
   return (

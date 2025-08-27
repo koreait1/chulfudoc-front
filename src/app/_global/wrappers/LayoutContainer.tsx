@@ -3,14 +3,13 @@ import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
 import loadable from '@loadable/component'
 import styled from 'styled-components'
-import Aside from '../outlines/Aside'
 
 const AdminHeader = loadable(() => import('../outlines/admin/Header'))
 const AdminSide = loadable(() => import('../outlines/admin/Side'))
-const AdminSubMenu = loadable(() => import('../outlines/admin/SubMenus'))
 
 const Header = loadable(() => import('../outlines/Header'))
 const Footer = loadable(() => import('../outlines/Footer'))
+const Aside = loadable(() => import('../outlines/Aside'))
 
 const AdminMain = styled.main`
   display: flex;
@@ -33,18 +32,18 @@ export default function LayoutContainer({ children }) {
       <AdminHeader />
       <AdminMain>
         <AdminSide />
-        <section className="admin-content">
-          <Aside className="rightAd" />
-          {children}
-          <Aside className="leftAd" />
-        </section>
+        <section className="admin-content">{children}</section>
       </AdminMain>
     </>
   ) : (
     <>
       <Header />
-      <main className="main-content">{children}</main>
-      <Footer />
+      <main>
+        <Aside className="rightAd" />
+        <section className="main-content">{children}</section>
+        <Aside className="leftAd" />
+        <Footer />
+      </main>
     </>
   )
 }
