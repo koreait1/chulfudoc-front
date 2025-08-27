@@ -11,7 +11,8 @@ import { ApiUrl } from '@/app/_global/constants/ApiUrl'
 import AuthCount from '@/app/_global/components/AuthCount'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+`
 
 const JoinForm = ({
   errors,

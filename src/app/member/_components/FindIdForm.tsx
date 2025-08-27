@@ -1,3 +1,4 @@
+// src/app/member/_components/FindIdForm.tsx
 'use client'
 
 import React from 'react'
@@ -11,14 +12,14 @@ const StyledForm = styled.form``
 
 type Props = {
   errors: Record<string, any>
-  form: { userId: string; email: string }
+  form: { name: string; email: string }
   pending: boolean
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onCallback: (payload: any) => void
   setPending: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function FindPwForm({
+export default function FindIdForm({
   errors,
   form,
   pending,
@@ -27,26 +28,26 @@ export default function FindPwForm({
   setPending,
 }: Props) {
   const dataQS = new URLSearchParams({
-    userId: form.userId ?? '',
+    name: form.name ?? '',
     email: form.email ?? '',
   }).toString()
 
   return (
     <StyledForm autoComplete="off">
       <Input
-        name="userId"
-        placeholder="아이디를 입력하세요"
-        autoComplete="username"
-        value={form.userId}
+        name="name"
+        placeholder="이름을 입력하세요"
+        autoComplete="name"
+        value={form.name}
         onChange={onChange}
         disabled={pending}
       />
-      <MessageBox color="danger">{errors?.userId}</MessageBox>
+      <MessageBox color="danger">{errors?.name}</MessageBox>
 
       <Input
         type="email"
         name="email"
-        placeholder="이메일을 입력하세요"
+        placeholder="회원가입 시 사용한 이메일을 입력하세요"
         autoComplete="email"
         value={form.email}
         onChange={onChange}
@@ -56,12 +57,11 @@ export default function FindPwForm({
 
       <AuthNumButton
         data={dataQS}
-        apiUrl={ApiUrl.PWRESET}
+        apiUrl={ApiUrl.FINDUSERID}
         callback={onCallback}
-        width={'140px'}
         onRequestStart={() => setPending(true)}
       >
-        임시 비밀번호 보내기
+        아이디 찾기
       </AuthNumButton>
 
       <MessageBox color="danger">{errors?.global}</MessageBox>
