@@ -33,6 +33,10 @@ const StyledForm = styled.form`
     border-bottom: 1px solid #ccc;
     padding: 10px;
   }
+
+  .delete-btn {
+    margin-top: 0px;
+  }
 `
 
 const BoardItems = ({
@@ -95,7 +99,13 @@ const BoardItems = ({
       </TableRows>
       {items && items.length > 0 && (
         <div className="table-action">
-          <Button type="button" color="warning" width={200} onClick={onRemove}>
+          <Button
+            type="button"
+            className="delete-btn"
+            color="warning"
+            width={200}
+            onClick={onRemove}
+          >
             선택한 게시판 삭제하기
           </Button>
         </div>
