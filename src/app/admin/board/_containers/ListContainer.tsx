@@ -8,6 +8,8 @@ import BoardSearchForm from '../_components/BoardSearchForm'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import useConfirmDialog from '@/app/_global/hooks/useConfirmDialog'
 
+type Row = BoardConfigType & { chk?: boolean } // chk만 관리하기 위함
+
 type PropType = {
   items?: Array<BoardConfigType>
   pagination?: any
@@ -16,7 +18,9 @@ type PropType = {
 
 const ListContainer = ({ items, pagination, search }: PropType) => {
   /* 08.26. 4교시 */
-  const [_items, setItems] = useState<Array<BoardConfigType> | undefined>(items)
+  const [_items, setItems] = useState<Array<Row> | undefined>(
+    items?.map((it) => ({ ...it, chk: false })),
+  )
   const [isCheckAll, setCheckAll] = useState<boolean>(false)
   const alerDialog = useAlertDialog()
   const confirmDialog = useConfirmDialog()

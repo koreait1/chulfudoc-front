@@ -1,7 +1,7 @@
 import React from 'react'
 import type { BoardFormType } from '@/app/board/_types/BoardType'
 
-const BoardForm = ({ board }: BoardFormType) => {
+const BoardForm = ({ board, data, action, errors, pending }: BoardFormType) => {
   return <>Default</>
 }
 

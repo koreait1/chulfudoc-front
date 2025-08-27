@@ -27,6 +27,28 @@ export type BoardType = {
   board: BoardConfigType
 }
 
-export type BoardFormType = {} & BoardType
+export type BoardFormType = {
+  data: BoardDataType
+  errors: any
+  pending: boolean
+  action: (errors: any, formData: FormData) => any
+} & BoardType
+
+export type BoardDataType = {
+  mode?: string
+  bid: string
+  seq?: number
+  gid: string
+  category?: string
+  poster: string
+  guestPw?: string
+  subject: string
+  content: string
+  notice?: boolean
+  secret?: boolean
+  guest?: boolean
+  editorImages?: Array<any>
+  attachFiles?: Array<any>
+}
 
 export type BoardListType = {} & BoardType
