@@ -3,6 +3,7 @@ export type SkinType = 'default' | 'gallery'
 
 export type BoardConfigType = {
   mode?: 'register' | 'update'
+  chk?: boolean
   bid: string
   name: string
   rowsForPage: number
@@ -21,3 +22,11 @@ export type BoardConfigType = {
   writeAuthority: AuthorityType
   commentAuthority: AuthorityType
 }
+
+export type BoardType = {
+  board: BoardConfigType
+}
+
+export type BoardFormType = {} & BoardType
+
+export type BoardListType = {} & BoardType

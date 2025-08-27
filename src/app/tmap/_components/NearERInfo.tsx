@@ -1,6 +1,46 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Papa from 'papaparse'
+import styled from 'styled-components'
+
+const TableWrap = styled.div`
+  min-width: 600px;
+  max-width: 1150px;
+  padding: 40px 20px;
+  margin: 0 auto;
+  
+  h1 {
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  thead {
+    background: #f8f8f8;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #ccc;
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  th {
+    font-weight: 600;
+    color: #333;
+  }
+
+  tbody tr:hover {
+    background: #fafafa;
+  }
+`
 
 interface Hospital {
   응급의료기관명: string
@@ -11,7 +51,8 @@ interface Hospital {
   distance?: number
 }
 
-// Haversine 공식으로 직선 거리 계산 (m)
+// Haversine 공식으로 직선 거리 계산
+// tmap Api의 하루 호출 제한 횟수 문제가 있어 이를 대처하고자 직선거리로 먼저 20개를 추린 후 tmap Api로 20번 호출만 하여 가까운 병원을 추림
 function calcDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371e3 // 지구 반지름 (m)
   const toRad = (deg: number) => (deg * Math.PI) / 180
@@ -93,19 +134,37 @@ export default function NearERInfo() {
   }, [])
 
   return (
-    <div>
-      <h2>실제 도로 기준 내 위치에서 가장 가까운 병원 5곳</h2>
-      {loading && <p>거리 계산 중...</p>}
-      <ul>
-        {nearestHospitals.map((h, i) => (
-          <li key={i} style={{ marginBottom: '10px' }}>
-            <b>{h.응급의료기관명}</b> <br />
-            {h.소재지} <br />
-            {h.연락처} <br />
-            거리: {h.distance ?? 0} m
-          </li>
-        ))}
-      </ul>
-    </div>
+    <TableWrap>
+      <h1>내 주변 응급의료기관</h1>
+
+      {loading ? (
+        <p>거리 계산 중...</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>순위</th>
+              <th>기관명</th>
+              <th>소재지</th>
+              <th>연락처</th>
+              <th>거리</th>
+            </tr>
+          </thead>
+          <tbody>
+            {nearestHospitals.map((h, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td style={{ fontWeight: 'bold' }}>{h.응급의료기관명}</td>
+                <td>{h.소재지}</td>
+                <td>{h.연락처}</td>
+                <td>
+                  {h.distance ? (h.distance / 1000).toFixed(2) + ' km' : '-'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </TableWrap>
   )
 }
