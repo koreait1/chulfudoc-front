@@ -126,6 +126,10 @@ export const TableRows = styled.table`
       font-size: ${medium};
       height: 45px;
       padding: 0 10px;
+
+      svg {
+        font-size: 2rem;
+      }
     }
     th + th {
       border-left: 1px solid ${light};
@@ -136,6 +140,10 @@ export const TableRows = styled.table`
     td {
       border-bottom: 1px solid #ccc;
       padding: 10px;
+
+      svg {
+        font-size: 2rem;
+      }
     }
   }
 `
