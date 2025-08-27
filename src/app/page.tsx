@@ -2,13 +2,34 @@
 import Link from 'next/link'
 import DetectContainer from './detect/_containers/DetectContainer'
 import LayerPopup from './_global/components/LayerPopup'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import emergency_center from '@/app/_global/assets/images/emergency_center.png'
 import Image from 'next/image'
 import GERMapContainer from '@/app/tmap/_containers/GERMapContainer'
+import FloatingIcon from './_global/components/FloatingIcon'
 
 export default function MainPage() {
+  let scrollThreshold = 75;
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState("false");
+
+  const goTop = () => {
+    window.scrollTo({
+      top: 0,           
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const visible = window.scrollY > scrollThreshold;
+      setIsVisible(String(visible));
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrollThreshold]);
+
   return (
     <>
       <DetectContainer />
@@ -37,6 +58,7 @@ export default function MainPage() {
           <Link href="/board/exprience" />
         </div>
       </div>
+      <FloatingIcon onClick={goTop} visible={isVisible}/>
     </>
   )
 }
