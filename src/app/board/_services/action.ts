@@ -2,9 +2,10 @@
 
 /**
  * 게시글 등록, 수정 처리
- * @param errors 
- * @param formData 
+ * @param errors
+ * @param formData
  */
-export async function processUpdate(errors, formData: FormData) {
-
-}
+export async function processUpdate(
+  errors: any,
+  formData: FormData,
+): Promise<any> {}
