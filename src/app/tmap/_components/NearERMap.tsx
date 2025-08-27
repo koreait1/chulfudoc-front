@@ -1,7 +1,8 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Papa from 'papaparse'
 import styled from 'styled-components'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 interface Hospital {
   응급의료기관명: string
@@ -32,6 +33,8 @@ declare global {
 
 export default function NearERMap() {
   const [mapLoaded, setMapLoaded] = useState(false)
+  const alertDialog = useAlertDialog()
+  const errorRef = useRef(false) // 다중 알람 방지
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -176,15 +179,32 @@ export default function NearERMap() {
                   map,
                 })
               } catch (err) {
-                console.error('Tmap route fetch error', err)
+                if (!errorRef.current) {
+                  errorRef.current = true
+                  alertDialog({
+                    text: '경로 정보를 가져오는 중 오류가 발생했습니다.',
+                    icon: 'error',
+                    callback: () => {
+                      errorRef.current = false
+                    },
+                  })
+                }
               }
             }
 
             setMapLoaded(true)
           },
           (err) => {
-            alert('현재 위치를 가져올 수 없습니다.')
-            console.error(err)
+            if (!errorRef.current) {
+              errorRef.current = true
+              alertDialog({
+                text: '현재 위치를 가져올 수 없습니다.',
+                icon: 'error',
+                callback: () => {
+                  errorRef.current = false
+                },
+              })
+            }
           },
         )
       },
