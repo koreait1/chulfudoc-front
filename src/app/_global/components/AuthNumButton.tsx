@@ -6,6 +6,7 @@ import useFetchCSR from '../hooks/useFetchCSR'
 import styled from 'styled-components'
 import Loading from '@/app/loading'
 import { ApiUrl } from '../constants/ApiUrl'
+import useAlertDialog from '../hooks/useAlertDialog'
 
 const StyledSection = styled.section``
 type AuthType = {
@@ -21,13 +22,16 @@ type AuthType = {
 const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, onRequestStart}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
-    let status: number
-    let item : any
+    const alertDialog = useAlertDialog();
 
   const onEmailSendClick = useCallback(() => {
-    if (!data) return
 
-    if (apiUrl == ApiUrl.CHECKCODE && isNaN(data)) {
+    if (!data && data == '') {
+      alertDialog({
+              title: '발송 실패',
+              text: '인증 번호를 확인해주세요.',
+              icon: 'error',
+            })
       return
     }
 
