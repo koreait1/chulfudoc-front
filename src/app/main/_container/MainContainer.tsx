@@ -47,10 +47,10 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
         <>
             <PageWrapper /> 
             <div style={{ 
-                width: '100vw',  // 화면 전체 너비
-                height: '100vh', // 화면 전체 높이
+                width: '100vw',
+                height: '100vh',
                 overflow: 'hidden',
-                margin: 0,       // 상위 margin 무시
+                margin: 0,  
                 padding: 0,
              }}>
                 {sections.map((section, index) => (
