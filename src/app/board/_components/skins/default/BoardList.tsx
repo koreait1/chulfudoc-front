@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const BoardList = () => {
-    return <>Default</>
+  return <>Default</>
 }
 
 export default React.memo(BoardList)
