@@ -134,7 +134,6 @@ const JoinForm = ({
         placeholder="인증 번호를 입력하세요"
         value={form.authNum}
         onChange={onChange}
-        readOnly={verified}
       />
       <MessageBox color="danger">{errors?.authNum}</MessageBox>
 
@@ -154,7 +153,7 @@ const JoinForm = ({
             } else {
               alertDialog({
                 title: '인증 실패',
-                text: '인증 번호가 올바르지 않습니다.',
+                text: '인증 번호를 확인해주세요.',
                 icon: 'error',
               })
             }
@@ -186,9 +185,15 @@ const JoinForm = ({
       </div>
       <MessageBox color="danger">{errors?.termsAgree}</MessageBox>
 
-      <SubmitButton type="submit" disabled={pending}>
-        가입하기
-      </SubmitButton>
+      {!verified ? 
+        <SubmitButton type="submit" disabled={pending} onClick={() => alertDialog({title: "dsfsf", text: "sdfsf", icon:'error'})}>
+          가입하기
+        </SubmitButton>  :
+        <SubmitButton type="submit" disabled={pending}>
+          가입하기
+        </SubmitButton>     
+      }
+      
       <MessageBox color="danger">{errors?.global}</MessageBox>
     </StyledForm>
   )
