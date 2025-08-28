@@ -1,6 +1,11 @@
 'use client'
 import React, { useContext, useLayoutEffect } from 'react'
-import type { BoardConfigType, BoardDataType } from '../_types/BoardType'
+import loadable from '@loadable/component'
+import type {
+  BoardConfigType,
+  BoardDataType,
+  BoardSearchType,
+} from '../_types/BoardType'
 import CommonContainer from '../_wrappers/CommonContainer'
 import BoardView from '../_components/BoardView'
 import CommonContext from '@/app/_global/contexts/CommonContext'

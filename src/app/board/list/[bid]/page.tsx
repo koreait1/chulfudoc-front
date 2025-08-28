@@ -24,7 +24,12 @@ export default async function ListPage({
   return (
     <ContentBox>
       <MainTitle border="true">{board.name}</MainTitle>
-      <ListContainer board={board} items={items} pagination={pagination} />
+      <ListContainer
+        board={board}
+        items={items}
+        pagination={pagination}
+        search={search}
+      />
     </ContentBox>
   )
 }

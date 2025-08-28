@@ -76,6 +76,7 @@ export type BoardDataType = {
 export type BoardListType = {
   items?: Array<BoardDataType>
   pagination?: any
+  search?: BoardSearchType
 } & BoardType
 
 export type BoardViewType = {

@@ -49,6 +49,7 @@ export async function getBoardList(searchParams: CommonSearchType): Promise<{
   'use server'
   const qs = toQueryString(searchParams)
   const res = await fetchSSR(`/board/configs/all${qs}`)
+
   if (res.status === 200) {
     return await res.json()
   }

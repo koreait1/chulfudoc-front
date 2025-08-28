@@ -11,6 +11,7 @@ export default async function BoardListPage({
 }) {
   const params = await searchParams
   const { items, pagination } = await getBoardList(params)
+
   return (
     <AdminOnlyContainer>
       <MainTitle border="true">게시판 목록</MainTitle>
