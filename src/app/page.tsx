@@ -25,26 +25,7 @@ export default function MainPage() {
           <DetectContainer />
           <h1>테스트</h1>
         </MainContainer>
-         <div className="links">
-        <button type="button" onClick={() => setIsOpen(true)}>
-          <h1>전국 응급의료기관</h1>
-          <FaHospital size={150} />
-        </button>
-        <LayerPopup
-          isOpen={isOpen}
-          title="응급의료기관"
-          onClose={() => setIsOpen(false)}
-          width={'80%'}
-          height={'800px'}
-        >
-          <GERMapContainer />
-        </LayerPopup>
-        <div className="board-link">
-          <Link href="/board/notice" />
-          <Link href="/board/freetalk" />
-          <Link href="/board/exprience" />
-        </div>
-      </div>
+        
       </>
   )
 }
