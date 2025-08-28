@@ -56,8 +56,8 @@ const FloatingIcon = ({
   onClick,
 }: FloatingIconType) => {
   const [visible, setIsVisible] = useState('false')
-  const scrollThreshold = 75 // 타입스크립트 오류 떠서 const -> let으로 고쳐요
-
+  const scrollThreshold = 75
+  
   useEffect(() => {
     const handleScroll = () => {
       const data = window.scrollY > scrollThreshold
