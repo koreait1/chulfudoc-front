@@ -165,7 +165,7 @@ const Header = () => {
                     fallbackImage={noprofile}
                   />
                   <span>
-                    <span>{loggedMember.userName}</span> 님
+                    <span>{loggedMember.name}</span> 님
                   </span>
                   <Link href="/mypage" prefetch={false}>
                     <Button type="button" width={'250px'}>
