@@ -21,11 +21,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  
   const member = await getLoggedMember()
   const cookie = await cookies()
+
   if (member == null && cookie.has('token')) {
     redirect('/member/api/logout?redirectUrl=/')
   }
+
   return (
     <html lang="ko">
       <head>

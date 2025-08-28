@@ -101,7 +101,7 @@ const Header = () => {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (isOpen) setIsOpen(false) // 라우트 변경 시 자동 닫기
+    if (isOpen) setIsOpen(false) // 현재 주소가 변경될 때 페이지 내 실행되었던 모든 사항을 닫음 ex) 모달
   }, [pathname])
   return (
     <StyledHeader>
@@ -194,7 +194,7 @@ const Header = () => {
           ) : (
             <>
               <Link href="/member/login" prefetch={false}>
-                <Button type="button" color="#111827" borderradius="25px">
+                <Button type="button" color="#111827" borderradius="25px" style={{marginRight: "px"}}>
                   <FiLogIn />
                   로그인
                   <LinkLoading />
