@@ -8,10 +8,10 @@ export default function MainPage() {
   return (
     <>
       <MainContainer>
-          <DetectContainer />
-          <h1>테스트</h1>
-        </MainContainer>
-        <div className="main-bottom">
+        <DetectContainer />
+        <h1>테스트</h1>
+      </MainContainer>
+      <div className="main-bottom">
         <HosptialPopup />
         <MainLinkContainer />
       </div>
