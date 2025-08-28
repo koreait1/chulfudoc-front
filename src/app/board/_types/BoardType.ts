@@ -69,3 +69,7 @@ export type BoardDataType = {
 }
 
 export type BoardListType = {} & BoardType
+
+export type BoardViewType = {
+  data?: BoardDataType
+} & BoardType
