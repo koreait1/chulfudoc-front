@@ -10,12 +10,14 @@ const MyBoard = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 1px soild ${dark};
+  border: 1px solid ${dark}15;
+  border-radius: 20px;
   li {
     width: 90%;
     margin: 0 auto;
     padding: 10px;
     font-size: ${normal};
+    border: 1px soild ${dark}15;
     &:first-child {
       width: 100%;
       background: ${primary};
@@ -24,8 +26,8 @@ const MyBoard = styled.ul`
       line-height: 1.5em;
       border-radius: 20px 20px 0 0;
     }
-    &:nth-child(n + 2) {
-      border-top: 1px soild ${dark};
+    &:nth-child(n + 3) {
+      border-top: 1px solid ${dark};
     }
     &.noCon {
       font-style: italic;
