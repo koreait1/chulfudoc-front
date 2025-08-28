@@ -18,10 +18,10 @@ const StyledMainTitle = styled.h1<TitleType>`
     css`
       text-align: center;
     `}
-  ${({ border, borderThickness }) =>
+  ${({ border, borderthickness }) =>
     border &&
     css`
-      border-bottom: ${borderThickness || '3px'} solid ${black};
+      border-bottom: ${borderthickness || '3px'} solid ${black};
       margin-bottom: 25px;
     `}
 `

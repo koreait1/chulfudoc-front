@@ -2,7 +2,7 @@ type TitleType = {
   children: React.ReactNode
   border?: boolean | string
   center?: boolean | string
-  borderThickness?: string
+  borderthickness?: string
 }
 
 export default TitleType
