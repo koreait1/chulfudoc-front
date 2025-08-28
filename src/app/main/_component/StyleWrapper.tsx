@@ -1,36 +1,34 @@
 import styled, { createGlobalStyle } from "styled-components"
 
 export const PageWrapper = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap');
 
   body{
     background-color: #FFF8E1;
   }
 `
 
-export const PageMain = styled.h1`
-
+export const PageMain = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  alignItems: center;
 
-  font-family: "Anton", sans-serif;
-  font-weight: 1000;
-  font-style: normal;
-  font-size: 13rem;
+  line-height: 0.95;
+  margin: 25px;
 
-  line-height: 1;
-
-  
   color: #E6C200;
   text-align: center;
-  letter-spacing: -0.05em;
-
-  margin: 0;
-  text-shadow: 2px 2px 0 #888888;
+  
+  font-size: 13rem;
+  .line_start, .line_end, .highlight{
+    font-family: "Anton", sans-serif !important;
+    font-weight: 1000;
+    font-style: normal;
+    
+  }
 
   @media (max-width: 1150px) {
-    font-size: 5.5rem;
+    font-size: 9rem;
   }
 
   @media (max-width: 768px) {
@@ -38,7 +36,7 @@ export const PageMain = styled.h1`
   }
 
   .highlight {
-    font-size: 9rem;
     color: #2E2E2E;
+    letter-spacing: -0.08em;
   }
 `

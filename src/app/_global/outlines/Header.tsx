@@ -50,9 +50,18 @@ const StyledHeader = styled.header`
         width: auto;
       }
       .linker {
+        font-family: "Noto Sans KR", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
         min-width: 75px;
         margin-left: 5px;
         padding: 5px;
+        transition: transform 0.7s ease;
+      }
+      
+      .linker:hover{
+        transform: scale(1.2);
       }
     }
 
@@ -194,7 +203,7 @@ const Header = () => {
           ) : (
             <>
               <Link href="/member/login" prefetch={false}>
-                <Button type="button" color="#111827" borderradius="25px" style={{marginRight: "px"}}>
+                <Button type="button" color="#111827" borderradius="25px" style={{marginRight: "25px"}}>
                   <FiLogIn />
                   로그인
                   <LinkLoading />
