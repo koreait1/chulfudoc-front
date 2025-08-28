@@ -18,3 +18,22 @@ export function toPlainObj(formData: FormData) {
 
   return params
 }
+
+/**
+ * 문자열 날짜인 2025-08-28 10:54:40 형식을 Date 객체로 변환
+ * @param strDate
+ */
+export function toDate(strDate) {
+  const dateTime = strDate.split(' ')
+  const [year, month, day] = dateTime[0].split('-')
+  const [hour, min, sec] = dateTime[1].split(':')
+
+  return new Date(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    Number(hour),
+    Number(min),
+    Number(sec),
+  )
+}

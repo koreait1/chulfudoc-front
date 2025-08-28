@@ -1,6 +1,8 @@
 'use client'
 import React from 'react'
 import type { BoardConfigType, BoardDataType } from '../_types/BoardType'
+import CommonContainer from '../_wrappers/CommonContainer'
+import BoardView from '../_components/BoardView'
 
 const ViewContainer = ({
   board,
@@ -9,7 +11,11 @@ const ViewContainer = ({
   board?: BoardConfigType
   data?: BoardDataType
 }) => {
-  return <></>
+  return (
+    <CommonContainer board={board} data={data}>
+      <BoardView board={board} data={data} />
+    </CommonContainer>
+  )
 }
 
 export default React.memo(ViewContainer)

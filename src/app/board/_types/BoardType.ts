@@ -66,6 +66,9 @@ export type BoardDataType = {
   plainText?: boolean
   editorImages?: Array<any>
   attachFiles?: Array<any>
+  createdAt?: Date
+  modifiedAt?: Date
+  deletedAt?: Date
 }
 
 export type BoardListType = {} & BoardType
