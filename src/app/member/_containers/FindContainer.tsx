@@ -11,6 +11,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:4000/api/
 type Mode = 'id' | 'pw';
 
 export default function FindContainer({ mode: modeProp }: { mode?: Mode }) {
+  
   const router = useRouter();
   const sp = useSearchParams();
   const alert = useAlertDialog();
