@@ -8,9 +8,11 @@ type AlertDialogType = {
 }
 export default function useAlertDialog() {
   return ({ text, title, icon, callback }: AlertDialogType) => {
-    Swal.fire({ title, text, icon, confirmButtonText: '확인' }).then(() => {
-      //후속처리
-      if (typeof callback === 'function') callback()
-    })
+    Swal.fire({ title, text, icon, confirmButtonText: '확인' }).then(
+      (result) => {
+        //후속처리
+        if (result.isConfirmed && typeof callback === 'function') callback()
+      },
+    )
   }
 }

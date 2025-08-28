@@ -1,11 +1,12 @@
+'use client'
 import React, { useMemo } from 'react'
+import type { BoardViewType } from '../_types/BoardType'
 import loadable from '@loadable/component'
-import type { BoardListType } from '../_types/BoardType'
 
-const DefaultSkin = loadable(() => import('./skins/default/BoardList'))
-const GallerySkin = loadable(() => import('./skins/gallery/BoardList'))
+const DefaultSkin = loadable(() => import('./skins/default/BoardView'))
+const GallerySkin = loadable(() => import('./skins/gallery/BoardView'))
 
-const BoardList = (props: BoardListType) => {
+const BoardView = (props: BoardViewType) => {
   const { board } = props
   const Skin = useMemo(() => {
     const skin = board?.skin
@@ -19,4 +20,4 @@ const BoardList = (props: BoardListType) => {
   return board && <Skin {...props} />
 }
 
-export default React.memo(BoardList)
+export default React.memo(BoardView)

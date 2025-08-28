@@ -48,7 +48,6 @@ const ImageItems = styled.ul`
   }
 `
 
-
 const ImageItem = ({
   item,
   width,
@@ -88,6 +87,12 @@ const ImageItem = ({
       <li>
         {!viewOnly && (
           <FaRegWindowClose className="remvoe" onClick={() => onRemove(seq)} />
+        )}
+        {callback && (
+          <FaRegWindowClose
+            className="icon-remove"
+            onClick={() => onRemove(seq)}
+          />
         )}
         <Image
           src={`${thumbBaseUrl}&width=${width}&height=${height}&crop=true`}

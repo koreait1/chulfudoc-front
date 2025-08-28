@@ -17,6 +17,7 @@
     "axios": "^1.11.0",
     "ckeditor5": "^46.0.2",
     "classnames": "^2.5.1",
+    "date-fns": "^4.1.0",
     "fast-csv": "^5.0.5",
     "gsap": "^3.13.0",
     "immer": "^10.1.1",

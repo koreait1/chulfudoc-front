@@ -1,3 +1,5 @@
+import CommonSearchType from '@/app/_global/types/CommonSearchType'
+
 export type AuthorityType = 'ALL' | 'MEMBER' | 'ADMIN'
 export type SkinType = 'default' | 'gallery'
 
@@ -28,7 +30,7 @@ export type BoardConfigType = {
 }
 
 export type BoardType = {
-  board: BoardConfigType
+  board?: BoardConfigType
 }
 
 export type BoardFormType = {
@@ -66,6 +68,23 @@ export type BoardDataType = {
   plainText?: boolean
   editorImages?: Array<any>
   attachFiles?: Array<any>
+  createdAt?: Date
+  modifiedAt?: Date
+  deletedAt?: Date
 }
 
-export type BoardListType = {} & BoardType
+export type BoardListType = {
+  items?: Array<BoardDataType>
+  pagination?: any
+  search?: BoardSearchType
+} & BoardType
+
+export type BoardViewType = {
+  data?: BoardDataType
+} & BoardType
+
+export type BoardSearchType = {
+  bid?: string | Array<string>
+  category?: string | Array<string>
+  userId?: string | Array<string>
+} & CommonSearchType
