@@ -26,7 +26,7 @@ export default function FindContainer({ mode: modeProp }: { mode?: Mode }) {
   const [errors, setErrors] = useState<Record<string, any>>({});
   const [pending, setPending] = useState(false);
 
-  // onChange (모드별 심플 핸들러)
+  // onChange 모드별로
   const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setIdForm((s) => ({ ...s, [name]: value }));
@@ -38,7 +38,7 @@ export default function FindContainer({ mode: modeProp }: { mode?: Mode }) {
 
   const { Form, form, onChange, onCallback } = useMemo(() => {
     if (mode === 'id') {
-      // 아이디 찾기 콜백 (단순/안전)
+      // 아이디 찾기 콜백
       const onCallback = async ({ status, data }: { status: number; data?: any }) => {
         setPending(false);
         if (status < 200 || status >= 300) {
@@ -48,7 +48,6 @@ export default function FindContainer({ mode: modeProp }: { mode?: Mode }) {
 
         let userId: string | undefined = data?.userId;
 
-        // 서버가 userId를 바로 안 줄 수도 있으니 한 번 더 조회(기존 로직 유지)
         if (!userId) {
           const qs = new URLSearchParams({
             name: idForm.name.trim(),
