@@ -83,7 +83,7 @@ export const Button = styled.button<ButtonType>`
 `
 
 export const SubmitButton = (props) => {
-  const { width } = props
+  const { width, onClick } = props
   return (
     <Button
       {...props}
@@ -93,6 +93,7 @@ export const SubmitButton = (props) => {
       center="true"
       className="btn"
       boderRadius={props.boderRadius}
+      onClick={onClick}
     >
       {props.children}
     </Button>

@@ -21,6 +21,8 @@ export async function processJoin(errors, formData: FormData) {
       _value = _value === 'true'
     }
 
+    if (key.startsWith('authNum')) continue
+
     params[key] = _value
   }
 
@@ -36,7 +38,6 @@ export async function processJoin(errors, formData: FormData) {
     name: string
     mobile: string
     termsAgree: string
-    authNum: string
   }
 
   const requiredFields: RequiredFieldType = {
@@ -47,14 +48,12 @@ export async function processJoin(errors, formData: FormData) {
     name: '회원이름을 입력하세요',
     mobile: '휴대전화번호를 입력하세요',
     termsAgree: '회원가입 약관에 동의하세요',
-    authNum: '인증번호를 입력하세요'
   }
 
   if (isSocial) {
     // 소셜 연결 회원가입인 경우 비밀번호, 비밀번호 확인은 필수 X
     delete requiredFields.password
     delete requiredFields.confirmPassword
-    //requiredFields.userId = "user-" + params.socialToken
     params.userId = "user-" + params.socialToken
   }
 
