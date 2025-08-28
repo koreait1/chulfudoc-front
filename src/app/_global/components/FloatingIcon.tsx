@@ -57,7 +57,6 @@ const FloatingIcon = ({
 }: FloatingIconType) => {
   const [visible, setIsVisible] = useState('false')
   const scrollThreshold = 75
-
   useEffect(() => {
     const handleScroll = () => {
       const data = window.scrollY > scrollThreshold
