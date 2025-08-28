@@ -12,15 +12,15 @@ import useUser from '../hooks/useUser'
 import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
-import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
-import { IoCall } from "react-icons/io5";
-import { LuUserPen } from "react-icons/lu";
+import { FiLogIn, FiLogOut } from 'react-icons/fi'
+import { IoCall } from 'react-icons/io5'
+import { LuUserPen } from 'react-icons/lu'
 import { usePathname } from 'next/navigation'
 import color from '../styles/color'
 const { dark } = color
 
 const StyledHeader = styled.header`
-  background: #FFD93D;
+  background: #ffd93d;
   border-radius: 12px;
   margin: 15px 20px 0 20px;
 
@@ -32,7 +32,6 @@ const StyledHeader = styled.header`
     max-width: 100% !important;
 
     div {
-      width: 0;
       flex-grow: 1;
       .profile {
         flex-grow: 0;
@@ -50,7 +49,7 @@ const StyledHeader = styled.header`
         height: 45px;
         width: auto;
       }
-      .linker{
+      .linker {
         min-width: 75px;
         margin-left: 5px;
         padding: 5px;
