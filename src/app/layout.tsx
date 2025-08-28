@@ -21,7 +21,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  
   const member = await getLoggedMember()
   const cookie = await cookies()
 
