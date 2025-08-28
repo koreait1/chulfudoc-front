@@ -15,11 +15,12 @@ type LayerPopupType = {
   width?: string | number
   height?: string
   top?: string
-  left?: string
+  right?: string
 }
+
 const Wrapper = styled.div`
   width: 100%;
-  max-height: calc(100% - 65px);
+  max-height: calc(100%);
   overflow-y: auto;
 
   h2 {
@@ -38,6 +39,36 @@ const Wrapper = styled.div`
     color: ${dark};
     cursor: pointer;
   }
+  ul{
+    text-align:center;
+    li{display:inline-block;}
+    img{
+      border:3px solid #000; 
+      border-radius:50%;
+    }
+    &+span{
+      width:100px; 
+      display:block; 
+      text-align:right; 
+      margin:0 auto; 
+      span{
+        font-size:${big};
+      }
+    }
+    &~a{
+      display:block;
+      text-align:center;
+      margin-top:10px;
+      button{
+        margin:0;
+        svg{
+          position:absolute;
+          left:40px;
+          margin-top:4px;
+        }
+      }
+    }
+  }
 `
 const LayerPopup = ({
   children,
@@ -45,18 +76,17 @@ const LayerPopup = ({
   onClose,
   isOpen,
   top,
-  left,
+  right,
   width,
   height,
 }: LayerPopupType) => {
   const customStyles = {
     content: {
       top: top ?? '50%',
-      left: left ?? '50%',
-      right: 'auto',
+      right: right ?? '50%',
+      left: 'auto',
       bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      transform: 'translate(50%, -50%)',
       background: '#fff',
       borderRadius: '30px',
       width: width ?? '90%',
@@ -69,11 +99,9 @@ const LayerPopup = ({
         isOpen={isOpen}
         style={customStyles}
         top={top}
-        left={left}
+        right={right}
         width={width}
         height={height}
-        shouldCloseOnOverlayClick={true}
-        shouldCloseOnEsc={true}
       >
         {title && <h2>{title}</h2>}
         <Wrapper>

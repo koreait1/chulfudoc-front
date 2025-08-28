@@ -3,13 +3,13 @@ import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
 import loadable from '@loadable/component'
 import styled from 'styled-components'
+import FloatingIconContainer from '../container/FloatingIconContainer'
 
-const AdminHeader = loadable(() => import('../outlines/admin/Header'))
-const AdminSide = loadable(() => import('../outlines/admin/Side'))
-const AdminSubMenu = loadable(() => import('../outlines/admin/SubMenus'))
-
-const Header = loadable(() => import('../outlines/Header'))
-const Footer = loadable(() => import('../outlines/Footer'))
+import Header from '../outlines/Header' // 서버 컴포넌트로
+import Footer from '../outlines/Footer' // 서버 컴포넌트로
+import Aside from '../outlines/Aside' // 서버 컴포넌트로
+import AdminHeader from '../outlines/admin/Header'
+import AdminSide from '../outlines/admin/Side'
 
 const AdminMain = styled.main`
   display: flex;
@@ -32,16 +32,19 @@ export default function LayoutContainer({ children }) {
       <AdminHeader />
       <AdminMain>
         <AdminSide />
-        <section className="admin-content">
-          <AdminSubMenu />
-          {children}
-        </section>
+        <section className="admin-content">{children}</section>
       </AdminMain>
     </>
   ) : (
     <>
       <Header />
-      <main className="main-content">{children}</main>
+      <main>
+        <Aside className="rightAd" />
+        <section>{children}</section>
+        <Aside className="leftAd" />
+        <FloatingIconContainer />
+        <Footer />
+      </main>
       <Footer />
     </>
   )

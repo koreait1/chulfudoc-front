@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { revalidateTag } from 'next/cache'
 import { fetchSSR } from '@/app/_global/libs/utils'
+import { toPlainObj } from '@/app/_global/libs/commons'
 
 /**
  * 회원가입 처리
@@ -19,7 +20,8 @@ export async function processJoin(errors, formData: FormData) {
     if (['true', 'false'].includes(_value)) {
       _value = _value === 'true'
     }
-    if(key.startsWith('authNum')) continue
+
+    if (key.startsWith('authNum')) continue
 
     params[key] = _value
   }
@@ -52,7 +54,6 @@ export async function processJoin(errors, formData: FormData) {
     // 소셜 연결 회원가입인 경우 비밀번호, 비밀번호 확인은 필수 X
     delete requiredFields.password
     delete requiredFields.confirmPassword
-    //requiredFields.userId = "user-" + params.socialToken
     params.userId = "user-" + params.socialToken
   }
 

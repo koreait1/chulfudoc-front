@@ -10,14 +10,22 @@ import color from '../styles/color'
 
 const { dark } = color
 
+type FileType = {
+  items: any
+  width?: number
+  height?: number
+  viewOnly?: boolean
+  viewOrgImage?: boolean
+  callback?: (item: any) => void
+  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
+}
+
 const ImageItems = styled.ul`
-  display: flex;
+{items.length > 1 &&  
+  display: flex;}
   flex-wrap: wrap;
   li {
-    border: 3px solid ${dark};
     position: relative;
-    margin: 3px 0;
-    border-radius: 3px;
 
     .remove {
       position: absolute;
@@ -31,6 +39,7 @@ const ImageItems = styled.ul`
     img {
       cursor: pointer;
       display: block;
+      box-sizing: border-box;
     }
   }
 
@@ -38,16 +47,6 @@ const ImageItems = styled.ul`
     margin-left: 5px;
   }
 `
-
-type FileType = {
-  items: any
-  width?: number
-  height?: number
-  viewOnly?: boolean
-  viewOrgImage?: boolean
-  callback?: (item: any) => void
-  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
-}
 
 const ImageItem = ({
   item,
@@ -88,6 +87,12 @@ const ImageItem = ({
       <li>
         {!viewOnly && (
           <FaRegWindowClose className="remvoe" onClick={() => onRemove(seq)} />
+        )}
+        {callback && (
+          <FaRegWindowClose
+            className="icon-remove"
+            onClick={() => onRemove(seq)}
+          />
         )}
         <Image
           src={`${thumbBaseUrl}&width=${width}&height=${height}&crop=true`}

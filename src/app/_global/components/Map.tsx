@@ -24,6 +24,13 @@ type MapType = {
 }
 
 const Wrapper = styled.div<{ width?: number; height?: number }>`
+  min-width: 600px;
+  max-width: 1150px;
+  margin: 0 auto 20px auto;
+  .vsm-canvas {
+    border: 2px solid #333 !important;
+    border-radius: 8px;
+  }
   width: 100%;
   ${({ width }) =>
     width &&
@@ -41,15 +48,18 @@ const Map = ({ width, height, zoom }: MapType) => {
   height = height ?? 600
   zoom = zoom ?? 11
 
-  useEffect(() => {
-    if (!mapRef.current) return
-    const { Tmapv3 } = window
+  const initialized = useRef(false)
 
+  useEffect(() => {
+    if (!mapRef.current || initialized.current) return
+
+    initialized.current = true
+
+    const { Tmapv3 } = window
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords
       const currentLatLon = new Tmapv3.LatLng(latitude, longitude)
 
-      // 지도 생성
       const map = new Tmapv3.Map(mapRef.current, {
         center: currentLatLon,
         width: `100%`,
@@ -67,7 +77,7 @@ const Map = ({ width, height, zoom }: MapType) => {
       // 현재 위치 InfoWindow
       new Tmapv3.InfoWindow({
         position: currentLatLon,
-        content: `<div style="padding:5px; min-width:80px; max-width:120px;">현위치</div>`,
+        content: `<div class="current-location-info">현위치</div`,
         map,
       })
 
@@ -149,17 +159,31 @@ const Map = ({ width, height, zoom }: MapType) => {
               // InfoWindow 표시
               const infoWindow = new Tmapv3.InfoWindow({
                 position: hospitalPos,
-                content: `<div style="padding:5px; min-width:200px; max-width:300px;">
+                content: `<div id="hospital-info" style="min-width:200px; max-width:300px;">
                   <b>${h.응급의료기관명}</b><br>
                   ${h.소재지}<br>
                   병원 전화 번호 : ${h.연락처}<br>
                   이동 거리: ${(totalDistance / 1000).toFixed(2)} km<br>
-                  예상 소요 시간: ${Math.round(totalTime / 60)}분
+                  차량 소요 시간: ${Math.round(totalTime / 60)}분
+                  <div style="color: rgba(233, 33, 33, 1); cursor: pointer;" onmouseover="this.style.textDecoration='underline'" 
+                  onmouseout="this.style.textDecoration='none'">
+                  (병원 정보 닫기)
+                  </div>
                 </div>`,
                 map,
               })
 
               openInfoWindowRef.current = infoWindow
+
+              // InfoWindow 클릭 시 닫기
+              setTimeout(() => {
+                const el = document.getElementById('hospital-info')
+                if (el) {
+                  el.addEventListener('click', () => {
+                    infoWindow.setMap(null)
+                  })
+                }
+              }, 0)
             })
           })
         },

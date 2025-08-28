@@ -7,8 +7,7 @@ import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
-import { GoogleAdSense } from './_global/components/adsense'
-import Script from 'next/script'
+import { GoogleAdSense } from './_global/components/Adsense'
 
 export const metadata: Metadata = {
   title: '철푸닥',
@@ -24,6 +23,7 @@ export default async function RootLayout({
 }>) {
   const member = await getLoggedMember()
   const cookie = await cookies()
+
   if (member == null && cookie.has('token')) {
     redirect('/member/api/logout?redirectUrl=/')
   }
@@ -33,6 +33,7 @@ export default async function RootLayout({
       <head>
         {/* 광고 */}
         <GoogleAdSense />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src={tmapApiUrl}></script>
       </head>
       <body id="body">
