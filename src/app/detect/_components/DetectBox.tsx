@@ -13,12 +13,30 @@ type WrapperType = {
 
 const Wrapper = styled.div<WrapperType>`
   position: relative;
-  ${({ width }) => width ?? 640}px;
-  ${({ height }) => height ?? 480}px;
-  .layer {
+  width: ${({ width }) => width ?? 640}px;
+  height: ${({ height }) => height ?? 480}px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+
+  video {
+    display: none; /* 실제 웹캠 비디오는 숨김 */
+  }
+
+  canvas.video {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  canvas.layer {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 `
 
