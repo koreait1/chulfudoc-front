@@ -134,3 +134,14 @@ section.main-content {
 .vsm-marker {
   cursor: pointer !important;
 }
+
+.main-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;  
+}
+
+.main-bottom > * {
+  flex: 1;
+}
