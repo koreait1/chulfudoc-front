@@ -1,3 +1,5 @@
+/* CSR, SSR 공통 */
+
 /**
  * FormData 형식의 데이터를 일반 자바스크립트 객체로 변환
  * @param formData
@@ -44,4 +46,25 @@ export function toDate(strDate) {
  */
 export function nl2br(str: string) {
   return str && str.replace(/\r/g, '').replace(/\n/g, '<br />')
+}
+
+
+
+export async function toQueryString(search) {
+  if (!search) return ''
+
+  const qs: Array<string> = []
+  for (const [key, value] of Object.entries(search)) {
+    if (Array.isArray(value)) {
+      // 같은 key값에 여러 값이 있는 쿼리 스트링
+      for (const v of value) {
+        qs.push(`${key}=${v}`)
+      }
+    } else {
+      qs.push(`${key}=${value}`)
+    }
+  }
+
+  const _qs = qs.join('&')
+  return _qs ? `?${_qs}` : ''
 }

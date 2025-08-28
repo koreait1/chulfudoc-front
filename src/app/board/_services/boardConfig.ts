@@ -1,7 +1,7 @@
 import type { BoardConfigType } from '../_types/BoardType'
 import type CommonSearchType from '@/app/_global/types/CommonSearchType'
-import { fetchSSR, toQueryString } from '@/app/_global/libs/utils'
-
+import { fetchSSR } from '@/app/_global/libs/utils'
+import { toQueryString } from '@/app/_global/libs/commons'
 export const defaultData: BoardConfigType = {
   mode: 'register',
   bid: '',
@@ -33,6 +33,7 @@ export async function getBoardConfig(bid?: string): Promise<BoardConfigType> {
       return _data
     }
   }
+
   return defaultData
 }
 
@@ -46,7 +47,7 @@ export async function getBoardList(searchParams: CommonSearchType): Promise<{
   pagination?: any
 }> {
   'use server'
-  const qs = await toQueryString(searchParams)
+  const qs = toQueryString(searchParams)
   const res = await fetchSSR(`/board/configs/all${qs}`)
   if (res.status === 200) {
     return await res.json()

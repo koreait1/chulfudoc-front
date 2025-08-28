@@ -1,7 +1,11 @@
-import type { BoardDataType } from '../_types/BoardType'
+import type {
+  BoardDataType,
+  BoardSearchType,
+  BoardListType,
+} from '../_types/BoardType'
 import { v4 as uuid } from 'uuid'
 import { fetchSSR } from '@/app/_global/libs/utils'
-import { toDate } from '@/app/_global/libs/commons'
+import { toDate, toQueryString } from '@/app/_global/libs/commons'
 
 export async function get(seq?: number): Promise<BoardDataType> {
   'use server'
@@ -36,4 +40,29 @@ export async function get(seq?: number): Promise<BoardDataType> {
     data.mode = 'update'
   }
   return data
+}
+
+/**
+ * 게시판별 목록
+ * @param bid
+ * @param search
+ * @returns
+ */
+export async function getList(
+  bid: string,
+  search: BoardSearchType,
+): Promise<BoardListType> {
+  const qs = toQueryString(search)
+  const res = await fetchSSR(`/board/list/${bid}${qs}`)
+  if (res.status === 200) {
+    const data = await res.json()
+    data.items.forEach((item) => {
+      item.createdAt = toDate(item.createdAt)
+      if (item.modifiedAt) item.modifiedAt = toDate(item.modifiedAt)
+      if (item.deletedAt) item.deletedAt = toDate(item.deletedAt)
+    })
+    return data
+  }
+
+  return {}
 }
