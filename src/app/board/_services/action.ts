@@ -27,14 +27,13 @@ export async function processUpdate(errors: any, formData: FormData) {
     gid: '잘못된 접근입니다.',
     poster: '작성자를 입력하세요.',
     subject: '제목을 입력하세요.',
-    content: '내용을 입력하세요',
+    content: '내용을 입력하세요.',
   }
 
   for (const [field, message] of Object.entries(requiredFields)) {
     if (!params[field]?.trim()) {
       errors[field] = message
       hasErrors = true
-      break
     }
   }
 
@@ -47,21 +46,19 @@ export async function processUpdate(errors: any, formData: FormData) {
   if (hasErrors) {
     return errors
   }
-
   // 유효성 검사 E
 
   // 요청 처리
   const res = await fetchSSR('/board/update', {
     method: mode === 'update' ? 'PATCH' : 'POST',
     headers: {
-      'Cotent-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
   })
 
   const data = await res.json()
   let redirectUrl = `/board/list/${board.bid}`
-
   if ([200, 201].includes(res.status)) {
     // 게시글 등록, 수정 성공
     const { afterWritingRedirect } = board

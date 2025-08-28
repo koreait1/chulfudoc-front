@@ -42,6 +42,7 @@ const BoardForm = ({
       <MessageBox color="danger">{errors?.bid}</MessageBox>
       <MessageBox color="danger">{errors?.gid}</MessageBox>
       <MessageBox color="danger">{errors?.global}</MessageBox>
+
       <dl>
         <dt>작성자</dt>
         <dd>
@@ -150,7 +151,7 @@ const BoardForm = ({
           </dd>
         </dl>
       )}
-      <SubmitButton type="submit" width={280}>
+      <SubmitButton type="submit" width={280} disabled={pending}>
         {data.mode === 'update' ? '수정하기' : '작성하기'}
       </SubmitButton>
     </StyledForm>
