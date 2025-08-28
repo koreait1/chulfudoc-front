@@ -194,7 +194,12 @@ const Header = () => {
           ) : (
             <>
               <Link href="/member/login" prefetch={false}>
-                <Button type="button" color="#111827" borderradius="25px" style={{marginRight: "px"}}>
+                <Button
+                  type="button"
+                  color="#111827"
+                  borderradius="25px"
+                  style={{ marginRight: 'px' }}
+                >
                   <FiLogIn />
                   로그인
                   <LinkLoading />
