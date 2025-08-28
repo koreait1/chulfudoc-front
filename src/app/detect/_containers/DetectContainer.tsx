@@ -3,53 +3,38 @@ import React, { useCallback, useState, useRef, useEffect } from 'react'
 import DetectBox from '../_components/DetectBox'
 import { useRouter } from 'next/navigation'
 import styled from 'styled-components'
-import { IoCameraReverseOutline } from 'react-icons/io5'
+import color from '@/app/_global/styles/color'
+import fontSize from '@/app/_global/styles/fontsize'
 
-const DetectWrapper = styled('div').withConfig({
-  shouldForwardProp: (prop) => prop !== 'fallDetect', // DOM으로 전달하지 않음
-})<{ fallDetect?: boolean }>`
-  width: 800px;
-  height: 640px;
-  cursor: pointer;
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+const { primary } = color
+const { extra } = fontSize
+
+const DetectWrapper = styled.div`
   margin: 0 auto 20px;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const WebcamButton = styled.div`
+  width: 150px;
+  height: 80px;
+  background-color: #212121;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 12px;
+  color: ${primary};
+  font-size: ${extra};
 
   &:hover {
-    border-color: #888;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+    background-color: #333;
+    transform: scale(1.05);
   }
-
-  ${({ fallDetect }) =>
-    fallDetect &&
-    `
-    &:hover::after {
-      content: "웹캠 닫기";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: bold;
-      border-radius: 12px;
-      opacity: 0;
-      animation: fadeIn 0.3s forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-  `}
 `
 
 type DetectionItem = {
@@ -60,15 +45,13 @@ type DetectionItem = {
 }
 
 const DetectContainer = () => {
+  const [webcamAble, setWebcamAble] = useState(false)
   const [fallDetect, setFallDetect] = useState(false)
   const detectionCount = useRef<number[]>([])
-  const lastDetectTime = useRef(0) // 연속 감지 방지
-  const [webcamAble, setWebcamAble] = useState(false)
+  const lastDetectTime = useRef(0)
   const router = useRouter()
 
   const detectCallback = useCallback((item: DetectionItem) => {
-    console.log(item)
-
     const now = Date.now()
     if (now - lastDetectTime.current < 1000) return
     lastDetectTime.current = now
@@ -90,19 +73,18 @@ const DetectContainer = () => {
   }, [fallDetect, router])
 
   return (
-    <DetectWrapper
-      fallDetect={fallDetect}
-      onClick={() => setWebcamAble((prev) => !prev)}
-    >
+    <DetectWrapper>
       {webcamAble ? (
-        <DetectBox width={800} height={640} callback={detectCallback} />
+        <>
+          <DetectBox width={800} height={640} callback={detectCallback} />
+          <WebcamButton onClick={() => setWebcamAble(false)}>
+            웹캠 끄기
+          </WebcamButton>
+        </>
       ) : (
-        <div style={{ backgroundColor: '#212121', display: 'inline-block' }}>
-          <IoCameraReverseOutline
-            style={{ width: '800px', height: '640px' }}
-            color="#FFD93D"
-          />
-        </div>
+        <WebcamButton onClick={() => setWebcamAble(true)}>
+          웹캠 켜기
+        </WebcamButton>
       )}
     </DetectWrapper>
   )

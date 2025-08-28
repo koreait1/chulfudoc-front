@@ -18,7 +18,7 @@ type AuthType = {
   onRequestStart?: () => void
 }
 
-const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart}: AuthType) => {
+const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onRequestStart, width}: AuthType) => {
     const fetchCSR = useFetchCSR()
     const [loading, setLoading] = useState(false);
     let status: number
