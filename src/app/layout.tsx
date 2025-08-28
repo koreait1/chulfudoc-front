@@ -7,7 +7,7 @@ import { UserProvider } from './_global/contexts/UserContext'
 import { CommonProvider } from './_global/contexts/CommonContext'
 import LayoutContainer from './_global/wrappers/LayoutContainer'
 import { redirect } from 'next/navigation'
-import { GoogleAdSense } from './_global/components/adsense'
+import { GoogleAdSense } from './_global/components/Adsense'
 
 export const metadata: Metadata = {
   title: '철푸닥',
