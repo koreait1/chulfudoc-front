@@ -28,7 +28,7 @@ export type BoardConfigType = {
 }
 
 export type BoardType = {
-  board: BoardConfigType
+  board?: BoardConfigType
 }
 
 export type BoardFormType = {

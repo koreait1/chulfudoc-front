@@ -17,7 +17,7 @@ const UpdateContainer = ({
   board,
   data,
 }: {
-  board: BoardConfigType
+  board?: BoardConfigType
   data: BoardDataType
 }) => {
   const [_data, setData] = useState<BoardDataType>(data)
@@ -95,7 +95,7 @@ const UpdateContainer = ({
   }, [])
 
   return (
-    <CommonContainer board={board}>
+    <CommonContainer board={board} data={data}>
       <BoardForm
         board={board}
         data={_data}

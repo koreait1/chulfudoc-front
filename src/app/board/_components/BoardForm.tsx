@@ -7,7 +7,10 @@ const GallerySkin = loadable(() => import('./skins/gallery/BoardForm'))
 
 const BoardForm = (props: BoardFormType) => {
   const { board } = props
+
   const Skin = useMemo(() => {
+    if (!board) return
+
     const { skin } = board
     switch (skin) {
       case 'gallery':
@@ -18,7 +21,7 @@ const BoardForm = (props: BoardFormType) => {
     }
   }, [board])
 
-  return <Skin {...props} />
+  return board && <Skin {...props} />
 }
 
 export default React.memo(BoardForm)
