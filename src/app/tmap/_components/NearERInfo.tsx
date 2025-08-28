@@ -2,13 +2,15 @@
 import { useEffect, useState } from 'react'
 import Papa from 'papaparse'
 import styled from 'styled-components'
+import Loading from '@/app/loading'
+import LocalLoadingWrapper from '@/app/_global/styles/LocalLoadingWrapper'
 
 const TableWrap = styled.div`
   min-width: 600px;
   max-width: 1150px;
   padding: 40px 20px;
   margin: 0 auto;
-  
+
   h1 {
     text-align: center;
   }
@@ -138,7 +140,9 @@ export default function NearERInfo() {
       <h1>내 주변 응급의료기관</h1>
 
       {loading ? (
-        <p>거리 계산 중...</p>
+        <LocalLoadingWrapper width="80%" height="400px">
+          <Loading text="거리 계산 중" />
+        </LocalLoadingWrapper>
       ) : (
         <table>
           <thead>

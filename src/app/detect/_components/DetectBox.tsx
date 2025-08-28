@@ -21,6 +21,36 @@ const Wrapper = styled.div<WrapperType>`
     left: 0;
   }
 `
+
+const PermitWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+
+  h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.5;
+
+    span {
+      font-weight: 600;
+      color: #0070f3;
+    }
+  }
+`
+
 /**
  *
  * @param callback : 위험 감지시 호출되는 후속 처리 콜백 함수
@@ -167,7 +197,16 @@ const DetectBox = ({ width, height, callback }) => {
         ></canvas>
       </Wrapper>
       <LayerPopup isOpen={guideOpen} width={550} onClose={onPopupClose}>
-        <h1>카메라 권한 설정 유도 내용</h1>
+        <PermitWrapper>
+          <h1>웹캠 사용 허가가 필요해요!</h1>
+          <p>실시간 모니터링을 위해 카메라 접근 권한을 허용해주세요. 😊</p>
+          <p>허용하지 않으면 쓰러짐 감지 기능을 사용할 수 없어요.</p>
+          <p>
+            브라우저 상단 주소창 옆 🔒(혹은 ⓘ) 아이콘을 클릭하고 카메라 권한을{' '}
+            <span>허용</span>으로 바꿔주세요.
+          </p>
+          <div>권한 변경 이미지</div>
+        </PermitWrapper>
       </LayerPopup>
     </>
   )

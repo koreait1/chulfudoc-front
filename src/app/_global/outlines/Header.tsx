@@ -13,14 +13,14 @@ import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
 import { FiLogIn, FiLogOut } from 'react-icons/fi'
-import { IoCall } from "react-icons/io5";
-import { LuUserPen } from "react-icons/lu";
+import { IoCall } from 'react-icons/io5'
+import { LuUserPen } from 'react-icons/lu'
 import { usePathname } from 'next/navigation'
 import color from '../styles/color'
 const { dark } = color
 
 const StyledHeader = styled.header`
-  background: #FFD93D;
+  background: #ffd93d;
   border-radius: 12px;
   margin: 15px 20px 0 20px;
 
@@ -32,7 +32,6 @@ const StyledHeader = styled.header`
     max-width: 100% !important;
 
     div {
-      width: 0;
       flex-grow: 1;
       .profile {
         flex-grow: 0;
@@ -50,7 +49,7 @@ const StyledHeader = styled.header`
         height: 45px;
         width: auto;
       }
-      .linker{
+      .linker {
         min-width: 75px;
         margin-left: 5px;
         padding: 5px;
@@ -112,10 +111,13 @@ const Header = () => {
             <Image src={logoWord} alt="로고" className="header-logo" />
           </Link>
           <Link href="/">
-            <div className='linker'>Mypage</div>
+            <div className="linker">Mypage</div>
           </Link>
           <Link href="/">
-            <div className='linker'>게시판</div>
+            <div className="linker">게시판</div>
+          </Link>
+          <Link href="/maptest2">
+            <div className="linker">병원 검색</div>
           </Link>
         </div>
 
@@ -162,7 +164,9 @@ const Header = () => {
                     height={230}
                     fallbackImage={noprofile}
                   />
-                  <span><span>{loggedMember.userName}</span> 님</span>
+                  <span>
+                    <span>{loggedMember.userName}</span> 님
+                  </span>
                   <Link href="/mypage" prefetch={false}>
                     <Button type="button" width={'250px'}>
                       <CgProfile />

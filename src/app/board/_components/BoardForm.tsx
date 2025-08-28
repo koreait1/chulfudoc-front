@@ -5,7 +5,8 @@ import type { BoardFormType } from '../_types/BoardType'
 const DefaultSkin = loadable(() => import('./skins/default/BoardForm'))
 const GallerySkin = loadable(() => import('./skins/gallery/BoardForm'))
 
-const BoardForm = ({ board }: BoardFormType) => {
+const BoardForm = (props: BoardFormType) => {
+  const { board } = props
   const Skin = useMemo(() => {
     const { skin } = board
     switch (skin) {
@@ -17,7 +18,7 @@ const BoardForm = ({ board }: BoardFormType) => {
     }
   }, [board])
 
-  return <Skin board={board} />
+  return <Skin {...props} />
 }
 
 export default React.memo(BoardForm)
