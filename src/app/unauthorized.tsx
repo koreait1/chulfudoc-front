@@ -1,3 +1,10 @@
-export default function Unauthorized() {
-  return <h1>로그인이 필요합니다.</h1>
+import UAIContainer from './_error/containers/UAIContainer'
+
+export default function unauthorizedPage() {
+  return (
+    <>
+      <h1>unauthorizedPage</h1>
+      <UAIContainer />
+    </>
+  )
 }

@@ -1,3 +1,5 @@
-export default function NotFound() {
-  return <h1>페이지를 찾을 수 없습니다.</h1>
+import NFIContainer from "./_error/containers/NFIContainer"
+
+export default function NotFoundPage() {
+  return <NFIContainer />
 }
