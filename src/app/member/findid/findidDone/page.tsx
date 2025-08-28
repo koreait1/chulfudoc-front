@@ -1,5 +1,3 @@
-'use client'
-
 import ContentBox from '@/app/_global/components/ContentBox'
 import { MainTitle } from '@/app/_global/components/TitleBox'
 import FindIdDoneContainer from '../../_containers/FindIdDoneContainer'

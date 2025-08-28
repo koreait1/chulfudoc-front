@@ -1,4 +1,3 @@
-// src/app/member/find/FindContainer.tsx
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';

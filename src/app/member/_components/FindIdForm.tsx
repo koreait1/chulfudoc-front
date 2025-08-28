@@ -1,4 +1,4 @@
-// src/app/member/_components/FindIdForm.tsx
+
 'use client'
 
 import React from 'react'
