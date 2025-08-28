@@ -145,7 +145,6 @@ const JoinForm = ({
         placeholder="인증 번호를 입력하세요"
         value={form.authNum}
         onChange={onChange}
-        readOnly={verified}
       />
       <MessageBox color="danger">{errors?.authNum}</MessageBox>
 
@@ -199,9 +198,15 @@ const JoinForm = ({
       </div>
       <MessageBox color="danger">{errors?.termsAgree}</MessageBox>
 
-      <SubmitButton type="submit" disabled={pending}>
-        가입하기
-      </SubmitButton>
+      {!verified ? 
+        <SubmitButton type="submit" disabled={pending} onClick={() => alertDialog({title: "인증 실패", text: "이메일 인증 후 가입해주세요", icon:'error'})}>
+          가입하기
+        </SubmitButton>  :
+        <SubmitButton type="submit" disabled={pending}>
+          가입하기
+        </SubmitButton>     
+      }
+      
       <MessageBox color="danger">{errors?.global}</MessageBox>
     </StyledForm>
   )
