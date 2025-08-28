@@ -1,5 +1,3 @@
-'use client'
-
 import ERMapContiner from './_containers/ERMapContainer'
 import ERLContainer from './_containers/ERLContainer'
 
