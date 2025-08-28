@@ -15,7 +15,7 @@ export default async function ViewPage({
 
   return (
     <ContentBox>
-      {data?.subject && <MainTitle border="true">{data?.subject}</MainTitle>}
+      {board?.name && <MainTitle border="true">{board.name}</MainTitle>}
       <ViewContainer board={board} data={data} />
     </ContentBox>
   )

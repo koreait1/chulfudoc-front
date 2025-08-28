@@ -37,3 +37,11 @@ export function toDate(strDate) {
     Number(sec),
   )
 }
+
+/**
+ * 줄개행 문자 \n -> <br>
+ * @param str
+ */
+export function nl2br(str: string) {
+  return str && str.replace(/\r/g, '').replace(/\n/g, '<br />')
+}

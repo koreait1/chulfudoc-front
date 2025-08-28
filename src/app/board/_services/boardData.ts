@@ -28,6 +28,9 @@ export async function get(seq?: number): Promise<BoardDataType> {
       data = await res.json()
       data.mode = 'update'
       data.bid = data.board?.bid
+      data.createdAt = toDate(data.createdAt)
+      if (data.modifiedAt) data.modifiedAt = toDate(data.modifiedAt)
+      if (data.deletedAt) data.deletedAt = toDate(data.deletedAt)
       return data
     }
     data.mode = 'update'
