@@ -1,5 +1,8 @@
 /*** 공통 영역 S ***/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -77,7 +80,6 @@ section.main-content {
   max-width: 900px;
   min-width: 320px;
   min-height: calc(100vh - 370px);
-  margin: 0 auto;
 }
 /* 모달 배경 */
 .ReactModal__Overlay {

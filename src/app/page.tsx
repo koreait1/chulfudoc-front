@@ -9,7 +9,7 @@ import { FaHospital } from 'react-icons/fa'
 //import DetectContainer from './detect/_containers/DetectContainer'
 import dynamic from 'next/dynamic';
 import Loading from './loading'
-import PageStyleContainer from './main/_container/PageStyleContainer'
+import MainContainer from './main/_container/MainContainer'
 const DetectContainer = dynamic(() => import('./detect/_containers/DetectContainer'), {
   ssr: false, // 서버 렌더링 제외
   loading: () => <Loading />
@@ -21,8 +21,10 @@ export default function MainPage() {
 
   return (
       <>
-        <PageStyleContainer />
-        <DetectContainer />
+        <MainContainer>
+          <DetectContainer />
+          <h1>테스트</h1>
+        </MainContainer>
          <div className="links">
         <button type="button" onClick={() => setIsOpen(true)}>
           <h1>전국 응급의료기관</h1>
