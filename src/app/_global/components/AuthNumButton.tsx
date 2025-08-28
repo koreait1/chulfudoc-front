@@ -57,8 +57,8 @@ const AuthNumButton = ({data, apiUrl, callback, children, onStartTimer, onReques
 
     return(
         <>
-            {loading ? <Loading /> :
-            <Button type="button" onClick={onEmailSendClick}>
+            {loading ? <Loading text="이메일 발송 중" /> :
+            <Button type="button" onClick={onEmailSendClick} width={width}>
                 {children}
             </Button>}
         </>

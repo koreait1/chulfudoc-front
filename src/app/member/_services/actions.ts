@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { revalidateTag } from 'next/cache'
 import { fetchSSR } from '@/app/_global/libs/utils'
+import { toPlainObj } from '@/app/_global/libs/commons'
 
 /**
  * 회원가입 처리

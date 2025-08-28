@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback } from 'react'
-import { MdOutlineFileUpload } from 'react-icons/md'
+import { MdFileUpload } from 'react-icons/md'
 import { Button } from './Buttons'
 import useFetchCSR from '../hooks/useFetchCSR'
 import useAlertDialog from '../hooks/useAlertDialog'
@@ -14,7 +14,7 @@ type FileType = {
 }
 
 const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
-  const FetchCSR = useFetchCSR()
+  const fetchCSR = useFetchCSR()
   const alertDialog = useAlertDialog()
 
   const onUploadClick = useCallback(() => {
@@ -34,6 +34,27 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
      */
     function fileUploadHandler(e) {
       const files = e.target.files
+
+      // 이미지 형식이 아닌 파일이 있는지 검사
+      if (imageOnly) {
+        let allImages = true
+        for (const file of files) {
+          // 이미지가 아닌 파일이 있는 경우
+          if (file.type.indexOf('image/') === -1) {
+            allImages = false
+            break
+          }
+        }
+
+        if (!allImages) {
+          // 검증 실패
+          alertDialog({
+            text: '이미지 형식 파일만 업로드 하세요.',
+          })
+          return
+        }
+      }
+
       const formData = new FormData()
       formData.append('gid', '' + gid)
       if (location) {
@@ -51,7 +72,7 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
       for (const file of files) {
         formData.append('file', file)
       }
-      FetchCSR('/file/upload', {
+      fetchCSR('/file/upload', {
         method: 'POST',
         body: formData,
       })
@@ -62,13 +83,12 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
           }
         })
     }
-  }, [FetchCSR, gid, location, imageOnly, single, callback, alertDialog])
+  }, [fetchCSR, gid, location, imageOnly, single, callback, alertDialog])
 
   return (
     <>
-      <Button type="button" onClick={onUploadClick} width={120}>
-        <MdOutlineFileUpload />
-        파일 업로드
+      <Button type="button" onClick={onUploadClick} width={150}>
+        <MdFileUpload /> 파일 업로드
       </Button>
     </>
   )

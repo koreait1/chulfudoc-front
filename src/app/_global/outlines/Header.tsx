@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
-import logo from '../assets/images/logo.png'
-import logo2 from '../assets/images/logo2.png'
 import logoWord from '../assets/images/logo-word.png'
 import noprofile from '../assets/images/noprofile.png'
 import Image from 'next/image'
@@ -14,15 +12,15 @@ import useUser from '../hooks/useUser'
 import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
-import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
-import { IoCall } from "react-icons/io5";
-import { LuUserPen } from "react-icons/lu";
+import { FiLogIn, FiLogOut } from 'react-icons/fi'
+import { IoCall } from 'react-icons/io5'
+import { LuUserPen } from 'react-icons/lu'
 import { usePathname } from 'next/navigation'
 import color from '../styles/color'
 const { dark } = color
 
 const StyledHeader = styled.header`
-  background: #FFD93D;
+  background: #ffd93d;
   border-radius: 12px;
   margin: 15px 20px 0 20px;
 
@@ -34,7 +32,6 @@ const StyledHeader = styled.header`
     max-width: 100% !important;
 
     div {
-      width: 0;
       flex-grow: 1;
       .profile {
         flex-grow: 0;
@@ -52,7 +49,7 @@ const StyledHeader = styled.header`
         height: 45px;
         width: auto;
       }
-      .linker{
+      .linker {
         min-width: 75px;
         margin-left: 5px;
         padding: 5px;
@@ -104,7 +101,7 @@ const Header = () => {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (isOpen) setIsOpen(false) // 라우트 변경 시 자동 닫기
+    if (isOpen) setIsOpen(false) // 현재 주소가 변경될 때 페이지 내 실행되었던 모든 사항을 닫음 ex) 모달
   }, [pathname])
   return (
     <StyledHeader>
@@ -114,13 +111,16 @@ const Header = () => {
             <Image src={logoWord} alt="로고" className="header-logo" />
           </Link>
           <Link href="/">
-            <div className='linker'>Mypage</div>
+            <div className="linker">Mypage</div>
           </Link>
           <Link href="/">
-            <div className='linker'>게시판</div>
+            <div className="linker">게시판</div>
+          </Link>
+          <Link href="/maptest2">
+            <div className="linker">병원 검색</div>
           </Link>
         </div>
-        
+
         <div className="right">
           {isLogin ? (
             <>
@@ -156,15 +156,17 @@ const Header = () => {
                   width={'300px'}
                   height={'430px'}
                 >
-                    <FileImages
-                      items={loggedMember.profileImage}
-                      viewOnly={true}
-                      viewOrgImage={false}
-                      width={230}
-                      height={230}
-                      fallbackImage={noprofile}
-                    />
-                    <span><span>{loggedMember.userName}</span> 님</span>
+                  <FileImages
+                    items={loggedMember.profileImage}
+                    viewOnly={true}
+                    viewOrgImage={false}
+                    width={230}
+                    height={230}
+                    fallbackImage={noprofile}
+                  />
+                  <span>
+                    <span>{loggedMember.userName}</span> 님
+                  </span>
                   <Link href="/mypage" prefetch={false}>
                     <Button type="button" width={'250px'}>
                       <CgProfile />
@@ -173,28 +175,28 @@ const Header = () => {
                     </Button>
                   </Link>
                   <Link href="/mypage" prefetch={false}>
-                      <Button type="button" width={'250px'}>
-                        <LuUserPen />
-                        개인정보 수정
-                        <LinkLoading />
-                      </Button>
-                    </Link> 
-                    <Link href="/mypage" prefetch={false}>
-                      <Button type="button" width={'250px'}>
-                        <IoCall />
-                        문의하기
-                        <LinkLoading />
-                      </Button>
-                    </Link>
+                    <Button type="button" width={'250px'}>
+                      <LuUserPen />
+                      개인정보 수정
+                      <LinkLoading />
+                    </Button>
+                  </Link>
+                  <Link href="/mypage" prefetch={false}>
+                    <Button type="button" width={'250px'}>
+                      <IoCall />
+                      문의하기
+                      <LinkLoading />
+                    </Button>
+                  </Link>
                 </LayerPopup>
               </div>
             </>
           ) : (
             <>
               <Link href="/member/login" prefetch={false}>
-                <Button type="button" color="#111827" borderradius="25px">
+                <Button type="button" color="#111827" borderradius="25px" style={{marginRight: "px"}}>
                   <FiLogIn />
-                    로그인
+                  로그인
                   <LinkLoading />
                 </Button>
               </Link>

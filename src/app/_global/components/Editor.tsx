@@ -14,8 +14,6 @@ import {
   Strikethrough,
   Code,
   Link,
-  BulletedListStyleType,
-  NumberedListStyleType,
   BlockQuote,
   ViewElement,
   ImageInsert,
@@ -37,7 +35,6 @@ const Editor = ({
   fieldName?: string
 }) => {
   const editorRef = useRef<any>(null)
-
   return (
     <CKEditor
       editor={ClassicEditor}
@@ -79,7 +76,6 @@ const Editor = ({
             'code',
             '|',
             'link',
-            'uploadImage',
             'blockQuote',
             'codeBlock',
             '|',
@@ -112,7 +108,7 @@ const Editor = ({
         const e = {
           target: {
             name: fieldName ?? 'content',
-            value: editorRef.current.getData(),
+            value: editorRef?.current.getData(),
           },
         }
         if (typeof onChange === 'function') {

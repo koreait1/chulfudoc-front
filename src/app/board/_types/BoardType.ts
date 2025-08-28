@@ -22,6 +22,9 @@ export type BoardConfigType = {
   viewAuthority: AuthorityType
   writeAuthority: AuthorityType
   commentAuthority: AuthorityType
+  writable?: boolean
+  listable?: boolean
+  commentable?: boolean
 }
 
 export type BoardType = {
@@ -37,12 +40,14 @@ export type BoardFormType = {
   onToggle: (key: string, value: any) => void
   editorCallback: (editor) => void
   fileUploadCallback: (items: Array<any>) => void
-  fileDeleteCallback: (itme: any) => void
+  fileDeleteCallback: (item: any) => void
 } & BoardType
 
 export type BoardDataType = {
   mode?: string
-  bid: string
+  bid?: string
+  board?: BoardConfigType
+  member?: any
   seq?: number
   gid: string
   category?: string
@@ -53,6 +58,12 @@ export type BoardDataType = {
   notice?: boolean
   secret?: boolean
   guest?: boolean
+  editable?: boolean
+  mine?: boolean
+  viewCount?: number
+  ip?: string
+  ua?: string
+  plainText?: boolean
   editorImages?: Array<any>
   attachFiles?: Array<any>
 }

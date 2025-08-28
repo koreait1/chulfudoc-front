@@ -12,6 +12,20 @@ const StyledForm = styled.form`
   .btn {
     margin-top: 15px;
   }
+
+  .accountFindBtn{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .accountLink{
+    font-size: 14px;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
 `
 
 const LoginForm = ({ errors, action, pending, form, onChange }) => {
@@ -35,6 +49,12 @@ const LoginForm = ({ errors, action, pending, form, onChange }) => {
         onChange={onChange}
       />
       <MessageBox color="danger">{errors?.password}</MessageBox>
+
+      {/* 아이디 비밀번호 찾기 페이지 경로 집어 넣을 것 */}
+      <div className='accountFindBtn'>
+        <a href='/member/join' className='accountLink'>회원 가입</a>
+        <a href='/' className='accountLink'>아이디 · 비밀번호 찾기</a>
+      </div>
 
       <SubmitButton type="submit" disabled={pending}>
         로그인

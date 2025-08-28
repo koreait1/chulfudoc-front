@@ -8,6 +8,7 @@ export default function TMapPage() {
     <>
       <ERMapContiner />
       {/*<ERLContainer />*/} {/* API 호출을 너무 잡아먹어서 주석 처리 */}
+      <ERLContainer />
     </>
   )
 }
