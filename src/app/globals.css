@@ -73,7 +73,7 @@ img {
 
 /*** 메인 영역 ***/
 main.main-content {
-  min-height: 650px;
+  min-height: 900px;
 }
 /* 모달 배경 */
 .ReactModal__Overlay {
@@ -116,4 +116,14 @@ main.main-content {
 
 .vsm-marker > :not(:first-child) {
   display: none;
+}
+
+.current-location-info {
+  border-radius: 4px;
+  text-align: center;
+}
+
+/*** 티맵 마커 ***/
+.vsm-marker {
+  cursor: pointer !important;
 }
