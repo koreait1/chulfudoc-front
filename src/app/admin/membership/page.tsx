@@ -9,10 +9,13 @@ export default async function MemberListPage({
     searchParams: Promise<CommonSearchType>
  }) {
     const params = await searchParams
-    return(
-        <AdminOnlyContainer>
-            <MainTitle border="true" borderThickness={"1px"}>회원 관리</MainTitle>
-            
-        </AdminOnlyContainer>
+
+    return (
+      <AdminOnlyContainer>
+        <MainTitle border="true">
+          회원 관리
+        </MainTitle>
+        <ListContainer />
+      </AdminOnlyContainer>
     )
 }
