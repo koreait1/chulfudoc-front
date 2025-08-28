@@ -146,6 +146,7 @@ const Header = () => {
                     viewOrgImage={false}
                     width={40}
                     height={40}
+                    fallbackImage={noprofile}
                   />
                 </div>
                 <LayerPopup
@@ -154,7 +155,7 @@ const Header = () => {
                   top="270px"
                   right=" max(200px, calc(200px + (50vw - 575px))"
                   width={'300px'}
-                  height={'430px'}
+                  height={'470px'}
                 >
                   <FileImages
                     items={loggedMember.profileImage}
@@ -168,21 +169,21 @@ const Header = () => {
                     <span>{loggedMember.name}</span> 님
                   </span>
                   <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'250px'}>
+                    <Button type="button" width={'230px'}>
                       <CgProfile />
                       마이페이지
                       <LinkLoading />
                     </Button>
                   </Link>
                   <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'250px'}>
+                    <Button type="button" width={'230px'}>
                       <LuUserPen />
                       개인정보 수정
                       <LinkLoading />
                     </Button>
                   </Link>
                   <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'250px'}>
+                    <Button type="button" width={'230px'}>
                       <IoCall />
                       문의하기
                       <LinkLoading />
