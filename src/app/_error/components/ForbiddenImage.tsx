@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import notfoundimage from '@/app/_global/assets/images/notfoundimage.png'
+import forbiddenimage from '@/app/_global/assets/images/forbiddenimage.png'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -14,7 +14,7 @@ export default function ForbiddenImage() {
   return (
     <Wrapper>
       <Image
-        src={notfoundimage}
+        src={forbiddenimage}
         alt="Forbidden"
         fill
         style={{ objectFit: 'cover' }}
