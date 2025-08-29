@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 type FloatingIconType = {
@@ -49,24 +49,8 @@ const IconWrapper = styled.div<FloatingIconType>`
   }
 `
 
-const FloatingIcon = ({
-  bottom,
-  background,
-  children,
-  onClick,
-}: FloatingIconType) => {
-  const [visible, setIsVisible] = useState('false')
-  const scrollThreshold = 75
-  useEffect(() => {
-    const handleScroll = () => {
-      const data = window.scrollY > scrollThreshold
-      setIsVisible(String(data))
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [scrollThreshold])
-
+const FloatingIcon = ({bottom, background, children, visible, onClick,}: FloatingIconType) => {
+  
   return (
     <IconWrapper
       onClick={onClick}

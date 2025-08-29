@@ -20,9 +20,14 @@ import color from '../styles/color'
 const { dark } = color
 
 const StyledHeader = styled.header`
-  background: #ffd93d;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #ffe66d, #ffd93d, #e6c235);
+  border-bottom: 2px solid #ffe66d;
   border-radius: 12px;
-  margin: 15px 20px 0 20px;
+  margin: 0 20px 0 20px;
+  z-index: 999;
 
   .inner {
     display: flex;
@@ -208,7 +213,7 @@ const Header = () => {
                   type="button"
                   color="#111827"
                   borderradius="25px"
-                  style={{ marginRight: 'px' }}
+                  style={{ marginRight: '20px' }}
                 >
                   <FiLogIn />
                   로그인

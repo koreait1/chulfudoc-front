@@ -1,9 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components"
 
 export const PageWrapper = createGlobalStyle`
-
   body{
-    background-color: #FFF8E1;
+    width: 100%;
   }
 `
 
@@ -13,33 +12,45 @@ export const PageMain = styled.div`
   justify-content: center;
   alignItems: center;
 
+  padding-top: 37px;
+
   height: 100vh;
 
   line-height: 0.95;
-  margin: 25px;
 
-  color: #E6C200;
+  color: #FFEA00;
   text-align: center;
   
-  font-size: 13rem;
+  font-size: 11rem;
+
+  .line_start{
+    padding-top: 25px;
+  }
 
   .line_start, .line_end, .highlight{
     font-family: "Anton", sans-serif !important;
     font-weight: 1000;
     font-style: normal;
-    
+    z-index: 20;
   }
 
   @media (max-width: 1150px) {
-    font-size: 9rem;
+    font-size: 10rem;
   }
 
-  @media (max-width: 768px) {
-    font-size: 5rem;
+   @media (max-width: 820px) {
+    font-size: 8.5rem;
+  }
+
+  @media (max-width: 650px) {
+    font-size: 6rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 4rem;
   }
 
   .highlight {
-    color: #2E2E2E;
-    letter-spacing: -0.08em;
+    letter-spacing: -0.06em;
   }
 `

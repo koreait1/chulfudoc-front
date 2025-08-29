@@ -2,7 +2,6 @@
 import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
 import styled from 'styled-components'
-import FloatingIconContainer from '../container/FloatingIconContainer'
 
 import Header from '../outlines/Header' // 서버 컴포넌트로
 import Footer from '../outlines/Footer' // 서버 컴포넌트로
@@ -40,14 +39,12 @@ export default function LayoutContainer({ children }) {
     </>
   ) : (
     <>
-      <Header />
+      
       <main>
-        <Aside className="leftAd" />
-        <Aside className="rightAd" />
+        {/*<Aside className="leftAd" />
+        <Aside className="rightAd" />*/}
         <section>{children}</section>
-        <FloatingIconContainer />
       </main>
-      <Footer />
     </>
   )
 }

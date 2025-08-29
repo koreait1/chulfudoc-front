@@ -3,32 +3,59 @@ import React from "react"
 import { PageWrapper, PageMain } from "../_component/StyleWrapper"
 import GradientText from "../_component/GradientText"
 import { useState, useEffect } from "react"
+import DetectContainer from "@/app/detect/_containers/DetectContainer"
+import HosptialPopup from "@/app/_global/container/HospitalPopup"
+import MainLinkContainer from "./MainLinkContainer"
+import FloatingIconContainer from "@/app/_global/container/FloatingIconContainer"
+import Orb from "../_component/Orb"
+import background2 from '../../_global/assets/images/background2.png'
+import Headers from "../../_global/outlines/Header"
+import styled from "styled-components"
 
-const MainContainer = ({ children }: {children: React.ReactNode}) => {
+const StyledBackground = styled.div`
+    position: absolute;
+    inset: 0;
+    background-image: url(${background2.src});
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    z-index: 0;
+`
+
+const SectionOne = styled.div`
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    padding-top: 15px;
+`
+
+const MainContainer = () => {
     const [current, setCurrent] = useState(0)
-    const [detectState, setDetectState] = useState()
-    const childArray = React.Children.toArray(children)
+
+    const goTop = () => setCurrent(0);
 
     const sections = [
-        <div key={0}>
+        <SectionOne key={0}>
+            <StyledBackground />
+            <Headers />
             <PageMain>
                 <span className="line_start">SAFETY</span>
                 <GradientText className="highlight">WHERE</GradientText>
                 <span className="line_end">YOU aRE</span>
+                <Orb hoverIntensity={0.8} rotateOnHover={true} hue={318} forceHoverState={false} />
+                <DetectContainer />
             </PageMain>
-            {childArray[0]}
-            {/*{React.cloneElement(childArray[0] as React.ReactElement, { value: detectState, setValue: setDetectState })}*/}
-        </div>,
+        </SectionOne>,
         <div key={1} style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
             fontSize: '3rem',
-            backgroundColor: '#4079ff',
-            color: '#fff'
+            background: 'transparent',
+            color: '#000'
         }}>
-            {childArray[1]}
+            <h1>테스트</h1>
         </div>,
         <div key={2} style={{
             display: 'flex',
@@ -36,10 +63,13 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
             alignItems: 'center',
             height: '100vh',
             fontSize: '3rem',
-            backgroundColor: '#fff',
-            color: '#fff'
+            background: 'transparent',
+            color: '#000'
         }}>
-            {childArray[2]}
+            <div className="main-bottom">
+                <HosptialPopup />
+                <MainLinkContainer />
+            </div>
         </div>
     ]
 
@@ -48,8 +78,12 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
         const handleWheel = (e: WheelEvent) => {
         if (isScrolling) return
         isScrolling = true
-        if (e.deltaY > 0) setCurrent(prev => Math.min(prev + 1, sections.length - 1))
-        else setCurrent(prev => Math.max(prev - 1, 0))
+        if (e.deltaY > 0) {
+            setCurrent(prev => Math.min(prev + 1, sections.length - 1))
+        }
+        else {
+            setCurrent(prev => Math.max(prev - 1, 0))
+        }
         setTimeout(() => { isScrolling = false }, 800)
         }
 
@@ -61,7 +95,7 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
         <>
             <PageWrapper /> 
             <div style={{ 
-                width: '100vw',
+                width: '100%',
                 height: '100vh',
                 overflow: 'hidden',
                 margin: 0,  
@@ -78,6 +112,7 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
                 </div>
             ))}
             </div>
+            <FloatingIconContainer section={current} goTop={goTop}/>
         </>
     )
 }

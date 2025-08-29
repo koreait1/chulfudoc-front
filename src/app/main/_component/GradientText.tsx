@@ -10,7 +10,6 @@ const GradientTextComponent = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 1.25rem;
-  backdrop-filter: blur(10px);
   transition: box-shadow 0.5s ease-out;
   overflow: hidden;
   cursor: pointer;
