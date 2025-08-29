@@ -2,6 +2,7 @@
 import { memo, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import Papa from 'papaparse'
+import useAPIAlertDialog from '@/app/tmap/hooks/useAPIAlertDialog'
 
 declare global {
   interface Window {
@@ -44,6 +45,7 @@ const Map = ({ width, height, zoom }: MapType) => {
   const mapRef = useRef<HTMLDivElement | null>(null)
   const openInfoWindowRef = useRef<any>(null) // 현재 InfoWindow
   const polylineRef = useRef<any>(null) // 현재 polyline
+  const alertDialog = useAPIAlertDialog() // 변경됨
 
   height = height ?? 600
   zoom = zoom ?? 11
@@ -52,7 +54,6 @@ const Map = ({ width, height, zoom }: MapType) => {
 
   useEffect(() => {
     if (!mapRef.current || initialized.current) return
-
     initialized.current = true
 
     const { Tmapv3 } = window
@@ -67,21 +68,18 @@ const Map = ({ width, height, zoom }: MapType) => {
         zoom,
       })
 
-      // 현재 위치 마커
       new Tmapv3.Marker({
         position: currentLatLon,
         map,
         title: '현재 위치',
       })
 
-      // 현재 위치 InfoWindow
       new Tmapv3.InfoWindow({
         position: currentLatLon,
-        content: `<div class="current-location-info">현위치</div`,
+        content: `<div class="current-location-info">현위치</div>`,
         map,
       })
 
-      // 병원 마커 표시
       Papa.parse('/ERPlusPlus.csv', {
         download: true,
         header: true,
@@ -102,88 +100,106 @@ const Map = ({ width, height, zoom }: MapType) => {
             })
 
             hospitalMarker.on('Click', async () => {
-              // 기존 polyline 삭제
               if (polylineRef.current) polylineRef.current.setMap(null)
-
-              // 기존 InfoWindow 닫기
               if (openInfoWindowRef.current)
                 openInfoWindowRef.current.setMap(null)
 
-              // 자동차 경로 API 호출
-              const res = await fetch(
-                `https://apis.openapi.sk.com/tmap/routes?version=1&format=json&appKey=${process.env.NEXT_PUBLIC_TMAP_API_KEY}`,
-                {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    startX: currentLatLon.lng(),
-                    startY: currentLatLon.lat(),
-                    endX: hospitalPos.lng(),
-                    endY: hospitalPos.lat(),
-                    reqCoordType: 'WGS84GEO',
-                    resCoordType: 'WGS84GEO',
-                    searchOption: 0,
-                    trafficInfo: 'Y',
-                  }),
-                },
-              )
-              const data = await res.json()
+              try {
+                const res = await fetch(
+                  `https://apis.openapi.sk.com/tmap/routes?version=1&format=json&appKey=${process.env.NEXT_PUBLIC_TMAP_API_KEY}`,
+                  {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      startX: currentLatLon.lng(),
+                      startY: currentLatLon.lat(),
+                      endX: hospitalPos.lng(),
+                      endY: hospitalPos.lat(),
+                      reqCoordType: 'WGS84GEO',
+                      resCoordType: 'WGS84GEO',
+                      searchOption: 0,
+                      trafficInfo: 'Y',
+                    }),
+                  },
+                )
 
-              // 경로 좌표 추출
-              const path: any[] = []
-              data.features?.forEach((feature: any) => {
-                if (feature.geometry.type === 'LineString') {
-                  feature.geometry.coordinates.forEach((coord: number[]) => {
-                    path.push(new Tmapv3.LatLng(coord[1], coord[0]))
+                if (res.status === 429) {
+                  alertDialog({
+                    text: 'API 호출 제한을 초과했습니다.',
+                    icon: 'error',
+                    mainCallback: () => {
+                      window.location.href = '/'
+                    },
+                    reloadCallback: undefined,
                   })
+                  return
                 }
-              })
 
-              // polyline 그리기
-              const newPolyline = new Tmapv3.Polyline({
-                path,
-                strokeColor: '#FF0000',
-                strokeWeight: 4,
-                map,
-              })
-              polylineRef.current = newPolyline
+                if (!res.ok) {
+                  throw new Error(`API Error: ${res.status}`)
+                }
+                const data = await res.json()
 
-              // 이동 거리 / 예상 시간
-              let totalDistance = 0
-              let totalTime = 0
-              if (data.features[0]?.properties) {
-                totalDistance = data.features[0].properties.totalDistance || 0
-                totalTime = data.features[0].properties.totalTime || 0
+                const path: any[] = []
+                data.features?.forEach((feature: any) => {
+                  if (feature.geometry.type === 'LineString') {
+                    feature.geometry.coordinates.forEach((coord: number[]) => {
+                      path.push(new Tmapv3.LatLng(coord[1], coord[0]))
+                    })
+                  }
+                })
+
+                if (path.length) {
+                  const newPolyline = new Tmapv3.Polyline({
+                    path,
+                    strokeColor: '#FF0000',
+                    strokeWeight: 4,
+                    map,
+                  })
+                  polylineRef.current = newPolyline
+                }
+
+                const totalDistance =
+                  data.features[0]?.properties?.totalDistance ?? 0
+                const totalTime = data.features[0]?.properties?.totalTime ?? 0
+
+                const infoWindow = new Tmapv3.InfoWindow({
+                  position: hospitalPos,
+                  content: `<div id="hospital-info" style="min-width:200px; max-width:300px;">
+                    <b>${h.응급의료기관명}</b><br>
+                    ${h.소재지}<br>
+                    병원 전화 번호 : ${h.연락처}<br>
+                    이동 거리: ${(totalDistance / 1000).toFixed(2)} km<br>
+                    차량 소요 시간: ${Math.round(totalTime / 60)}분
+                    <div style="color: rgba(233, 33, 33, 1); cursor: pointer;" 
+                      onmouseover="this.style.textDecoration='underline'" 
+                      onmouseout="this.style.textDecoration='none'">
+                      (병원 정보 닫기)
+                    </div>
+                  </div>`,
+                  map,
+                })
+
+                openInfoWindowRef.current = infoWindow
+                setTimeout(() => {
+                  const el = document.getElementById('hospital-info')
+                  if (el) {
+                    el.addEventListener('click', () => infoWindow.setMap(null))
+                  }
+                }, 0)
+              } catch (err) {
+                console.error(err)
+                alertDialog({
+                  text: '경로 정보를 가져오는 중 오류가 발생했습니다.',
+                  icon: 'error',
+                  mainCallback: () => {
+                    window.location.href = '/'
+                  },
+                  reloadCallback: () => {
+                    window.location.reload()
+                  },
+                })
               }
-
-              // InfoWindow 표시
-              const infoWindow = new Tmapv3.InfoWindow({
-                position: hospitalPos,
-                content: `<div id="hospital-info" style="min-width:200px; max-width:300px;">
-                  <b>${h.응급의료기관명}</b><br>
-                  ${h.소재지}<br>
-                  병원 전화 번호 : ${h.연락처}<br>
-                  이동 거리: ${(totalDistance / 1000).toFixed(2)} km<br>
-                  차량 소요 시간: ${Math.round(totalTime / 60)}분
-                  <div style="color: rgba(233, 33, 33, 1); cursor: pointer;" onmouseover="this.style.textDecoration='underline'" 
-                  onmouseout="this.style.textDecoration='none'">
-                  (병원 정보 닫기)
-                  </div>
-                </div>`,
-                map,
-              })
-
-              openInfoWindowRef.current = infoWindow
-
-              // InfoWindow 클릭 시 닫기
-              setTimeout(() => {
-                const el = document.getElementById('hospital-info')
-                if (el) {
-                  el.addEventListener('click', () => {
-                    infoWindow.setMap(null)
-                  })
-                }
-              }, 0)
             })
           })
         },
