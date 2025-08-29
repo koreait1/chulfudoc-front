@@ -250,7 +250,7 @@ const JoinForm = ({
               data={Number(form.authNum)}
               apiUrl={ApiUrl.CHECKCODE}
               callback={(res) => {
-                if (form.email !== email1) {
+                if (form.email !== email1 || email1 === '') {
                   setTrigger((v) => !v)
                   alertDialog({
                     title: '인증 실패',

@@ -2,7 +2,7 @@
 
 import NearERMap from '../_components/NearERMap'
 
-export default function ShowTMap() {
+export default function ERMapContainer() {
   return (
     <div>
       <NearERMap />

@@ -33,7 +33,11 @@ declare global {
   }
 }
 
-export default function NearERMap() {
+interface SearchERMapProps {
+  onBlocked?: (blocked: boolean) => void
+}
+
+export default function NearERMap({ onBlocked }: SearchERMapProps) {
   const alertDialog = useAlertDialog()
   const errorRef = useRef(false) // 다중 알람 방지
   const [loading, setLoading] = useState(true) // 초기 로딩 true
@@ -152,6 +156,7 @@ export default function NearERMap() {
                       },
                     })
                   }
+                  onBlocked?.(true)
                   return
                 }
 
