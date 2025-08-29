@@ -11,7 +11,7 @@ import useAlertDialog from '../hooks/useAlertDialog'
 const StyledSection = styled.section``
 
 type AuthType = {
-  data?: UserInputData
+  data?: any
   apiUrl: ApiUrl
   width?: string
   children?: React.ReactNode
