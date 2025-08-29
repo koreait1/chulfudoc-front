@@ -111,8 +111,9 @@ const BoardForm = ({
               <Input
                 type="password"
                 name="guestPw"
-                value={data.guestPw}
+                value={data.guestPw ?? ''}
                 onChange={onChange}
+                suppressHydrationWarning={true}
               />
               <MessageBox color="danger">{errors?.guestPw}</MessageBox>
             </dd>

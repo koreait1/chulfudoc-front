@@ -35,6 +35,8 @@ export async function get(seq?: number): Promise<BoardDataType> {
       data.createdAt = toDate(data.createdAt)
       if (data.modifiedAt) data.modifiedAt = toDate(data.modifiedAt)
       if (data.deletedAt) data.deletedAt = toDate(data.deletedAt)
+      delete data.guestPw
+
       return data
     }
     data.mode = 'update'

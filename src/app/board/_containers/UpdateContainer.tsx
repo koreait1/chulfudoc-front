@@ -95,7 +95,7 @@ const UpdateContainer = ({
   }, [])
 
   return (
-    <CommonContainer board={board} data={data}>
+    <CommonContainer board={board} data={data} mode={data.mode ?? ''}>
       <BoardForm
         board={board}
         data={_data}
