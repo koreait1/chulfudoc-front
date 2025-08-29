@@ -8,6 +8,9 @@ const SearchFormWrapper = styled.div`
   text-align: center;
   justify-content: center;
   margin-bottom: 10px;
+  * {
+    box-sizing: border-box;
+  }
 
   select {
     height: 40px;
@@ -16,15 +19,18 @@ const SearchFormWrapper = styled.div`
     padding: 0 15px;
   }
   input {
+    width: 500px;
     padding: 0 10px 0 20px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    margin-right: 5px;
+    margin: 0 5px;
     height: 40px;
     line-height: 40px;
+    cursor: text;
   }
 
   button {
+    padding: 0;
     width: 100px;
     height: 40px;
     line-height: 40px;

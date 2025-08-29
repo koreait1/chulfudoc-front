@@ -6,6 +6,12 @@ import styled from 'styled-components'
 import color from '@/app/_global/styles/color'
 import fontSize from '@/app/_global/styles/fontsize'
 
+type DetectProps = {
+  webcamAble?: boolean
+  setWebcamAble?: (v: boolean) => void
+}
+
+
 const { primary } = color
 const { big } = fontSize
 
