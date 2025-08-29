@@ -42,7 +42,7 @@ const AuthNumButton = ({
     if ((!data && data == '') || data?.email == '') {
       alertDialog({
         title: '인증 실패',
-        text: '인증 번호를 확인해주세요.',
+        text: '입력하신 정보를 확인해주세요.',
         icon: 'error',
       })
       return
