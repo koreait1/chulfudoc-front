@@ -239,6 +239,27 @@ export default function SearchERMap() {
             }),
           },
         )
+
+        if (res.status === 429) {
+          setLoading(false)
+          if (!errorRef.current) {
+            errorRef.current = true
+            alertDialog({
+              text: 'API 호출 제한을 초과했습니다. 잠시 후 다시 시도해주세요.',
+              icon: 'error',
+              callback: () => {
+                errorRef.current = false
+                window.location.href = '/'
+              },
+            })
+          }
+          return
+        }
+
+        if (!res.ok) {
+          throw new Error(`API Error: ${res.status}`)
+        }
+
         const data = await res.json()
 
         const pathCoords: any[] = []

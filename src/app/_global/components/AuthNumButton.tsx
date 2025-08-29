@@ -10,11 +10,6 @@ import useAlertDialog from '../hooks/useAlertDialog'
 
 const StyledSection = styled.section``
 
-type UserInputData = {
-  email?: string
-  authNum?: number
-}
-
 type AuthType = {
   data?: UserInputData
   apiUrl: ApiUrl
@@ -39,7 +34,7 @@ const AuthNumButton = ({
   const alertDialog = useAlertDialog()
 
   const onEmailSendClick = useCallback(() => {
-    if ((!data && data == '') || data?.email == '') {
+    if (!data && data == '') {
       alertDialog({
         title: '인증 실패',
         text: '입력하신 정보를 확인해주세요.',
@@ -60,16 +55,13 @@ const AuthNumButton = ({
           if (res.status >= 200 && res.status < 300) {
             onStartTimer?.()
           }
-          setLoading(false)
         })
         .catch((e) => {
-          //console.error(e)
           alertDialog({
             title: '발송 실패',
             text: '입력하신 정보를 확인해주세요.',
             icon: 'error',
           })
-          setLoading(false)
         })
         .finally(() => setLoading(false))
     }
