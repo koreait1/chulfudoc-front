@@ -4,7 +4,7 @@ import { MainTitle } from '@/app/_global/components/TitleBox'
 
 export default function LoginPage() {
   return (
-    <ContentBox width={420}>
+    <ContentBox width={520}>
       <MainTitle center="true">로그인</MainTitle>
       <LoginContainer />
     </ContentBox>
