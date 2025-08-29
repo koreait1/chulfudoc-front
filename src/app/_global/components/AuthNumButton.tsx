@@ -16,7 +16,7 @@ type UserInputData = {
 }
 
 type AuthType = {
-  data?: any
+  data?: UserInputData
   apiUrl: ApiUrl
   width?: string
   children?: React.ReactNode
