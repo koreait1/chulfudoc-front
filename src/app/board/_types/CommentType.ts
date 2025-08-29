@@ -5,6 +5,9 @@ export type CommentType = {
   items?: Array<CommentDataType>
   data?: BoardDataType // 원게시글 데이터
   onChange?: (e: any) => void
+  errors?: any
+  action?: any
+  pending?: boolean
 } & BoardType
 
 export type CommentDataType = {
@@ -14,7 +17,6 @@ export type CommentDataType = {
   commenter?: string
   guestPw?: string
   content: string
-  item?: BoardDataType // 원게시글
   member?: any
   guest?: boolean
   editable?: boolean
