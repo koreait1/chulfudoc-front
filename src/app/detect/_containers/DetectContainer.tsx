@@ -41,13 +41,6 @@ const WebcamButton = styled.div`
   }
 `
 
-type DetectionItem = {
-  x1: number
-  y1: number
-  w: number
-  h: number
-}
-
 const DetectContainer = () => {
   const [webcamAble, setWebcamAble] = useState(false)
   const [fallDetect, setFallDetect] = useState(false)
@@ -55,7 +48,7 @@ const DetectContainer = () => {
   const lastDetectTime = useRef(0)
   const router = useRouter()
 
-  const detectCallback = useCallback((item: DetectionItem) => {
+  const detectCallback = useCallback(() => {
     const now = Date.now()
     if (now - lastDetectTime.current < 1000) return
     lastDetectTime.current = now
