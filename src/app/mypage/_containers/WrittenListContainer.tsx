@@ -1,7 +1,7 @@
 import React from 'react'
 import WrittenList from '../_components/WrittenList'
 import WrittenData from '../_components/WrittenData'
-const Written = ({ Pagination }) => {
+const Written = () => {
   return (
     <WrittenList>
       <WrittenData />
