@@ -14,7 +14,6 @@ import KakaoApi from '../social/_services/KakaoApi'
 import NaverApi from '../social/_services/NaverApi'
 import kakaoLoginButton from '../../_global/assets/images/kakao_login.png'
 import naverLoginButton from '../../_global/assets/images/naver_login.png'
-import Link from 'next/link'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`

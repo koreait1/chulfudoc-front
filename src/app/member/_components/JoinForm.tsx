@@ -98,6 +98,7 @@ const JoinForm = ({
   fileUploadCallback,
   fileDeleteCallback,
 }) => {
+  const [email1, setEmail] = useState<string>('')
   const [emailVerified, setEmailVerified] = useState(false)
   const [verified, setverified] = useState(false)
   const [trigger, setTrigger] = useState(false)
@@ -205,6 +206,7 @@ const JoinForm = ({
             width={resend ? '140px' : ''}
             callback={(res) => {
               if (res.status >= 200 && res.status < 300) {
+                setEmail(form.email)
                 setResend(true)
                 setTrigger((v) => !v)
                 alertDialog({
@@ -245,9 +247,18 @@ const JoinForm = ({
         <div className="actions">
           {!verified && (
             <AuthNumButton
-              data={{ email: form.email, authNum: Number(form.authNum) }}
+              data={Number(form.authNum)}
               apiUrl={ApiUrl.CHECKCODE}
               callback={(res) => {
+                if (form.email !== email1) {
+                  setTrigger((v) => !v)
+                  alertDialog({
+                    title: '인증 실패',
+                    text: '이메일이 변경되었습니다. 다시 발송 후 인증해주세요.',
+                    icon: 'error',
+                  });
+                  return;
+                }
                 if (res.status >= 200 && res.status < 300) {
                   setEmailVerified(true)
                   setverified(true)
