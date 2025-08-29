@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     // 429 처리
     if (res.status === 429) {
       return NextResponse.json(
-        { error: 'API 호출 제한 초과: 잠시 후 다시 시도해주세요.' },
+        { error: 'API 호출 제한 초과' },
         { status: 429 },
       )
     }

@@ -2,7 +2,7 @@
 import { memo, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import Papa from 'papaparse'
-import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
+import useAPIAlertDialog from '@/app/tmap/hooks/useAPIAlertDialog'
 
 declare global {
   interface Window {
@@ -45,7 +45,7 @@ const Map = ({ width, height, zoom }: MapType) => {
   const mapRef = useRef<HTMLDivElement | null>(null)
   const openInfoWindowRef = useRef<any>(null) // 현재 InfoWindow
   const polylineRef = useRef<any>(null) // 현재 polyline
-  const alertDialog = useAlertDialog()
+  const alertDialog = useAPIAlertDialog() // 변경됨
 
   height = height ?? 600
   zoom = zoom ?? 11
@@ -54,7 +54,6 @@ const Map = ({ width, height, zoom }: MapType) => {
 
   useEffect(() => {
     if (!mapRef.current || initialized.current) return
-
     initialized.current = true
 
     const { Tmapv3 } = window
@@ -69,21 +68,18 @@ const Map = ({ width, height, zoom }: MapType) => {
         zoom,
       })
 
-      // 현재 위치 마커
       new Tmapv3.Marker({
         position: currentLatLon,
         map,
         title: '현재 위치',
       })
 
-      // 현재 위치 InfoWindow
       new Tmapv3.InfoWindow({
         position: currentLatLon,
-        content: `<div class="current-location-info">현위치</div`,
+        content: `<div class="current-location-info">현위치</div>`,
         map,
       })
 
-      // 병원 마커 표시
       Papa.parse('/ERPlusPlus.csv', {
         download: true,
         header: true,
@@ -128,13 +124,14 @@ const Map = ({ width, height, zoom }: MapType) => {
                 )
 
                 if (res.status === 429) {
-                    alertDialog({
-                      text: 'API 호출 제한을 초과했습니다. 잠시 후 다시 시도해주세요.',
-                      icon: 'error',
-                      callback: () => {
-                        window.location.href = '/'
-                      },
-                    })
+                  alertDialog({
+                    text: 'API 호출 제한을 초과했습니다.',
+                    icon: 'error',
+                    mainCallback: () => {
+                      window.location.href = '/'
+                    },
+                    reloadCallback: undefined,
+                  })
                   return
                 }
 
@@ -162,7 +159,6 @@ const Map = ({ width, height, zoom }: MapType) => {
                   polylineRef.current = newPolyline
                 }
 
-                // InfoWindow 표시 (기존 코드 그대로)
                 const totalDistance =
                   data.features[0]?.properties?.totalDistance ?? 0
                 const totalTime = data.features[0]?.properties?.totalTime ?? 0
@@ -193,7 +189,16 @@ const Map = ({ width, height, zoom }: MapType) => {
                 }, 0)
               } catch (err) {
                 console.error(err)
-                alert('경로 정보를 가져오는 중 오류가 발생했습니다.')
+                alertDialog({
+                  text: '경로 정보를 가져오는 중 오류가 발생했습니다.',
+                  icon: 'error',
+                  mainCallback: () => {
+                    window.location.href = '/'
+                  },
+                  reloadCallback: () => {
+                    window.location.reload()
+                  },
+                })
               }
             })
           })
