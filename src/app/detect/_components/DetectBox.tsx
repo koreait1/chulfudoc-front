@@ -157,7 +157,7 @@ const DetectBox = ({ width, height, callback }) => {
           monitor()
         }, 1000)
       })
-      .catch((err) => {
+      .catch(() => {
         // 웹캠이 설치되어 있지 않거나, 웹캠 권한을 허용하지 않은 경우
         if (!dialogRef.current) {
           dialogRef.current = true

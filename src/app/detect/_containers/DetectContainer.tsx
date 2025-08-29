@@ -6,6 +6,12 @@ import styled from 'styled-components'
 import color from '@/app/_global/styles/color'
 import fontSize from '@/app/_global/styles/fontsize'
 
+type DetectProps = {
+  webcamAble?: boolean
+  setWebcamAble?: (v: boolean) => void
+}
+
+
 const { primary } = color
 const { big } = fontSize
 
@@ -41,13 +47,6 @@ const WebcamButton = styled.div`
   }
 `
 
-type DetectionItem = {
-  x1: number
-  y1: number
-  w: number
-  h: number
-}
-
 const DetectContainer = () => {
   const [webcamAble, setWebcamAble] = useState(false)
   const [fallDetect, setFallDetect] = useState(false)
@@ -55,7 +54,7 @@ const DetectContainer = () => {
   const lastDetectTime = useRef(0)
   const router = useRouter()
 
-  const detectCallback = useCallback((item: DetectionItem) => {
+  const detectCallback = useCallback(() => {
     const now = Date.now()
     if (now - lastDetectTime.current < 1000) return
     lastDetectTime.current = now

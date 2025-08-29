@@ -9,6 +9,7 @@ import { ApiUrl } from '../constants/ApiUrl'
 import useAlertDialog from '../hooks/useAlertDialog'
 
 const StyledSection = styled.section``
+
 type AuthType = {
   data?: any
   apiUrl: ApiUrl
@@ -19,19 +20,26 @@ type AuthType = {
   onRequestStart?: () => void
 }
 
-const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, onRequestStart}: AuthType) => {
-    const fetchCSR = useFetchCSR()
-    const [loading, setLoading] = useState(false);
-    const alertDialog = useAlertDialog();
+const AuthNumButton = ({
+  data,
+  apiUrl,
+  width,
+  callback,
+  children,
+  onStartTimer,
+  onRequestStart,
+}: AuthType) => {
+  const fetchCSR = useFetchCSR()
+  const [loading, setLoading] = useState(false)
+  const alertDialog = useAlertDialog()
 
   const onEmailSendClick = useCallback(() => {
-
     if (!data && data == '') {
       alertDialog({
-              title: '발송 실패',
-              text: '인증 번호를 확인해주세요.',
-              icon: 'error',
-            })
+        title: '인증 실패',
+        text: '입력하신 정보를 확인해주세요.',
+        icon: 'error',
+      })
       return
     }
 
@@ -47,11 +55,13 @@ const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, o
           if (res.status >= 200 && res.status < 300) {
             onStartTimer?.()
           }
-          setLoading(false)
         })
         .catch((e) => {
-          console.error(e)
-          setLoading(false)
+          alertDialog({
+            title: '발송 실패',
+            text: '입력하신 정보를 확인해주세요.',
+            icon: 'error',
+          })
         })
         .finally(() => setLoading(false))
     }
@@ -59,14 +69,17 @@ const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, o
     emailAuthNumHandler()
   }, [fetchCSR, data, callback, onStartTimer, onRequestStart])
 
-    return(
-        <>
-            {loading ? <Loading text="이메일 발송 중" /> :
-            <Button type="button" onClick={onEmailSendClick} width={width}>
-                {children}
-            </Button>}
-        </>
-    )
+  return (
+    <>
+      {loading ? (
+        <Loading text="이메일 발송 중" />
+      ) : (
+        <Button type="button" onClick={onEmailSendClick} width={width}>
+          {children}
+        </Button>
+      )}
+    </>
+  )
 }
 
 export default React.memo(AuthNumButton)

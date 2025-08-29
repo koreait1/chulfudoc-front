@@ -6,6 +6,15 @@ import FindIdForm from '../_components/FindIdForm';
 import FindPwForm from '../_components/FindPwForm';
 import { ApiUrl } from '@/app/_global/constants/ApiUrl';
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog';
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+  margin: 40px auto 80px;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+`
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:4000/api/v1';
 type Mode = 'id' | 'pw';
@@ -108,13 +117,15 @@ export default function FindContainer({ mode: modeProp }: { mode?: Mode }) {
   }, [mode, idForm, pwForm, onChangeId, onChangePw, alert, router]);
 
   return (
-    <Form
-      errors={errors}
-      pending={pending}
-      form={form as any}
-      onChange={onChange}
-      onCallback={onCallback}
-      setPending={setPending}
-    />
-  );
+    <StyledDiv>
+      <Form
+        errors={errors}
+        pending={pending}
+        form={form as any}
+        onChange={onChange}
+        onCallback={onCallback}
+        setPending={setPending}
+      />
+    </StyledDiv>
+  )
 }
