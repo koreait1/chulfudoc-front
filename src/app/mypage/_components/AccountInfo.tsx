@@ -39,7 +39,7 @@ const WrittenList = ({ children }) => {
   const { loggedMember } = useUser()
   return (
     <MyBoard>
-      <li key={'title'}>{loggedMember.name}님이 작성하신 글</li>
+      <li>{loggedMember.name}님이 작성하신 글</li>
       {children}
     </MyBoard>
   )
