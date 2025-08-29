@@ -14,6 +14,8 @@ interface PaginationType {
 const WrittenData = () => {
   const [items, setItems] = useState<any[]>([])
   const { loggedMember, isLogin } = useUser()
+  const [pagination, setPagination] = useState<PaginationType | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
   const fetchCSR = useFetchCSR()
   const userId = loggedMember.userId
   useEffect(() => {
@@ -23,10 +25,8 @@ const WrittenData = () => {
       .then((data) => setItems(data.items || []))
   }, [fetchCSR, isLogin, userId])
   if (!isLogin) return <></>
-  const [pagination, setPagination] = useState<PaginationType | null>(null)
-  const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 20
-  const setupPagination = (data: typeof items[], page: number) => {
+  const setupPagination = (data: (typeof items)[], page: number) => {
     const totalPage = Math.ceil(data.length / itemsPerPage)
     const pageGroupSize = 10 // 한 번에 보여줄 페이지 버튼 개수
     const currentGroup = Math.floor((page - 1) / pageGroupSize)
@@ -45,32 +45,36 @@ const WrittenData = () => {
       nextRangePage: endPage < totalPage ? endPage + 1 : 0, // 다음 10페이지 그룹
       lastPage: totalPage,
       baseUrl: '?page=',
-    })}
+    })
+  }
   const handlePageClick = (page: number) => {
     setCurrentPage(page)
-    if (items.length > 0) {
-      setupPagination(items, page)
-    }
+    if (items.length > 0) setupPagination(items, page)
   }
+
+  // 현재 페이지 데이터 (10개씩)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const currentItems = items.slice(startIndex, startIndex + itemsPerPage)
   return (
-      {items.length ? (
-        items.map(({ seq, subject, createdAt }) => (
     <>
-          <li key={'board-' + seq}>
-            <a href="/view/{seq}">{subject}</a>
-            <span>{createdAt}</span>
-          </li>
-          <li>
-      <Pagination pagination={pagination} onClick={handlePageClick} /></li>
-    </>
+      {items.length > 0 ? (
+        currentItems.map(({ seq, subject, createdAt }) => (
+          <>
+            <li key={'board-' + seq}>
+              <a href="/view/{seq}">{subject}</a>
+              <span>{createdAt}</span>
+            </li>
+            <li>
+              <Pagination pagination={pagination} onClick={handlePageClick} />
+            </li>
+          </>
         ))
       ) : (
-    <>
         <li key="" className="noCon">
           작성하신 글이 없습니다.
         </li>
-    </>
       )}
+    </>
   )
 }
 
