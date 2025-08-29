@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { revalidateTag } from 'next/cache'
 import { fetchSSR } from '@/app/_global/libs/utils'
 import { toPlainObj } from '@/app/_global/libs/commons'
+import type CommonSearchType from '@/app/_global/types/CommonSearchType'
 
 /**
  * 회원가입 처리
@@ -191,4 +192,26 @@ export async function getLoggedMember() {
   } catch (err) {
     console.log('getLoggedMember() error:', err)
   }
+}
+
+
+export async function getMemberList(params: CommonSearchType) {
+  const sp = new URLSearchParams()
+  if (params.sopt)  sp.set('sopt', String(params.sopt))
+  if (params.skey)  sp.set('skey', String(params.skey))
+  if (params.page)  sp.set('page', String(params.page))
+  if (params.limit) sp.set('limit', String(params.limit))
+
+  const auths = (params as any).authorities
+  if (Array.isArray(auths)) auths.forEach(a => sp.append('authorities', String(a)))
+  else if (auths) sp.append('authorities', String(auths))
+
+  const url = `/member/list?${sp.toString()}`
+  const res = await fetchSSR(url, { method: 'GET' })
+
+  if (res.status === 204) return { items: [], pagination: null }
+  if (!res.ok) throw new Error(`회원 목록 조회 실패 (status: ${res.status})`)
+
+  const data = await res.json()
+  return { items: data?.items ?? [], pagination: data?.pagination ?? null }
 }

@@ -1,3 +1,10 @@
-export default function Forbidden() {
-  return <h1>접근 권한이 없습니다.</h1>
+import FBIContainer from './_error/containers/FBIContainer'
+
+export default function forbiddenPage() {
+  return (
+    <>
+      <h1>forbiddenPage</h1>
+      <FBIContainer />
+    </>
+  )
 }

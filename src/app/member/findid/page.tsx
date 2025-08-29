@@ -6,7 +6,7 @@ export default function FindIdPage() {
   return (
     <ContentBox width={420}>
       <MainTitle center="true">아이디 찾기</MainTitle>
-      <FindContainer mode='id'/>
+      <FindContainer mode="id" />
     </ContentBox>
   )
 }

@@ -5,9 +5,10 @@ import type { BoardListType } from '../_types/BoardType'
 const DefaultSkin = loadable(() => import('./skins/default/BoardList'))
 const GallerySkin = loadable(() => import('./skins/gallery/BoardList'))
 
-const BoardList = ({ board }: BoardListType) => {
+const BoardList = (props: BoardListType) => {
+  const { board } = props
   const Skin = useMemo(() => {
-    const { skin } = board
+    const skin = board?.skin
     switch (skin) {
       case 'gallery':
         return GallerySkin
@@ -15,7 +16,7 @@ const BoardList = ({ board }: BoardListType) => {
         return DefaultSkin
     }
   }, [board])
-  return <Skin board={board} />
+  return board && <Skin {...props} />
 }
 
 export default React.memo(BoardList)

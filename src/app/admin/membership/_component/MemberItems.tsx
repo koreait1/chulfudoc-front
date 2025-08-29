@@ -1,61 +1,52 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import type { BoardConfigType } from '@/app/board/_types/BoardType'
 import { TableRows } from '@/app/_global/components/Forms'
-import { Button } from '@/app/_global/components/Buttons'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 
+export type MemberType = {
+  puuid: string
+  userId?: string
+  email?: string
+  name?: string
+  mobile?: string
+  socialChannel?: string | string[]
+  socialProviders?: string[]
+  chk?: boolean
+}
+
 const StyledForm = styled.form`
-  th:nth-of-type(1) {
-    width: 45px;
-  }
-  th:nth-of-type(2) {
-    width: 150px;
-  }
-  th:nth-of-type(3) {
-    width: 250px;
-  }
-
-  td {
-    text-align: center;
-  }
-
-  td:last-of-type {
-    text-align: left;
-
-    a + a {
-      margin-left: 5px;
-    }
-  }
-
-  .table-action {
-    border-bottom: 1px solid #ccc;
-    padding: 10px;
-  }
+  th:nth-of-type(1) { width: 45px; }
+  th:nth-of-type(2) { width: 240px; } 
+  th:nth-of-type(3) { width: 160px; } 
+  th:nth-of-type(4) { width: 160px; } 
+  th:nth-of-type(5) { width: 240px; } 
+  th:nth-of-type(6) { width: 160px; } 
+  th:nth-of-type(7) { width: 160px; } 
+  td { text-align: center; }
 `
 
-const BoardItems = ({
+const getSocial = (row: MemberType) => {
+  const s = row.socialChannel ?? row.socialProviders
+  if (!s) return '-'
+  return Array.isArray(s) ? (s.length ? s.join(', ') : '-') : String(s)
+}
+
+function MemberItems({
   items,
   onToggle,
   isCheckAll,
-  onRemove,
 }: {
-  items?: Array<BoardConfigType>
-  onToggle: (bid?: string, mode?: 'check' | 'uncheck') => void
-  onRemove: () => void
+  items?: Array<MemberType>
+  onToggle: (memberId?: string, mode?: 'check' | 'uncheck') => void
   isCheckAll: boolean
-}) => {
+}) {
   return (
     <StyledForm autoComplete="off">
       <TableRows>
         <thead>
           <tr>
-            <th
-              onClick={() =>
-                onToggle(undefined, isCheckAll ? 'uncheck' : 'check')
-              }
-            >
+            <th onClick={() => onToggle(undefined, isCheckAll ? 'uncheck' : 'check')}>
               {isCheckAll ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
             </th>
             <th>PUUID</th>
@@ -68,43 +59,28 @@ const BoardItems = ({
         </thead>
         <tbody>
           {items && items.length > 0 ? (
-            items.map(({ chk, bid, name }) => (
-              <tr key={'board-' + bid}>
-                <td onClick={() => onToggle(bid)}>
-                  {chk ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+            items.map((row) => (
+              <tr key={'member-' + row.puuid}>
+                <td onClick={() => onToggle(row.puuid)}>
+                  {row.chk ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
                 </td>
-                <td>{bid}</td>
-                <td>{name}</td>
-                <td>
-                  <a href={'/admin/board/update/' + bid}>
-                    <Button type="button">설정수정</Button>
-                  </a>
-                  <a href={'/board/list/' + bid} target="_blank">
-                    <Button type="button" color="info">
-                      미리보기
-                    </Button>
-                  </a>
-                </td>
+                <td>{row.puuid}</td>
+                <td>{row.name || '-'}</td>
+                <td>{row.userId || '-'}</td>
+                <td>{row.email || '-'}</td>
+                <td>{row.mobile || '-'}</td>
+                <td>{getSocial(row)}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={4} className="no-data">
-                조회된 게시판이 없습니다.
-              </td>
+              <td colSpan={7} className="no-data">조회된 회원이 없습니다.</td>
             </tr>
           )}
         </tbody>
       </TableRows>
-      {items && items.length > 0 && (
-        <div className="table-action">
-          <Button type="button" color="warning" width={200} onClick={onRemove}>
-            선택한 게시판 삭제하기
-          </Button>
-        </div>
-      )}
     </StyledForm>
   )
 }
 
-export default React.memo(BoardItems)
+export default React.memo(MemberItems)

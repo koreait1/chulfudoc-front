@@ -15,6 +15,7 @@ import NaverApi from '../social/_services/NaverApi'
 import kakaoLoginButton from '../../_global/assets/images/kakao_login.png'
 import naverLoginButton from '../../_global/assets/images/naver_login.png'
 import Link from 'next/link'
+import styled from 'styled-components'
 
 type FormType = {
   userId: string
@@ -65,20 +66,14 @@ const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
         form={form}
         onChange={onChange}
       />
-      <a href={kakaoLoginUrl}>
-        <Image src={kakaoLoginButton} alt="카카오 로그인" width={400} />
-      </a>
-      <a href={naverLoginUrl}>
-        <Image src={naverLoginButton} alt="네이버 로그인" width={400} />
-      </a>
-
-      <Link href="/member/findid" className="findid">
-        아이디 찾기 
-      </Link>
-    
-      <Link href="/member/findpw" className="findpw">
-        비밀번호 찾기
-      </Link>
+      <div className='socialbtn'>
+        <a href={kakaoLoginUrl} style={{ display: 'block', marginBottom: "10px"}}>
+          <Image src={kakaoLoginButton} alt="카카오 로그인" width={400} />
+        </a>
+        <a href={naverLoginUrl}>
+          <Image src={naverLoginButton} alt="네이버 로그인" width={400} />
+        </a>
+      </div>
     </>
   )
 }
