@@ -50,7 +50,7 @@ const StyledHeader = styled.header`
         width: auto;
       }
       .linker {
-        font-family: "Noto Sans KR", sans-serif;
+        font-family: 'Noto Sans KR', sans-serif;
         font-optical-sizing: auto;
         font-weight: 700;
         font-style: normal;
@@ -59,8 +59,8 @@ const StyledHeader = styled.header`
         padding: 5px;
         transition: transform 0.7s ease;
       }
-      
-      .linker:hover{
+
+      .linker:hover {
         transform: scale(1.2);
       }
     }
@@ -119,7 +119,7 @@ const Header = () => {
           <Link href="/">
             <Image src={logoWord} alt="로고" className="header-logo" />
           </Link>
-          <Link href="/">
+          <Link href="/mypage">
             <div className="linker">Mypage</div>
           </Link>
           <Link href="/">
