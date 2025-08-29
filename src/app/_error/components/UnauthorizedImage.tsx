@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import notfoundimage from '@/app/_global/assets/images/notfoundimage.png'
+import unauthorizedimage from '@/app/_global/assets/images/unauthorizedimage.png'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -14,7 +14,7 @@ export default function UnauthorizedImage() {
   return (
     <Wrapper>
       <Image
-        src={notfoundimage}
+        src={unauthorizedimage}
         alt="Unauthorized"
         fill
         style={{ objectFit: 'cover' }}
