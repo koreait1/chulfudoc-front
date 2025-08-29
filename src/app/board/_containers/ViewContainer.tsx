@@ -28,7 +28,7 @@ const ViewContainer = ({
   }, [data, board, setMainTitle])
 
   return (
-    <CommonContainer board={board} data={data}>
+    <CommonContainer board={board} data={data} mode="view">
       <BoardView board={board} data={data} />
     </CommonContainer>
   )

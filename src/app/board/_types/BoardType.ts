@@ -26,6 +26,7 @@ export type BoardConfigType = {
   commentAuthority: AuthorityType
   writable?: boolean
   listable?: boolean
+  viewable?: boolean
   commentable?: boolean
 }
 

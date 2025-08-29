@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { Button } from './_global/components/Buttons'
 import { AlertTriangle } from 'lucide-react'
 import { MdRefresh, MdHome } from 'react-icons/md'
@@ -48,13 +47,10 @@ const ActionWrapper = styled.div`
 
 export default function Error({
   error,
-  reset,
 }: {
   error: Error
   reset: () => void
 }) {
-  const router = useRouter()
-
   useEffect(() => {
     console.error(error)
   }, [error])

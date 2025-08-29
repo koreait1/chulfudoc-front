@@ -7,7 +7,7 @@ import Pagination from '@/app/_global/components/Pagination'
 
 const ListContainer = ({ board, items, pagination, search }: BoardListType) => {
   return (
-    <CommonContainer board={board}>
+    <CommonContainer board={board} mode="list">
       <BoardList board={board} items={items} search={search} />
       <Pagination pagination={pagination} />
     </CommonContainer>
