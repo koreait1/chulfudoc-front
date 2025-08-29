@@ -4,6 +4,16 @@ import { v4 as uuid } from 'uuid'
 import { processJoin } from '../_services/actions'
 import JoinForm from '../_components/JoinForm'
 import { useSearchParams } from 'next/navigation'
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+  margin: 40px auto 80px;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+`
+
 
 type FormType = {
   gid: string
@@ -63,16 +73,18 @@ const JoinContainer = () => {
   }, [])
 
   return (
-    <JoinForm
-      errors={errors}
-      action={action}
-      pending={pending}
-      onChange={onChange}
-      onToggle={onToggle}
-      fileUploadCallback={fileUploadCallback}
-      fileDeleteCallback={fileDeleteCallback}
-      form={form}
-    />
+    <StyledDiv>
+      <JoinForm
+        errors={errors}
+        action={action}
+        pending={pending}
+        onChange={onChange}
+        onToggle={onToggle}
+        fileUploadCallback={fileUploadCallback}
+        fileDeleteCallback={fileDeleteCallback}
+        form={form}
+      />
+    </StyledDiv>
   )
 }
 

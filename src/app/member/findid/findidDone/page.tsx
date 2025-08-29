@@ -4,7 +4,7 @@ import FindIdDoneContainer from '../../_containers/FindIdDoneContainer'
 
 export default function FindIdDonePage() {
   return (
-    <ContentBox width={420}>
+    <ContentBox width={520}>
       <MainTitle center="true">아이디 찾기</MainTitle>
       <FindIdDoneContainer />
     </ContentBox>

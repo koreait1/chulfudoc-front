@@ -17,6 +17,14 @@ import naverLoginButton from '../../_global/assets/images/naver_login.png'
 import Link from 'next/link'
 import styled from 'styled-components'
 
+const StyledDiv = styled.div`
+  margin: 40px auto 80px;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+`
+
 type FormType = {
   userId: string
   password: string
@@ -59,21 +67,26 @@ const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
 
   return (
     <>
-      <LoginForm
-        errors={errors}
-        action={action}
-        pending={pending}
-        form={form}
-        onChange={onChange}
-      />
-      <div className='socialbtn'>
-        <a href={kakaoLoginUrl} style={{ display: 'block', marginBottom: "10px"}}>
-          <Image src={kakaoLoginButton} alt="카카오 로그인" width={400} />
-        </a>
-        <a href={naverLoginUrl}>
-          <Image src={naverLoginButton} alt="네이버 로그인" width={400} />
-        </a>
-      </div>
+      <StyledDiv>
+        <LoginForm
+          errors={errors}
+          action={action}
+          pending={pending}
+          form={form}
+          onChange={onChange}
+        />
+        <div className="socialbtn">
+          <a
+            href={kakaoLoginUrl}
+            style={{ display: 'block', marginBottom: '10px' }}
+          >
+            <Image src={kakaoLoginButton} alt="카카오 로그인" width={400} />
+          </a>
+          <a href={naverLoginUrl}>
+            <Image src={naverLoginButton} alt="네이버 로그인" width={400} />
+          </a>
+        </div>
+      </StyledDiv>
     </>
   )
 }

@@ -12,12 +12,6 @@ import AuthCount from '@/app/_global/components/AuthCount'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledForm = styled.form`
-  margin: 40px auto 80px;
-  padding: 50px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
   .row {
     display: flex;
     align-items: flex-start;
