@@ -13,6 +13,8 @@ export const PageMain = styled.div`
   justify-content: center;
   alignItems: center;
 
+  height: 100vh;
+
   line-height: 0.95;
   margin: 25px;
 
@@ -20,6 +22,7 @@ export const PageMain = styled.div`
   text-align: center;
   
   font-size: 13rem;
+
   .line_start, .line_end, .highlight{
     font-family: "Anton", sans-serif !important;
     font-weight: 1000;

@@ -9,11 +9,11 @@ export default function MainPage() {
       <MainContainer>
         <DetectContainer />
         <h1>테스트</h1>
+        <div className="main-bottom">
+          <HosptialPopup />
+          <MainLinkContainer />
+        </div>
       </MainContainer>
-      <div className="main-bottom">
-        <HosptialPopup />
-        <MainLinkContainer />
-      </div>
     </>
   )
 }
