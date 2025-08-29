@@ -1,18 +1,73 @@
 'use client'
+
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from './_global/components/Buttons'
-export default function Error({ error, reset }) {
+import { AlertTriangle } from 'lucide-react'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  padding: 2rem;
+`
+
+const IconWrapper = styled.div`
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+`
+
+const Title = styled.h1`
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+`
+
+const Message = styled.p`
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+`
+
+const ActionWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error
+  reset: () => void
+}) {
+  const router = useRouter()
+
   useEffect(() => {
-    // 에러 객체에 대한 로깅
     console.error(error)
   }, [error])
 
   return (
-    <>
-      <h2>{error.message}</h2>
-      <Button type="button" onClick={() => reset()}>
-        다시 로딩
-      </Button>
-    </>
+    <Wrapper>
+      <IconWrapper>
+        <AlertTriangle size={48} />
+      </IconWrapper>
+      <Title>문제가 발생했습니다</Title>
+      <Message>{error?.message || '알 수 없는 오류가 발생했어요.'}</Message>
+      <ActionWrapper>
+        <Button type="button" onClick={() => window.location.reload()}>
+          다시 시도하기
+        </Button>
+        <Button type="button" onClick={() => (window.location.href = '/')}>
+          메인 이동하기
+        </Button>
+      </ActionWrapper>
+    </Wrapper>
   )
 }
