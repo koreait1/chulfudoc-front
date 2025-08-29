@@ -20,15 +20,26 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
             {/*{React.cloneElement(childArray[0] as React.ReactElement, { value: detectState, setValue: setDetectState })}*/}
         </div>,
         <div key={1} style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        fontSize: '3rem',
-        backgroundColor: '#4079ff',
-        color: '#fff'
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            fontSize: '3rem',
+            backgroundColor: '#4079ff',
+            color: '#fff'
         }}>
             {childArray[1]}
+        </div>,
+        <div key={2} style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            fontSize: '3rem',
+            backgroundColor: '#fff',
+            color: '#fff'
+        }}>
+            {childArray[2]}
         </div>
     ]
 
