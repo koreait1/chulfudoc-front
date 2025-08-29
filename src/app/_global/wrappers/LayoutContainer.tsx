@@ -43,7 +43,6 @@ export default function LayoutContainer({ children }) {
         <Aside className="rightAd" />
         <section>{children}</section>
         <FloatingIconContainer />
-        <Footer />
       </main>
       <Footer />
     </>
