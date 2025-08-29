@@ -27,6 +27,7 @@ const WebcamButton = styled.div`
   font-family: "Anton", sans-serif;
   font-weight: 400;
   font-style: normal;
+  z-index: 20;
 
   width: 150px;
   height: 45px;

@@ -7,6 +7,27 @@ import DetectContainer from "@/app/detect/_containers/DetectContainer"
 import HosptialPopup from "@/app/_global/container/HospitalPopup"
 import MainLinkContainer from "./MainLinkContainer"
 import FloatingIconContainer from "@/app/_global/container/FloatingIconContainer"
+import Orb from "../_component/Orb"
+import background2 from '../../_global/assets/images/background2.png'
+import Headers from "../../_global/outlines/Header"
+import styled from "styled-components"
+
+const StyledBackground = styled.div`
+    position: absolute;
+    inset: 0;
+    background-image: url(${background2.src});
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    z-index: 0;
+`
+
+const SectionOne = styled.div`
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    padding-top: 15px;
+`
 
 const MainContainer = () => {
     const [current, setCurrent] = useState(0)
@@ -14,22 +35,25 @@ const MainContainer = () => {
     const goTop = () => setCurrent(0);
 
     const sections = [
-        <div key={0}>
+        <SectionOne key={0}>
+            <StyledBackground />
+            <Headers />
             <PageMain>
                 <span className="line_start">SAFETY</span>
                 <GradientText className="highlight">WHERE</GradientText>
                 <span className="line_end">YOU aRE</span>
+                <Orb hoverIntensity={0.8} rotateOnHover={true} hue={318} forceHoverState={false} />
                 <DetectContainer />
             </PageMain>
-        </div>,
+        </SectionOne>,
         <div key={1} style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
             fontSize: '3rem',
-            backgroundColor: '#4079ff',
-            color: '#fff'
+            background: 'transparent',
+            color: '#000'
         }}>
             <h1>테스트</h1>
         </div>,
@@ -39,8 +63,8 @@ const MainContainer = () => {
             alignItems: 'center',
             height: '100vh',
             fontSize: '3rem',
-            backgroundColor: '#fff',
-            color: '#fff'
+            background: 'transparent',
+            color: '#000'
         }}>
             <div className="main-bottom">
                 <HosptialPopup />
@@ -71,7 +95,7 @@ const MainContainer = () => {
         <>
             <PageWrapper /> 
             <div style={{ 
-                width: '100vw',
+                width: '100%',
                 height: '100vh',
                 overflow: 'hidden',
                 margin: 0,  
@@ -88,7 +112,7 @@ const MainContainer = () => {
                 </div>
             ))}
             </div>
-            <FloatingIconContainer goTop={goTop}/>
+            <FloatingIconContainer section={current} goTop={goTop}/>
         </>
     )
 }

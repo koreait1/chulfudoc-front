@@ -1,21 +1,23 @@
-import React, {useCallback, useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import FloatingIcon from "../components/FloatingIcon";
 import { GoMoveToTop } from "react-icons/go";
 import { CgProfile } from "react-icons/cg";
 import { LuClipboardPenLine } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 
+type FloatingType = {
+    section: number
+    goTop: () => void
+}
+
 const enum PageLink{
     MYPAGE = '/mypage',
     BOARD = '/board'
 }
 
-const FloatingIconContainer = ({goTop}) => {
+const FloatingIconContainer = ({section, goTop}: FloatingType) => {
     const router = useRouter();
-    const scrollThreshold = 80
     const [visible, setIsVisible] = useState('false')
-
-    
 
     const goToPage = (page: PageLink) => {
         router.push(page)
@@ -23,13 +25,12 @@ const FloatingIconContainer = ({goTop}) => {
     
     useEffect(() => {
         const handleScroll = () => {
-            const data = window.scrollY > scrollThreshold
+            const data = section > 0
             setIsVisible(String(data))
         }
 
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [scrollThreshold])
+        handleScroll()
+    }, [section])
 
     return (
         <>
