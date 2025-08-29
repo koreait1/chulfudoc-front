@@ -310,13 +310,14 @@ const JoinForm = ({
         <SubmitButton
           type="submit"
           disabled={pending}
-          onClick={() =>
+          onClick={(e) =>
+            {e.preventDefault();
             alertDialog({
               title: '인증 실패',
               text: '필수 항목을 확인해주세요',
               icon: 'error',
             })
-          }
+          }}
         >
           가입하기
         </SubmitButton>
