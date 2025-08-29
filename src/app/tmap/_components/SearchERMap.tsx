@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import lineColors from '@/app/_global/styles/linecolor'
 import ERSearchForm from './ERSearchForm'
 import useAPIAlertDialog from '../hooks/useAPIAlertDialog'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import Loading from '@/app/loading'
 
 interface Hospital {
@@ -42,6 +43,7 @@ export default function SearchERMap() {
   const infosRef = useRef<any[]>([]) // InfoWindow 저장
   const errorRef = useRef(false) // 다중 알람 방지
   const alertDialog = useAPIAlertDialog()
+  const searchAlertDialog = useAlertDialog()
   const [loading, setLoading] = useState(false)
 
   // CSV 불러오기
@@ -123,6 +125,19 @@ export default function SearchERMap() {
       if (option === 'ADDR') return addrMatch
       return false
     })
+
+    if (filtered.length === 0) {
+      setLoading(false)
+      searchAlertDialog({
+        text: `"${search}"에 대한 검색 결과가 없습니다.`,
+        icon: 'info',
+        callback: () => {
+          errorRef.current = false
+          window.location.reload()
+        },
+      })
+      return
+    }
 
     for (let i = 0; i < filtered.length; i++) {
       const h = filtered[i]

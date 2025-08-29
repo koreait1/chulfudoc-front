@@ -18,14 +18,15 @@ export default function useAPIAlertDialog() {
     icon,
     mainCallback,
     reloadCallback,
-    mainText = '메인페이지 이동',
+    mainText = '메인으로 이동',
     reloadText = '새로고침',
   }: APIAlertDialogType) => {
     Swal.fire({
       title,
       text,
       icon,
-      showCancelButton: !!reloadCallback, // reloadCallback이 있으면 취소 버튼 표시
+      showCancelButton: !!reloadCallback, // reloadCallback이 있으면 새로고침 버튼 표시
+      showConfirmButton: !!mainCallback, // mainCallback이 있으면 메인으로 이동 버튼 표시
       confirmButtonText: mainCallback ? mainText : undefined, // mainCallback이 없으면 버튼 안 뜸
       cancelButtonText: reloadCallback ? reloadText : undefined,
     }).then((result) => {
