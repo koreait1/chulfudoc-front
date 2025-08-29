@@ -34,7 +34,7 @@ const UpdateContainer = ({
 
       setData({ ...data })
     }
-  }, [data, isLogin, loggedMember.name])
+  }, [data, isLogin, loggedMember?.name])
 
   const onChange = useCallback((e) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -95,7 +95,7 @@ const UpdateContainer = ({
   }, [])
 
   return (
-    <CommonContainer board={board} data={data}>
+    <CommonContainer board={board} data={data} mode={data.mode ?? ''}>
       <BoardForm
         board={board}
         data={_data}

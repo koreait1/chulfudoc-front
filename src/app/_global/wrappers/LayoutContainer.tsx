@@ -9,6 +9,7 @@ import Footer from '../outlines/Footer' // 서버 컴포넌트로
 import Aside from '../outlines/Aside' // 서버 컴포넌트로
 import AdminHeader from '../outlines/admin/Header'
 import AdminSide from '../outlines/admin/Side'
+import AdminSubMenu from '../outlines/admin/SubMenus'
 
 const AdminMain = styled.main`
   display: flex;
@@ -31,7 +32,10 @@ export default function LayoutContainer({ children }) {
       <AdminHeader />
       <AdminMain>
         <AdminSide />
-        <section className="admin-content">{children}</section>
+        <section className="admin-content">
+          <AdminSubMenu />
+          {children}
+        </section>
       </AdminMain>
     </>
   ) : (
