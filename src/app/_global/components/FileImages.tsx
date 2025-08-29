@@ -85,10 +85,7 @@ const ImageItem = ({
   return (
     image && (
       <li>
-        {!viewOnly && (
-          <FaRegWindowClose className="remvoe" onClick={() => onRemove(seq)} />
-        )}
-        {callback && (
+        {!viewOnly && callback && (
           <FaRegWindowClose
             className="icon-remove"
             onClick={() => onRemove(seq)}
