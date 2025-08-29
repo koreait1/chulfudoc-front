@@ -56,7 +56,6 @@ const Wrapper = styled.div`
   }
 `
 
-
 type PropType = {
   pagination?: any
   onClick?: (page: number) => void
@@ -92,7 +91,6 @@ const PageItem = ({
 
 const Pagination = ({ pagination, onClick }: PropType) => {
   if (!pagination || pagination.pages.length === 0) return <></>
-  console.log('pagination', pagination)
   const { pages, page, prevRangePage, nextRangePage, lastPage, baseUrl } =
     pagination
 
