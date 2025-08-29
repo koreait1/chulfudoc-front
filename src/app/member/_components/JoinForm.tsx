@@ -12,12 +12,6 @@ import AuthCount from '@/app/_global/components/AuthCount'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledForm = styled.form`
-  margin: 40px auto 80px;
-  padding: 50px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-
   .row {
     display: flex;
     align-items: flex-start;
@@ -104,7 +98,7 @@ const JoinForm = ({
   fileUploadCallback,
   fileDeleteCallback,
 }) => {
-  const [emailDisabled, setEmailDisabled] = useState(false)
+  const [emailVerified, setEmailVerified] = useState(false)
   const [verified, setverified] = useState(false)
   const [trigger, setTrigger] = useState(false)
   const [resend, setResend] = useState(false)
@@ -198,7 +192,7 @@ const JoinForm = ({
             placeholder="이메일을 입력하세요"
             value={form.email}
             onChange={onChange}
-            readOnly={emailDisabled}
+            readOnly={emailVerified}
           />
           <div className="msg">
             <MessageBox color="danger">{errors?.email}</MessageBox>
@@ -241,6 +235,7 @@ const JoinForm = ({
             placeholder="인증 번호를 입력하세요"
             value={form.authNum}
             onChange={onChange}
+            readOnly={verified}
           />
           <div className="msg">
             <MessageBox color="danger">{errors?.authNum}</MessageBox>
@@ -250,11 +245,11 @@ const JoinForm = ({
         <div className="actions">
           {!verified && (
             <AuthNumButton
-              data={Number(form.authNum)}
+              data={{ email: form.email, authNum: Number(form.authNum) }}
               apiUrl={ApiUrl.CHECKCODE}
               callback={(res) => {
                 if (res.status >= 200 && res.status < 300) {
-                  setEmailDisabled(true)
+                  setEmailVerified(true)
                   setverified(true)
                   alertDialog({
                     title: '인증 성공',
@@ -274,7 +269,7 @@ const JoinForm = ({
             </AuthNumButton>
           )}
 
-          {!verified && resend &&  (
+          {!verified && resend && (
             <div className="timer">
               <AuthCount startSignal={trigger} duration={180} />
             </div>
@@ -310,8 +305,8 @@ const JoinForm = ({
         <SubmitButton
           type="submit"
           disabled={pending}
-          onClick={(e) =>
-            {e.preventDefault();
+          onClick={(e) => {
+            e.preventDefault()
             alertDialog({
               title: '인증 실패',
               text: '필수 항목을 확인해주세요',

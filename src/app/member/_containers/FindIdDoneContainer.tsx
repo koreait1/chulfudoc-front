@@ -3,6 +3,15 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import FindIdDoneForm from '../_components/FindIdDoneForm'
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+  margin: 40px auto 80px;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+`
 
 export default function FindIdDoneContainer() {
   const router = useRouter()
@@ -34,13 +43,15 @@ export default function FindIdDoneContainer() {
   if (!ready) return null
 
   return (
-    <FindIdDoneForm
-      form={form}
-      errors={errors}
-      pending={pending}
-      setPending={setPending}
-      onCallback={onLogin}
-      onSecondary={onFindPw}
-    />
+    <StyledDiv>
+      <FindIdDoneForm
+        form={form}
+        errors={errors}
+        pending={pending}
+        setPending={setPending}
+        onCallback={onLogin}
+        onSecondary={onFindPw}
+      />
+    </StyledDiv>
   )
 }
