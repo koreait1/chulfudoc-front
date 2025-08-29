@@ -9,8 +9,14 @@ import { ApiUrl } from '../constants/ApiUrl'
 import useAlertDialog from '../hooks/useAlertDialog'
 
 const StyledSection = styled.section``
+
+type UserInputData = {
+  email?: string,
+  authNum?: number
+}
+
 type AuthType = {
-  data?: any
+  data?: UserInputData
   apiUrl: ApiUrl
   width?: string
   children?: React.ReactNode
@@ -26,10 +32,10 @@ const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, o
 
   const onEmailSendClick = useCallback(() => {
 
-    if (!data && data == '') {
+    if ((!data && data == '') || data?.email == '') {
       alertDialog({
               title: '발송 실패',
-              text: '인증 번호를 확인해주세요.',
+              text: '입력하신 정보를 확인해주세요.',
               icon: 'error',
             })
       return
@@ -40,20 +46,25 @@ const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, o
 
     function emailAuthNumHandler() {
       fetchCSR(`${apiUrl}${data}`)
-        .then((res) => {
-          if (typeof callback === 'function') {
-            callback({ status: res.status })
-          }
-          if (res.status >= 200 && res.status < 300) {
-            onStartTimer?.()
-          }
-          setLoading(false)
-        })
-        .catch((e) => {
-          console.error(e)
-          setLoading(false)
-        })
-        .finally(() => setLoading(false))
+      .then((res) => {
+        if (typeof callback === 'function') {
+          callback({ status: res.status })
+        }
+        if (res.status >= 200 && res.status < 300) {
+          onStartTimer?.()
+        }
+        setLoading(false)
+      })
+      .catch((e) => {
+        //console.error(e)
+        alertDialog({
+              title: '발송 실패',
+              text: '입력하신 정보를 확인해주세요.',
+              icon: 'error',
+            })
+        setLoading(false)
+      })
+      .finally(() => setLoading(false))
     }
 
     emailAuthNumHandler()
