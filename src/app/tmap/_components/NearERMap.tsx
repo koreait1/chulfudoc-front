@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Papa from 'papaparse'
 import styled from 'styled-components'
-import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
+import useAPIAlertDialog from '../hooks/useAPIAlertDialog'
 import Loading from '@/app/loading'
 
 interface Hospital {
@@ -38,7 +38,7 @@ interface SearchERMapProps {
 }
 
 export default function NearERMap({ onBlocked }: SearchERMapProps) {
-  const alertDialog = useAlertDialog()
+  const alertDialog = useAPIAlertDialog()
   const errorRef = useRef(false) // 다중 알람 방지
   const [loading, setLoading] = useState(true) // 초기 로딩 true
 
@@ -148,12 +148,13 @@ export default function NearERMap({ onBlocked }: SearchERMapProps) {
                   if (!errorRef.current) {
                     errorRef.current = true
                     alertDialog({
-                      text: 'API 호출 제한을 초과했습니다. 잠시 후 다시 시도해주세요.',
+                      text: 'API 호출 제한을 초과했습니다.',
                       icon: 'error',
-                      callback: () => {
+                      mainCallback: () => {
                         errorRef.current = false
-                        window.location.href = '/' // 메인페이지로
+                        window.location.href = '/'
                       },
+                      reloadCallback: undefined,
                     })
                   }
                   onBlocked?.(true)
@@ -202,8 +203,13 @@ export default function NearERMap({ onBlocked }: SearchERMapProps) {
                   alertDialog({
                     text: '경로 정보를 가져오는 중 오류가 발생했습니다.',
                     icon: 'error',
-                    callback: () => {
+                    mainCallback: () => {
                       errorRef.current = false
+                      window.location.href = '/'
+                    },
+                    reloadCallback: () => {
+                      errorRef.current = false
+                      window.location.reload()
                     },
                   })
                 }
@@ -212,15 +218,19 @@ export default function NearERMap({ onBlocked }: SearchERMapProps) {
 
             setLoading(false) // 맵 로딩 완료
           },
-          (err) => {
+          () => {
             if (!errorRef.current) {
               errorRef.current = true
               alertDialog({
                 text: '현재 위치를 가져올 수 없습니다.',
                 icon: 'error',
-                callback: () => {
+                mainCallback: () => {
                   errorRef.current = false
-                  throw err
+                  window.location.href = '/'
+                },
+                reloadCallback: () => {
+                  errorRef.current = false
+                  window.location.reload()
                 },
               })
             }

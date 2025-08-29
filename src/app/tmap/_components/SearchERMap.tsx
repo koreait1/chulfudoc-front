@@ -4,6 +4,7 @@ import Papa from 'papaparse'
 import styled from 'styled-components'
 import lineColors from '@/app/_global/styles/linecolor'
 import ERSearchForm from './ERSearchForm'
+import useAPIAlertDialog from '../hooks/useAPIAlertDialog'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import Loading from '@/app/loading'
 
@@ -41,7 +42,8 @@ export default function SearchERMap() {
   const linesRef = useRef<any[]>([]) // 라인 저장
   const infosRef = useRef<any[]>([]) // InfoWindow 저장
   const errorRef = useRef(false) // 다중 알람 방지
-  const alertDialog = useAlertDialog()
+  const alertDialog = useAPIAlertDialog()
+  const searchAlertDialog = useAlertDialog()
   const [loading, setLoading] = useState(false)
 
   // CSV 불러오기
@@ -124,6 +126,19 @@ export default function SearchERMap() {
       return false
     })
 
+    if (filtered.length === 0) {
+      setLoading(false)
+      searchAlertDialog({
+        text: `"${search}"에 대한 검색 결과가 없습니다.`,
+        icon: 'info',
+        callback: () => {
+          errorRef.current = false
+          window.location.reload()
+        },
+      })
+      return
+    }
+
     for (let i = 0; i < filtered.length; i++) {
       const h = filtered[i]
       const hospitalPos = new Tmapv3.LatLng(
@@ -191,10 +206,15 @@ export default function SearchERMap() {
         if (!errorRef.current) {
           errorRef.current = true
           alertDialog({
-            text: '경로 정보를 가져오는 중 오류가 발생했습니다.',
+            text: '현재 위치를 가져올 수 없습니다',
             icon: 'error',
-            callback: () => {
+            mainCallback: () => {
               errorRef.current = false
+              window.location.href = '/'
+            },
+            reloadCallback: () => {
+              errorRef.current = false
+              window.location.reload()
             },
           })
         }
@@ -214,13 +234,7 @@ export default function SearchERMap() {
       })
       infosRef.current.push(info)
 
-      // 검색한 병원 위치를 바로 보고 싶을때
-      // if (i === 0) {
-      //   map.setCenter(hospitalPos)
-      //   map.setZoom(15)
-      // }
-
-      // 경로 API
+      // 경로 API 2차 호출 (API 제한 체크)
       try {
         const res = await fetch(
           `https://apis.openapi.sk.com/tmap/routes?version=1&format=json&appKey=${process.env.NEXT_PUBLIC_TMAP_API_KEY}`,
@@ -245,12 +259,13 @@ export default function SearchERMap() {
           if (!errorRef.current) {
             errorRef.current = true
             alertDialog({
-              text: 'API 호출 제한을 초과했습니다. 잠시 후 다시 시도해주세요.',
+              text: 'API 호출 제한을 초과했습니다.',
               icon: 'error',
-              callback: () => {
+              mainCallback: () => {
                 errorRef.current = false
                 window.location.href = '/'
               },
+              reloadCallback: undefined,
             })
           }
           return
@@ -289,8 +304,13 @@ export default function SearchERMap() {
           alertDialog({
             text: '지도에 경로를 표시하는 중 오류가 발생했습니다.',
             icon: 'error',
-            callback: () => {
+            mainCallback: () => {
               errorRef.current = false
+              window.location.href = '/'
+            },
+            reloadCallback: () => {
+              errorRef.current = false
+              window.location.reload()
             },
           })
         }
@@ -310,7 +330,7 @@ export default function SearchERMap() {
         setOption={setOption}
         onSearch={handleSearch}
       />
-      {loading && <Loading text="병원 찾는중" />} {/* 로딩 표시 */}
+      {loading && <Loading text="병원 찾는중" />}
       <div id="map3"></div>
     </Wrapper>
   )
