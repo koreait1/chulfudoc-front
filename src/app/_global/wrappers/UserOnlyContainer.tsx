@@ -16,7 +16,7 @@ export default function UserOnlyContainer({ children }) {
   return isLogin ? (
     children
   ) : (
-    <ContentBox width={420}>
+    <ContentBox width={520}>
       <MainTitle center="true">로그인</MainTitle>
       <LoginContainer redirectUrl={redirectUrl} />
     </ContentBox>
