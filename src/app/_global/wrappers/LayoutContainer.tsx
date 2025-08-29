@@ -39,11 +39,10 @@ export default function LayoutContainer({ children }) {
     <>
       <Header />
       <main>
+        <Aside className="leftAd" />
         <Aside className="rightAd" />
         <section>{children}</section>
-        <Aside className="leftAd" />
         <FloatingIconContainer />
-        <Footer />
       </main>
       <Footer />
     </>

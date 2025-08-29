@@ -251,7 +251,7 @@ const JoinForm = ({
         <div className="actions">
           {!verified && (
             <AuthNumButton
-              data={Number(form.authNum)}
+              data={{email: form.email, authNum: Number(form.authNum)}}
               apiUrl={ApiUrl.CHECKCODE}
               callback={(res) => {
                 if (res.status >= 200 && res.status < 300) {
@@ -311,13 +311,14 @@ const JoinForm = ({
         <SubmitButton
           type="submit"
           disabled={pending}
-          onClick={() =>
+          onClick={(e) =>
+            {e.preventDefault();
             alertDialog({
               title: '인증 실패',
               text: '필수 항목을 확인해주세요',
               icon: 'error',
             })
-          }
+          }}
         >
           가입하기
         </SubmitButton>

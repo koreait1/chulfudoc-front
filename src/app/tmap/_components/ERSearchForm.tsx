@@ -1,30 +1,43 @@
 'use client'
+import color from '@/app/_global/styles/color'
 import React from 'react'
 import styled from 'styled-components'
+const { primary, dark } = color
 
 const SearchFormWrapper = styled.div`
   text-align: center;
+  justify-content: center;
   margin-bottom: 10px;
 
-  select,
+  select {
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 15px;
+  }
   input {
-    padding: 6px 10px;
+    padding: 0 10px 0 20px;
     border: 1px solid #ccc;
     border-radius: 6px;
     margin-right: 5px;
+    height: 40px;
+    line-height: 40px;
   }
 
   button {
-    padding: 6px 14px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
     border: none;
     border-radius: 6px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: ${primary};
+    color: ${dark};
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: ${primary}aa;
     }
   }
 `
