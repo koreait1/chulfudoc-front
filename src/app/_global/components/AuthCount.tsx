@@ -13,7 +13,7 @@ export default function AuthCount({ startSignal = false, duration = 180, onExpir
   const timerRef = useRef<number | null>(null)
 
   useEffect(() => {
-    if (startSignal == false) return
+    if (startSignal === false) return
     if (timerRef.current) {
       clearInterval(timerRef.current)
       timerRef.current = null
@@ -54,7 +54,7 @@ export default function AuthCount({ startSignal = false, duration = 180, onExpir
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [sending, onExpire, startSignal])
+  }, [sending, onExpire])
 
   return (
     <>

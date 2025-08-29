@@ -22,9 +22,13 @@ const StyledForm = styled.form`
 
   .accountLink{
     font-size: 14px;
-    color: #999;
+    color: #000;
     text-decoration: none;
     transition: color 0.2s ease;
+  }
+  
+  .loginbtn{
+    margin-bottom: 10px;
   }
 `
 
@@ -53,12 +57,15 @@ const LoginForm = ({ errors, action, pending, form, onChange }) => {
       {/* 아이디 비밀번호 찾기 페이지 경로 집어 넣을 것 */}
       <div className='accountFindBtn'>
         <a href='/member/join' className='accountLink'>회원 가입</a>
-        <a href='/' className='accountLink'>아이디 · 비밀번호 찾기</a>
+        <a href='/member/findid' className='accountLink'>아이디 찾기</a>
+        <a href='/member/findpw' className='accountLink'>비밀번호 찾기</a>
       </div>
 
-      <SubmitButton type="submit" disabled={pending}>
-        로그인
-      </SubmitButton>
+      <div className="loginbtn">
+        <SubmitButton type="submit" disabled={pending} >
+          로그인
+        </SubmitButton>
+      </div>
 
       <MessageBox color="danger">{errors?.global}</MessageBox>
     </StyledForm>

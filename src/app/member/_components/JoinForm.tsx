@@ -12,8 +12,11 @@ import AuthCount from '@/app/_global/components/AuthCount'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledForm = styled.form`
-  max-width: 520px;
   margin: 40px auto 80px;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 
   .row {
     display: flex;
@@ -209,7 +212,7 @@ const JoinForm = ({
             callback={(res) => {
               if (res.status >= 200 && res.status < 300) {
                 setResend(true)
-                setTrigger(true)
+                setTrigger((v) => !v)
                 alertDialog({
                   title: '발송 완료',
                   text: '인증번호가 이메일로 발송되었습니다.',
@@ -271,7 +274,7 @@ const JoinForm = ({
             </AuthNumButton>
           )}
 
-          {!verified && trigger === true && (
+          {!verified && resend &&  (
             <div className="timer">
               <AuthCount startSignal={trigger} duration={180} />
             </div>
