@@ -6,10 +6,10 @@ import type { BoardViewType } from '@/app/board/_types/BoardType'
 import { nl2br } from '@/app/_global/libs/commons'
 import FileItems from '@/app/_global/components/FileItems'
 import color from '@/app/_global/styles/color'
-import fontSize from '@/app/_global/styles/fontsize'
+import fontsize from '../../../../_global/styles/fontsize'
 
 const { danger, info, white } = color
-const { medium, normal } = fontSize
+const { medium, normal } = fontsize
 
 const Wrapper = styled.ul`
   li + li {
@@ -72,12 +72,12 @@ const StyledLinks = styled.div`
     line-height: 45px;
     margin-left: 5px;
     font-size: ${medium};
-    color: #f8f8f8;
+    color: ${white};
     border-radius: 3px;
     padding: 0 15px;
 
     &.btn1 {
-      background: ${info};
+      background: ${color.primary};
     }
 
     &.btn2 {
@@ -89,12 +89,12 @@ const StyledLinks = styled.div`
     }
 
     &.btn4 {
-      background: ${color.success};
+      background: ${color.info};
     }
   }
 `
 
-const BoardView = ({ board, data }: BoardViewType) => {
+const BoardView = ({ board, data, onDelete }: BoardViewType) => {
   return (
     data && (
       <>
@@ -105,12 +105,11 @@ const BoardView = ({ board, data }: BoardViewType) => {
 
             {data.subject}
           </li>
-
           <li className="post-info">
             <div className="left">
               <span>
                 작성자: {data.poster}
-                {data.member && '(' + data.member.userId + ')'}
+                {data.member && '(' + data.member.email + ')'}
               </span>
               <span>IP: {data.ip}</span>
             </div>
@@ -118,17 +117,19 @@ const BoardView = ({ board, data }: BoardViewType) => {
               <span>조회수: {data?.viewCount?.toLocaleString()}</span>
               {data.createdAt && (
                 <span>
-                  작성일시: {format(data.createdAt, 'yyyy.MM.dd HH:mm')}{' '}
+                  작성일시: {format(data.createdAt, 'yyyy.MM.dd HH:mm')}
                 </span>
               )}
             </div>
           </li>
-          <li
-            className="content"
-            dangerouslySetInnerHTML={{
-              __html: data.plainText ? nl2br(data.content) : data.content,
-            }}
-          />
+          {data.content && (
+            <li
+              className="content"
+              dangerouslySetInnerHTML={{
+                __html: data.plainText ? nl2br(data.content) : data.content,
+              }}
+            />
+          )}
         </Wrapper>
         <FileItems items={data.attachFiles} />
         <StyledLinks>
@@ -139,7 +140,7 @@ const BoardView = ({ board, data }: BoardViewType) => {
           )}
           {data.editable && (
             <>
-              <a href={'/board/delete' + data.seq} className="btn2">
+              <a className="btn2" onClick={onDelete}>
                 글삭제
               </a>
               <a href={'/board/update/' + data.seq} className="btn3">
