@@ -1,7 +1,6 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
-import loadable from '@loadable/component'
 import styled from 'styled-components'
 import FloatingIconContainer from '../container/FloatingIconContainer'
 
@@ -43,6 +42,7 @@ export default function LayoutContainer({ children }) {
         <Aside className="rightAd" />
         <section>{children}</section>
         <FloatingIconContainer />
+        <Footer />
       </main>
       <Footer />
     </>

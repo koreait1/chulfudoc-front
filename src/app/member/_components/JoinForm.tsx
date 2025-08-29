@@ -245,7 +245,7 @@ const JoinForm = ({
         <div className="actions">
           {!verified && (
             <AuthNumButton
-              data={{email: form.email, authNum: Number(form.authNum)}}
+              data={Number(form.authNum)}
               apiUrl={ApiUrl.CHECKCODE}
               callback={(res) => {
                 if (res.status >= 200 && res.status < 300) {

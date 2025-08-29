@@ -125,7 +125,7 @@ const Header = () => {
           <Link href="/">
             <div className="linker">게시판</div>
           </Link>
-          <Link href="/maptest2">
+          <Link href="/search-er">
             <div className="linker">병원 검색</div>
           </Link>
         </div>

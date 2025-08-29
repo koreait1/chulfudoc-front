@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { Button } from './_global/components/Buttons'
 import { AlertTriangle } from 'lucide-react'
+import { MdRefresh, MdHome } from 'react-icons/md'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -38,17 +38,19 @@ const Message = styled.p`
 const ActionWrapper = styled.div`
   display: flex;
   gap: 1rem;
+  svg {
+    margin-right: 1px;
+    position: relative;
+    top: 0.5px;
+  }
 `
 
 export default function Error({
   error,
-  reset,
 }: {
   error: Error
   reset: () => void
 }) {
-  const router = useRouter()
-
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -61,11 +63,40 @@ export default function Error({
       <Title>500 Internal Server Error</Title>
       <Message>{error?.message || 'An unknown error has occurred.'}</Message>
       <ActionWrapper>
-        <Button type="button" onClick={() => window.location.reload()}>
-          다시 시도하기
+        <Button
+          onClick={() => window.location.reload()}
+          color="#22c55e"
+          fontSize="medium"
+          width={160}
+          height={50}
+          borderradius="12px"
+          fontcolor="white"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <MdRefresh size={25} />
+          <span style={{ marginLeft: '8px' }}>다시 시도하기</span>
         </Button>
-        <Button type="button" onClick={() => (window.location.href = '/')}>
-          메인 이동하기
+
+        <Button
+          onClick={() => (window.location.href = '/')}
+          color="#3b82f6"
+          fontSize="medium"
+          width={160}
+          height={50}
+          borderradius="12px"
+          fontcolor="white"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <MdHome size={25} />
+          <span style={{ marginLeft: '8px' }}>메인 이동하기</span>
         </Button>
       </ActionWrapper>
     </Wrapper>
