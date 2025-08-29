@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components"
 export const PageWrapper = createGlobalStyle`
 
   body{
+    width: 100%;
     background-color: #FFF8E1;
   }
 `
@@ -13,10 +14,11 @@ export const PageMain = styled.div`
   justify-content: center;
   alignItems: center;
 
+  padding-bottom: 45px;
+
   height: 100vh;
 
   line-height: 0.95;
-  margin: 25px;
 
   color: #E6C200;
   text-align: center;
@@ -39,7 +41,6 @@ export const PageMain = styled.div`
   }
 
   .highlight {
-    color: #2E2E2E;
-    letter-spacing: -0.08em;
+    letter-spacing: -0.06em;
   }
 `

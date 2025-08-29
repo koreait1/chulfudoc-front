@@ -37,7 +37,7 @@ const WebcamButton = styled.div`
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 12px;
+  margin-top: 30px;
   color: ${primary};
   font-size: ${big};
 

@@ -3,11 +3,15 @@ import React from "react"
 import { PageWrapper, PageMain } from "../_component/StyleWrapper"
 import GradientText from "../_component/GradientText"
 import { useState, useEffect } from "react"
+import DetectContainer from "@/app/detect/_containers/DetectContainer"
+import HosptialPopup from "@/app/_global/container/HospitalPopup"
+import MainLinkContainer from "./MainLinkContainer"
+import FloatingIconContainer from "@/app/_global/container/FloatingIconContainer"
 
-const MainContainer = ({ children }: {children: React.ReactNode}) => {
+const MainContainer = () => {
     const [current, setCurrent] = useState(0)
-    const [detectState, setDetectState] = useState()
-    const childArray = React.Children.toArray(children)
+
+    const goTop = () => setCurrent(0);
 
     const sections = [
         <div key={0}>
@@ -15,9 +19,8 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
                 <span className="line_start">SAFETY</span>
                 <GradientText className="highlight">WHERE</GradientText>
                 <span className="line_end">YOU aRE</span>
+                <DetectContainer />
             </PageMain>
-            {childArray[0]}
-            {/*{React.cloneElement(childArray[0] as React.ReactElement, { value: detectState, setValue: setDetectState })}*/}
         </div>,
         <div key={1} style={{
             display: 'flex',
@@ -28,7 +31,7 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
             backgroundColor: '#4079ff',
             color: '#fff'
         }}>
-            {childArray[1]}
+            <h1>테스트</h1>
         </div>,
         <div key={2} style={{
             display: 'flex',
@@ -39,7 +42,10 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
             backgroundColor: '#fff',
             color: '#fff'
         }}>
-            {childArray[2]}
+            <div className="main-bottom">
+                <HosptialPopup />
+                <MainLinkContainer />
+            </div>
         </div>
     ]
 
@@ -48,8 +54,12 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
         const handleWheel = (e: WheelEvent) => {
         if (isScrolling) return
         isScrolling = true
-        if (e.deltaY > 0) setCurrent(prev => Math.min(prev + 1, sections.length - 1))
-        else setCurrent(prev => Math.max(prev - 1, 0))
+        if (e.deltaY > 0) {
+            setCurrent(prev => Math.min(prev + 1, sections.length - 1))
+        }
+        else {
+            setCurrent(prev => Math.max(prev - 1, 0))
+        }
         setTimeout(() => { isScrolling = false }, 800)
         }
 
@@ -78,6 +88,7 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
                 </div>
             ))}
             </div>
+            <FloatingIconContainer goTop={goTop}/>
         </>
     )
 }
