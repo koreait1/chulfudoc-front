@@ -6,10 +6,13 @@ const StyledAside = styled.aside`
   height: 600px;
   position: fixed;
   top: 100px;
-  &.right {
-    rigth: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  translation: all 0.5s;
+  &.rightAd {
+    right: 10px;
   }
-  &.left {
+  &.leftAd {
     left: 10px;
   }
   ins {
