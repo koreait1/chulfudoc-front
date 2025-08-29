@@ -18,30 +18,44 @@ const Wrapper = styled.div`
   margin: 20px auto;
   display: flex;
   justify-content: center;
-  height: 45px;
+  gap: 6px;
+  height: 48px;
+
   .page {
-    border: 1px solid ${black};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
     font-size: ${medium};
-    text-align: center;
-    line-height: 43px;
-    border-radius: 3px;
-    min-width: 45px;
-    padding: 0 5px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid ${black};
+    color: ${black};
+    background: ${white};
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: ${black};
+      color: ${white};
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
 
     &.on {
       background: ${black};
       color: ${white};
+      font-weight: 600;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     }
 
-    & + & {
-      margin-left: 3px;
+    svg {
+      font-size: 20px;
     }
-  }
-
-  .page + page {
-    margin-left: 3px;
   }
 `
+
 
 type PropType = {
   pagination?: any
