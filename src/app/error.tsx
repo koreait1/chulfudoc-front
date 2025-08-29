@@ -58,8 +58,8 @@ export default function Error({
       <IconWrapper>
         <AlertTriangle size={48} />
       </IconWrapper>
-      <Title>문제가 발생했습니다</Title>
-      <Message>{error?.message || '알 수 없는 오류가 발생했어요.'}</Message>
+      <Title>500 Internal Server Error</Title>
+      <Message>{error?.message || 'An unknown error has occurred.'}</Message>
       <ActionWrapper>
         <Button type="button" onClick={() => window.location.reload()}>
           다시 시도하기
