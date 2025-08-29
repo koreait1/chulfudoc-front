@@ -6,7 +6,8 @@ import { useState, useEffect } from "react"
 
 const MainContainer = ({ children }: {children: React.ReactNode}) => {
     const [current, setCurrent] = useState(0)
-    const childArray = React.Children.toArray(children);
+    const [detectState, setDetectState] = useState()
+    const childArray = React.Children.toArray(children)
 
     const sections = [
         <div key={0}>
@@ -16,6 +17,7 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
                 <span className="line_end">YOU aRE</span>
             </PageMain>
             {childArray[0]}
+            {/*{React.cloneElement(childArray[0] as React.ReactElement, { value: detectState, setValue: setDetectState })}*/}
         </div>,
         <div key={1} style={{
         display: 'flex',
