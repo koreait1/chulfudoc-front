@@ -28,7 +28,7 @@ const AuthNumButton = ({data, apiUrl, width, callback, children, onStartTimer, o
 
     if (!data && data == '') {
       alertDialog({
-              title: '발송 실패',
+              title: '인증 실패',
               text: '인증 번호를 확인해주세요.',
               icon: 'error',
             })
