@@ -34,7 +34,7 @@ const UpdateContainer = ({
 
       setData({ ...data })
     }
-  }, [data, isLogin, loggedMember.name])
+  }, [data, isLogin, loggedMember?.name])
 
   const onChange = useCallback((e) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))

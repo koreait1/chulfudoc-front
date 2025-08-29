@@ -11,7 +11,7 @@ export default async function UpdatePage({
   const { seq } = await params
   const data = await get(seq)
   const { board } = data
-
+  
   return (
     <ContentBox>
       {data?.subject && <MainTitle border="true">{data?.subject}</MainTitle>}
