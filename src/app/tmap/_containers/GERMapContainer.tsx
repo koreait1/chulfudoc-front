@@ -1,5 +1,3 @@
-'use client'
-
 import Map from "@/app/_global/components/Map"
 
 export default function ShowMap() {
