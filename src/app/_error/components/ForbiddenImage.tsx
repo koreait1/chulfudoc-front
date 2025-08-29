@@ -1,25 +1,19 @@
 'use client'
 import Image from 'next/image'
 import forbiddenimage from '@/app/_global/assets/images/forbiddenimage.png'
-import styled from 'styled-components'
+import ErrorImageWrapper from './ErrorImageWrapper'
 
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh; /* 화면 높이 꽉 채움 */
-  position: relative; /* Image fill 모드에 필요 */
-  overflow: hidden;
-`
 
 export default function ForbiddenImage() {
   return (
-    <Wrapper>
+    <ErrorImageWrapper>
       <Image
         src={forbiddenimage}
         alt="Forbidden"
         fill
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: 'contain' }}
         priority
       />
-    </Wrapper>
+    </ErrorImageWrapper>
   )
 }

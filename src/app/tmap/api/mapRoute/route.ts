@@ -15,13 +15,26 @@ export async function GET(req: NextRequest) {
 
   try {
     const res = await fetch(tmapUrl)
+
+    // 429 처리
+    if (res.status === 429) {
+      return NextResponse.json(
+        { error: 'API 호출 제한 초과: 잠시 후 다시 시도해주세요.' },
+        { status: 429 },
+      )
+    }
+
+    if (!res.ok) {
+      return NextResponse.json(
+        { error: `Tmap API 에러: ${res.status}` },
+        { status: res.status },
+      )
+    }
+
     const data = await res.json()
     return NextResponse.json(data)
   } catch (err) {
     console.error(err)
-    return NextResponse.json(
-      { error: 'Tmap API 요청 실패' },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: 'Tmap API 요청 실패' }, { status: 500 })
   }
 }

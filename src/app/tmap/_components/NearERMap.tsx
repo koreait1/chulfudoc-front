@@ -33,7 +33,11 @@ declare global {
   }
 }
 
-export default function NearERMap() {
+interface SearchERMapProps {
+  onBlocked?: (blocked: boolean) => void
+}
+
+export default function NearERMap({ onBlocked }: SearchERMapProps) {
   const alertDialog = useAlertDialog()
   const errorRef = useRef(false) // 다중 알람 방지
   const [loading, setLoading] = useState(true) // 초기 로딩 true
@@ -138,6 +142,28 @@ export default function NearERMap() {
                     }),
                   },
                 )
+
+                if (res.status === 429) {
+                  setLoading(false)
+                  if (!errorRef.current) {
+                    errorRef.current = true
+                    alertDialog({
+                      text: 'API 호출 제한을 초과했습니다. 잠시 후 다시 시도해주세요.',
+                      icon: 'error',
+                      callback: () => {
+                        errorRef.current = false
+                        window.location.href = '/' // 메인페이지로
+                      },
+                    })
+                  }
+                  onBlocked?.(true)
+                  return
+                }
+
+                if (!res.ok) {
+                  throw new Error(`API Error: ${res.status}`)
+                }
+
                 const routeData = await res.json()
 
                 const pathCoords: any[] = []
@@ -189,12 +215,12 @@ export default function NearERMap() {
           (err) => {
             if (!errorRef.current) {
               errorRef.current = true
-              console.error(err)
               alertDialog({
                 text: '현재 위치를 가져올 수 없습니다.',
                 icon: 'error',
                 callback: () => {
                   errorRef.current = false
+                  throw err
                 },
               })
             }
@@ -206,7 +232,7 @@ export default function NearERMap() {
   }
 
   return (
-    <Tmapv3Div id="map3" style={{ width: '80%'}}>
+    <Tmapv3Div id="map3" style={{ width: '80%' }}>
       <h1>가까운 응급의료기관 위치 지도</h1>
       {loading && <Loading text="지도 불러오는 중" />}
     </Tmapv3Div>

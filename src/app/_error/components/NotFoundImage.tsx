@@ -1,25 +1,18 @@
 'use client'
 import Image from 'next/image'
 import notfoundimage from '@/app/_global/assets/images/notfoundimage.png'
-import styled from 'styled-components'
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh; /* 화면 높이 꽉 채움 */
-  position: relative; /* Image fill 모드에 필요 */
-  overflow: hidden;
-`
+import ErrorImageWrapper from './ErrorImageWrapper'
 
 export default function NotFoundImage() {
   return (
-    <Wrapper>
+    <ErrorImageWrapper>
       <Image
         src={notfoundimage}
         alt="Not Found"
         fill
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: 'contain' }}
         priority
       />
-    </Wrapper>
+    </ErrorImageWrapper>
   )
 }

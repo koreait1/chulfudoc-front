@@ -6,6 +6,8 @@ import { useState, useEffect } from "react"
 
 const MainContainer = ({ children }: {children: React.ReactNode}) => {
     const [current, setCurrent] = useState(0)
+    const [detectState, setDetectState] = useState()
+    const childArray = React.Children.toArray(children)
 
     const sections = [
         <div key={0}>
@@ -14,18 +16,30 @@ const MainContainer = ({ children }: {children: React.ReactNode}) => {
                 <GradientText className="highlight">WHERE</GradientText>
                 <span className="line_end">YOU aRE</span>
             </PageMain>
-            {Array.isArray(children) ? children[0] : [children]}
+            {childArray[0]}
+            {/*{React.cloneElement(childArray[0] as React.ReactElement, { value: detectState, setValue: setDetectState })}*/}
         </div>,
         <div key={1} style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        fontSize: '3rem',
-        backgroundColor: '#4079ff',
-        color: '#fff'
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            fontSize: '3rem',
+            backgroundColor: '#4079ff',
+            color: '#fff'
         }}>
-            {Array.isArray(children) ? children[1] : [children]}
+            {childArray[1]}
+        </div>,
+        <div key={2} style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            fontSize: '3rem',
+            backgroundColor: '#fff',
+            color: '#fff'
+        }}>
+            {childArray[2]}
         </div>
     ]
 
