@@ -72,7 +72,6 @@ export default function HosptialPopup() {
       </StyledButton>
       <LayerPopup
         isOpen={isOpen}
-        title="응급의료기관"
         onClose={() => setIsOpen(false)}
         width={'80%'}
         height={'800px'}
