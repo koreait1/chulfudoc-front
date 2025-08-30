@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
-import logo from '../assets/images/logo.png'
+import logoWord from '../assets/images/logo-word.png'
 import noprofile from '../assets/images/noprofile.png'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,21 +12,31 @@ import useUser from '../hooks/useUser'
 import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
-import { FiUserPlus, FiLogIn, FiLogOut } from 'react-icons/fi'
+import { FiLogIn, FiLogOut } from 'react-icons/fi'
+import { IoCall } from 'react-icons/io5'
+import { LuUserPen } from 'react-icons/lu'
 import { usePathname } from 'next/navigation'
 import color from '../styles/color'
 const { dark } = color
 
 const StyledHeader = styled.header`
-  background: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #ffe66d, #ffd93d, #e6c235);
+  border-bottom: 2px solid #ffe66d;
+  border-radius: 12px;
+  margin: 0 20px 0 20px;
+  z-index: 999;
 
   .inner {
     display: flex;
     align-items: center;
-    height: 120px;
+    justify-content: space-between;
+    height: 60px;
+    max-width: 100% !important;
 
     div {
-      width: 0;
       flex-grow: 1;
       .profile {
         flex-grow: 0;
@@ -37,10 +47,26 @@ const StyledHeader = styled.header`
     }
 
     .logo-section {
-      text-align: center;
+      display: flex;
+      text-align: left;
+      align-items: center;
       .header-logo {
-        height: 120px;
+        height: 45px;
         width: auto;
+      }
+      .linker {
+        font-family: 'Noto Sans KR', sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
+        min-width: 75px;
+        margin-left: 5px;
+        padding: 5px;
+        transition: transform 0.7s ease;
+      }
+
+      .linker:hover {
+        transform: scale(1.2);
       }
     }
 
@@ -48,7 +74,7 @@ const StyledHeader = styled.header`
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
-      height: 120px;
+      height: 45px;
 
       a {
         margin-left: 5px;
@@ -89,17 +115,26 @@ const Header = () => {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (isOpen) setIsOpen(false) // 라우트 변경 시 자동 닫기
+    if (isOpen) setIsOpen(false) // 현재 주소가 변경될 때 페이지 내 실행되었던 모든 사항을 닫음 ex) 모달
   }, [pathname])
   return (
     <StyledHeader>
       <div className="inner layout-width">
-        <div className="left"></div>
         <div className="logo-section">
           <Link href="/">
-            <Image src={logo} alt="logo" className="header-logo" />
+            <Image src={logoWord} alt="로고" className="header-logo" />
+          </Link>
+          <Link href="/mypage">
+            <div className="linker">Mypage</div>
+          </Link>
+          <Link href="/">
+            <div className="linker">게시판</div>
+          </Link>
+          <Link href="/search-er">
+            <div className="linker">병원 검색</div>
           </Link>
         </div>
+
         <div className="right">
           {isLogin ? (
             <>
@@ -121,7 +156,6 @@ const Header = () => {
                 <div onClick={() => setIsOpen(true)}>
                   <FileImages
                     items={loggedMember.profileImage}
-                    fallbackImage={noprofile}
                     viewOnly={true}
                     viewOrgImage={false}
                     width={40}
@@ -135,52 +169,52 @@ const Header = () => {
                   top="270px"
                   right=" max(200px, calc(200px + (50vw - 575px))"
                   width={'300px'}
-                  height={'350px'}
+                  height={'470px'}
                 >
+                  <FileImages
+                    items={loggedMember.profileImage}
+                    viewOnly={true}
+                    viewOrgImage={false}
+                    width={230}
+                    height={230}
+                    fallbackImage={noprofile}
+                  />
+                  <span>
+                    <span>{loggedMember.name}</span> 님
+                  </span>
                   <Link href="/mypage" prefetch={false}>
-                    <FileImages
-                      items={loggedMember.profileImage}
-                      fallbackImage={noprofile}
-                      viewOnly={true}
-                      viewOrgImage={false}
-                      width={230}
-                      height={230}
-                    />
-                    <span>{loggedMember.userName} 님</span>
-                    <Button type="button">
+                    <Button type="button" width={'230px'}>
                       <CgProfile />
                       마이페이지
                       <LinkLoading />
                     </Button>
                   </Link>
-                  {/* <Link href="/mypage" prefetch={false}>
-                      <Button type="button">
-                        <CgProfile />
-                        개인정보 수정
-                        <LinkLoading />
-                      </Button>
-                    </Link> 
-                    <Link href="/mypage" prefetch={false}>
-                      <Button type="button">
-                        <CgProfile />
-                        문의하기
-                        <LinkLoading />
-                      </Button>
-                    </Link> */}
+                  <Link href="/mypage" prefetch={false}>
+                    <Button type="button" width={'230px'}>
+                      <LuUserPen />
+                      개인정보 수정
+                      <LinkLoading />
+                    </Button>
+                  </Link>
+                  <Link href="/mypage" prefetch={false}>
+                    <Button type="button" width={'230px'}>
+                      <IoCall />
+                      문의하기
+                      <LinkLoading />
+                    </Button>
+                  </Link>
                 </LayerPopup>
               </div>
             </>
           ) : (
             <>
-              <Link href="/member/join" prefetch={false}>
-                <Button type="button">
-                  <FiUserPlus />
-                  회원가입
-                  <LinkLoading />
-                </Button>
-              </Link>
               <Link href="/member/login" prefetch={false}>
-                <Button type="button" color="secondary">
+                <Button
+                  type="button"
+                  color="#111827"
+                  borderradius="25px"
+                  style={{ marginRight: '20px' }}
+                >
                   <FiLogIn />
                   로그인
                   <LinkLoading />

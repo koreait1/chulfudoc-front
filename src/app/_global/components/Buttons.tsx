@@ -18,6 +18,10 @@ const commonStyle = css`
   svg {
     margin-right: 10px;
   }
+
+  &:disabled {
+    opacity: 0.7;
+  }
 `
 
 export const Button = styled.button<ButtonType>`
@@ -68,10 +72,18 @@ export const Button = styled.button<ButtonType>`
       display: block;
       margin: 0 auto;
     `}
+  
+    ${({ borderradius }) => {
+    borderradius = borderradius ?? '10px'
+
+    return css`
+      border-radius: ${borderradius};
+    `
+  }}
 `
 
 export const SubmitButton = (props) => {
-  const { width } = props
+  const { width, onClick } = props
   return (
     <Button
       {...props}
@@ -80,6 +92,8 @@ export const SubmitButton = (props) => {
       fontSize="extra"
       center="true"
       className="btn"
+      boderRadius={props.boderRadius}
+      onClick={onClick}
     >
       {props.children}
     </Button>

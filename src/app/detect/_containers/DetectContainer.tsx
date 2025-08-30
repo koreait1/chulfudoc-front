@@ -1,47 +1,96 @@
 'use client'
-import React, { useCallback, useState, useRef } from 'react'
+import React, { useCallback, useState, useRef, useEffect } from 'react'
 import DetectBox from '../_components/DetectBox'
-import ERLContainer from '@/app/tmap/_containers/ERLContainer'
+import { useRouter } from 'next/navigation'
+import styled from 'styled-components'
+import color from '@/app/_global/styles/color'
+import fontSize from '@/app/_global/styles/fontsize'
 
-type DetectionItem = {
-  x1: number
-  y1: number
-  w: number
-  h: number
+type DetectProps = {
+  webcamAble?: boolean
+  setWebcamAble?: (v: boolean) => void
 }
 
+
+const { primary } = color
+const { big } = fontSize
+
+const DetectWrapper = styled.div`
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const WebcamButton = styled.div`
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  z-index: 20;
+
+  width: 150px;
+  height: 45px;
+  background-color: #212121;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+  color: ${primary};
+  font-size: ${big};
+
+  &:hover {
+    background-color: #333;
+    transform: scale(1.05);
+  }
+`
+
 const DetectContainer = () => {
+  const [webcamAble, setWebcamAble] = useState(false)
   const [fallDetect, setFallDetect] = useState(false)
   const detectionCount = useRef<number[]>([])
-  const lastDetectTime = useRef(0) // 연속 감지 방지 차원에서 넣음
+  const lastDetectTime = useRef(0)
+  const router = useRouter()
 
-  const detectCallback = useCallback((item: DetectionItem) => {
-    console.log(item) // 감지 확인용 item
-
+  const detectCallback = useCallback(() => {
     const now = Date.now()
-
-    // 너무 빠른 감지는
     if (now - lastDetectTime.current < 1000) return
     lastDetectTime.current = now
 
     detectionCount.current.push(now)
-
-    // 10초 이상 지난 기록 삭제
     detectionCount.current = detectionCount.current.filter(
       (time) => now - time <= 10000,
     )
 
-    // 10초 안에 5번 이상 감지되면 fallDetect true
     if (detectionCount.current.length >= 5) {
       setFallDetect(true)
     }
   }, [])
 
+  useEffect(() => {
+    if (fallDetect) {
+      router.push('/tmap')
+    }
+  }, [fallDetect, router])
+
   return (
-    <>
-      <DetectBox width={640} height={640} callback={detectCallback} />
-      {fallDetect && <ERLContainer />}
-    </>
+    <DetectWrapper>
+      {webcamAble ? (
+        <>
+          <DetectBox width={800} height={640} callback={detectCallback} />
+          <WebcamButton onClick={() => setWebcamAble(false)}>
+            WebCam Off
+          </WebcamButton>
+        </>
+      ) : (
+        <WebcamButton onClick={() => setWebcamAble(true)}>
+          WebCam On
+        </WebcamButton>
+      )}
+    </DetectWrapper>
   )
 }
 

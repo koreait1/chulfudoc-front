@@ -1,3 +1,9 @@
-export default function Unauthorized() {
-  return <h1>접근 권한이 없습니다.</h1>
+import UAIContainer from './_error/containers/UAIContainer'
+
+export default function unauthorizedPage() {
+  return (
+    <>
+      <UAIContainer />
+    </>
+  )
 }

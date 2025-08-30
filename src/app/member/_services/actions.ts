@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { revalidateTag } from 'next/cache'
 import { fetchSSR } from '@/app/_global/libs/utils'
+import { toPlainObj } from '@/app/_global/libs/commons'
+import type CommonSearchType from '@/app/_global/types/CommonSearchType'
 
 /**
  * 회원가입 처리
@@ -19,7 +21,8 @@ export async function processJoin(errors, formData: FormData) {
     if (['true', 'false'].includes(_value)) {
       _value = _value === 'true'
     }
-    if(key.startsWith('authNum')) continue
+
+    if (key.startsWith('authNum')) continue
 
     params[key] = _value
   }
@@ -52,7 +55,6 @@ export async function processJoin(errors, formData: FormData) {
     // 소셜 연결 회원가입인 경우 비밀번호, 비밀번호 확인은 필수 X
     delete requiredFields.password
     delete requiredFields.confirmPassword
-    //requiredFields.userId = "user-" + params.socialToken
     params.userId = "user-" + params.socialToken
   }
 
@@ -190,4 +192,26 @@ export async function getLoggedMember() {
   } catch (err) {
     console.log('getLoggedMember() error:', err)
   }
+}
+
+
+export async function getMemberList(params: CommonSearchType) {
+  const sp = new URLSearchParams()
+  if (params.sopt)  sp.set('sopt', String(params.sopt))
+  if (params.skey)  sp.set('skey', String(params.skey))
+  if (params.page)  sp.set('page', String(params.page))
+  if (params.limit) sp.set('limit', String(params.limit))
+
+  const auths = (params as any).authorities
+  if (Array.isArray(auths)) auths.forEach(a => sp.append('authorities', String(a)))
+  else if (auths) sp.append('authorities', String(auths))
+
+  const url = `/member/list?${sp.toString()}`
+  const res = await fetchSSR(url, { method: 'GET' })
+
+  if (res.status === 204) return { items: [], pagination: null }
+  if (!res.ok) throw new Error(`회원 목록 조회 실패 (status: ${res.status})`)
+
+  const data = await res.json()
+  return { items: data?.items ?? [], pagination: data?.pagination ?? null }
 }

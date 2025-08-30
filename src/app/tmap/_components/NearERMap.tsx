@@ -1,6 +1,9 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Papa from 'papaparse'
+import styled from 'styled-components'
+import useAPIAlertDialog from '../hooks/useAPIAlertDialog'
+import Loading from '@/app/loading'
 
 interface Hospital {
   응급의료기관명: string
@@ -10,14 +13,34 @@ interface Hospital {
   연락처: string
 }
 
+const Tmapv3Div = styled.div`
+  min-width: 600px;
+  max-width: 1150px;
+  height: 1000px;
+  margin: 0 auto 20px auto;
+  h1 {
+    text-align: center;
+  }
+  .vsm-canvas {
+    border: 2px solid #333 !important;
+    border-radius: 8px;
+  }
+`
+
 declare global {
   interface Window {
     Tmapv3: any
   }
 }
 
-export default function NearERMap() {
-  const [mapLoaded, setMapLoaded] = useState(false)
+interface SearchERMapProps {
+  onBlocked?: (blocked: boolean) => void
+}
+
+export default function NearERMap({ onBlocked }: SearchERMapProps) {
+  const alertDialog = useAPIAlertDialog()
+  const errorRef = useRef(false) // 다중 알람 방지
+  const [loading, setLoading] = useState(true) // 초기 로딩 true
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,7 +59,10 @@ export default function NearERMap() {
       header: true,
       complete: (result) => {
         const hospitals: Hospital[] = result.data
-        if (!hospitals.length) return
+        if (!hospitals.length) {
+          setLoading(false)
+          return
+        }
 
         navigator.geolocation.getCurrentPosition(
           async (pos) => {
@@ -54,19 +80,15 @@ export default function NearERMap() {
               pos.coords.latitude,
               pos.coords.longitude,
             )
-            const userMarker = new Tmapv3.Marker({ map, position: userPos, title: '현위치' })
+            new Tmapv3.Marker({ map, position: userPos, title: '현위치' })
 
-            // 현위치 인포
             new Tmapv3.InfoWindow({
               position: userPos,
-              content: `<div style="min-width:50px; min-height:50px;">
-              <b>현위치</b>
-              </div>`,
-            type: 2, // 마커 위
-            map,
+              content: `<div style="min-width:50px; min-height:50px;"><b>현위치</b></div>`,
+              type: 2,
+              map,
             })
 
-            // 병원 거리 계산
             const distances = hospitals
               .filter((h) => h.위도 && h.경도)
               .map((h) => {
@@ -96,14 +118,12 @@ export default function NearERMap() {
                 parseFloat(h.경도),
               )
 
-              // 병원 마커
               new Tmapv3.Marker({
                 map,
                 position: hospitalPos,
                 title: h.응급의료기관명,
               })
 
-              // Tmap route API
               try {
                 const res = await fetch(
                   `https://apis.openapi.sk.com/tmap/routes?version=1&format=json&appKey=${process.env.NEXT_PUBLIC_TMAP_API_KEY}`,
@@ -122,9 +142,31 @@ export default function NearERMap() {
                     }),
                   },
                 )
+
+                if (res.status === 429) {
+                  setLoading(false)
+                  if (!errorRef.current) {
+                    errorRef.current = true
+                    alertDialog({
+                      text: 'API 호출 제한을 초과했습니다.',
+                      icon: 'error',
+                      mainCallback: () => {
+                        errorRef.current = false
+                        window.location.href = '/'
+                      },
+                      reloadCallback: undefined,
+                    })
+                  }
+                  onBlocked?.(true)
+                  return
+                }
+
+                if (!res.ok) {
+                  throw new Error(`API Error: ${res.status}`)
+                }
+
                 const routeData = await res.json()
 
-                // Polyline 좌표
                 const pathCoords: any[] = []
                 routeData.features?.forEach((feature: any) => {
                   if (feature.geometry.type === 'LineString') {
@@ -145,26 +187,54 @@ export default function NearERMap() {
                   })
                 }
 
-                // InfoWindow 생성
                 new Tmapv3.InfoWindow({
                   position: hospitalPos,
                   content: `<div style="padding:5px; min-width:200px; max-width:300px;">
-                  <b>${h.응급의료기관명}</b><br>
-                  ${h.소재지}<br>
-                  ${h.연락처}
-                </div>`,
+                    <b>${h.응급의료기관명}</b><br>
+                    ${h.소재지}<br>
+                    ${h.연락처}
+                  </div>`,
                   map,
                 })
               } catch (err) {
-                console.error('Tmap route fetch error', err)
+                if (!errorRef.current) {
+                  errorRef.current = true
+                  console.error(err)
+                  alertDialog({
+                    text: '경로 정보를 가져오는 중 오류가 발생했습니다.',
+                    icon: 'error',
+                    mainCallback: () => {
+                      errorRef.current = false
+                      window.location.href = '/'
+                    },
+                    reloadCallback: () => {
+                      errorRef.current = false
+                      window.location.reload()
+                    },
+                  })
+                }
               }
             }
 
-            setMapLoaded(true)
+            setLoading(false) // 맵 로딩 완료
           },
-          (err) => {
-            alert('현재 위치를 가져올 수 없습니다.')
-            console.error(err)
+          () => {
+            if (!errorRef.current) {
+              errorRef.current = true
+              alertDialog({
+                text: '현재 위치를 가져올 수 없습니다.',
+                icon: 'error',
+                mainCallback: () => {
+                  errorRef.current = false
+                  window.location.href = '/'
+                },
+                reloadCallback: () => {
+                  errorRef.current = false
+                  window.location.reload()
+                },
+              })
+            }
+            setLoading(false)
           },
         )
       },
@@ -172,8 +242,9 @@ export default function NearERMap() {
   }
 
   return (
-    <div id="map3" style={{ width: '100%', height: '600px' }}>
-      {!mapLoaded && <div>지도 불러오는 중...</div>}
-    </div>
+    <Tmapv3Div id="map3" style={{ width: '80%' }}>
+      <h1>가까운 응급의료기관 위치 지도</h1>
+      {loading && <Loading text="지도 불러오는 중" />}
+    </Tmapv3Div>
   )
 }

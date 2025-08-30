@@ -1,6 +1,9 @@
 'use client'
-import React, { useRef, useEffect, useCallback } from 'react'
+import React, { useRef, useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
+import { useRouter } from 'next/navigation'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
+import LayerPopup from '@/app/_global/components/LayerPopup'
 
 type WrapperType = {
   children: React.ReactNode
@@ -10,22 +13,81 @@ type WrapperType = {
 
 const Wrapper = styled.div<WrapperType>`
   position: relative;
-  ${({ width }) => width ?? 640}px;
-  ${({ height }) => height ?? 480}px;
-  .layer {
+  width: ${({ width }) => width ?? 640}px;
+  height: ${({ height }) => height ?? 480}px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+
+  video {
+    display: none; /* 실제 웹캠 비디오는 숨김 */
+  }
+
+  canvas.video {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  canvas.layer {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 `
+
+const PermitWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+
+  h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.5;
+
+    span {
+      font-weight: 600;
+      color: #0070f3;
+    }
+  }
+`
+
 /**
  *
  * @param callback : 위험 감지시 호출되는 후속 처리 콜백 함수
  * @returns
  */
 const DetectBox = ({ width, height, callback }) => {
+  const [guideOpen, setGuideOpen] = useState<boolean>(false)
+  const dialogRef = useRef<boolean>(false)
+  const alertDialog = useAlertDialog()
+  const router = useRouter()
+
   width = width ?? 640
   height = height ?? 480
+
+  // 카메라 권한 설정 안내 팝업 닫기
+  const onPopupClose = useCallback(() => {
+    setGuideOpen(false)
+    router.replace('/')
+  }, [router])
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
@@ -95,12 +157,18 @@ const DetectBox = ({ width, height, callback }) => {
           monitor()
         }, 1000)
       })
-      .catch((err) => {
-        // 높은 확률로 모달창 + 스위트얼러트
-        console.log(
-          '웹캠이 설치되어 있지 않거나 웹캠 권한을 허용하지 않은 경우 입니다. 이때에는 사용자에게 안내 팝업을 띄어 줄 필요가 있습니다.',
-          err,
-        )
+      .catch(() => {
+        // 웹캠이 설치되어 있지 않거나, 웹캠 권한을 허용하지 않은 경우
+        if (!dialogRef.current) {
+          dialogRef.current = true
+          alertDialog({
+            text: '웹캠을 설치하시거나 권한을 허용해 주세요.',
+            icon: 'error',
+            callback: () => {
+              setGuideOpen(true)
+            },
+          })
+        }
       })
 
     const ctx = canvas?.getContext('2d')
@@ -121,30 +189,44 @@ const DetectBox = ({ width, height, callback }) => {
       clearInterval(videoInterval)
       clearInterval(monitorInterval)
     }
-  }, [videoRef, canvasRef, monitor, width, height])
+  }, [videoRef, canvasRef, monitor, width, height, setGuideOpen, alertDialog])
 
   return (
-    <Wrapper width={width} height={height}>
-      <video
-        ref={videoRef}
-        width={width}
-        height={height}
-        autoPlay // 직접 정의해서 버튼 클릭 시 작동하도록 가능
-        style={{ display: 'none' }}
-      ></video>
-      <canvas
-        className="video"
-        ref={canvasRef}
-        width={width}
-        height={height}
-      ></canvas>
-      <canvas
-        className="layer"
-        ref={layerRef}
-        width={width}
-        height={height}
-      ></canvas>
-    </Wrapper>
+    <>
+      <Wrapper width={width} height={height}>
+        <video
+          ref={videoRef}
+          width={width}
+          height={height}
+          autoPlay // 직접 정의해서 버튼 클릭 시 작동하도록 가능
+          style={{ display: 'none' }}
+        ></video>
+        <canvas
+          className="video"
+          ref={canvasRef}
+          width={width}
+          height={height}
+        ></canvas>
+        <canvas
+          className="layer"
+          ref={layerRef}
+          width={width}
+          height={height}
+        ></canvas>
+      </Wrapper>
+      <LayerPopup isOpen={guideOpen} width={550} onClose={onPopupClose}>
+        <PermitWrapper>
+          <h1>웹캠 사용 허가가 필요해요!</h1>
+          <p>실시간 모니터링을 위해 카메라 접근 권한을 허용해주세요. 😊</p>
+          <p>허용하지 않으면 쓰러짐 감지 기능을 사용할 수 없어요.</p>
+          <p>
+            브라우저 상단 주소창 옆 🔒(혹은 ⓘ) 아이콘을 클릭하고 카메라 권한을{' '}
+            <span>허용</span>으로 바꿔주세요.
+          </p>
+          <div>권한 변경 이미지</div>
+        </PermitWrapper>
+      </LayerPopup>
+    </>
   )
 }
 

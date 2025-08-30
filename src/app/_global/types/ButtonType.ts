@@ -6,6 +6,8 @@ type ButtonType = {
   fontcolor?: string
   fontSize?: string
   center?: boolean
+  borderradius?: number | string
+  onClick?: () => void;
 }
 
 export default ButtonType

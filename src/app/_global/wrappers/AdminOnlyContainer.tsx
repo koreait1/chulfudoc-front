@@ -1,11 +1,16 @@
 'use client'
-import { unauthorized } from 'next/navigation'
+import { unauthorized, forbidden } from 'next/navigation'
 import useUser from '../hooks/useUser'
 
 export default function AdminOnlyContainer({ children }) {
-  const { isAdmin } = useUser()
-  if (!isAdmin) {
+  const { isAdmin, isLogin } = useUser()
+
+  if (!isLogin) {
     unauthorized()
+  }
+
+  if (!isAdmin) {
+    forbidden()
   }
 
   return children

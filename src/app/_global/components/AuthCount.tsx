@@ -2,18 +2,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
-  startSignal?: number
+  startSignal?:  boolean
   duration?: number
   onExpire?: () => void 
 }
 
-export default function AuthCount({ startSignal = 0, duration = 180, onExpire }: Props) {
+export default function AuthCount({ startSignal = false, duration = 180, onExpire }: Props) {
   const [count, setCount] = useState(duration)
   const [sending, setSending] = useState(false)
   const timerRef = useRef<number | null>(null)
 
   useEffect(() => {
-    if (startSignal <= 0) return
+    if (startSignal === false) return
     if (timerRef.current) {
       clearInterval(timerRef.current)
       timerRef.current = null
@@ -54,7 +54,7 @@ export default function AuthCount({ startSignal = 0, duration = 180, onExpire }:
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [sending, onExpire, startSignal])
+  }, [sending, onExpire])
 
   return (
     <>

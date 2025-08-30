@@ -10,6 +10,16 @@ import color from '../styles/color'
 
 const { dark } = color
 
+type FileType = {
+  items: any
+  width?: number
+  height?: number
+  viewOnly?: boolean
+  viewOrgImage?: boolean
+  callback?: (item: any) => void
+  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
+}
+
 const ImageItems = styled.ul`
 {items.length > 1 &&  
   display: flex;}
@@ -37,16 +47,6 @@ const ImageItems = styled.ul`
     margin-left: 5px;
   }
 `
-
-type FileType = {
-  items: any
-  width?: number
-  height?: number
-  viewOnly?: boolean
-  viewOrgImage?: boolean
-  callback?: (item: any) => void
-  fallbackImage?: string | StaticImageData // 이미지가 없을 때 출력될 이미지
-}
 
 const ImageItem = ({
   item,
@@ -85,8 +85,11 @@ const ImageItem = ({
   return (
     image && (
       <li>
-        {!viewOnly && (
-          <FaRegWindowClose className="remvoe" onClick={() => onRemove(seq)} />
+        {!viewOnly && callback && (
+          <FaRegWindowClose
+            className="icon-remove"
+            onClick={() => onRemove(seq)}
+          />
         )}
         <Image
           src={`${thumbBaseUrl}&width=${width}&height=${height}&crop=true`}
