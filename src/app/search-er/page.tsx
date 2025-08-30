@@ -1,12 +1,9 @@
-import SearchMapContainer from '../tmap/_containers/SearchMapContainer'
-import SearchERInfoContainer from '../tmap/_containers/SearchInfoContainer'
+import SearchPageContainer from '../tmap/_containers/SearchPageContainer'
 
 export default function SearchERMapPage() {
   return (
     <>
-      <h1>지도 검색</h1>
-      <SearchMapContainer />
-      <SearchERInfoContainer />
+      <SearchPageContainer />
     </>
   )
 }
