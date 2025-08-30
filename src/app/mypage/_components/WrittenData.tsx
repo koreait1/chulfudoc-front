@@ -2,29 +2,26 @@
 import Pagination from '@/app/_global/components/Pagination'
 import useFetchCSR from '@/app/_global/hooks/useFetchCSR'
 import useUser from '@/app/_global/hooks/useUser'
-import { env } from 'process'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 const WrittenData = () => {
+  const fetchCSR = useFetchCSR()
   const [items, setItems] = useState<any[]>([])
   const [pagination, setPagination] = useState<any[]>([])
   const { loggedMember, isLogin } = useUser()
-  const fetchCSR = useFetchCSR()
-  const puuid = loggedMember?.puuid || loggedMember?.PUUID
-  const url = isLogin && puuid ? `/board/mypage/search?puuid=${puuid}` : null
+  const puuid = loggedMember.puuid || loggedMember.PUUID
+  const url = `/board/mypage/search?puuid=${puuid}`
 
   useEffect(() => {
-    if (!url) return
-    if (!isLogin || !puuid) return
-    ;(async function({url,items}) {
-        const res = await fetchCSR(url)
-        const data = await res.json().then(()=>{
-          setItems(Array.isArray(data.items) ? data.items : [])
-          setPagination(data.pagination)
-        }).catch(() => ({} as any))
-    })
-  }, [items])
-
+    if (!isLogin || !puuid ) return
+    const getBoardList = async ()=>{
+      fetchCSR(url).then((res) => res.json()).then((data)=>{
+        setItems(Array.isArray(data.items) ? data.items : [])
+        setPagination(data.pagination)
+      }).catch(() => ({} as any))
+    }
+    getBoardList()
+  }, [])
   if (!isLogin) return <></>
   return (
     <>
@@ -45,4 +42,4 @@ const WrittenData = () => {
   )
 }
 
-export default React.memo(WrittenData)
+export default WrittenData
