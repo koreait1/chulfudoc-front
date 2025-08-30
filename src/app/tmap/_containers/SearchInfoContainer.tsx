@@ -16,11 +16,16 @@ interface PaginationType {
   baseUrl: string
 }
 
-export default function SearchERInfoContainer() {
+interface SearchProps {
+  initialKeyword?: string
+  initialOption?: 'ALL' | 'NAME' | 'ADDR'
+}
+
+export default function SearchERInfoContainer({ initialKeyword = '', initialOption = 'ALL' }: SearchProps) {
   const [hospitals, setHospitals] = useState<Hospital[]>([])
   const [filteredHospitals, setFilteredHospitals] = useState<Hospital[]>([])
-  const [keyword, setKeyword] = useState('')
-  const [option, setOption] = useState<'ALL' | 'NAME' | 'ADDR'>('ALL')
+  const [keyword, setKeyword] = useState(initialKeyword)
+  const [option, setOption] = useState<'ALL' | 'NAME' | 'ADDR'>(initialOption)
 
   // Pagination 상태
   const [pagination, setPagination] = useState<PaginationType | null>(null)
