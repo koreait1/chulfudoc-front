@@ -55,4 +55,5 @@ function processData(item: CommentDataType) {
   item.createdAt = toDate(item.createdAt)
   if (item.modifiedAt) item.modifiedAt = toDate(item.modifiedAt)
   if (item.deletedAt) item.deletedAt = toDate(item.deletedAt)
+  item.guestPw = ''
 }

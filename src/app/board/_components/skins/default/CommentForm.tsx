@@ -5,8 +5,50 @@ import type { CommentType } from '@/app/board/_types/CommentType'
 import Loading from '@/app/_global/components/Loading'
 import MessageBox from '@/app/_global/components/MessageBox'
 import color from '@/app/_global/styles/color'
-import fontsize from '@/app/_global/styles/fontsize'
-const StyledForm = styled.form``
+
+const { dark, light } = color
+
+const StyledForm = styled.form`
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 3px;
+
+  .top {
+    margin-bottom: 5px;
+    input {
+      border: 1px solid ${dark};
+      width: 120px;
+      height: 40px;
+      padding: 0 10px;
+    }
+
+    input + input {
+      margin-left: 5px;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    height: 100px;
+
+    textarea {
+      flex-grow: 1;
+      resize: none;
+      margin-right: 5px;
+      border: 1px solid ${dark};
+      padding: 10px;
+    }
+
+    button {
+      width: 120px;
+      background: ${dark};
+      color: ${light};
+      border: 0;
+      cursor: pointer;
+    }
+  }
+`
 
 const CommentForm = ({
   form,
@@ -67,7 +109,8 @@ const CommentForm = ({
           placeholder="댓글을 입력하세요."
         />
         <button type="submit" disabled={pending}>
-          작성하기 <Loading loading={Boolean(pending)} />
+          {form?.mode === 'comment_update' ? '수정하기' : '작성하기'}{' '}
+          <Loading loading={Boolean(pending)} />
         </button>
       </div>
       <MessageBox color="danger">{errors?.content}</MessageBox>

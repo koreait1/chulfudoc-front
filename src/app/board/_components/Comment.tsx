@@ -10,7 +10,7 @@ const DefaultItemsSkin = loadable(() => import('./skins/default/CommentItems'))
 const GalleryItemsSkin = loadable(() => import('./skins/gallery/CommentItems'))
 
 const Comment = (props: CommentType) => {
-  const { board } = props
+  const { board, items } = props
   const [FormSkin, ItemsSkin] = useMemo<Array<any>>(() => {
     const skin = board?.skin ?? 'default'
 
@@ -24,7 +24,7 @@ const Comment = (props: CommentType) => {
   return (
     <>
       {board?.comment && board?.commentable && <FormSkin {...props} />}
-      <ItemsSkin {...props} />
+      {items && items.length > 0 && <ItemsSkin items={items} />}
     </>
   )
 }

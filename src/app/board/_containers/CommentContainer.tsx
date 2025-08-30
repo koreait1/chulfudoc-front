@@ -1,20 +1,24 @@
 'use client'
-import React, { useState, useCallback, useActionState } from 'react'
+import React, { useState, useCallback, useActionState, useMemo } from 'react'
 import Comment from '../_components/Comment'
 import type { CommentType, CommentDataType } from '../_types/CommentType'
 import { processComment } from '../_services/action'
 import useUser from '@/app/_global/hooks/useUser'
 
-const CommentContainer = ({ board, data }: CommentType) => {
+const CommentContainer = ({ board, data, items, form }: CommentType) => {
   const { isLogin, loggedMember } = useUser()
-  const [form, setForm] = useState<CommentDataType>({
-    mode: 'comment_write',
-    boardDataSeq: data?.seq,
-    commenter: loggedMember?.name ?? '',
-    guestPw: '',
-    content: '',
-    guest: !isLogin,
-  })
+  const [_form, setForm] = useState<CommentDataType>(
+    form
+      ? form
+      : {
+          mode: 'comment_write',
+          boardDataSeq: data?.seq,
+          commenter: loggedMember?.name ?? '',
+          guestPw: '',
+          content: '',
+          guest: !isLogin,
+        },
+  )
 
   const [errors, action, pending] = useActionState<any, any>(processComment, {})
 
@@ -26,11 +30,12 @@ const CommentContainer = ({ board, data }: CommentType) => {
     <Comment
       board={board}
       data={data}
-      form={form}
+      form={_form}
       onChange={onChange}
       errors={errors}
       action={action}
       pending={pending}
+      items={items}
     />
   )
 }

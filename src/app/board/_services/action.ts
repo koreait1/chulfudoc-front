@@ -123,7 +123,10 @@ export async function processPassword(errors: any, formData: FormData) {
       redirectUrl += `delete/${seq}`
       break
     case 'comment_delete':
+      redirectUrl += `comment/delete/${seq}`
+      break
     case 'comment_update':
+      redirectUrl += `comment/${seq}`
       break
     default:
       redirectUrl += `update/${seq}`
