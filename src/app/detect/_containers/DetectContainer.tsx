@@ -6,21 +6,16 @@ import styled from 'styled-components'
 import color from '@/app/_global/styles/color'
 import fontSize from '@/app/_global/styles/fontsize'
 
-type DetectProps = {
-  webcamAble?: boolean
-  setWebcamAble?: (v: boolean) => void
-}
-
-
 const { primary } = color
 const { big } = fontSize
 
 const DetectWrapper = styled.div`
-  margin: 0 auto 20px;
+  margin: 10px auto 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 15px;
 `
 
 const WebcamButton = styled.div`
@@ -31,25 +26,30 @@ const WebcamButton = styled.div`
 
   width: 150px;
   height: 45px;
-  background-color: #212121;
+  background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
+  
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 30px;
   color: ${primary};
   font-size: ${big};
 
   &:hover {
-    background-color: #333;
+    background-color: #222;
     transform: scale(1.05);
   }
 `
 
-const DetectContainer = () => {
-  const [webcamAble, setWebcamAble] = useState(false)
+type DetectType = {
+  webcamAble: boolean
+  onChange: (item: any) => void
+}
+
+const DetectContainer = ({ webcamAble, onChange }:DetectType) => {
+
   const [fallDetect, setFallDetect] = useState(false)
   const detectionCount = useRef<number[]>([])
   const lastDetectTime = useRef(0)
@@ -76,18 +76,23 @@ const DetectContainer = () => {
     }
   }, [fallDetect, router])
 
+  const onDetectChange = () => {
+    const btnValue = !webcamAble
+    onChange(btnValue)
+  }
+
   return (
     <DetectWrapper>
       {webcamAble ? (
         <>
           <DetectBox width={800} height={640} callback={detectCallback} />
-          <WebcamButton onClick={() => setWebcamAble(false)}>
+          <WebcamButton onClick={onDetectChange}>
             WebCam Off
           </WebcamButton>
         </>
       ) : (
-        <WebcamButton onClick={() => setWebcamAble(true)}>
-          WebCam On
+        <WebcamButton onClick={onDetectChange}>
+          GET START
         </WebcamButton>
       )}
     </DetectWrapper>

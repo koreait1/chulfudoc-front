@@ -27,6 +27,10 @@ export const PageMain = styled.div`
     padding-top: 25px;
   }
 
+  .line_end{
+    margin-bottom: 10px;
+  }
+
   .line_start, .line_end, .highlight{
     font-family: "Anton", sans-serif !important;
     font-weight: 1000;

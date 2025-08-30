@@ -19,6 +19,7 @@ const Wrapper = styled.div<WrapperType>`
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
+  border: 7px solid #fff;
 
   video {
     display: none; /* 실제 웹캠 비디오는 숨김 */

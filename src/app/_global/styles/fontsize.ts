@@ -6,6 +6,7 @@ const fontSize = {
   medium: '1.25rem',
   big: '1.5rem',
   extra: '2rem',
+  mainPageSize: '8rem',
 }
 
 export default fontSize
