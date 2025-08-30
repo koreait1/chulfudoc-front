@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import { useRouter } from 'next/navigation'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import LayerPopup from '@/app/_global/components/LayerPopup'
+import ableimage from '@/app/_global/assets/images/ableimage.png'
+import disableimage from '@/app/_global/assets/images/disableimage.png'
+import tune from '@/app/_global/assets/images/tune.png'
 
 type WrapperType = {
   children: React.ReactNode
@@ -42,13 +45,13 @@ const Wrapper = styled.div<WrapperType>`
 `
 
 const PermitWrapper = styled.div`
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px 20px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   text-align: center;
 
   h1 {
@@ -65,7 +68,7 @@ const PermitWrapper = styled.div`
 
     span {
       font-weight: 600;
-      color: #0070f3;
+      color: #4caf50;
     }
   }
 `
@@ -221,10 +224,59 @@ const DetectBox = ({ width, height, callback }) => {
           <p>실시간 모니터링을 위해 카메라 접근 권한을 허용해주세요. 😊</p>
           <p>허용하지 않으면 쓰러짐 감지 기능을 사용할 수 없어요.</p>
           <p>
-            브라우저 상단 주소창 옆 🔒(혹은 ⓘ) 아이콘을 클릭하고 카메라 권한을{' '}
-            <span>허용</span>으로 바꿔주세요.
+            브라우저 상단 주소창 옆{" "}
+            <img
+              src={tune.src}
+              alt="튠 아이콘"
+              style={{ width: 24, height: 24, verticalAlign: "middle", marginRight: 4 }}
+            />
+            아이콘을 클릭하고<br /> 카메라 권한을 <span>허용</span>으로 바꿔주세요.
           </p>
-          <div>권한 변경 이미지</div>
+    {/* 이미지 2개를 가로로 배치 */}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: "16px",
+        marginTop: "24px",
+        width: "100%",
+      }}
+    >
+      {/* 비허용 상태 */}
+      <div style={{ flex: 1, textAlign: "center" }}>
+        <img
+          src={disableimage.src}
+          alt="비허용 상태"
+          style={{
+            width: "100%",
+            maxWidth: "240px",
+            borderRadius: "12px",
+            border: "2px solid #f44336",
+          }}
+        />
+        <p style={{ marginTop: "8px", color: "#f44336", fontWeight: 600 }}>
+          비허용 상태
+        </p>
+        </div>
+
+          {/* 허용 상태 */}
+          <div style={{ flex: 1, textAlign: "center" }}>
+            <img
+              src={ableimage.src}
+              alt="허용 상태"
+              style={{
+                width: "100%",
+                maxWidth: "240px",
+                borderRadius: "12px",
+                border: "2px solid #4caf50",
+              }}
+            />
+            <p style={{ marginTop: "8px", color: "#4caf50", fontWeight: 600 }}>
+              허용 상태
+            </p>
+          </div>
+        </div>
         </PermitWrapper>
       </LayerPopup>
     </>
