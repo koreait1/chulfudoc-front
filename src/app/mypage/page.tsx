@@ -3,7 +3,6 @@ import ContentBox from '../_global/components/ContentBox'
 import { MainTitle } from '../_global/components/TitleBox'
 import Written from './_containers/WrittenListContainer'
 import UserInfo from './_components/AccountInfo'
-import { Button } from '../_global/components/Buttons'
 
 export default function Mypage() {
   return (

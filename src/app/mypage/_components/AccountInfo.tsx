@@ -81,9 +81,11 @@ const UserInfo = () => {
           </td>
         </tr>
         <tr>
-          <a href="/mypage/profile">
-            <Button>회원정보 수정</Button>
-          </a>
+          <td>
+            <a href="/mypage/profile">
+              <Button>회원정보 수정</Button>
+            </a>
+          </td>
         </tr>
       </tbody>
     </MyInfo>
