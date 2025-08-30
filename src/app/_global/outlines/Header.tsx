@@ -109,6 +109,17 @@ const StyledHeader = styled.header`
     }
   }
 `
+
+const LoginButton = styled(Button)`
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #222;
+    transform: scale(1.1);
+    color: #ffd700;
+  }
+`
+
 const Header = () => {
   const { isLogin, isAdmin, loggedMember } = useUser()
   const [isOpen, setIsOpen] = useState(false)
@@ -209,16 +220,15 @@ const Header = () => {
           ) : (
             <>
               <Link href="/member/login" prefetch={false}>
-                <Button
+                <LoginButton
                   type="button"
-                  color="#111827"
+                  color="#000"
                   borderradius="25px"
                   style={{ marginRight: '20px' }}
                 >
-                  <FiLogIn />
+                  <FiLogIn style={{ color: "currentColor" }} />
                   로그인
-                  <LinkLoading />
-                </Button>
+                </LoginButton>
               </Link>
             </>
           )}

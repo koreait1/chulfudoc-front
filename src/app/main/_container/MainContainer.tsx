@@ -9,20 +9,28 @@ import MainLinkContainer from "./MainLinkContainer"
 import FloatingIconContainer from "@/app/_global/container/FloatingIconContainer"
 import Orb from "../_component/Orb"
 import background2 from '../../_global/assets/images/background2.png'
+import background3 from '../../_global/assets/images/background3.png'
 import Headers from "../../_global/outlines/Header"
 import styled from "styled-components"
+import SplitText from "../_component/SplitText"
+import AnimatedContent from "../_component/AnimatedContent"
 
-const StyledBackground = styled.div`
+type BackgroundType = {
+    img: string
+    brightness?: number
+}
+
+const StyledBackground = styled.div<BackgroundType>`
     position: absolute;
     inset: 0;
-    background-image: url(${background2.src});
+    background-image: url(${props => props.img});
     background-size: cover;
     background-position: center;
-    filter: brightness(0.5);
-    z-index: 0;
+    filter: brightness(${props => props.brightness});
+    z-index: -1;
 `
 
-const SectionOne = styled.div`
+const Section = styled.div`
     width: 100%;
     height: 100vh;
     position: relative;
@@ -31,32 +39,77 @@ const SectionOne = styled.div`
 
 const MainContainer = () => {
     const [current, setCurrent] = useState(0)
+    const [webcamAble, setWebcamAble] = useState(false)
 
     const goTop = () => setCurrent(0);
 
     const sections = [
-        <SectionOne key={0}>
-            <StyledBackground />
+        <Section key={0}>
+            <StyledBackground img={background2.src} brightness={0.5}/>
             <Headers />
             <PageMain>
-                <span className="line_start">SAFETY</span>
-                <GradientText className="highlight">WHERE</GradientText>
-                <span className="line_end">YOU aRE</span>
-                <Orb hoverIntensity={0.8} rotateOnHover={true} hue={318} forceHoverState={false} />
-                <DetectContainer />
+                {webcamAble ? (
+                        <DetectContainer webcamAble={webcamAble} onChange={(item) => setWebcamAble(item)}/>
+                    ) : (
+                        <>
+                            <span className="line_start">SAFETY</span>
+                            <GradientText className="highlight">WHERE</GradientText>
+                            <span className="line_end">YOU aRE</span>
+                            <Orb hoverIntensity={0.8} rotateOnHover={true} hue={318} forceHoverState={false} />
+                            <DetectContainer webcamAble={webcamAble} onChange={(item) => setWebcamAble(item)}/>
+                        </>
+                    )
+                }
             </PageMain>
-        </SectionOne>,
-        <div key={1} style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            fontSize: '3rem',
-            background: 'transparent',
-            color: '#000'
-        }}>
-            <h1>테스트</h1>
-        </div>,
+        </Section>,
+        <Section key={1}>
+            <StyledBackground img={background3.src} brightness={0.4}/>
+
+            <SplitText
+                text="언제"
+                className="text-2xl font-semibold text-center"
+                delay={100}
+                duration={0.8}
+                currentSection={current}
+                sectionIndex={1} 
+                tag="h1"
+            />
+            <SplitText
+                text="어디서나,"
+                className="text-2xl font-semibold text-center"
+                delay={100}
+                duration={0.8}
+                currentSection={current}
+                sectionIndex={1} 
+                tag="h1"
+                startDelay={0.3}
+            />
+            <br />
+            <SplitText
+                text="병원 정보를"
+                className="text-2xl font-semibold text-center"
+                delay={100}
+                duration={0.8}
+                currentSection={current}
+                sectionIndex={1} 
+                tag="h1"
+                startDelay={0.7}
+            />
+            <SplitText
+                text="손쉽게!"
+                className="text-2xl font-semibold text-center"
+                delay={100}
+                duration={0.8}
+                currentSection={current}
+                sectionIndex={1} 
+                tag="h1"
+                startDelay={1.4}
+            />
+            <br />
+            <AnimatedContent currentSection={current} sectionIndex={1} distance={50} delay={0.5}>
+                <HosptialPopup />
+            </AnimatedContent>
+        </Section>,
         <div key={2} style={{
             display: 'flex',
             justifyContent: 'center',
@@ -67,7 +120,6 @@ const MainContainer = () => {
             color: '#000'
         }}>
             <div className="main-bottom">
-                <HosptialPopup />
                 <MainLinkContainer />
             </div>
         </div>
