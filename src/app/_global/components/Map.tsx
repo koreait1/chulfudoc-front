@@ -209,6 +209,7 @@ const Map = ({ width, height, zoom }: MapType) => {
 
   return (
     <Wrapper width={width} height={height}>
+      <h1>응급 의료기관</h1>
       <div ref={mapRef}></div>
     </Wrapper>
   )

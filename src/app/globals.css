@@ -15,6 +15,10 @@ html {
   color: #000;
 }
 
+body {
+  margin: 0;
+}
+
 ul,
 ol {
   list-style: none;
