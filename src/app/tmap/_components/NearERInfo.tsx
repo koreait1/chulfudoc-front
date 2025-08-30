@@ -8,30 +8,49 @@ import LocalLoadingWrapper from '@/app/_global/styles/LocalLoadingWrapper'
 const TableWrap = styled.div`
   min-width: 600px;
   max-width: 1150px;
-  padding: 40px 20px;
-  margin: 0 auto;
+  margin: 20px auto 0; /* 지도와 간격 */
+  padding: 20px;
+
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
   h1 {
     text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
   }
 
   thead {
-    background: #f8f8f8;
+    background: #f8f9fa;
     border-top: 2px solid #333;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
   }
 
   th,
   td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #e5e5e5;
+    padding: 14px 10px;
+    border-bottom: 1px solid #eee;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    border-right: 1px solid #f1f3f5;
+  }
+
+  th:last-of-type,
+  td:last-of-type {
+    border-right: none;
   }
 
   th {
@@ -40,9 +59,46 @@ const TableWrap = styled.div`
   }
 
   tbody tr:hover {
-    background: #fafafa;
+    background: #f9fafb;
+  }
+
+  /* 열 비율 */
+  th:nth-of-type(1),
+  td:nth-of-type(1) {
+    width: 8%; /* 순위 */
+    font-weight: bold;
+    color: #444;
+  }
+
+  th:nth-of-type(2),
+  td:nth-of-type(2) {
+    width: 27%; /* 기관명 */
+    font-weight: bold;
+  }
+
+  th:nth-of-type(3),
+  td:nth-of-type(3) {
+    width: 35%; /* 소재지 */
+  }
+
+  th:nth-of-type(4) {
+    width: 15%; /* 연락처 */
+    font-weight: 500;
+  }
+
+  td:nth-of-type(4) {
+    width: 15%; /* 연락처 */
+    font-weight: 500;
+  }
+
+  th:nth-of-type(5),
+  td:nth-of-type(5) {
+    width: 15%; /* 거리 */
+    font-weight: 500;
+    color: #555;
   }
 `
+
 
 interface Hospital {
   응급의료기관명: string
@@ -150,8 +206,8 @@ export default function NearERInfo() {
               <th>순위</th>
               <th>기관명</th>
               <th>소재지</th>
-              <th>연락처</th>
               <th>거리</th>
+              <th>연락처</th>
             </tr>
           </thead>
           <tbody>
@@ -160,10 +216,10 @@ export default function NearERInfo() {
                 <td>{i + 1}</td>
                 <td style={{ fontWeight: 'bold' }}>{h.응급의료기관명}</td>
                 <td>{h.소재지}</td>
-                <td>{h.연락처}</td>
                 <td>
                   {h.distance ? (h.distance / 1000).toFixed(2) + ' km' : '-'}
                 </td>
+                <td>{h.연락처}</td>
               </tr>
             ))}
           </tbody>

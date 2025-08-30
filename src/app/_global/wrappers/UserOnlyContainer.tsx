@@ -4,6 +4,7 @@ import useUser from '../hooks/useUser'
 import ContentBox from '../components/ContentBox'
 import { MainTitle } from '../components/TitleBox'
 import LoginContainer from '@/app/member/_containers/LoginContainer'
+import { MemberPageWrapper } from '@/app/member/_components/MemberStyleWrapper'
 
 export default function UserOnlyContainer({ children }) {
   const { isLogin } = useUser()
@@ -17,6 +18,7 @@ export default function UserOnlyContainer({ children }) {
     children
   ) : (
     <ContentBox width={520}>
+      <MemberPageWrapper />
       <MainTitle center="true">로그인</MainTitle>
       <LoginContainer redirectUrl={redirectUrl} />
     </ContentBox>
