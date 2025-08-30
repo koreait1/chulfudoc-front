@@ -15,7 +15,7 @@ const WrittenData = () => {
   useEffect(() => {
     if (!isLogin || !puuid ) return
     const getBoardList = async ()=>{
-      fetchCSR(url).then((res) => res.json()).then((data)=>{
+      fetchCSR(url,{method: 'GET'}).then((res) => res.json()).then((data)=>{
         setItems(Array.isArray(data.items) ? data.items : [])
         setPagination(data.pagination)
       }).catch(() => ({} as any))
