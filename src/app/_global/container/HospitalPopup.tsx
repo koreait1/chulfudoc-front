@@ -10,6 +10,7 @@ const { primary } = color
 const { extra } = fontSize
 
 const StyledHospital = styled.div`
+  margin: 0;
   position: relative;
   justify-content: center;
   align-items: center;
