@@ -5,7 +5,6 @@ import GradientText from "../_component/GradientText"
 import { useState, useEffect } from "react"
 import DetectContainer from "@/app/detect/_containers/DetectContainer"
 import HosptialPopup from "@/app/_global/container/HospitalPopup"
-import MainLinkContainer from "./MainLinkContainer"
 import FloatingIconContainer from "@/app/_global/container/FloatingIconContainer"
 import Orb from "../_component/Orb"
 import background2 from '../../_global/assets/images/background2.png'
@@ -109,20 +108,7 @@ const MainContainer = () => {
             <AnimatedContent currentSection={current} sectionIndex={1} distance={50} delay={0.5}>
                 <HosptialPopup />
             </AnimatedContent>
-        </Section>,
-        <div key={2} style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            fontSize: '3rem',
-            background: 'transparent',
-            color: '#000'
-        }}>
-            <div className="main-bottom">
-                <MainLinkContainer />
-            </div>
-        </div>
+        </Section>
     ]
 
     useEffect(() => {
