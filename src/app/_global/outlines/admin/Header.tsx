@@ -68,7 +68,7 @@ const Header = () => {
           <Link href="/" prefetch={false}>
             <Button type="button">
               <FaExternalLinkAlt />
-              사이트 메인
+              메인 페이지
               <LinkLoading />
             </Button>
           </Link>
