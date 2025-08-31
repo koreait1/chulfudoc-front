@@ -30,28 +30,33 @@ const Wrapper = styled.div`
     font-size: ${medium};
     font-weight: 500;
     border-radius: 8px;
-    border: 1px solid ${black};
-    color: ${black};
-    background: ${white};
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ffe89a;
+    transition: filter 0.15s ease, transform 0.05s ease, background 0.15s ease,
+      color 0.15s ease;
 
     &:hover {
-      background: ${black};
-      color: ${white};
-      transform: translateY(-1px);
+      background: #fffcee;
+    }
+
+    &:active {
+      transform: translateY(1px);
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     }
 
     &.on {
-      background: ${black};
-      color: ${white};
+      background: #ffd93d;
+      border-color: #ffd93d;
+      color: #000000;
       font-weight: 600;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     }
 
     svg {
       font-size: 20px;
+      color: currentColor;
     }
   }
 `

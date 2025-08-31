@@ -8,7 +8,7 @@ type ContentBoxType = {
 }
 
 const ContentBox = styled.section<ContentBoxType>`
-  padding: 50px 10px;
+  padding: 20px 10px;
   min-width: 320px;
   max-width: 1150px;
   margin: 0 auto;
