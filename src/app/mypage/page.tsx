@@ -4,7 +4,6 @@ import { MainTitle } from '../_global/components/TitleBox'
 import UserInfo from './_components/AccountInfo'
 import WrittenList from './_components/WrittenList'
 import WrittenData from './_components/WrittenData'
-import { tr } from 'date-fns/locale'
 
 export default function Mypage() {
   return (

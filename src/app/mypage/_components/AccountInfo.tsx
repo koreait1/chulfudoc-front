@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import noprofile from '@/app/_global/assets/images/noprofile.png'
 import { Button } from '@/app/_global/components/Buttons'
 const { dark } = color
-const { small, big, extra } = fontSize
+const { big, extra } = fontSize
 const MyInfo = styled.table`
   display: block;
   padding: 50px 10px;

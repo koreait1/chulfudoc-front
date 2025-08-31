@@ -2,7 +2,7 @@
 import Pagination from '@/app/_global/components/Pagination'
 import useFetchCSR from '@/app/_global/hooks/useFetchCSR'
 import useUser from '@/app/_global/hooks/useUser'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const WrittenData = () => {
   const fetchCSR = useFetchCSR()
