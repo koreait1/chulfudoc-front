@@ -11,11 +11,6 @@ import ListContainer from '../../_containers/ListContainer'
 import Header from '@/app/_global/outlines/Header'
 import BoardTabs from '../../_components/BoardTabs'
 
-const HEADER_HEIGHT = 80
-function HeaderSpacer() {
-  return <div style={{ height: `${HEADER_HEIGHT}px` }} />
-}
-
 export default async function ListPage({
   params,
   searchParams,
@@ -37,9 +32,6 @@ export default async function ListPage({
 
   return (
     <ContentBox>
-      <Header />
-      <HeaderSpacer />
-
       <MainTitle border="true">{board.name}</MainTitle>
 
       <BoardTabs boards={boards} activeBid={bid} />

@@ -8,9 +8,7 @@ import color from '@/app/_global/styles/color'
 import fontSize from '@/app/_global/styles/fontsize'
 
 const { small } = fontSize
-const { danger, info, white } = color
 
-/* ================== 스타일 변경: HEX 고정 ================== */
 const StyledItems = styled.ul`
   li {
     display: flex;

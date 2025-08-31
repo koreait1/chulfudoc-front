@@ -8,11 +8,6 @@ import type { BoardDataType, BoardSearchType } from '../../_types/BoardType'
 import { getList as getComments } from '../../_services/comment'
 import Header from '@/app/_global/outlines/Header'
 
-const HEADER_HEIGHT = 80
-function HeaderSpacer() {
-  return <div style={{ height: `${HEADER_HEIGHT}px` }} />
-}
-
 export default async function ViewPage({
   params,
   searchParams,
@@ -41,9 +36,6 @@ export default async function ViewPage({
 
   return (
     <ContentBox>
-      <Header />
-      <HeaderSpacer />
-
       {board?.name && <MainTitle border="true">{board.name}</MainTitle>}
       <ViewContainer board={board} data={data} />
       <CommentContainer board={board} data={data} items={comments} />
