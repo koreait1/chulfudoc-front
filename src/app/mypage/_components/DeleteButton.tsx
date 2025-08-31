@@ -1,7 +1,10 @@
 "use client";
 
 import React from "react";
+import { Button } from "@/app/_global/components/Buttons";
+
 import useAlertDialog from "@/app/_global/hooks/useAlertDialog";
+
 export default function DeleteButton() {
   const alertDialog = useAlertDialog();
 
@@ -83,8 +86,8 @@ export default function DeleteButton() {
   };
 
   return (
-    <button onClick={handleDelete} className="text-red-600 underline">
+    <Button onClick={handleDelete}>
       회원 탈퇴
-    </button>
+    </Button>
   );
 }

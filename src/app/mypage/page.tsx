@@ -14,8 +14,8 @@ export default function Mypage() {
       <ContentBox>
         <WrittenList>
           <WrittenData />
-          <DeleteButton />
         </WrittenList>
+        <DeleteButton />
       </ContentBox>
     </UserOnlyContainer>
   )
