@@ -7,31 +7,99 @@ import { Button } from '@/app/_global/components/Buttons'
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 
 const StyledForm = styled.form`
-  th:nth-of-type(1) {
-    width: 45px;
-  }
-  th:nth-of-type(2) {
-    width: 150px;
-  }
-  th:nth-of-type(3) {
-    width: 250px;
+  ${TableRows} {
+    width: 100%;
+    border-top: 2px solid #ffe89a;
+    border-bottom: 1px solid #ffe89a;
+    background: #ffffff;
+    border-collapse: separate;
+    border-spacing: 0;
   }
 
-  td {
+  thead th {
+    height: 44px;
+    background: #fff8cc;
+    color: #111111;
+    font-weight: 700;
+    border-bottom: 1px solid #ffe89a;
+  }
+
+  tbody td {
+    height: 46px;
+    border-bottom: 1px solid #fff3b8;
+    color: #212529;
     text-align: center;
+  }
+
+  th:nth-of-type(1),
+  td:nth-of-type(1) {
+    width: 48px;
+  }
+  th:nth-of-type(2),
+  td:nth-of-type(2) {
+    width: 160px;
+  }
+  th:nth-of-type(3),
+  td:nth-of-type(3) {
+    width: 280px;
+    text-align: left;
+  }
+
+  tbody tr:nth-of-type(odd) td {
+    background: #fffcf0;
+  }
+  tbody tr:hover td {
+    background: #fffcee;
+  }
+
+  .cell-check {
+    cursor: pointer;
+    user-select: none;
+    svg {
+      font-size: 1.4rem;
+      vertical-align: middle;
+    }
   }
 
   td:last-of-type {
     text-align: left;
+    white-space: nowrap;
 
     a + a {
-      margin-left: 5px;
+      margin-left: 6px;
     }
   }
 
   .table-action {
-    border-bottom: 1px solid #ccc;
-    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 12px;
+    border-top: 1px dashed #ffe89a;
+    background: #fffef6;
+    border-radius: 0 0 12px 12px;
+  }
+
+  button {
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #ffe89a;
+    background: #ffd93d;
+    color: #000000;
+    font-weight: 600;
+    transition: filter 0.15s ease, transform 0.05s ease;
+  }
+  button:hover {
+    filter: brightness(1.03);
+  }
+  button:active {
+    transform: translateY(1px);
+  }
+
+  td:last-of-type a:nth-of-type(2) button {
+    background: #ffd166;
+    border-color: #ffd166;
   }
 `
 
