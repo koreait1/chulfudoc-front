@@ -4,6 +4,7 @@ import { MainTitle } from '../_global/components/TitleBox'
 import UserInfo from './_components/AccountInfo'
 import WrittenList from './_components/WrittenList'
 import WrittenData from './_components/WrittenData'
+import DeleteButton from './_components/DeleteButton'
 
 export default function Mypage() {
   return (
@@ -13,6 +14,7 @@ export default function Mypage() {
       <ContentBox>
         <WrittenList>
           <WrittenData />
+          <DeleteButton />
         </WrittenList>
       </ContentBox>
     </UserOnlyContainer>

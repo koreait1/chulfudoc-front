@@ -200,7 +200,7 @@ const Header = () => {
                       <LinkLoading />
                     </Button>
                   </Link>
-                  <Link href="/mypage" prefetch={false}>
+                  <Link href="/mypage/profile" prefetch={false}>
                     <Button type="button" width={'230px'}>
                       <LuUserPen />
                       개인정보 수정
