@@ -8,44 +8,72 @@ import styled from 'styled-components'
 import noprofile from '@/app/_global/assets/images/noprofile.png'
 import { Button } from '@/app/_global/components/Buttons'
 const { dark } = color
-const { small } = fontSize
+const { small, big, extra } = fontSize
 const MyInfo = styled.table`
+  display: block;
   padding: 50px 10px;
   min-width: 320px;
   max-width: 1150px;
   margin: 0 auto;
-  width: 100%;
+  width: 80%;
+  border-bottom:1px solid #00000055;
+  *{padding:0;}
+  tbody, tr{
+    width:100%;
+    display: block;
+  }
   .profile {
     img {
       border-radius: 50%;
       width: 100%;
       height: 100%;
     }
+    p:first-child{
+      font-size:${extra};
+      margin:0;
+    }
+    p:last-child{
+      font-size:${big};
+    }
+    th{
+      width:70%;
+      padding: 0 10% 15px 20%;
+    }
+    td{ 
+      width:100%;
+    }
   }
   .info {
+      display:flex;
     th,
     td {
-      span {
+      p {
         display: block;
-        font-size: ${small};
         color: ${dark};
+        padding:10px 0 0;
+        border-top:1px solid #00000015;
+      }
+      p:last-child {
+        padding-bottom:10px;
+        border-bottom:1px solid #00000015;
       }
     }
-  }
-  th,
-  td {
-    padding: 10px 15px;
-    vertical-align: middle;
-  }
-  th {
-    text-align: right;
-    width: 150px;
-  }
-  tr:last-child {
-    td {
-      padding: 10px 15px;
-      text-align: right;
+    th{
+      width:30%;
     }
+    td {
+      width:69%;  
+    }
+  }
+  .button{
+  
+    th,
+    td,
+    button{
+      margin: 0 auto;
+      display:block;
+    }
+    button{margin-top:10px;}
   }
 `
 const UserInfo = () => {
@@ -60,27 +88,28 @@ const UserInfo = () => {
               viewOnly={true}
               fallbackImage={noprofile}
               viewOrgImage={false}
-              width={40}
-              height={40}
+              width={200}
+              height={200}
             />
           </th>
           <td>
-            <span>{loggedMember.name} 님</span>
+            <p>{loggedMember.name} 님</p>
+            <p>사용자 ID: {loggedMember.userId}</p>
           </td>
         </tr>
         <tr className="info">
           <th>
-            <span>이메일</span>
-            <span>휴대전화 번호</span>
-            <span>회원가입 일자</span>
+            <p>이메일</p>
+            <p>휴대전화 번호</p>
+            <p>회원가입 일자</p>
           </th>
           <td>
-            <span>{loggedMember.email}</span>
-            <span>{loggedMember.mobile}</span>
-            <span>{loggedMember.createdAt}</span>
+            <p>{loggedMember.email}</p>
+            <p>{loggedMember.mobile}</p>
+            <p>{loggedMember.createdAt}</p>
           </td>
         </tr>
-        <tr>
+        <tr className='button'>
           <td>
             <a href="/mypage/profile">
               <Button>회원정보 수정</Button>

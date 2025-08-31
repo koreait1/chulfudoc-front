@@ -6,7 +6,7 @@ import { MainTitle } from '@/app/_global/components/TitleBox'
 export default function ProfilePage() {
   return (
     <UserOnlyContainer>
-      <MainTitle border="true">회원정보 수정</MainTitle>
+      <MainTitle border={""} center={"true"}>회원정보 수정</MainTitle>
       <ProfileContainer />
     </UserOnlyContainer>
   )

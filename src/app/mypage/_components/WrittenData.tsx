@@ -8,20 +8,21 @@ const WrittenData = () => {
   const fetchCSR = useFetchCSR()
   const [items, setItems] = useState<any[]>([])
   const [pagination, setPagination] = useState<any[]>([])
+  const [fire, setFire] = useState(false)
   const { loggedMember, isLogin } = useUser()
-  const puuid = loggedMember.puuid || loggedMember.PUUID
-  const url = `/board/mypage/search?puuid=${puuid}`
+  const puuid = loggedMember?.puuid || "b3150ca5-8ed5-4dff-9cb9-313225b4379b"
+  const url = `/board/mypage/search?puuid=${puuid}&isLogin=${isLogin}`
 
   useEffect(() => {
-    if (!isLogin || !puuid ) return
+    if (!isLogin || !puuid || fire ) return
     const getBoardList = async ()=>{
       fetchCSR(url,{method: 'GET'}).then((res) => res.json()).then((data)=>{
         setItems(Array.isArray(data.items) ? data.items : [])
         setPagination(data.pagination)
-      }).catch(() => ({} as any))
+      }).then(()=> setFire(true)).catch(() => ({} as any))
     }
     getBoardList()
-  }, [])
+  }, [fire])
   if (!isLogin) return <></>
   return (
     <>
