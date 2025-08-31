@@ -18,7 +18,7 @@ const WrittenData = () => {
         setItems(data.items || [])
         setPagination(data.pagination || [])
       })
-  }, [fetchCSR, isLogin, puuid])
+  }, [])
   if (!isLogin) return <></>
   return (
     <>
