@@ -138,7 +138,7 @@ const Header = () => {
           <Link href="/mypage">
             <div className="linker">Mypage</div>
           </Link>
-          <Link href="/">
+          <Link href="/board/list/freetalk">
             <div className="linker">게시판</div>
           </Link>
           <Link href="/search-er">
@@ -156,7 +156,7 @@ const Header = () => {
                 </Button>
               </a>
               {isAdmin && (
-                <a href="/admin">
+                <a href="/admin/membership">
                   <Button type="button" color="info">
                     <FaCog />
                     사이트 관리
@@ -226,7 +226,7 @@ const Header = () => {
                   borderradius="25px"
                   style={{ marginRight: '20px' }}
                 >
-                  <FiLogIn style={{ color: "currentColor" }} />
+                  <FiLogIn style={{ color: 'currentColor' }} />
                   로그인
                 </LoginButton>
               </Link>

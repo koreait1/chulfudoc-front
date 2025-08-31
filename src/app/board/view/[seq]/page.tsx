@@ -6,6 +6,7 @@ import ListContainer from '../../_containers/ListContainer'
 import CommentContainer from '../../_containers/CommentContainer'
 import type { BoardDataType, BoardSearchType } from '../../_types/BoardType'
 import { getList as getComments } from '../../_services/comment'
+import Header from '@/app/_global/outlines/Header'
 
 export default async function ViewPage({
   params,
@@ -32,7 +33,6 @@ export default async function ViewPage({
 
   // 댓글 목록 조회
   const comments = await getComments(seq)
-  
 
   return (
     <ContentBox>

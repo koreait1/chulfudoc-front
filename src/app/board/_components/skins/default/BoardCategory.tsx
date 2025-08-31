@@ -16,18 +16,26 @@ const StyledNav = styled.nav`
   margin-bottom: 30px;
 
   a {
-    border: 1px solid ${black};
-    color: ${black};
+    border: 1px solid #ffe89a;
+    color: #000000;
     border-radius: 20px;
     padding: 0 20px;
     font-size: ${medium};
-    line-height: 45px;
+    line-height: 40px;
+    background: #ffffff;
 
     &.on {
-      background: ${black};
-      color: ${white};
+      background: #ffd93d;
+      border-color: #ffd93d;
+      color: #000000;
+      font-weight: 600;
+    }
+
+    &:hover {
+      background: #fffcee;
     }
   }
+
   a + a {
     margin-left: 10px;
   }
