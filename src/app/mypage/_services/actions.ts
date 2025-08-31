@@ -1,7 +1,6 @@
 'use server'
 
 import { fetchSSR } from '@/app/_global/libs/utils'
-import { redirect } from 'next/navigation'
 
 export async function processProfile(errors, formData: FormData) {
   errors = {}
