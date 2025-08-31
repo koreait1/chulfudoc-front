@@ -8,11 +8,15 @@ const { normal } = fontSize
 const StyledMessage = styled.div`
   font-size: ${normal};
   color: ${({ color: c }) => (c ? color[c] : c)};
-  box-shadow: 2px 2px 5px ${({ color: c }) => (c ? color[c] : c)};
-  padding: 7px 10px;
-  text-align: center;
-  margin-top: 3px;
-  border-radius: 3px;
+  margin: 2px 0 0 0;
+  text-align: left;
+  padding: 2px 0 0 6px;
+  box-shadow: none;
+  border-radius: 0;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `
 
 const MessageBox = ({ children, color, message }: MessageType) => {

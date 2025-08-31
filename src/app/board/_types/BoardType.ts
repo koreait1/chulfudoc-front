@@ -1,4 +1,4 @@
-import CommonSearchType from '@/app/_global/types/CommonSearchType'
+import type CommonSearchType from '@/app/_global/types/CommonSearchType'
 
 export type AuthorityType = 'ALL' | 'MEMBER' | 'ADMIN'
 export type SkinType = 'default' | 'gallery'
@@ -82,10 +82,11 @@ export type BoardListType = {
 
 export type BoardViewType = {
   data?: BoardDataType
+  onDelete?: (e: React.MouseEvent) => void
 } & BoardType
 
 export type BoardSearchType = {
   bid?: string | Array<string>
   category?: string | Array<string>
-  userId?: string | Array<string>
+  email?: string | Array<string>
 } & CommonSearchType

@@ -4,59 +4,55 @@ import styled from 'styled-components'
 import type { Hospital } from '../types/SearchERInfoTypes'
 
 const TableWrap = styled.div`
-  min-width: 600px;
-  max-width: 1150px;
-  padding: 20px 20px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 12px;      /* 패딩 줄임 */
+  background: #fff;
+  border-radius: 10px;
 
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
+    font-size: 14px; /* 글자 조금 줄임 */
     text-align: center;
   }
 
   thead {
-    background: #f8f8f8;
-    border-top: 2px solid #333;
-    border-bottom: 1px solid #ccc;
+    background: #f1f3f5;
+    border-bottom: 1px solid #ddd;
   }
 
-  th,
-  td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #e5e5e5;
-
-    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-    overflow: hidden; /* 넘치는 텍스트 숨김 */
-    text-overflow: ellipsis; /* ... 표시 */
-
-    /* 세로 구분선 추가 */
-    border-right: 1px solid #ccc;
+  th, td {
+    padding: 10px 8px; /* 세로 패딩 줄임 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-right: 1px solid #f1f3f5;
   }
 
-  /* 마지막 열은 오른쪽 구분선 제거 */
-  th:last-of-type,
-  td:last-of-type {
+  th:last-of-type, td:last-of-type {
     border-right: none;
   }
 
-  /* 각 열 너비 비율 */
-  th:nth-of-type(1),
-  td:nth-of-type(1) {
-    width: 35%; /* 기관명 */
+  tbody tr:hover {
+    background: #f9fafb;
   }
 
-  th:nth-of-type(2),
-  td:nth-of-type(2) {
-    width: 50%; /* 소재지 */
+  th:nth-of-type(1), td:nth-of-type(1) {
+    width: 30%;
+    font-weight: 600;
   }
 
-  th:nth-of-type(3),
-  td:nth-of-type(3) {
-    width: 15%; /* 연락처 */
+  th:nth-of-type(2), td:nth-of-type(2) {
+    width: 50%;
+  }
+
+  th:nth-of-type(3), td:nth-of-type(3) {
+    width: 10%;
+    font-weight: 500;
   }
 `
+
 
 interface PropType {
   hospitals: Hospital[]

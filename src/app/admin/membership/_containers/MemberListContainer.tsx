@@ -13,22 +13,25 @@ const ListContainer = ({ items, pagination, search }: PropType) => {
   )
   const [isCheckAll, setCheckAll] = useState(false)
 
-  const onToggle = useCallback((memberId?: string, mode?: 'check' | 'uncheck') => {
-    setItems((prev) => {
-      if (!prev) return prev
-      if (mode) {
-        const checked = mode === 'check'
-        setCheckAll(checked)
-        return prev.map((row) => ({ ...row, chk: checked }))
-      }
-      const next = prev.map((row) =>
-        row.puuid === memberId ? { ...row, chk: !Boolean(row.chk) } : row,
-      )
-      const totalChecked = next.reduce((acc, r) => acc + (r.chk ? 1 : 0), 0)
-      setCheckAll(totalChecked === next.length)
-      return next
-    })
-  }, [])
+  const onToggle = useCallback(
+    (memberId?: string, mode?: 'check' | 'uncheck') => {
+      setItems((prev) => {
+        if (!prev) return prev
+        if (mode) {
+          const checked = mode === 'check'
+          setCheckAll(checked)
+          return prev.map((row) => ({ ...row, chk: checked }))
+        }
+        const next = prev.map((row) =>
+          row.puuid === memberId ? { ...row, chk: !Boolean(row.chk) } : row,
+        )
+        const totalChecked = next.reduce((acc, r) => acc + (r.chk ? 1 : 0), 0)
+        setCheckAll(totalChecked === next.length)
+        return next
+      })
+    },
+    [],
+  )
 
   return (
     <>

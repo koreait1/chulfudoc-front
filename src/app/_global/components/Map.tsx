@@ -27,7 +27,7 @@ type MapType = {
 const Wrapper = styled.div<{ width?: number; height?: number }>`
   min-width: 600px;
   max-width: 1150px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 20px;
   .vsm-canvas {
     border: 2px solid #333 !important;
     border-radius: 8px;
@@ -209,6 +209,7 @@ const Map = ({ width, height, zoom }: MapType) => {
 
   return (
     <Wrapper width={width} height={height}>
+      <h1>응급 의료기관</h1>
       <div ref={mapRef}></div>
     </Wrapper>
   )

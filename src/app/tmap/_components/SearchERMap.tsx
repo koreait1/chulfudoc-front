@@ -7,6 +7,7 @@ import ERSearchForm from './ERSearchForm'
 import useAPIAlertDialog from '../hooks/useAPIAlertDialog'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import Loading from '@/app/loading'
+import { createPortal } from 'react-dom'
 
 interface Hospital {
   응급의료기관명: string
@@ -17,9 +18,12 @@ interface Hospital {
 }
 
 const Wrapper = styled.div`
+  position: relative;
+  background-color: #fff;
   min-width: 600px;
   max-width: 1150px;
-  margin: 0 auto;
+  margin: 20px auto 0;
+
   .vsm-canvas {
     border: 2px solid #333;
     border-radius: 8px;
@@ -32,11 +36,16 @@ declare global {
   }
 }
 
-export default function SearchERMap() {
+interface SearchProps {
+  initialKeyword?: string
+  initialOption?: 'ALL' | 'NAME' | 'ADDR'
+}
+
+export default function SearchERMap({ initialKeyword = '', initialOption = 'ALL' }: SearchProps) {
   const [hospitals, setHospitals] = useState<Hospital[]>([])
-  const [keyword, setKeyword] = useState('')
-  const [search, setSearch] = useState('')
-  const [option, setOption] = useState<'ALL' | 'NAME' | 'ADDR'>('ALL')
+  const [keyword, setKeyword] = useState(initialKeyword)
+  const [search, setSearch] = useState(initialKeyword)
+  const [option, setOption] = useState<'ALL' | 'NAME' | 'ADDR'>(initialOption)
   const mapRef = useRef<any>(null) // Tmap Map 객체 저장용
   const markersRef = useRef<any[]>([]) // 마커 저장
   const linesRef = useRef<any[]>([]) // 라인 저장
@@ -322,7 +331,14 @@ export default function SearchERMap() {
   const handleSearch = () => setSearch(keyword)
 
   return (
+    <>
+    {loading &&
+      createPortal(
+        <Loading text="병원 찾는중" width="100vw" height="100vh" />,
+        document.body
+      )}
     <Wrapper>
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>지도에서 검색하기</h1>
       <ERSearchForm
         keyword={keyword}
         setKeyword={setKeyword}
@@ -330,8 +346,8 @@ export default function SearchERMap() {
         setOption={setOption}
         onSearch={handleSearch}
       />
-      {loading && <Loading text="병원 찾는중" />}
-      <div id="map3"></div>
+      <div id="map3" style={{ width: '100%', height: '600px' }}></div>
     </Wrapper>
+    </>
   )
 }

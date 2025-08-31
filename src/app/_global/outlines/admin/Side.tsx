@@ -10,6 +10,7 @@ const { big } = fontSize
 
 const StyledAside = styled.aside`
   background: #ccc;
+  min-width: 250px;
   a {
     display: block;
     height: 55px;

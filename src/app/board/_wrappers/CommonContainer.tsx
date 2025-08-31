@@ -1,10 +1,12 @@
 'use client'
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { BoardConfigType, BoardDataType } from '../_types/BoardType'
+import type { CommentDataType } from '../_types/CommentType'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import useUser from '@/app/_global/hooks/useUser'
 import PasswordContainer from '../_containers/PasswordContainer'
+import ContentBox from '@/app/_global/components/ContentBox'
 
 const CommonContainer = ({
   children,
@@ -14,7 +16,7 @@ const CommonContainer = ({
 }: {
   children: React.ReactNode
   board?: BoardConfigType
-  data?: BoardDataType
+  data?: BoardDataType | CommentDataType
   mode: string
 }) => {
   const alertDialog = useAlertDialog()
@@ -65,7 +67,7 @@ const CommonContainer = ({
         ((viewable && mode === 'view') ||
           (listable && mode === 'list') ||
           (writable && mode === 'write'))
-          
+
       if (!result) {
         alertDialog({
           text: '접근 권한이 없습니다.',
@@ -80,7 +82,7 @@ const CommonContainer = ({
     }
 
     /**
-     * 글수정, 삭제
+     * 글수정, 삭제, 댓글 수정, 댓글 삭제
      * 회원 게시글인데, 미로그인 상태,
      *  - 로그인 페이지로 이동
      * 회원 게시글인데, 다른 회원으로 로그인 한 경우
@@ -88,7 +90,11 @@ const CommonContainer = ({
      * 비회원 게시글이고 인증이 안된 경우(mine - false)
      *  - 비회원 비밀번호 확인 화면으로 전환
      */
-    if (data && ['update', 'delete'].includes(mode) && !data.mine) {
+    if (
+      data &&
+      ['update', 'delete', 'comment_update', 'comment_delete'].includes(mode) &&
+      !data.mine
+    ) {
       if (data.guest) {
         // 비회원 게시글
         setRequiredPassword(true)
@@ -102,10 +108,17 @@ const CommonContainer = ({
             },
           })
         } else {
-          const redirectUrl =
+          let redirectUrl =
             mode === 'delete'
               ? `/board/delete/${data.seq}`
               : `/board/update/${data.seq}`
+
+          if (mode.startsWith('comment_')) {
+            redirectUrl =
+              mode === 'comment_delete'
+                ? `/board/comment/${data.seq}`
+                : `/board/comment/delete/${data.seq}`
+          }
 
           router.replace(`/member/login?redirectUrl=${redirectUrl}`)
         }
@@ -117,7 +130,9 @@ const CommonContainer = ({
 
   return isError ? (
     isRequiredPassword ? (
-      <PasswordContainer mode={mode} seq={data?.seq} />
+      <ContentBox>
+        <PasswordContainer mode={mode} seq={data?.seq} />
+      </ContentBox>
     ) : (
       <></>
     )
