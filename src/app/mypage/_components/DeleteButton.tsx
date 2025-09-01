@@ -4,38 +4,28 @@ import React from "react";
 import useAlertDialog from "@/app/_global/hooks/useAlertDialog";
 import { Button } from "@/app/_global/components/Buttons";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:4000";
-
 export default function DeleteButton() {
   const alertDialog = useAlertDialog();
 
   const doDelete = async () => {
     try {
-      const token = localStorage.getItem("accessToken");
-
-      if (!token) {
-        alertDialog({
-          title: "로그인이 필요합니다",
-          text: "계정 탈퇴를 위해 먼저 로그인해주세요.",
-          icon: "warning",
-          callback: () => (window.location.href = "/member/login"),
-        });
-        return;
-      }
-
-      const headers: HeadersInit = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-
-      const res = await fetch(`${API_BASE}/api/v1/member/delete`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/member/delete`, {
         method: "POST",
-        headers,
-        body: "{}",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       if (res.ok) {
         const data = await res.json().catch(() => ({ message: "회원 탈퇴가 완료되었습니다." }));
+
+        // 로그아웃 먼저 처리
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/member/logout`, {
+          method: "POST",
+          credentials: "include",
+        }).catch(() => {});
+
         alertDialog({
           title: "탈퇴 완료",
           text: data.message,
@@ -54,7 +44,6 @@ export default function DeleteButton() {
           text: "로그인 세션이 만료되었습니다. 다시 로그인해주세요.",
           icon: "warning",
           callback: () => {
-            localStorage.removeItem("accessToken");
             window.location.href = "/member/login";
           },
         });
@@ -95,8 +84,10 @@ export default function DeleteButton() {
   };
 
   return (
-    <button onClick={handleDelete} className="text-red-600 underline">
+  <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '24px'}}>
+    <Button onClick={handleDelete}>
       회원 탈퇴
-    </button>
+    </Button>
+  </div>
   );
 }

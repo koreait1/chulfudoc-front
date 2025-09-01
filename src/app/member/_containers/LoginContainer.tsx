@@ -15,6 +15,7 @@ import NaverApi from '../social/_services/NaverApi'
 import kakaoLoginButton from '../../_global/assets/images/kakao_login.png'
 import naverLoginButton from '../../_global/assets/images/naver_login.png'
 import styled from 'styled-components'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledDiv = styled.div`
   margin: 40px auto 80px;
@@ -42,6 +43,18 @@ const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
   })
 
   const searchParams = useSearchParams()
+  
+  const alertDialog = useAlertDialog()
+
+  useEffect(() => {
+    if (errors === '탈퇴한 계정입니다.') {
+      alertDialog({
+        title: '로그인 실패',
+        text: '탈퇴한 계정입니다.',
+        icon: 'error',
+      });
+    }
+  }, [errors, alertDialog]);
 
   const kakaoLoginUrl = useMemo(
     () => kakaoApi.getUrl(redirectUrl),
