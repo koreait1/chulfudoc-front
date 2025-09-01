@@ -1,11 +1,3 @@
 # 철푸닥 프론트엔드
 
-## 백엔드 https://github.com/koreait1/chulfudoc-api 
-
-## 연결현황
-### 집에서 연결한 후 작성해주세요
-- 주용현, 연동완료
-- 주예성, 연동완료
-- 김용준, 연동완료
-- 김문수, 연동완료
-- 최상준, 연동완료
+## 백엔드 https://github.com/koreait1/chulfudoc-api
