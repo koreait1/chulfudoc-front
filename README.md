@@ -25,7 +25,7 @@ NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 - 댓글을 통해 게시글에 자신의 의사를 표현할 수 있습니다.
 
 ## 👥 역할 분담
-- 주용현 : 
+- 주용현 : 낙상 감지 후처리 작업, tmap API를 활용한 응급의료기관 위치 찾기 서비스
 - 최상준 : 
 - 김문수 : 
 - 김용준 : 
