@@ -39,6 +39,7 @@ const Section = styled.div`
 const MainContainer = () => {
     const [current, setCurrent] = useState(0)
     const [webcamAble, setWebcamAble] = useState(false)
+    const [popUpOpen, setPopUpOpen] = useState(false)
 
     const goTop = () => setCurrent(0);
 
@@ -106,7 +107,7 @@ const MainContainer = () => {
             />
             <br />
             <AnimatedContent currentSection={current} sectionIndex={1} distance={50} delay={0.5}>
-                <HosptialPopup />
+                <HosptialPopup isOpen={popUpOpen} setIsOpen={setPopUpOpen}/>
             </AnimatedContent>
         </Section>
     ]
@@ -114,7 +115,7 @@ const MainContainer = () => {
     useEffect(() => {
         let isScrolling = false
         const handleWheel = (e: WheelEvent) => {
-        if (isScrolling) return
+        if (isScrolling || popUpOpen) return
         isScrolling = true
         if (e.deltaY > 0) {
             setCurrent(prev => Math.min(prev + 1, sections.length - 1))
@@ -127,7 +128,7 @@ const MainContainer = () => {
 
         window.addEventListener('wheel', handleWheel)
         return () => window.removeEventListener('wheel', handleWheel)
-    }, [sections.length])
+    }, [sections.length, popUpOpen])
 
     return (
         <>
