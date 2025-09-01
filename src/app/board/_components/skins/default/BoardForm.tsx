@@ -14,110 +14,90 @@ import Loading from '@/app/_global/components/Loading'
 
 const StyledForm = styled.form`
   dl {
-    display: flex;
-
-    &:last-of-type {
-      margin-bottom: 30px;
-    }
-
-    &:first-of-type {
-      dt,
-      dd {
-        border-top: 1px solid #ffe89a;
-      }
-    }
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    border-bottom: 1px solid #f2eecb;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 8px;
   }
 
-  dt,
-  dd {
-    border-bottom: 1px solid #ffe89a;
+  dl:first-of-type {
+    border-top: 2px solid #ffd93d;
   }
 
   dt {
-    width: 120px;
-    background: #fff8cc;
-    padding: 10px 20px;
-    color: #000000;
-  }
-
-  dd {
-    flex-grow: 1;
-    padding: 10px;
-    background: #ffffff;
-    color: #212529;
-  }
-
-  dt,
-  dd {
-    svg {
-      font-size: 2rem;
-      vertical-align: middle;
-      margin-right: 10px;
-      color: #000000;
-    }
-  }
-
-  .notice-toggle {
-    display: inline-flex;
+    padding: 12px 16px;
+    background: #fffdf2;
+    border-right: 1px solid #f2eecb;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    height: 38px;
-    padding: 0 12px;
-    border-radius: 10px;
-    background: #ffffff;
-    border: 1px solid #ffe89a;
-    color: #212529;
-    cursor: pointer;
-    user-select: none;
-    transition: filter 0.15s ease, transform 0.05s ease, background 0.15s ease;
+  }
 
-    &:hover {
-      background: #fffcee;
-    }
-    &:active {
-      transform: translateY(1px);
-    }
+  dd {
+    padding: 12px;
+    background: #ffffff;
+    color: #212529;
   }
 
   dd input[type='text'],
   dd input[type='password'],
   dd textarea,
   dd select {
-    border-color: #ffe89a !important;
+    border: 1px solid #e9e5c9 !important;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
+
   dd input[type='text']:focus,
   dd input[type='password']:focus,
   dd textarea:focus,
   dd select:focus {
     border-color: #ffd93d !important;
-    box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.25) !important;
+    box-shadow: 0 0 0 2px rgba(255, 217, 61, 0.25);
     outline: none;
   }
 
-  .editor-block,
-  .attach-block {
-    padding-top: 8px;
-    border-top: 1px dashed #ffe89a;
-    margin-top: 8px;
+  .notice-toggle,
+  dd > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid #e9e5c9;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
   }
 
-  .btn {
-    background: #ffd93d !important;
-    color: #000000 !important;
-    border: 1px solid #ffe89a !important;
-    border-radius: 12px !important;
-    transition: filter 0.15s ease, transform 0.05s ease;
+  .notice-toggle:hover,
+  dd > span:hover {
+    background: #fffbea;
+  }
 
-    &:hover {
-      filter: brightness(1.02);
-    }
-    &:active {
-      transform: translateY(1px);
-    }
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+  button[type='submit'] {
+    margin-top: 20px;
+    background: #ffd93d !important;
+    border: 1px solid #ffd93d !important;
+    border-radius: 8px !important;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: filter 0.15s ease;
+  }
+
+  button[type='submit']:hover {
+    filter: brightness(1.05);
   }
 `
 
