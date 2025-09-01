@@ -1,6 +1,6 @@
-## 백엔드 원격 레포지토리
-### https://github.com/koreait1/chulfudoc-api
-### https://github.com/koreait1/chulfudoc-detection
+## 백엔드 원격 레포지토리 (최하단으로 이동 예정)
+### API 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-api
+### AI 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-detection
 
 ## 환경변수 (삭제 예정)
 NEXT_PUBLIC_DOMAIN=http://localhost:3000
@@ -13,19 +13,34 @@ NEXT_PUBLIC_NAVER_API_KEY=zOO0YFons6SoSf762rxU
 NEXT_PUBLIC_NAVER_API_SECRET=nObxHaBpoE
 NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 
-# [철푸닥 C:\portfolio2\chulfudoc-front\src\app\_global\assets\images\logo-word.png](https://chulfudoc.xyz)
+# 프로젝트 : [철푸닥](https://chulfudoc.xyz)
+<div align="center">
+  <a href="https://chulfudoc.xyz">
+    <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/resources/logo.png" alt="철푸닥" width="500"/>
+  </a><br />
+</div>
+
 - 주소 : https://chulfudoc.xyz
 - 관리자 아이디 : 
 - 관리자 비밀번호 : 
 
 ## 💡 개요
-- 자연어 처리 AI를 활용하여 채팅을 주고 받을 수 있는 서비스를 제공합니다.
-- 전이 학습을 통해 모델마다 특성을 부여하여 대화하는 모델마다 색다름을 제공합니다.
-- 대화 내역은 게시판에 기재하여 다른 사람과 공유할 수 있습니다.
-- 댓글을 통해 게시글에 자신의 의사를 표현할 수 있습니다.
+길을 걷다 갑자기 쓰러졌는데 주변에 아무도 없다면?<br />
+근처 병원은 알지만, 응급실이 있는지 알 수 없다면?<br />
+철푸닥 프로젝트는 이러한 긴급 상황을 미연에 방지하고, 신속한 대응을 돕기 위해 만들어졌습니다.<br />
 
+### 🔹 주요 기능
+- AI 쓰러짐 감지<br />
+YOLO API를 활용해 사람이 쓰러진 상황을 자동으로 인식합니다.<br />
+
+- 응급실 정보 제공<br />
+Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 수 있습니다.<br />
+- 커뮤니티 게시판<br />
+실제 경험한 위급 상황이나 병원 정보를 공유하고 소통할 수 있습니다.
+
+---
 ## 👥 역할 분담
-- 주용현 : 낙상 감지 후처리 작업, tmap API를 활용한 응급의료기관 위치 찾기 서비스
+- 주용현 : 쓰러진 사람 감지 후 응급 상황 처리 기능, Tmap API 기반 응급의료기관 위치 안내 서비스
 - 최상준 : 
 - 김문수 : 
 - 김용준 : 
@@ -38,6 +53,10 @@ NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 ### 📝 코드 리뷰
 
 ### 🖼️ 구현 이미지
+<a href="https://chulfudoc.xyz">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/1.png" alt="철푸닥" width="300"/>
+</a><br />
+
 ---
 ## 👤 최상준
 
@@ -46,6 +65,10 @@ NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 ### 📝 코드 리뷰
 
 ### 🖼️ 구현 이미지
+<a href="https://chulfudoc.xyz">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/1.png" alt="철푸닥" width="300"/>
+</a><br />
+
 ---
 ## 👤 김문수
 
@@ -54,6 +77,10 @@ NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 ### 📝 코드 리뷰
 
 ### 🖼️ 구현 이미지
+<a href="https://chulfudoc.xyz">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/1.png" alt="철푸닥" width="300"/>
+</a><br />
+
 ---
 ## 👤 김용준
 
@@ -62,6 +89,10 @@ NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 ### 📝 코드 리뷰
 
 ### 🖼️ 구현 이미지
+<a href="https://chulfudoc.xyz">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/1.png" alt="철푸닥" width="300"/>
+</a><br />
+
 ---
 ## 👤 주예성
 
@@ -70,3 +101,6 @@ NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 ### 📝 코드 리뷰
 
 ### 🖼️ 구현 이미지
+<a href="https://chulfudoc.xyz">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/1.png" alt="철푸닥" width="300"/>
+</a><br />

@@ -4,9 +4,12 @@ import styled from 'styled-components'
 import fontSize from '../styles/fontsize'
 import color from '../styles/color'
 import { MdClose } from 'react-icons/md'
+
 const { big } = fontSize
 const { dark } = color
+
 Modal.setAppElement('#body')
+
 type LayerPopupType = {
   children: React.ReactNode
   title?: string
@@ -71,16 +74,7 @@ const Wrapper = styled.div`
     }
   }
 `
-const LayerPopup = ({
-  children,
-  title,
-  onClose,
-  isOpen,
-  top,
-  right,
-  width,
-  height,
-}: LayerPopupType) => {
+const LayerPopup = ({children, title, onClose, isOpen, top, right, width, height,}: LayerPopupType) => {
   const customStyles = {
     content: {
       top: top ?? '50%',
@@ -103,6 +97,7 @@ const LayerPopup = ({
         right={right}
         width={width}
         height={height}
+        onWheel={(e) => e.stopPropagation()}
       >
         {title && <h2>{title}</h2>}
         <Wrapper>

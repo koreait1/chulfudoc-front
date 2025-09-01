@@ -141,7 +141,6 @@ const BoardView = ({ board, data, onDelete }: BoardViewType) => {
                 작성자: {data.poster}
                 {data.member && '(' + data.member.email + ')'}
               </span>
-              <span>IP: {data.ip}</span>
             </div>
             <div className="right">
               <span>조회수: {data?.viewCount?.toLocaleString()}</span>

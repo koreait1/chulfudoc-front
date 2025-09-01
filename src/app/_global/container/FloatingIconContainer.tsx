@@ -12,7 +12,7 @@ type FloatingType = {
 
 const enum PageLink {
   MYPAGE = '/mypage',
-  BOARD = '/board/list/freetalk',
+  BOARD = '/board/list/notice',
 }
 
 const FloatingIconContainer = ({ section, goTop }: FloatingType) => {

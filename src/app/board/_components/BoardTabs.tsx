@@ -4,11 +4,21 @@ import styled from 'styled-components'
 import type { BoardConfigType } from '@/app/board/_types/BoardType'
 
 const Wrap = styled.nav`
-  margin: 8px 0 18px;
-  padding-bottom: 2px;
-  border-bottom: 1px solid #ffe89a;
+  margin: 0 0 6px;
+  padding: 0 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+
+  .tabs {
+    display: inline-flex;
+    gap: 8px;
+    padding: 2px 2px 4px 2px;
+    white-space: nowrap;
+  }
+
+  & + section {
+    padding-top: 12px !important;
+  }
 
   &::-webkit-scrollbar {
     height: 8px;
@@ -21,13 +31,6 @@ const Wrap = styled.nav`
     background: #fff8cc;
   }
 
-  .tabs {
-    display: inline-flex;
-    gap: 8px;
-    padding: 4px 2px 10px 2px;
-    white-space: nowrap;
-  }
-
   a {
     display: inline-flex;
     align-items: center;
@@ -38,22 +41,20 @@ const Wrap = styled.nav`
     font-weight: 600;
     border-radius: 18px;
     border: 1px solid #ffe89a;
-    background: #ffffff;
-    color: #000000;
+    background: #fff;
+    color: #000;
     transition: background 0.15s ease, color 0.15s ease, filter 0.15s ease,
       transform 0.05s ease;
-
     &:hover {
       background: #fffcee;
     }
     &:active {
       transform: translateY(1px);
     }
-
     &.on {
       background: #ffd93d;
       border-color: #ffd93d;
-      color: #000000;
+      color: #000;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
     }
   }
