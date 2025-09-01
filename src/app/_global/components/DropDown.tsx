@@ -42,7 +42,7 @@ export const Drop = styled.div<DropType>`
   transition: opacity 0.18s ease,
     transform 0.28s cubic-bezier(0.16, 0.84, 0.44, 1);
   will-change: transform, opacity;
-  background: #fdff8bff;
+  background: #fdff8bf1;
 `
 
 export const DropDown = ({ title, children }: DropType) => {
