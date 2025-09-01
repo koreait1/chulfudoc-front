@@ -18,7 +18,7 @@ const StyledHospital = styled.div`
 `
 
 const StyledButton = styled.button`
-  position: absolute;  
+  position: absolute;
 
   width: 240px;
   height: 60px;
@@ -27,12 +27,12 @@ const StyledButton = styled.button`
   cursor: pointer;
   border-radius: 50px;
   margin-top: 15px;
-  
+
   bottom: 47.5%;
   left: 50%;
   transform: translateX(-50%);
 
-  font-family: "Anton", sans-serif !important;
+  font-family: 'Anton', sans-serif !important;
   font-weight: 400;
   font-style: normal;
   font-size: ${extra};
@@ -68,8 +68,7 @@ type HospitalPopup = {
   setIsOpen: any
 }
 
-export default function HosptialPopup({isOpen, setIsOpen}: HospitalPopup) {
-  
+export default function HosptialPopup({ isOpen, setIsOpen }: HospitalPopup) {
   const popIconOpen = useCallback(() => {
     const btnValue = !isOpen
     setIsOpen(btnValue)
