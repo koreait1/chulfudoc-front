@@ -2,7 +2,6 @@
 import styled from 'styled-components'
 import color from '../styles/color'
 import fontSize from '../styles/fontsize'
-const { primary } = color
 
 type DropType = {
   children: React.ReactNode | string
@@ -31,8 +30,6 @@ export const Drop = styled.div<DropType>`
   font-style: normal;
   font-size: ${fontSize.normal};
   width: 115px;
-  padding: 10px;
-  padding-right: 15px;
   border-radius: 12px;
   position: absolute;
   top: calc(100% + 8px);
@@ -43,6 +40,11 @@ export const Drop = styled.div<DropType>`
     transform 0.28s cubic-bezier(0.16, 0.84, 0.44, 1);
   will-change: transform, opacity;
   background: #fdff8bf1;
+  > * {
+    line-height: 30px;
+    padding: 10px;
+    padding-right: 15px;
+  }
 `
 
 export const DropDown = ({ title, children }: DropType) => {

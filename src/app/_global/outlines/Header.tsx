@@ -87,7 +87,7 @@ const StyledHeader = styled.header`
         display: inline-block;
         text-align: right;
         img {
-          border: 3px solid ${dark};
+          border: 2px solid ${dark};
           border-radius: 50%;
           box-sizing: border-box;
         }
@@ -154,15 +154,9 @@ const Header = () => {
         <div className="right">
           {isLogin ? (
             <>
-              <a href="/member/api/logout">
-                <Button type="button" color="secondary">
-                  <FiLogOut />
-                  로그아웃
-                </Button>
-              </a>
               {isAdmin && (
                 <a href="/admin/membership">
-                  <Button type="button" color="info">
+                  <Button type="button" color="dark">
                     <FaCog />
                     사이트 관리
                   </Button>
@@ -183,33 +177,39 @@ const Header = () => {
                   isOpen={isOpen}
                   onClose={() => setIsOpen(false)}
                   top="270px"
-                  right=" max(200px, calc(200px + (50vw - 575px))"
-                  width={'300px'}
-                  height={'420px'}
+                  right="180px"
+                  width={'250px'}
+                  height={'350px'}
                 >
                   <FileImages
                     items={loggedMember.profileImage}
                     viewOnly={true}
                     viewOrgImage={false}
-                    width={230}
-                    height={230}
+                    width={110}
+                    height={110}
                     fallbackImage={noprofile}
                   />
                   <span>
                     <span>{loggedMember.name}</span> 님
                   </span>
                   <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'230px'}>
+                    <Button type="button" width={'180px'}>
                       <CgProfile />
                       마이페이지
                       <LinkLoading />
                     </Button>
                   </Link>
-                  <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'230px'}>
+                  <Link href="/mypage/profile" prefetch={false}>
+                    <Button type="button" width={'180px'}>
                       <LuUserPen />
                       개인정보 수정
                       <LinkLoading />
+                    </Button>
+                  </Link>
+                  <Link href="/member/api/logout">
+                    <Button type="button" color="secondary" width={'180px'}>
+                      <FiLogOut />
+                      로그아웃
                     </Button>
                   </Link>
                 </LayerPopup>
