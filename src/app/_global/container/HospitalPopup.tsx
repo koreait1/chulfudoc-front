@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import LayerPopup from '../components/LayerPopup'
 import GERMapContainer from '@/app/tmap/_containers/GERMapContainer'
 import color from '../styles/color'
@@ -63,17 +63,26 @@ const StyledButton = styled.button`
   }
 `
 
-export default function HosptialPopup() {
-  const [isOpen, setIsOpen] = useState(false)
+type HospitalPopup = {
+  isOpen: boolean
+  setIsOpen: any
+}
+
+export default function HosptialPopup({isOpen, setIsOpen}: HospitalPopup) {
+  
+  const popIconOpen = useCallback(() => {
+    const btnValue = !isOpen
+    setIsOpen(btnValue)
+  }, [isOpen])
 
   return (
     <StyledHospital>
-      <StyledButton type="button" onClick={() => setIsOpen(true)}>
+      <StyledButton type="button" onClick={popIconOpen}>
         FIND HOSPITAL
       </StyledButton>
       <LayerPopup
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={popIconOpen}
         width={'80%'}
         height={'800px'}
       >

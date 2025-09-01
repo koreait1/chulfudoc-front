@@ -76,10 +76,10 @@ const DetectContainer = ({ webcamAble, onChange }:DetectType) => {
     }
   }, [fallDetect, router])
 
-  const onDetectChange = () => {
+  const onDetectChange = useCallback(() => {
     const btnValue = !webcamAble
     onChange(btnValue)
-  }
+  },[webcamAble, onChange]) 
 
   return (
     <DetectWrapper>
