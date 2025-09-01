@@ -4,7 +4,18 @@ import styled from 'styled-components'
 import { Input, Select, TableCols } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+  select,
+  input {
+    height: 40px;
+    line-height: 40px;
+    content-justify: center;
+    margin: 0;
+  }
+  select {
+    width: 105px;
+  }
+`
 
 const BoardSearchForm = ({ search }) => {
   return (
