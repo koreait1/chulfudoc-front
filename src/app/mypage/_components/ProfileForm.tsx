@@ -15,8 +15,10 @@ const { danger, primary } = color
 const StyledForm = styled.form`
   width: 100%;
   max-width: 560px;
-  margin: 0 auto;
-  padding-bottom: 60px;
+  padding: 15px 30px 30px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  margin: 0 auto 150px;
   .form {
     margin: 0 0 10px;
     > li:nth-child(2n-1) {
