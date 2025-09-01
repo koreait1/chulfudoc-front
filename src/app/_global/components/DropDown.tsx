@@ -6,6 +6,8 @@ const { primary } = color
 
 type DropType = {
   children: React.ReactNode | string
+  background?: string
+  title?: string
 }
 const Wrap = styled.div`
   position: relative;
@@ -16,6 +18,8 @@ const Wrap = styled.div`
     transform: translateY(0);
   }
   > button {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
     background: none;
     border: none;
   }
@@ -39,13 +43,9 @@ export const Drop = styled.div<DropType>`
     transform 0.28s cubic-bezier(0.16, 0.84, 0.44, 1);
   will-change: transform, opacity;
   background: ${primary};
-  > a:nth-child(n + 2) {
-    margin-top: 1 px;
-    border-top: 1px solid #fff;
-  }
 `
 
-export const DropDown = ({ title, children }) => {
+export const DropDown = ({ title, children }: DropType) => {
   return (
     <Wrap>
       <button type="button" className="btn">
