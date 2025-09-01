@@ -2,7 +2,6 @@ import type { BoardConfigType } from '../_types/BoardType'
 import type CommonSearchType from '@/app/_global/types/CommonSearchType'
 import { fetchSSR } from '@/app/_global/libs/utils'
 import { toQueryString } from '@/app/_global/libs/commons'
-
 export const defaultData: BoardConfigType = {
   mode: 'register',
   bid: '',
@@ -55,30 +54,4 @@ export async function getBoardList(searchParams: CommonSearchType): Promise<{
     return await res.json()
   }
   return {}
-}
-
-const isActiveVal = (v: any) =>
-  v === true ||
-  v === 1 ||
-  v === '1' ||
-  (typeof v === 'string' &&
-    (v.toUpperCase() === 'Y' || v.toLowerCase() === 'true'))
-
-const allowListAuthority = (v: any) => {
-  const s = String(v ?? 'ALL')
-    .trim()
-    .toUpperCase()
-
-  return s === 'ALL' || s === 'MEMBER'
-}
-
-export async function getBoardTabsData(): Promise<BoardConfigType[]> {
-  'use server'
-  const res = await fetchSSR(`/board/configs`)
-  if (res.status !== 200) return []
-  const data = await res.json()
-  const items: BoardConfigType[] = data.items ?? data ?? []
-  return items.filter(
-    (b: any) => isActiveVal(b.active) && allowListAuthority(b.listAuthority),
-  )
 }
