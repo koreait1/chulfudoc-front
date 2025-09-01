@@ -1,4 +1,4 @@
-## 백엔드 원격 레포지토리
+## 백엔드 원격 레포지토리 (최하단으로 이동 예정)
 ### API 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-detection
 ### AI 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-api
 
@@ -14,9 +14,11 @@ NEXT_PUBLIC_NAVER_API_SECRET=nObxHaBpoE
 NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 
 # 프로젝트 : [철푸닥](https://chulfudoc.xyz)
-<a href="https://chulfudoc.xyz">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/resources/logo.png" alt="철푸닥" width="300"/>
-</a><br />
+<div align="center">
+  <a href="https://chulfudoc.xyz">
+    <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/resources/logo.png" alt="철푸닥" width="300"/>
+  </a><br />
+</div>
 
 - 주소 : https://chulfudoc.xyz
 - 관리자 아이디 : 
