@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import LayerPopup from '../components/LayerPopup'
 import GERMapContainer from '@/app/tmap/_containers/GERMapContainer'
 import color from '../styles/color'
@@ -18,7 +18,7 @@ const StyledHospital = styled.div`
 `
 
 const StyledButton = styled.button`
-  position: absolute;  
+  position: absolute;
 
   width: 240px;
   height: 60px;
@@ -27,12 +27,12 @@ const StyledButton = styled.button`
   cursor: pointer;
   border-radius: 50px;
   margin-top: 15px;
-  
+
   bottom: 47.5%;
   left: 50%;
   transform: translateX(-50%);
 
-  font-family: "Anton", sans-serif !important;
+  font-family: 'Anton', sans-serif !important;
   font-weight: 400;
   font-style: normal;
   font-size: ${extra};
@@ -63,17 +63,25 @@ const StyledButton = styled.button`
   }
 `
 
-export default function HosptialPopup() {
-  const [isOpen, setIsOpen] = useState(false)
+type HospitalPopup = {
+  isOpen: boolean
+  setIsOpen: any
+}
+
+export default function HosptialPopup({ isOpen, setIsOpen }: HospitalPopup) {
+  const popIconOpen = useCallback(() => {
+    const btnValue = !isOpen
+    setIsOpen(btnValue)
+  }, [isOpen])
 
   return (
     <StyledHospital>
-      <StyledButton type="button" onClick={() => setIsOpen(true)}>
+      <StyledButton type="button" onClick={popIconOpen}>
         FIND HOSPITAL
       </StyledButton>
       <LayerPopup
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={popIconOpen}
         width={'80%'}
         height={'800px'}
       >
