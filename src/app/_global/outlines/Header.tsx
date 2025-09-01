@@ -13,10 +13,10 @@ import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
 import { FiLogIn, FiLogOut } from 'react-icons/fi'
-import { IoCall } from 'react-icons/io5'
 import { LuUserPen } from 'react-icons/lu'
 import { usePathname } from 'next/navigation'
 import color from '../styles/color'
+import { DropDown } from '../components/DropDown'
 const { dark } = color
 
 const StyledHeader = styled.header`
@@ -48,7 +48,7 @@ const StyledHeader = styled.header`
 
     .logo-section {
       display: flex;
-      text-align: left;
+      text-align: center;
       align-items: center;
       .header-logo {
         height: 45px;
@@ -64,7 +64,6 @@ const StyledHeader = styled.header`
         padding: 5px;
         transition: transform 0.7s ease;
       }
-
       .linker:hover {
         transform: scale(1.2);
       }
@@ -95,6 +94,7 @@ const StyledHeader = styled.header`
       }
     }
   }
+
   .modalProfile {
     ul,
     li {
@@ -138,9 +138,14 @@ const Header = () => {
           <Link href="/mypage">
             <div className="linker">Mypage</div>
           </Link>
-          <Link href="/board/list/freetalk">
-            <div className="linker">게시판</div>
-          </Link>
+          <DropDown title="게시판">
+            <Link href="/board/list/notice">
+              <div className="linker">공지사항</div>
+            </Link>
+            <Link href="/board/list/freetalk">
+              <div className="linker">자유게시판</div>
+            </Link>
+          </DropDown>
           <Link href="/search-er">
             <div className="linker">병원 검색</div>
           </Link>
