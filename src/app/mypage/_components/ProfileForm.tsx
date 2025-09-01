@@ -10,57 +10,69 @@ import FileImages from '@/app/_global/components/FileImages'
 import fontSize from '@/app/_global/styles/fontsize'
 import color from '@/app/_global/styles/color'
 const { big, medium } = fontSize
-const { danger } = color
+const { danger, primary } = color
 
 const StyledForm = styled.form`
-  width:100%;
-  max-width:560px;
-  margin:0 auto;
-  padding-bottom:60px;
-  .form{
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  .form {
     margin: 0 0 10px;
-    >li:nth-child(2n-1){
-      font-size:${big};
-      margin:10px 0;
-    } 
-    >li:nth-child(2n){
-      p{
+    > li:nth-child(2n-1) {
+      font-size: ${big};
+      margin: 10px 0;
+    }
+    > li:nth-child(2n) {
+      p {
         margin: 10px 0 0;
         padding: 10px;
-        border:1px solid #ccc;
-        font-size:${medium};
-        border-radius:10px;
+        border: 1px solid #ccc;
+        font-size: ${medium};
+        border-radius: 10px;
       }
-    } 
-    >li:last-child{
-      position:relative;
-      height:230px;
     }
-    ul{
-    display:inline-block;
-    li{width:200px;}
-      svg{
-        position:absolute;
-        top:5px; right:5px;
-        color:${danger};
+    > li:last-child {
+      position: relative;
+      height: 230px;
+    }
+    ul {
+      display: inline-block;
+      li {
+        width: 200px;
+      }
+      svg {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: ${danger};
       }
     }
     ul,
-    button{
-      width:200px;height:200px;
-      margin:0;
-      position:absolute;
-      top:5px; 
-      left:50%;
-      transform: translate(-50%)
+    button {
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translate(-50%);
     }
-    button{
-      svg{
-        color:#333;
+    button {
+      border: 1px solid ${primary};
+      background: #fff;
+      color: #333;
+      svg {
+        color: #333;
+      }
+      &:hover {
+        background: ${primary};
       }
     }
   }
-  button{color:#333;}
+  button {
+    color: #333;
+  }
 `
 
 const ProfileForm = ({
@@ -74,9 +86,11 @@ const ProfileForm = ({
 }) => {
   return (
     <StyledForm action={action} autoComplete="off">
-      <ul className='form'>
+      <ul className="form">
         <li>아이디</li>
-        <li><p>{form.userId}</p></li>
+        <li>
+          <p>{form.userId}</p>
+        </li>
         <li>회원명</li>
         <li>
           <Input
