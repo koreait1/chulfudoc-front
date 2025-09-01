@@ -1,6 +1,6 @@
 ## 백엔드 원격 레포지토리
-### https://github.com/koreait1/chulfudoc-api
-### https://github.com/koreait1/chulfudoc-detection
+### API 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-detection
+### AI 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-api
 
 ## 환경변수 (삭제 예정)
 NEXT_PUBLIC_DOMAIN=http://localhost:3000
