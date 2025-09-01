@@ -2,6 +2,7 @@ import '../globals.css'
 import Header from '../_global/outlines/Header'
 import Footer from '../_global/outlines/Footer'
 import Contents from '../_global/wrappers/ContentContainer'
+import styled from 'styled-components'
 
 import BoardTabs from '@/app/board/_components/BoardTabs'
 import { unstable_noStore as noStore } from 'next/cache'
@@ -26,13 +27,13 @@ export default async function MypageLayout({ children }) {
   } catch {}
 
   return (
-    <>
+    <div style={{ padding: 15 }}>
       <Header />
       <Contents>
         <div style={{ height: 8 }} /> <BoardTabs boards={boards as any} />
         {children}
       </Contents>
       <Footer />
-    </>
+    </div>
   )
 }

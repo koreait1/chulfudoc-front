@@ -54,7 +54,7 @@ const Header = () => {
       <div className="inner layout-width">
         <div className="left"></div>
         <div className="logo-section">
-          <Link href="/admin">
+          <Link href="/admin/membership">
             <Image src={logo} alt="logo" className="header-logo" />
           </Link>
         </div>

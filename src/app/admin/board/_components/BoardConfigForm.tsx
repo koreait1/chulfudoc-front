@@ -8,7 +8,144 @@ import MessageBox from '@/app/_global/components/MessageBox'
 import { Input, Textarea, TableCols } from '@/app/_global/components/Forms'
 import { SubmitButton } from '@/app/_global/components/Buttons'
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+  margin-top: 6px;
+
+  ${TableCols} {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border-top: 2px solid #ffe89a;
+    border-bottom: 1px solid #ffe89a;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  ${TableCols} thead th {
+    background: #fff8cc;
+  }
+
+  ${TableCols} th,
+  ${TableCols} td {
+    border-bottom: 1px solid #fff3b8;
+    padding: 12px 14px;
+    vertical-align: middle;
+  }
+
+  ${TableCols} tr:last-of-type th,
+  ${TableCols} tr:last-of-type td {
+    border-bottom: none;
+  }
+
+  ${TableCols} th {
+    background: #fffdf2;
+    border-right: 1px solid #ffe89a;
+    color: #222222;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  ${TableCols} td {
+    background: #ffffff;
+    color: #212529;
+  }
+
+  h2 {
+    margin: 18px 0 10px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #111111;
+    padding-left: 10px;
+    position: relative;
+  }
+  h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 4px;
+    height: 60%;
+    transform: translateY(-50%);
+    background: #ffd93d;
+    border-radius: 4px;
+  }
+
+  input[type='text'],
+  input[type='number'],
+  textarea {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #e9e5c9;
+    background: #ffffff;
+    color: #222222;
+    border-radius: 8px;
+    padding: 0 10px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  textarea {
+    min-height: 120px;
+    padding: 10px;
+    line-height: 1.5;
+    resize: vertical;
+  }
+  input[type='number'] {
+    max-width: 160px;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #ffd93d;
+    box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.25);
+  }
+
+  .radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid #e9e5c9;
+    color: #333333;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease, transform 0.05s ease,
+      border-color 0.15s ease;
+  }
+  .radio:hover {
+    background: #fffbea;
+    border-color: #ffe89a;
+  }
+  .radio + .radio {
+    margin-left: 8px;
+  }
+  .radio svg {
+    font-size: 1.1rem;
+    vertical-align: middle;
+    color: #111111;
+  }
+
+  button[type='submit'] {
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 10px;
+    background: #ffd93d;
+    border: 1px solid #ffd93d;
+    color: #000000;
+    font-weight: 700;
+    transition: filter 0.15s ease, transform 0.05s ease;
+  }
+  button[type='submit']:hover {
+    filter: brightness(1.03);
+  }
+  button[type='submit']:active {
+    transform: translateY(1px);
+  }
+`
 
 const BoardConfigForm = ({
   form,

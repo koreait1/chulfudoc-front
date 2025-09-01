@@ -9,21 +9,34 @@ const { dark, white } = color
 const { big } = fontSize
 
 const StyledAside = styled.aside`
-  background: #ccc;
-  min-width: 250px;
+  background: #fdfdfd;
+  min-width: 240px;
+  border-right: 1px solid #eee;
+
   a {
     display: block;
-    height: 55px;
-    line-height: 54px;
-    border-bottom: 1px solid ${dark};
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
     font-size: ${big};
-    padding: 0 25px;
     font-weight: 500;
+    color: #333;
+    border-bottom: 1px solid #f1f1f1;
+    transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+
+    &:hover {
+      background: #fff8cc;
+      color: #000;
+      padding-left: 28px;
+    }
   }
 
   a.on {
-    background: ${dark};
-    color: ${white};
+    background: #ffd93d;
+    color: #000;
+    font-weight: 600;
+    border-left: 4px solid #ffa500;
+    padding-left: 24px;
   }
 `
 

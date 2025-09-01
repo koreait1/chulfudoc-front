@@ -81,7 +81,7 @@ const StyledItems = styled.ul`
     align-items: center;
     justify-content: center;
     color: #6c757d;
-    background: #fff8cc;
+    background: #fcf9e6ff;
     border: 1px dashed #ffe89a;
     border-radius: 8px;
     margin-top: 10px;
