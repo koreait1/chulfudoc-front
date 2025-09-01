@@ -4,6 +4,7 @@ import { getBoardConfig } from '../../_services/boardConfig'
 import type { BoardConfigType, BoardDataType } from '../../_types/BoardType'
 import UpdateContainer from '../../_containers/UpdateContainer'
 import { get } from '../../_services/boardData'
+import Header from '@/app/_global/outlines/Header'
 
 export default async function WritePage({ params }) {
   const { bid } = await params
@@ -13,7 +14,9 @@ export default async function WritePage({ params }) {
 
   return (
     <ContentBox>
-      <MainTitle border="true">{board.name} 글쓰기</MainTitle>
+      <MainTitle className="write-title" border="true">
+        {board.name} 글쓰기
+      </MainTitle>
       <UpdateContainer board={board} data={data} />
     </ContentBox>
   )

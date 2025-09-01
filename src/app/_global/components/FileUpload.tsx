@@ -4,6 +4,20 @@ import { MdFileUpload } from 'react-icons/md'
 import { Button } from './Buttons'
 import useFetchCSR from '../hooks/useFetchCSR'
 import useAlertDialog from '../hooks/useAlertDialog'
+import fontSize from '../styles/fontsize'
+import styled from 'styled-components'
+
+const { big } = fontSize
+
+const UploadWrapper = styled.div`
+  svg {
+    margin: 0;
+  }
+
+  div {
+    font-size: ${big};
+  }
+`
 
 type FileType = {
   gid: string | number
@@ -88,8 +102,10 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
   return (
     <>
       <Button type="button" onClick={onUploadClick} width={150}>
-        <MdFileUpload /> 파일 업로드
-      </Button>
+        <UploadWrapper>
+        <MdFileUpload size="100" />
+        <div>프로필 업로드</div>
+        </UploadWrapper></Button>
     </>
   )
 }

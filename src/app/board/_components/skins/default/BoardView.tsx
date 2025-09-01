@@ -17,26 +17,34 @@ const Wrapper = styled.ul`
   }
 
   li {
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid #ffe89a;
+    border-radius: 8px;
     padding: 15px;
+    background: #ffffff;
 
     &.subject {
       font-size: ${medium};
+      padding: 18px 16px;
+      border-width: 2px;
+      border-color: #ffd93d;
+
       span {
-        margin-right: 5px;
+        margin-right: 6px;
         display: inline-block;
-        padding: 5px 10px;
-        border-radius: 5px;
+        padding: 6px 10px;
+        border-radius: 6px;
         font-size: ${normal};
-        color: ${white};
+        color: #000000;
+        line-height: 1;
 
         &.notice {
-          background: ${danger};
+          background: #ffd93d;
+          border: 1px solid #ffea9c;
         }
 
         &.category {
-          background: ${info};
+          background: #ffd166;
+          border: 1px solid #ffe089;
         }
       }
     }
@@ -44,13 +52,14 @@ const Wrapper = styled.ul`
     &.post-info {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      color: #212529;
 
       .left span {
-        margin-right: 10px;
+        margin-right: 12px;
       }
-
       .right span {
-        margin-left: 10px;
+        margin-left: 12px;
       }
     }
 
@@ -58,38 +67,59 @@ const Wrapper = styled.ul`
       word-break: break-all;
       margin-bottom: 10px;
       min-height: 350px;
+      background: #ffffff;
     }
   }
 `
 
 const StyledLinks = styled.div`
-  margin: 10px 0;
+  margin: 14px 0 4px;
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
   height: 45px;
 
   a {
-    line-height: 45px;
-    margin-left: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 16px;
     font-size: ${medium};
-    color: ${white};
-    border-radius: 3px;
-    padding: 0 15px;
+    border-radius: 10px;
+    border: 1px solid #ffe89a;
+    transition: filter 0.15s ease, transform 0.05s ease, background 0.15s ease,
+      color 0.15s ease;
+
+    &:hover {
+      filter: brightness(1.02);
+    }
+    &:active {
+      transform: translateY(1px);
+    }
 
     &.btn1 {
-      background: ${color.primary};
+      background: #ffffff;
+      color: #212529;
     }
 
     &.btn2 {
-      background: ${color.danger};
+      background: #000000;
+      color: #ffffff;
+      border-color: #000000;
     }
 
     &.btn3 {
-      background: ${color.warning};
+      background: #ffd166;
+      color: #000000;
+      border-color: #ffd166;
     }
 
     &.btn4 {
-      background: ${color.info};
+      background: #ffd93d;
+      color: #000000;
+      border-color: #ffd93d;
     }
   }
 `

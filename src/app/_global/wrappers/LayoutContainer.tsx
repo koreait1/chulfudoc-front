@@ -2,6 +2,7 @@
 import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
 import styled from 'styled-components'
+
 import AdminHeader from '../outlines/admin/Header'
 import AdminSide from '../outlines/admin/Side'
 import AdminSubMenu from '../outlines/admin/SubMenus'
@@ -34,12 +35,12 @@ export default function LayoutContainer({ children }) {
       </AdminMain>
     </>
   ) : (
-    <>
-      <main>
-        {/*<Aside className="leftAd" />
-        <Aside className="rightAd" />*/}
-        <section>{children}</section>
-      </main>
-    </>
+      <>
+        <main>
+          {/*<Aside className="leftAd" />
+          <Aside className="rightAd" />*/}
+          <section>{children}</section>
+        </main>
+      </>
   )
 }

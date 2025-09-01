@@ -5,20 +5,26 @@ import useUser from '@/app/_global/hooks/useUser'
 import React, { useEffect, useState } from 'react'
 
 const WrittenData = () => {
+  const fetchCSR = useFetchCSR()
   const [items, setItems] = useState<any[]>([])
   const [pagination, setPagination] = useState<any[]>([])
   const { loggedMember, isLogin } = useUser()
-  const fetchCSR = useFetchCSR()
-  const puuid = loggedMember.puuid
+  const puuid = loggedMember?.puuid || 'b3150ca5-8ed5-4dff-9cb9-313225b4379b'
+  const url = `/board/mypage/search?puuid=${puuid}&isLogin=${isLogin}`
+
   useEffect(() => {
     if (!isLogin || !puuid) return
-    fetchCSR(`/board/mypage/search?puuid=${puuid}`, { method: 'GET' })
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(data.items || [])
-        setPagination(data.pagination || [])
-      })
-  }, [fetchCSR, isLogin, puuid])
+    const getBoardList = async () => {
+      fetchCSR(url, { method: 'GET' })
+        .then((res) => res.json())
+        .then((data) => {
+          setItems(Array.isArray(data.items) ? data.items : [])
+          setPagination(data.pagination)
+        })
+        .catch(() => ({} as any))
+    }
+    getBoardList()
+  }, [])
   if (!isLogin) return <></>
   return (
     <>
@@ -39,4 +45,4 @@ const WrittenData = () => {
   )
 }
 
-export default React.memo(WrittenData)
+export default WrittenData
