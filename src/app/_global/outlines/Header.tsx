@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CgProfile } from 'react-icons/cg'
 import { FaCog } from 'react-icons/fa'
@@ -119,11 +119,19 @@ const LoginButton = styled(Button)`
     color: #ffd700;
   }
 `
+type ProfilePopup = {
+  isOpen: boolean
+  setIsOpen: any
+}
 
-const Header = () => {
+const Header = ({ isOpen, setIsOpen }: ProfilePopup) => {
   const { isLogin, isAdmin, loggedMember } = useUser()
-  const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+
+  const popProfileOpen = useCallback(() => {
+    const btnValue = !isOpen
+    setIsOpen(btnValue)
+  }, [isOpen])
 
   useEffect(() => {
     if (isOpen) setIsOpen(false) // 현재 주소가 변경될 때 페이지 내 실행되었던 모든 사항을 닫음 ex) 모달
@@ -163,7 +171,7 @@ const Header = () => {
                 </a>
               )}
               <div className="profile">
-                <div onClick={() => setIsOpen(true)}>
+                <div onClick={popProfileOpen}>
                   <FileImages
                     items={loggedMember.profileImage}
                     viewOnly={true}
@@ -175,7 +183,7 @@ const Header = () => {
                 </div>
                 <LayerPopup
                   isOpen={isOpen}
-                  onClose={() => setIsOpen(false)}
+                  onClose={popProfileOpen}
                   top="270px"
                   right="180px"
                   width={'250px'}
