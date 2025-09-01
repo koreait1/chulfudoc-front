@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   background-color: #fff;
   min-width: 600px;
   max-width: 1150px;
-  margin: 20px auto 0;
+  margin: auto auto 0;
 
   .vsm-canvas {
     border: 2px solid #333;

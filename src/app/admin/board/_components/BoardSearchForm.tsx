@@ -33,22 +33,14 @@ const StyledForm = styled.form`
   }
 
   select,
-  input[type='text'] {
-    height: 36px;
-    border: none !important;
-    border-bottom: 2px solid #ffe89a !important;
-    background: transparent;
-    border-radius: 0 !important;
-    padding: 0 10px;
-    outline: none;
-    font-size: 0.95rem;
-    transition: border-color 0.15s ease;
+  input {
+    height: 40px;
+    line-height: 40px;
+    content-justify: center;
+    margin: 0;
   }
   select {
-    width: 120px;
-  }
-  input[type='text'] {
-    flex: 1;
+    width: 105px;
   }
 
   select:focus,
