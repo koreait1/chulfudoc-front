@@ -33,9 +33,10 @@ YOLO API를 활용해 사람이 쓰러진 상황을 자동으로 인식합니다
 
 - 응급실 정보 제공<br />
 Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 수 있습니다.<br />
----
 - 커뮤니티 게시판<br />
 실제 경험한 위급 상황이나 병원 정보를 공유하고 소통할 수 있습니다.
+
+---
 ## 👥 역할 분담
 - 주용현 : 쓰러진 사람 감지 후 응급 상황 처리 기능, Tmap API 기반 응급의료기관 위치 안내 서비스
 - 최상준 : 
@@ -89,6 +90,7 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 <a href="https://chulfudoc.xyz">
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/1.png" alt="철푸닥" width="300"/>
 </a><br />
+
 ---
 ## 👤 주예성
 
