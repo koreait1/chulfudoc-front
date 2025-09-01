@@ -72,7 +72,7 @@ export default function SearchPageContainer() {
       <Container>
         <ToggleButton onClick={() => setShowMap(!showMap)}>
           {showMap ? <MdList size="25" /> : <MdMap size="25" />}
-          {showMap ? '리스트 보기' : '지도 보기'}
+          {showMap ? '목록 보기' : '지도 보기'}
         </ToggleButton>
 
         <Panel active={showMap}>
