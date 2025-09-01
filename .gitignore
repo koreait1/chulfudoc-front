@@ -36,7 +36,6 @@ yarn-error.log*
 .env*
 
 # ad connect
-ads.txt*
 
 # vercel
 .vercel
