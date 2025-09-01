@@ -1,4 +1,3 @@
-
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
@@ -13,23 +12,42 @@ const { dark, black, white } = color
 
 const StyledSubMenu = styled.nav`
   display: flex;
-  height: 45px;
-  box-shadow: 2px 2px 5px ${dark};
-
-  border-radius: 3px;
-  margin-bottom: 25px;
+  align-items: center;
+  height: 48px;
+  margin: 20px 0;
+  padding: 30px 10px;
+  border: 1px solid #ffe89a;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
 
   a {
-    line-height: 45px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 20px;
+    margin: 0 4px;
     font-size: ${medium};
-    padding: 0 25px;
+    font-weight: 600;
+    color: #212529;
+    border-radius: 18px;
+    border: 1px solid transparent;
+    background: #ffffff;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+      box-shadow 0.2s ease;
 
-    color: ${black};
-    background-color: ${white};
+    &:hover {
+      background: #fffcee;
+      border-color: #ffe89a;
+    }
 
     &.on {
-      background: ${dark};
-      color: ${white};
+      background: #ffd93d;
+      border-color: #ffd93d;
+      color: #000000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
   }
 `

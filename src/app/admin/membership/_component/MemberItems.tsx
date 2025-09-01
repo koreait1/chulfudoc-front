@@ -16,14 +16,87 @@ export type MemberType = {
 }
 
 const StyledForm = styled.form`
-  th:nth-of-type(1) { width: 45px; }
-  th:nth-of-type(2) { width: 240px; } 
-  th:nth-of-type(3) { width: 160px; } 
-  th:nth-of-type(4) { width: 160px; } 
-  th:nth-of-type(5) { width: 240px; } 
-  th:nth-of-type(6) { width: 160px; } 
-  th:nth-of-type(7) { width: 160px; } 
-  td { text-align: center; }
+  ${TableRows} {
+    width: 100%;
+    border-top: 2px solid #ffe89a;
+    border-bottom: 1px solid #ffe89a;
+    border-collapse: collapse;
+    background: #ffffff;
+  }
+
+  thead th {
+    height: 44px;
+    background: #fff8cc;
+    border-bottom: 1px solid #ffe89a;
+    font-weight: 700;
+    color: #111111;
+    text-align: center;
+  }
+
+  tbody td {
+    height: 44px;
+    border-bottom: 1px solid #fff3b8;
+    text-align: center;
+    color: #212529;
+    font-size: 0.95rem;
+  }
+
+  th:nth-of-type(1),
+  td:nth-of-type(1) {
+    width: 48px;
+  }
+  th:nth-of-type(2),
+  td:nth-of-type(2) {
+    width: 220px;
+    text-align: left;
+  }
+  th:nth-of-type(3),
+  td:nth-of-type(3) {
+    width: 140px;
+  }
+  th:nth-of-type(4),
+  td:nth-of-type(4) {
+    width: 140px;
+  }
+  th:nth-of-type(5),
+  td:nth-of-type(5) {
+    width: 220px;
+    text-align: left;
+  }
+  th:nth-of-type(6),
+  td:nth-of-type(6) {
+    width: 160px;
+  }
+  th:nth-of-type(7),
+  td:nth-of-type(7) {
+    width: 160px;
+  }
+
+  tbody tr:nth-of-type(odd) td {
+    background: #fffcf0;
+  }
+  tbody tr:hover td {
+    background: #fffcee;
+  }
+
+  td:first-of-type,
+  th:first-of-type {
+    cursor: pointer;
+    user-select: none;
+  }
+  td:first-of-type svg,
+  th:first-of-type svg {
+    font-size: 1.3rem;
+    vertical-align: middle;
+  }
+
+  .no-data {
+    padding: 40px 0;
+    text-align: center;
+    color: #888;
+    font-size: 0.95rem;
+    background: #fffef6;
+  }
 `
 
 const getSocial = (row: MemberType) => {
@@ -46,7 +119,11 @@ function MemberItems({
       <TableRows>
         <thead>
           <tr>
-            <th onClick={() => onToggle(undefined, isCheckAll ? 'uncheck' : 'check')}>
+            <th
+              onClick={() =>
+                onToggle(undefined, isCheckAll ? 'uncheck' : 'check')
+              }
+            >
               {isCheckAll ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
             </th>
             <th>PUUID</th>
@@ -74,7 +151,9 @@ function MemberItems({
             ))
           ) : (
             <tr>
-              <td colSpan={7} className="no-data">조회된 회원이 없습니다.</td>
+              <td colSpan={7} className="no-data">
+                조회된 회원이 없습니다.
+              </td>
             </tr>
           )}
         </tbody>

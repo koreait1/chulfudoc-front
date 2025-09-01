@@ -138,7 +138,7 @@ const Header = () => {
           <Link href="/mypage">
             <div className="linker">Mypage</div>
           </Link>
-          <Link href="/board/list/freetalk">
+          <Link href="/board/list/notice">
             <div className="linker">게시판</div>
           </Link>
           <Link href="/search-er">
