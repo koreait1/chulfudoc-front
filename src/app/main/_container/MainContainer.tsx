@@ -5,7 +5,6 @@ import GradientText from "../_component/GradientText"
 import { useState, useEffect } from "react"
 import DetectContainer from "@/app/detect/_containers/DetectContainer"
 import HosptialPopup from "@/app/_global/container/HospitalPopup"
-import MainLinkContainer from "./MainLinkContainer"
 import FloatingIconContainer from "@/app/_global/container/FloatingIconContainer"
 import Orb from "../_component/Orb"
 import background2 from '../../_global/assets/images/background2.png'
@@ -40,6 +39,7 @@ const Section = styled.div`
 const MainContainer = () => {
     const [current, setCurrent] = useState(0)
     const [webcamAble, setWebcamAble] = useState(false)
+    const [popUpOpen, setPopUpOpen] = useState(false)
 
     const goTop = () => setCurrent(0);
 
@@ -107,28 +107,15 @@ const MainContainer = () => {
             />
             <br />
             <AnimatedContent currentSection={current} sectionIndex={1} distance={50} delay={0.5}>
-                <HosptialPopup />
+                <HosptialPopup isOpen={popUpOpen} setIsOpen={setPopUpOpen}/>
             </AnimatedContent>
-        </Section>,
-        <div key={2} style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            fontSize: '3rem',
-            background: 'transparent',
-            color: '#000'
-        }}>
-            <div className="main-bottom">
-                <MainLinkContainer />
-            </div>
-        </div>
+        </Section>
     ]
 
     useEffect(() => {
         let isScrolling = false
         const handleWheel = (e: WheelEvent) => {
-        if (isScrolling) return
+        if (isScrolling || popUpOpen) return
         isScrolling = true
         if (e.deltaY > 0) {
             setCurrent(prev => Math.min(prev + 1, sections.length - 1))
@@ -141,7 +128,7 @@ const MainContainer = () => {
 
         window.addEventListener('wheel', handleWheel)
         return () => window.removeEventListener('wheel', handleWheel)
-    }, [sections.length])
+    }, [sections.length, popUpOpen])
 
     return (
         <>

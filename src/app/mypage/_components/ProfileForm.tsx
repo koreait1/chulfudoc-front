@@ -7,8 +7,75 @@ import { Input } from '@/app/_global/components/Forms'
 import MessageBox from '@/app/_global/components/MessageBox'
 import FileUpload from '@/app/_global/components/FileUpload'
 import FileImages from '@/app/_global/components/FileImages'
+import fontSize from '@/app/_global/styles/fontsize'
+import color from '@/app/_global/styles/color'
+const { big, medium } = fontSize
+const { danger, primary } = color
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+  width: 100%;
+  max-width: 560px;
+  padding: 15px 30px 30px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  margin: 0 auto 150px;
+  .form {
+    margin: 0 0 10px;
+    > li:nth-child(2n-1) {
+      font-size: ${big};
+      margin: 10px 0;
+    }
+    > li:nth-child(2n) {
+      p {
+        margin: 10px 0 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        font-size: ${medium};
+        border-radius: 10px;
+      }
+    }
+    > li:last-child {
+      position: relative;
+      height: 230px;
+    }
+    ul {
+      display: inline-block;
+      li {
+        width: 200px;
+      }
+      svg {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: ${danger};
+      }
+    }
+    ul,
+    button {
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translate(-50%);
+    }
+    button {
+      border: 1px solid ${primary};
+      background: #fff;
+      color: #333;
+      svg {
+        color: #333;
+      }
+      &:hover {
+        background: ${primary};
+      }
+    }
+  }
+  button {
+    color: #333;
+  }
+`
 
 const ProfileForm = ({
   form,
@@ -21,13 +88,13 @@ const ProfileForm = ({
 }) => {
   return (
     <StyledForm action={action} autoComplete="off">
-      <dl>
-        <dt>아이디</dt>
-        <dd>{form.userId}</dd>
-      </dl>
-      <dl>
-        <dt>회원명</dt>
-        <dd>
+      <ul className="form">
+        <li>아이디</li>
+        <li>
+          <p>{form.userId}</p>
+        </li>
+        <li>회원명</li>
+        <li>
           <Input
             type="text"
             name="name"
@@ -37,12 +104,9 @@ const ProfileForm = ({
           <MessageBox color="danger">
             {!errors?.done && errors?.name}
           </MessageBox>
-        </dd>
-      </dl>
-
-      <dl>
-        <dt>비밀번호</dt>
-        <dd>
+        </li>
+        <li>비밀번호</li>
+        <li>
           <Input
             type="password"
             name="password"
@@ -52,11 +116,9 @@ const ProfileForm = ({
           <MessageBox color="danger">
             {!errors?.done && errors?.password}
           </MessageBox>
-        </dd>
-      </dl>
-      <dl>
-        <dt>비밀번호 확인</dt>
-        <dd>
+        </li>
+        <li>비밀번호 확인</li>
+        <li>
           <Input
             type="password"
             name="confirmPassword"
@@ -66,12 +128,9 @@ const ProfileForm = ({
           <MessageBox color="danger">
             {!errors?.done && errors?.confirmPassword}
           </MessageBox>
-        </dd>
-      </dl>
-
-      <dl>
-        <dt>휴대전화번호</dt>
-        <dd>
+        </li>
+        <li>휴대전화번호</li>
+        <li>
           <Input
             type="text"
             name="mobile"
@@ -81,12 +140,15 @@ const ProfileForm = ({
           <MessageBox color="danger">
             {!errors?.done && errors?.mobile}
           </MessageBox>
-        </dd>
-      </dl>
-      
-      <dl>
-        <dt>프로필 이미지</dt>
-        <dd>
+        </li>
+        <li>프로필 이미지</li>
+        <li>
+          <FileUpload
+            gid={form.gid}
+            single={true}
+            imageOnly={true}
+            callback={fileUploadCallback}
+          />
           <FileImages
             items={form.profileImage}
             width={200}
@@ -94,15 +156,9 @@ const ProfileForm = ({
             viewOrgImage={true}
             callback={fileDeleteCallback}
           />
-          <FileUpload
-            gid={form.gid}
-            single={true}
-            imageOnly={true}
-            callback={fileUploadCallback}
-          />
-        </dd>
-      </dl>
-      <SubmitButton type="submit" width={350} disabled={pending}>
+        </li>
+      </ul>
+      <SubmitButton type="submit" wilih={350} disabled={pending}>
         수정하기
       </SubmitButton>
     </StyledForm>

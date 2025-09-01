@@ -9,43 +9,79 @@ import color from '@/app/_global/styles/color'
 const { dark, light } = color
 
 const StyledForm = styled.form`
-  border: 1px solid #ccc;
+  /* 컨테이너 */
+  border: 1px solid #ffe89a;
   margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 3px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #ffffff;
 
   .top {
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+
     input {
-      border: 1px solid ${dark};
-      width: 120px;
       height: 40px;
-      padding: 0 10px;
+      width: 160px;
+      padding: 0 12px;
+      background: #ffffff;
+      border: 1px solid #ffe89a;
+      border-radius: 10px;
+      outline: none;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
     }
 
-    input + input {
-      margin-left: 5px;
+    input:focus {
+      border-color: #ffd93d;
+      box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.25);
     }
   }
 
   .bottom {
     display: flex;
+    gap: 6px;
     height: 100px;
 
     textarea {
-      flex-grow: 1;
+      flex: 1;
       resize: none;
-      margin-right: 5px;
-      border: 1px solid ${dark};
-      padding: 10px;
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1px solid #ffe89a;
+      border-radius: 10px;
+      outline: none;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    textarea:focus {
+      border-color: #ffd93d;
+      box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.25);
     }
 
     button {
       width: 120px;
-      background: ${dark};
-      color: ${light};
-      border: 0;
+      min-width: 120px;
+      height: 100%;
+      border: 1px solid #ffd93d;
+      border-radius: 10px;
+      background: #ffd93d;
+      color: #000000;
       cursor: pointer;
+      font-weight: 600;
+      transition: filter 0.15s ease, transform 0.05s ease;
+
+      &:hover {
+        filter: brightness(1.02);
+      }
+      &:active {
+        transform: translateY(1px);
+      }
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
     }
   }
 `

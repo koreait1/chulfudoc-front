@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import styled from 'styled-components'
 import { FiLogOut } from 'react-icons/fi'
@@ -68,7 +69,7 @@ const Header = () => {
           <Link href="/" prefetch={false}>
             <Button type="button">
               <FaExternalLinkAlt />
-              사이트 메인
+              메인 페이지
               <LinkLoading />
             </Button>
           </Link>

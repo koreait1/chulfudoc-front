@@ -14,39 +14,90 @@ import Loading from '@/app/_global/components/Loading'
 
 const StyledForm = styled.form`
   dl {
-    display: flex;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    border-bottom: 1px solid #f2eecb;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
 
-    &:last-of-type {
-      margin-bottom: 30px;
-    }
-
-    &:first-of-type {
-      dt,
-      dd {
-        border-top: 1px solid #ccc;
-      }
-    }
+  dl:first-of-type {
+    border-top: 2px solid #ffd93d;
   }
 
   dt {
-    width: 120px;
-    background: #f8f8f8;
+    padding: 12px 16px;
+    background: #fffdf2;
+    border-right: 1px solid #f2eecb;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+  }
+
+  dd {
+    padding: 12px;
+    background: #ffffff;
+    color: #212529;
+  }
+
+  dd input[type='text'],
+  dd input[type='password'],
+  dd textarea,
+  dd select {
+    border: 1px solid #e9e5c9 !important;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  dd input[type='text']:focus,
+  dd input[type='password']:focus,
+  dd textarea:focus,
+  dd select:focus {
+    border-color: #ffd93d !important;
+    box-shadow: 0 0 0 2px rgba(255, 217, 61, 0.25);
+    outline: none;
+  }
+
+  .notice-toggle,
+  dd > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid #e9e5c9;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+  }
+
+  .notice-toggle:hover,
+  dd > span:hover {
+    background: #fffbea;
+  }
+
+  button[type='submit'] {
+    margin-top: 20px;
+    background: #ffd93d !important;
+    border: 1px solid #ffd93d !important;
+    border-radius: 8px !important;
+    font-weight: 600;
     padding: 10px 20px;
+    transition: filter 0.15s ease;
   }
 
-  dd {
-    flex-grow: 1;
-    padding: 10px;
-  }
-
-  dt,
-  dd {
-    border-bottom: 1px solid #ccc;
-    svg {
-      font-size: 2rem;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
+  button[type='submit']:hover {
+    filter: brightness(1.05);
   }
 `
 

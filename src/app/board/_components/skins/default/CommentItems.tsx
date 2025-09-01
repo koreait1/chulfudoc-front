@@ -12,51 +12,75 @@ const { danger, primary, white } = color
 
 const StyledItems = styled.ul`
   margin-bottom: 30px;
+
   li {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 3px;
+    border: 1px solid #ffe89a;
+    padding: 14px;
+    border-radius: 10px;
+    background: #ffffff;
 
     .top {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
+      color: #212529;
+      font-size: 0.95rem;
     }
 
     .content {
-      padding: 10px;
-      border-radius: 3px;
-      background: #f8f8f8;
+      padding: 12px;
+      border-radius: 10px;
+      background: #fff8cc;
       min-height: 80px;
+      color: #000000;
+      line-height: 1.6;
+      word-break: break-word;
     }
 
     .links {
       display: flex;
       justify-content: flex-end;
+      gap: 6px;
       height: 40px;
       padding-top: 10px;
 
       a {
-        line-height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding: 0 14px;
+        line-height: 36px;
+        border-radius: 10px;
+        border: 1px solid #ffe89a;
         cursor: pointer;
-        color: ${white};
-        padding: 0 15px;
-        border-radius: 3px;
+        font-weight: 600;
+        transition: filter 0.15s ease, transform 0.05s ease,
+          background 0.15s ease, color 0.15s ease;
 
-        &.btn1 {
-          background: ${danger};
+        &:hover {
+          filter: brightness(1.02);
         }
-
-        &.btn2 {
-          background: ${primary};
+        &:active {
+          transform: translateY(1px);
         }
       }
 
-      a + a {
-        margin-left: 5px;
+      .btn1 {
+        background: #000000;
+        color: #ffffff;
+        border-color: #000000;
+      }
+
+      .btn2 {
+        background: #ffd166;
+        color: #000000;
+        border-color: #ffd166;
       }
     }
   }
+
   li + li {
     margin-top: 10px;
   }

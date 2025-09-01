@@ -8,21 +8,20 @@ import color from '@/app/_global/styles/color'
 import fontSize from '@/app/_global/styles/fontsize'
 
 const { small } = fontSize
-const { danger, info, white } = color
 
 const StyledItems = styled.ul`
   li {
     display: flex;
     height: 50px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ffe89a;
     padding: 0 10px;
 
     &:first-of-type {
-      border-top: 1px solid #ccc;
+      border-top: 1px solid #ffe89a;
     }
 
     &:hover {
-      background: #f8f8f8;
+      background: #fffcee;
     }
 
     .post-info {
@@ -30,6 +29,7 @@ const StyledItems = styled.ul`
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      color: #212529;
       span + span {
         margin-left: 10px;
       }
@@ -39,6 +39,7 @@ const StyledItems = styled.ul`
       flex-grow: 1;
       display: flex;
       align-items: center;
+      color: #000000;
 
       div {
         width: calc(100% - 1px);
@@ -52,19 +53,38 @@ const StyledItems = styled.ul`
           line-height: 1px;
           border-radius: 5px;
           margin-right: 3px;
-          color: ${white};
+          color: #000000;
           font-size: ${small};
 
           &.notice {
-            background: ${danger};
+            background: #ffd93d;
+            border: 1px solid #ffea9c;
           }
 
           &.category {
-            background: ${info};
+            background: #ffd166;
+            border: 1px solid #ffe089;
           }
         }
       }
+
+      &:hover div {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
     }
+  }
+
+  .no-data {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    background: #fff8cc;
+    border: 1px dashed #ffe89a;
+    border-radius: 8px;
+    margin-top: 10px;
   }
 `
 

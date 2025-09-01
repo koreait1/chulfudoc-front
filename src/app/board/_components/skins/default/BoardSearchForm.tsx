@@ -15,34 +15,66 @@ const { medium } = fontSize
 
 const StyledForm = styled.form`
   display: flex;
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
-  height: 65px;
   justify-content: space-between;
+  align-items: center;
+  height: 65px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ffe89a;
 
   .left {
     display: flex;
+    align-items: center;
+    gap: 6px;
+
     select,
     input {
-      background: #fff;
-      border: 1px solid ${black};
-      margin-right: 5px;
+      height: 40px;
+      background: #ffffff;
+      border: 1px solid #ffe89a;
+      border-radius: 10px;
+      padding: 0 12px;
+      outline: none;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    select {
+      min-width: 110px;
+      appearance: none;
+      background-image: none;
     }
 
     input {
-      padding: 0 10px;
       width: 300px;
     }
 
+    select:focus,
+    input:focus {
+      border-color: #ffd93d;
+      box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.25);
+    }
+
     button {
-      background: ${black};
+      height: 40px;
+      padding: 0 18px;
       border: 0;
+      border-radius: 10px;
+      background: #ffd93d;
       cursor: pointer;
-      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: filter 0.15s ease, transform 0.05s ease;
+
+      &:hover {
+        filter: brightness(1.05);
+      }
+      &:active {
+        transform: translateY(1px);
+      }
 
       svg {
         font-size: 1.7rem;
-        color: ${white};
+        color: #ffffff;
         position: relative;
         top: 2px;
       }
@@ -54,15 +86,25 @@ const StyledForm = styled.form`
     align-items: center;
 
     a {
-      display: block;
-      height: 43px;
-      line-height: 43px;
-      width: 75px;
-      background: ${primary};
-      color: ${white};
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      min-width: 90px;
+      padding: 0 14px;
+      background: #ffd93d;
+      color: #000000;
       font-size: ${medium};
       text-align: center;
-      border-radius: 3px;
+      border-radius: 10px;
+      border: 1px solid #ffe89a;
+      transition: filter 0.15s ease, transform 0.05s ease;
+
+      &:hover {
+        filter: brightness(1.02);
+      }
+      &:active {
+        transform: translateY(1px);
+      }
     }
   }
 `

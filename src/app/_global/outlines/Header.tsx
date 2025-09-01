@@ -13,10 +13,10 @@ import LinkLoading from '../components/LinkLoading'
 import LayerPopup from '../components/LayerPopup'
 import FileImages from '../components/FileImages'
 import { FiLogIn, FiLogOut } from 'react-icons/fi'
-import { IoCall } from 'react-icons/io5'
 import { LuUserPen } from 'react-icons/lu'
 import { usePathname } from 'next/navigation'
 import color from '../styles/color'
+import { DropDown } from '../components/DropDown'
 const { dark } = color
 
 const StyledHeader = styled.header`
@@ -48,7 +48,7 @@ const StyledHeader = styled.header`
 
     .logo-section {
       display: flex;
-      text-align: left;
+      text-align: center;
       align-items: center;
       .header-logo {
         height: 45px;
@@ -64,7 +64,6 @@ const StyledHeader = styled.header`
         padding: 5px;
         transition: transform 0.7s ease;
       }
-
       .linker:hover {
         transform: scale(1.2);
       }
@@ -88,13 +87,14 @@ const StyledHeader = styled.header`
         display: inline-block;
         text-align: right;
         img {
-          border: 3px solid ${dark};
+          border: 2px solid ${dark};
           border-radius: 50%;
           box-sizing: border-box;
         }
       }
     }
   }
+
   .modalProfile {
     ul,
     li {
@@ -138,9 +138,14 @@ const Header = () => {
           <Link href="/mypage">
             <div className="linker">Mypage</div>
           </Link>
-          <Link href="/">
-            <div className="linker">게시판</div>
-          </Link>
+          <DropDown title="게시판">
+            <Link href="/board/list/notice">
+              <div className="linker">공지사항</div>
+            </Link>
+            <Link href="/board/list/freetalk">
+              <div className="linker">자유게시판</div>
+            </Link>
+          </DropDown>
           <Link href="/search-er">
             <div className="linker">병원 검색</div>
           </Link>
@@ -149,15 +154,9 @@ const Header = () => {
         <div className="right">
           {isLogin ? (
             <>
-              <a href="/member/api/logout">
-                <Button type="button" color="secondary">
-                  <FiLogOut />
-                  로그아웃
-                </Button>
-              </a>
               {isAdmin && (
-                <a href="/admin">
-                  <Button type="button" color="info">
+                <a href="/admin/membership">
+                  <Button type="button" color="dark">
                     <FaCog />
                     사이트 관리
                   </Button>
@@ -178,40 +177,39 @@ const Header = () => {
                   isOpen={isOpen}
                   onClose={() => setIsOpen(false)}
                   top="270px"
-                  right=" max(200px, calc(200px + (50vw - 575px))"
-                  width={'300px'}
-                  height={'470px'}
+                  right="180px"
+                  width={'250px'}
+                  height={'350px'}
                 >
                   <FileImages
                     items={loggedMember.profileImage}
                     viewOnly={true}
                     viewOrgImage={false}
-                    width={230}
-                    height={230}
+                    width={110}
+                    height={110}
                     fallbackImage={noprofile}
                   />
                   <span>
                     <span>{loggedMember.name}</span> 님
                   </span>
                   <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'230px'}>
+                    <Button type="button" width={'180px'}>
                       <CgProfile />
                       마이페이지
                       <LinkLoading />
                     </Button>
                   </Link>
                   <Link href="/mypage/profile" prefetch={false}>
-                    <Button type="button" width={'230px'}>
+                    <Button type="button" width={'180px'}>
                       <LuUserPen />
                       개인정보 수정
                       <LinkLoading />
                     </Button>
                   </Link>
-                  <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'230px'}>
-                      <IoCall />
-                      문의하기
-                      <LinkLoading />
+                  <Link href="/member/api/logout">
+                    <Button type="button" color="secondary" width={'180px'}>
+                      <FiLogOut />
+                      로그아웃
                     </Button>
                   </Link>
                 </LayerPopup>
@@ -226,7 +224,7 @@ const Header = () => {
                   borderradius="25px"
                   style={{ marginRight: '20px' }}
                 >
-                  <FiLogIn style={{ color: "currentColor" }} />
+                  <FiLogIn style={{ color: 'currentColor' }} />
                   로그인
                 </LoginButton>
               </Link>
