@@ -10,7 +10,7 @@ export const PageMain = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  alignItems: center;
+  align-items: center;
 
   padding-top: 37px;
 
