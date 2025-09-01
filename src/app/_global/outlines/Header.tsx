@@ -180,7 +180,7 @@ const Header = () => {
                   top="270px"
                   right=" max(200px, calc(200px + (50vw - 575px))"
                   width={'300px'}
-                  height={'470px'}
+                  height={'420px'}
                 >
                   <FileImages
                     items={loggedMember.profileImage}
@@ -204,13 +204,6 @@ const Header = () => {
                     <Button type="button" width={'230px'}>
                       <LuUserPen />
                       개인정보 수정
-                      <LinkLoading />
-                    </Button>
-                  </Link>
-                  <Link href="/mypage" prefetch={false}>
-                    <Button type="button" width={'230px'}>
-                      <IoCall />
-                      문의하기
                       <LinkLoading />
                     </Button>
                   </Link>
