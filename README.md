@@ -13,7 +13,7 @@ NEXT_PUBLIC_NAVER_API_KEY=zOO0YFons6SoSf762rxU
 NEXT_PUBLIC_NAVER_API_SECRET=nObxHaBpoE
 NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 
-# [철푸닥 C:\portfolio2\chulfudoc-front\src\app\_global\assets\images\logo-word.png](https://chulfudoc.xyz)
+# [철푸닥 <img src="https://github.com/koreait1/chulfudoc-front/tree/master/img/resources/logo.png />](https://chulfudoc.xyz)
 - 주소 : https://chulfudoc.xyz
 - 관리자 아이디 : 
 - 관리자 비밀번호 : 
