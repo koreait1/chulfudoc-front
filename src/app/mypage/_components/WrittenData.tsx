@@ -9,7 +9,7 @@ const WrittenData = () => {
   const [items, setItems] = useState<any[]>([])
   const [pagination, setPagination] = useState<any[]>([])
   const { loggedMember, isLogin } = useUser()
-  const puuid = loggedMember?.puuid || 'b3150ca5-8ed5-4dff-9cb9-313225b4379b'
+  const puuid = loggedMember?.puuid
   const url = `/board/mypage/search?puuid=${puuid}&isLogin=${isLogin}`
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const WrittenData = () => {
         .catch(() => ({} as any))
     }
     getBoardList()
-  }, [])
+  })
   if (!isLogin) return <></>
   return (
     <>

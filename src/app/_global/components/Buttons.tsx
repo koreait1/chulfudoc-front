@@ -31,13 +31,13 @@ export const Button = styled.button<ButtonType>`
     css`
       width: ${typeof width === 'string' ? width : width + 'px'};
     `}
-    ${({ height }) =>
+  ${({ height }) =>
     height &&
     css`
       height: ${height}px;
     `}
 
-    ${({ color: c }) => {
+  ${({ color: c }) => {
     c = c ?? 'primary'
     const _color = color[c] ? color[c] : c
     return css`
@@ -45,7 +45,7 @@ export const Button = styled.button<ButtonType>`
     `
   }}
     
-    ${({ fontSize: size }) => {
+  ${({ fontSize: size }) => {
     size = size ?? 'medium'
     return css`
       font-size: ${fontSize[size] ?? size};
