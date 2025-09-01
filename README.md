@@ -16,7 +16,7 @@ NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
 # 프로젝트 : [철푸닥](https://chulfudoc.xyz)
 <div align="center">
   <a href="https://chulfudoc.xyz">
-    <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/resources/logo.png" alt="철푸닥" width="300"/>
+    <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/resources/logo.png" alt="철푸닥" width="500"/>
   </a><br />
 </div>
 
