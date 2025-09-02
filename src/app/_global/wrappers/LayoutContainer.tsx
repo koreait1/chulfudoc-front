@@ -20,6 +20,7 @@ const AdminMain = styled.main`
 function getMainClasses(pathname) {
   const paths = pathname.split('/')
   const data: Array<string> = []
+  if (pathname.startsWith('/admin')) return
   if (paths.length > 1) data.push(paths[1])
   if (paths.length > 2) data.push(`${paths[1]}-${paths[2]}`)
 

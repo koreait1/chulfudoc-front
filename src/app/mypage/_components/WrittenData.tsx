@@ -24,7 +24,7 @@ const WrittenData = () => {
         .catch(() => ({} as any))
     }
     getBoardList()
-  })
+  }, [])
   if (!isLogin) return <></>
   return (
     <>

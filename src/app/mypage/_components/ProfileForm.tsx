@@ -148,7 +148,9 @@ const ProfileForm = ({
             single={true}
             imageOnly={true}
             callback={fileUploadCallback}
-          />
+          >
+            프로필 업로드
+          </FileUpload>
           <FileImages
             items={form.profileImage}
             width={200}

@@ -1,6 +1,10 @@
 import React from 'react'
-import MemberGlobalClient from './MemberGlobalClient'
+import Contents from '../_global/wrappers/ContentContainer'
 
-export default function MemberLayout({ children }: { children: React.ReactNode }) {
-  return <MemberGlobalClient>{children}</MemberGlobalClient>
+export default function MemberLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return <Contents>{children}</Contents>
 }
