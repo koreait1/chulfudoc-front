@@ -32,8 +32,10 @@ const WrittenData = () => {
         <>
           {items.map(({ seq, subject, createdAt }) => (
             <li key={`board-${seq}`}>
-              <a href={`/board/view/${seq}`}>{subject}</a>
-              <span>{createdAt}</span>
+              <a href={`/board/view/${seq}`} className="written-data">
+                {subject}
+                <span>{createdAt}</span>
+              </a>
             </li>
           ))}
           {pagination && <Pagination pagination={pagination} />}
