@@ -23,7 +23,7 @@ const ToggleButton = styled.button`
   justify-content: center;
   margin: 0 auto 16px auto;
   padding: 10px 20px;
-  background-color: #4A5568;
+  background-color: #4a5568;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -32,14 +32,13 @@ const ToggleButton = styled.button`
   transition: background 0.2s;
 
   &:hover {
-    background-color: #2D3748;
+    background-color: #2d3748;
   }
 
   svg {
     font-size: 1.2rem;
   }
 `
-
 
 // 슬라이드 패널
 const Panel = styled('div').withConfig({
@@ -69,6 +68,7 @@ export default function SearchPageContainer() {
   return (
     <>
       <MemberPageWrapper />
+
       <Container>
         <ToggleButton onClick={() => setShowMap(!showMap)}>
           {showMap ? <MdList size="25" /> : <MdMap size="25" />}
@@ -80,7 +80,10 @@ export default function SearchPageContainer() {
         </Panel>
 
         <Panel active={!showMap}>
-          <SearchERInfoContainer initialKeyword={keyword} initialOption={option} />
+          <SearchERInfoContainer
+            initialKeyword={keyword}
+            initialOption={option}
+          />
         </Panel>
       </Container>
     </>

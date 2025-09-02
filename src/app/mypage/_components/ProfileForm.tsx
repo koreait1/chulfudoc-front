@@ -18,7 +18,7 @@ const StyledForm = styled.form`
   padding: 15px 30px 30px;
   border: 1px solid #ccc;
   border-radius: 50px;
-  margin: 0 auto 150px;
+  margin: 0 auto 80px;
   .form {
     margin: 0 0 10px;
     > li:nth-child(2n-1) {
@@ -148,7 +148,9 @@ const ProfileForm = ({
             single={true}
             imageOnly={true}
             callback={fileUploadCallback}
-          />
+          >
+            프로필 업로드
+          </FileUpload>
           <FileImages
             items={form.profileImage}
             width={200}

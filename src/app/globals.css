@@ -137,9 +137,13 @@ section.main-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;  
+  gap: 20px;
 }
 
 .main-bottom > * {
   flex: 1;
+}
+/*** 각 페이지 메인 relative 여부 ***/
+.mypage-profile {
+  position: relative;
 }

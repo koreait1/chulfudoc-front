@@ -1,4 +1,5 @@
 'use client'
+import { useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import useUser from '../hooks/useUser'
 import styled from 'styled-components'
@@ -16,9 +17,22 @@ const AdminMain = styled.main`
   }
 `
 
+function getMainClasses(pathname) {
+  const paths = pathname.split('/')
+  const data: Array<string> = []
+  if (pathname.startsWith('/admin')) return
+  if (paths.length > 1) data.push(paths[1])
+  if (paths.length > 2) data.push(`${paths[1]}-${paths[2]}`)
+
+  const path = data.join(' ')
+  return path ? ' ' + path : ' main-page'
+}
+
 export default function LayoutContainer({ children }) {
   const { isAdmin } = useUser()
   const pathname = usePathname()
+
+  const mainClasses = useMemo(() => getMainClasses(pathname), [pathname])
 
   return isAdmin && pathname.startsWith('/admin') ? (
     <>
@@ -33,7 +47,10 @@ export default function LayoutContainer({ children }) {
     </>
   ) : (
     <>
-      <main>
+      <main
+        suppressHydrationWarning={true}
+        className={'main-content' + mainClasses}
+      >
         <section>{children}</section>
       </main>
     </>

@@ -2,13 +2,12 @@ import '../globals.css'
 import Header from '../_global/outlines/Header'
 import Footer from '../_global/outlines/Footer'
 import Contents from '../_global/wrappers/ContentContainer'
-import styled from 'styled-components'
 
 import BoardTabs from '@/app/board/_components/BoardTabs'
 import { unstable_noStore as noStore } from 'next/cache'
 import { cookies } from 'next/headers'
 
-export default async function MypageLayout({ children }) {
+export default async function BoardLayout({ children }) {
   noStore()
 
   const base = (

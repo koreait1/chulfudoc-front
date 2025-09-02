@@ -12,6 +12,9 @@ import ProfileForm from '../_components/ProfileForm'
 import useUser from '@/app/_global/hooks/useUser'
 import UserContext from '@/app/_global/contexts/UserContext'
 import { processProfile } from '../_services/actions'
+import Header from '@/app/_global/outlines/Header'
+import Padding from '@/app/_global/components/padding-top'
+import { MainTitle } from '@/app/_global/components/TitleBox'
 
 const ProfileContainer = () => {
   const { loggedMember } = useUser()
@@ -21,14 +24,13 @@ const ProfileContainer = () => {
     actions: { setLoggedMember },
   } = useContext(UserContext)
 
-
   useEffect(() => {
     //회원 수정이 완료된 경우 -> 회원 정보 업데이트
     if (!errors.done) {
       return
     }
     setLoggedMember(errors)
-    
+
     location.replace('/mypage')
   }, [errors, setLoggedMember])
 
@@ -47,17 +49,25 @@ const ProfileContainer = () => {
       return data
     })
   }, [])
+  const [profileOpen, setProfileOpen] = useState(false)
 
   return (
-    <ProfileForm
-      form={form}
-      errors={errors}
-      action={action}
-      pending={pending}
-      onChange={onChange}
-      fileUploadCallback={fileUploadCallback}
-      fileDeleteCallback={fileDeleteCallback}
-    />
+    <>
+      <Header isOpen={profileOpen} setIsOpen={setProfileOpen} />
+      <Padding />
+      <MainTitle border={''} center={'true'}>
+        회원정보 수정
+      </MainTitle>
+      <ProfileForm
+        form={form}
+        errors={errors}
+        action={action}
+        pending={pending}
+        onChange={onChange}
+        fileUploadCallback={fileUploadCallback}
+        fileDeleteCallback={fileDeleteCallback}
+      />
+    </>
   )
 }
 

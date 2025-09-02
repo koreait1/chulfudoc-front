@@ -99,6 +99,16 @@ const StyledForm = styled.form`
   button[type='submit']:hover {
     filter: brightness(1.05);
   }
+  .writte-area {
+    button {
+      height: 40px;
+      svg {
+        display: none;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 `
 
 const BoardForm = ({
@@ -198,7 +208,7 @@ const BoardForm = ({
         </dl>
         <dl>
           <dt>글내용</dt>
-          <dd>
+          <dd className="writte-area">
             {board.editor ? (
               <>
                 <input
@@ -219,7 +229,9 @@ const BoardForm = ({
                       location="editor"
                       imageOnly={true}
                       callback={fileUploadCallback}
-                    />
+                    >
+                      이미지 첨부
+                    </FileUpload>
                     <FileItems
                       items={data.editorImages}
                       callback={fileDeleteCallback}
@@ -240,12 +252,14 @@ const BoardForm = ({
         {board.attachFile && (
           <dl>
             <dt>파일첨부</dt>
-            <dd>
+            <dd className="writte-area">
               <FileUpload
                 gid={data.gid}
                 location="attach"
                 callback={fileUploadCallback}
-              />
+              >
+                파일 첨부
+              </FileUpload>
               <FileItems
                 items={data.attachFiles}
                 callback={fileDeleteCallback}

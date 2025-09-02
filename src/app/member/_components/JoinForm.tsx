@@ -329,7 +329,9 @@ const JoinForm = ({
           imageOnly={true}
           single={true}
           callback={fileUploadCallback}
-        />
+        >
+          프로필 업로드
+        </FileUpload>
       </div>
       <h3>약관동의</h3>
       <div>약관 동의 작성...</div>
