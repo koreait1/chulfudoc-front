@@ -7,20 +7,21 @@ import styled from 'styled-components'
 const { normal, big } = fontSize
 const { primary, dark } = color
 const MyBoard = styled.ul`
-  width:80%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   border: 1px solid ${dark}15;
   border-radius: 20px;
-    margin: 0 auto;
+  background: #eee;
+  margin: 0 auto;
   li {
-    width: 90%;
-    margin: 0 auto;
-    padding: 10px;
+    width: 100%;
+    padding: 5px 5%;
     font-size: ${normal};
     border: 1px soild ${dark}15;
+    background: #fff;
     &:first-child {
+      padding: 10px;
       width: 100%;
       background: ${primary};
       font-weight: bold;
@@ -29,12 +30,21 @@ const MyBoard = styled.ul`
       border-radius: 20px 20px 0 0;
     }
     &:nth-child(n + 3) {
-      border-top: 1px solid ${dark};
+      border-top: 1px solid ${dark}33;
     }
     &.noCon {
       font-style: italic;
       text-align: center;
     }
+  }
+  .written-data {
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  > div {
+    margin: 10px auto;
   }
 `
 const WrittenList = ({ children }) => {
