@@ -31,6 +31,7 @@ const CommonContainer = ({
     if (data && ['update', 'view'].includes(mode) && !data.seq) {
       alertDialog({
         text: '게시글을 찾을 수 없습니다.',
+        icon: 'warning',
         callback: () => {
           router.back()
         },
@@ -72,8 +73,9 @@ const CommonContainer = ({
       if (!result) {
         alertDialog({
           text: '접근 권한이 없습니다.',
+          icon: 'warning',
           callback: () => {
-            router.back()
+            router.push('/member/login')
           },
         })
 
