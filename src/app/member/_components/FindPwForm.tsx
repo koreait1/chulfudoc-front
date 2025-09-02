@@ -58,7 +58,7 @@ export default function FindPwForm({
         data={dataQS}
         apiUrl={ApiUrl.PWRESET}
         callback={onCallback}
-        width={'140px'}
+        width={'180px'}
         onRequestStart={() => setPending(true)}
       >
         임시 비밀번호 보내기
