@@ -201,26 +201,26 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 - /_components/ERSearchForm.tsx
 	- 컴포넌트 구조
-		SearchFormWrapper로 스타일링된 div 내에 select, input, button 배치.
-		Flex 레이아웃이 아닌 text-align: center 중심 정렬로 구성.
-		버튼과 입력창, 선택창 모두 일관된 높이와 border-radius 적용.
-	상태 관리
-		keyword, option 값을 props로 받아 상위 컴포넌트와 상태 동기화.
-		onSearch 콜백으로 검색 실행.
-	이벤트 처리
-		input에서 Enter 키 이벤트를 감지하여 onSearch 호출.
-		select 변경 시 setOption 호출.
-		버튼 클릭 시 onSearch 호출.
-	스타일링
-		styled-components 사용, primary와 dark 컬러를 적용.
-		버튼 hover 시 반투명 배경 색상 적용 (${primary}aa).
-		select와 input에 공통 높이와 padding 적용, 일관된 UX 제공.
-		React.memo 또는 useCallback 사용은 없음, 상태 변경 시 전체 렌더링 발생 가능.
-	접근성 고려:
-		input에 placeholder 제공.
-		버튼에 type 명시 (type="button")으로 form 제출 방지.
-	전반적
-		상위 상태와 완전히 동기화되도록 props 기반 설계.
+		- SearchFormWrapper로 스타일링된 div 내에 select, input, button 배치.
+		- Flex 레이아웃이 아닌 text-align: center 중심 정렬로 구성.
+		- 버튼과 입력창, 선택창 모두 일관된 높이와 border-radius 적용.
+	- 상태 관리
+		- keyword, option 값을 props로 받아 상위 컴포넌트와 상태 동기화.
+		- onSearch 콜백으로 검색 실행.
+	- 이벤트 처리
+		- input에서 Enter 키 이벤트를 감지하여 onSearch 호출.
+		- select 변경 시 setOption 호출.
+		- 버튼 클릭 시 onSearch 호출.
+	- 스타일링
+		- styled-components 사용, primary와 dark 컬러를 적용.
+		- 버튼 hover 시 반투명 배경 색상 적용 (${primary}aa).
+		- select와 input에 공통 높이와 padding 적용, 일관된 UX 제공.
+		- React.memo 또는 useCallback 사용은 없음, 상태 변경 시 전체 렌더링 발생 가능.
+	- 접근성 고려:
+		- input에 placeholder 제공.
+		- 버튼에 type 명시 (type="button")으로 form 제출 방지.
+	- 전반적
+		- 상위 상태와 완전히 동기화되도록 props 기반 설계.
 
 - /_components/SearchERMap.tsx
 	- 상태 관리
