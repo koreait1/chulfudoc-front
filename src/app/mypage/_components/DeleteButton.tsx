@@ -3,18 +3,14 @@
 import React from "react";
 import useAlertDialog from "@/app/_global/hooks/useAlertDialog";
 import { Button } from "@/app/_global/components/Buttons";
-
+import useFetchCSR from "@/app/_global/hooks/useFetchCSR";
 export default function DeleteButton() {
   const alertDialog = useAlertDialog();
-
+  const fetchCSR = useFetchCSR()
   const doDelete = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/member/delete`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const res = await fetchCSR(`/member/delete`, {
+        method: "POST"
       });
 
       if (res.ok) {
