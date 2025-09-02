@@ -79,7 +79,7 @@ export default function DeleteButton() {
 
   return (
   <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '24px'}}>
-    <Button onClick={handleDelete}>
+    <Button onClick={handleDelete} style={{background:'red', marginRight:"140px"}}>
       회원 탈퇴
     </Button>
   </div>

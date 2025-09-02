@@ -368,7 +368,7 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### ⚙️ 기능 설명
 **회원 인증/관리 서비스**
-✅ 회원 가입
+- 회원 가입
 	- 회원 가입 시 필수 입력 항목 체크
 	- 중복(아이디, 이메일), 패스워드 보안 레벨, 이메일 형식, 휴대전화 번호 형식 검증
 	- REST API를 활용한 소셜 연동 회원 가입
@@ -378,9 +378,10 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 - 본인 인증(이메일)
 	- 이메일 형식 체크 후 이메일 발송(템플릿 형태) 요청
 	- Redis 내 인증번호 임시 저장(BE) -> 입력한 인증번호와 일치 여부 체크
-✅ 메인페이지
-- 홈페이지 컨셉에 맞는 스타일링
-- UI 기획 및 제작
+
+- 메인페이지
+	- 홈페이지 컨셉에 맞는 스타일링
+	- UI 기획 및 제작
 
 ### 📝 코드 리뷰
 - AuthNumButton.tsx : CSR 방식 이메일 인증에 사용되는 공통 버튼 컴포넌트(메일 발송, 이메일 인증 등 어떤 목적에도 대응할 수 있도록 설계)
@@ -390,7 +391,7 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### 🖼️ 구현 이미지
 <a href="https://chulfudoc.xyz">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/1.png" alt="철푸닥" width="300"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/1.png" alt="철푸닥" width="300"/>
 </a><br />
 
 ---
@@ -709,6 +710,14 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
     - 서버 액션 바인딩: useActionState(processBoardConfig) → [errors, action, pending]
 
 ### 🖼️ 구현 이미지
-<a href="https://chulfudoc.xyz">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/1.png" alt="철푸닥" width="300"/>
-</a><br />
+<p align="center">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/1.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/2.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/3.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/4.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/5.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/6.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/7.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/8.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/9.png" alt="철푸닥" width="800"/>
+</p>

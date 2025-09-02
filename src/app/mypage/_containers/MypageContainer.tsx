@@ -9,6 +9,7 @@ import Header from '../../_global/outlines/Header'
 import Footer from '../../_global/outlines/Footer'
 import Padding from '../../_global/components/padding-top'
 import { useState } from 'react'
+import DeleteButton from '../_components/DeleteButton'
 
 export default function MypageContainer() {
   const [profileOpen, setProfileOpen] = useState(false)
@@ -24,6 +25,7 @@ export default function MypageContainer() {
         <WrittenList>
           <WrittenData />
         </WrittenList>
+        <DeleteButton />
       </ContentBox>
       <Footer />
     </UserOnlyContainer>
