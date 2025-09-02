@@ -120,8 +120,8 @@ const LoginButton = styled(Button)`
   }
 `
 type ProfilePopup = {
-  isOpen: boolean
-  setIsOpen: any
+  isOpen?: any
+  setIsOpen?: any
 }
 
 const Header = ({ isOpen, setIsOpen }: ProfilePopup) => {
