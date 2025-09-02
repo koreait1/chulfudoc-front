@@ -42,6 +42,7 @@ const CommonContainer = ({
     if (!board || !board.bid) {
       alertDialog({
         text: '게시판을 찾을 수 없습니다.',
+        icon: 'warning',
         callback: () => {
           router.back()
         },
