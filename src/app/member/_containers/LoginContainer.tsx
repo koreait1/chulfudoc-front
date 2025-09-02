@@ -16,7 +16,6 @@ import kakaoLoginButton from '../../_global/assets/images/kakao_login.png'
 import naverLoginButton from '../../_global/assets/images/naver_login.png'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import styled from 'styled-components'
-import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledDiv = styled.div`
   margin: 40px auto 80px;
