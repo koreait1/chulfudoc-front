@@ -10,9 +10,6 @@ import AdminSubMenu from '../outlines/admin/SubMenus'
 const AdminMain = styled.main`
   display: flex;
   min-height: 750px;
-  aside {
-    width: 220px;
-  }
   section.admin-content {
     flex-grow: 1;
     padding: 30px 50px;
@@ -35,12 +32,10 @@ export default function LayoutContainer({ children }) {
       </AdminMain>
     </>
   ) : (
-      <>
-        <main>
-          {/*<Aside className="leftAd" />
-          <Aside className="rightAd" />*/}
-          <section>{children}</section>
-        </main>
-      </>
+    <>
+      <main>
+        <section>{children}</section>
+      </main>
+    </>
   )
 }
