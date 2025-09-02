@@ -11,6 +11,7 @@ import { ApiUrl } from '@/app/_global/constants/ApiUrl'
 import AuthCount from '@/app/_global/components/AuthCount'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import color from '@/app/_global/styles/color'
+import Terms from './Terms'
 
 const StyledForm = styled.form`
   .row {
@@ -334,7 +335,9 @@ const JoinForm = ({
         </FileUpload>
       </div>
       <h3>약관동의</h3>
-      <div>약관 동의 작성...</div>
+      <div>
+        <Terms />
+      </div>
       <div className="terms-agree" onClick={onToggle}>
         {form.termsAgree ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />} 회원가입
         약관에 동의합니다.
