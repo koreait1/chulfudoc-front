@@ -103,9 +103,10 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
     <>
       <Button type="button" onClick={onUploadClick} width={150}>
         <UploadWrapper>
-        <MdFileUpload size="100" />
-        <div>프로필 업로드</div>
-        </UploadWrapper></Button>
+          <MdFileUpload size="100" />
+          <div>프로필 업로드</div>
+        </UploadWrapper>
+      </Button>
     </>
   )
 }

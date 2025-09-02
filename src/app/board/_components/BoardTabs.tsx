@@ -4,10 +4,12 @@ import styled from 'styled-components'
 import type { BoardConfigType } from '@/app/board/_types/BoardType'
 
 const Wrap = styled.nav`
-  margin: 0 0 6px;
+  margin: 0 auto;
   padding: 0 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  min-width: 320px !important;
+  max-width: 1150px !important;
 
   .tabs {
     display: inline-flex;
