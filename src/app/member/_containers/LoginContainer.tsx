@@ -14,7 +14,9 @@ import KakaoApi from '../social/_services/KakaoApi'
 import NaverApi from '../social/_services/NaverApi'
 import kakaoLoginButton from '../../_global/assets/images/kakao_login.png'
 import naverLoginButton from '../../_global/assets/images/naver_login.png'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 import styled from 'styled-components'
+import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
 
 const StyledDiv = styled.div`
   margin: 40px auto 80px;
@@ -32,6 +34,7 @@ type FormType = {
 
 const kakaoApi = new KakaoApi()
 const naverApi = new NaverApi()
+const alertDialog = useAlertDialog()
 
 const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
   const [errors, action, pending] = useActionState<any, any>(processLogin, {})
@@ -42,6 +45,18 @@ const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
   })
 
   const searchParams = useSearchParams()
+  
+  const alertDialog = useAlertDialog()
+
+  useEffect(() => {
+    if (errors === '탈퇴한 계정입니다.') {
+      alertDialog({
+        title: '로그인 실패',
+        text: '탈퇴한 계정입니다.',
+        icon: 'error',
+      });
+    }
+  }, [errors, alertDialog]);
 
   const kakaoLoginUrl = useMemo(
     () => kakaoApi.getUrl(redirectUrl),
@@ -59,6 +74,17 @@ const LoginContainer = ({ redirectUrl }: { redirectUrl?: string }) => {
 
     setForm((prev) => ({ ...prev, redirectUrl }))
   }, [searchParams])
+
+  useEffect(() => {
+    if (typeof errors === 'string' && errors.includes('탈퇴한 회원')) {
+      alertDialog({
+        title: '로그인 실패',
+        text: '탈퇴한 회원입니다. 로그인할 수 없습니다.',
+        icon: 'error',
+      });
+    }
+  }, [errors]);
+
 
   const onChange = useCallback((e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
