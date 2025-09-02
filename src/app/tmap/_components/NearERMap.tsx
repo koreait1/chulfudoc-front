@@ -4,14 +4,7 @@ import Papa from 'papaparse'
 import styled from 'styled-components'
 import useAPIAlertDialog from '../hooks/useAPIAlertDialog'
 import Loading from '@/app/loading'
-
-interface Hospital {
-  응급의료기관명: string
-  위도: string
-  경도: string
-  소재지: string
-  연락처: string
-}
+import type { Hospital } from '@/app/tmap/types/Hospital'
 
 const Tmapv3Div = styled.div`
   min-width: 600px;
