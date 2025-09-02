@@ -355,8 +355,71 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 ## 👤 최상준
 
 ### ⚙️ 기능 설명
+- 회원 탈퇴
+	- DeleteButton 컴포넌트 제작
+	- SweetAlert2 기반 확인/완료 메시지 제공
+	- 탈퇴 성공 시 3초 안내 메시지 후 자동 로그아웃 처리
+	- localStorage 토큰·쿠키 삭제 → /member/login 리다이렉트
+
+- 이메일 인증
+	- HTML 템플릿 제작 (비밀번호 초기화/이메일 인증) → 반응형 레이아웃 적용
+	- RedisTemplate 연동: 인증 토큰 저장 및 만료·쿨다운 관리
+	- 인증 메일 재전송 버튼 제공 + 쿨다운 타이머 표시
+	- 인증 성공/만료/실패 상태별 결과 페이지 구현
+
+- 인증타이머
+	- 인증 메일/코드 발송 시 Redis에 카운트 저장
+	- 프론트에서 재전송 시도 횟수 및 남은 시간 표시
+
+
+- 아이디 찾기 / 임시 비밀번호 발급
+	- 가입 시 등록된 이메일을 통해 아이디 안내 메일 발송
+	 -비밀번호 분실 시 임시 비밀번호 메일 전송
+
+- 회원 수정
+	- 프로필 정보(닉네임, 비밀번호 등) 수정 기능 구현
+	- 수정 성공 시 최신 정보로 UI 즉시 갱신
 
 ### 📝 코드 리뷰
+- AuthCount.tsx
+	- 인증 쿨다운 타이머 컴포넌트(기본 180초). startSignal로 시작/리셋, 만료 시 onExpire 콜백
+	- 내부 setInterval 관리로 남은 시간표시
+
+- FindIdForm.tsx
+	- 이름/이메일 입력 후 아이디 찾기 요청(ApiUrl.FINDUSERID) 전송
+	- AuthNumButton로 요청 시작 시 pending 처리 및 에러 메시지 표시
+
+- FindIdDoneForm.tsx
+	- 찾은 아이디를 읽기 전용으로 표시, 로그인/비밀번호 찾기 버튼 제공
+	- pending 상태에 따라 버튼 비활성화 및 에러 메시지 출력
+
+- FindPwForm.tsx
+	-아이디/이메일 입력 후 임시 비밀번호 발급 요청(ApiUrl.PWRESET)
+	-AuthNumButton로 전송, 폭(width) 지정 및 에러 표시
+
+- FindContainer.tsx
+	- mode=id|pw에 따라 FindIdForm/FindPwForm 스위칭
+	- 폼 상태/에러/대기 관리, 콜백에서 라우팅 및 알림(useAlertDialog) 처리
+
+- FindIdDoneContainer.tsx
+	- sessionStorage('find:id')에서 아이디 로드 후 완료 화면 구성
+	- 로그인/비밀번호 찾기 라우팅 콜백 제공 및 초기 접근 검증
+
+- DeleteButton.tsx
+	- 탈퇴 확인 모달 → /member/delete 호출 → 성공 시 토큰 삭제 후 /member/api/logout
+	- 상태코드(401/403)별 사용자 안내 분기
+
+- ProfileForm.tsx
+	- 회원 수정 폼 UI(이름/비번/휴대전화/프로필 이미지).
+	- 파일 업로드/삭제 콜백과 에러 메시지 표시, 제출 버튼 제공
+
+- ProfileContainer.tsx
+	- 사용자 정보 로드/상태 관리, 서버 액션과 연계해 수정 처리
+	- 완료 시 컨텍스트 업데이트 후 /mypage로 이동
+
+- _services/actions.ts > processProfile
+	- 서버 액션: 폼 유효성 검사 후 /member/update(PATCH) 호출
+	- 성공 시 done=true로 반환, 실패는 필드/글로벌 에러로 회신
 
 ### 🖼️ 구현 이미지
 <a href="https://chulfudoc.xyz">

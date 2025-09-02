@@ -16,7 +16,7 @@ const StyledDiv = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:4000/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api/v1';
 type Mode = 'id' | 'pw';
 
 export default function FindContainer({ mode: modeProp }: { mode?: Mode }) {
