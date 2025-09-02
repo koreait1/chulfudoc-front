@@ -4,17 +4,25 @@ import { MainTitle } from '../_global/components/TitleBox'
 import UserInfo from './_components/AccountInfo'
 import WrittenList from './_components/WrittenList'
 import WrittenData from './_components/WrittenData'
+import Header from '../_global/outlines/Header'
+import Footer from '../_global/outlines/Footer'
+import Padding from '../_global/components/padding-top'
 
 export default function Mypage() {
   return (
     <UserOnlyContainer>
-      <MainTitle border={"true"} borderthickness="1px" center={"true"}>마이페이지</MainTitle>
+      <Header />
+      <Padding />
+      <MainTitle border={'true'} borderthickness="1px" center={'true'}>
+        마이페이지
+      </MainTitle>
       <UserInfo />
       <ContentBox>
         <WrittenList>
           <WrittenData />
         </WrittenList>
       </ContentBox>
+      <Footer />
     </UserOnlyContainer>
   )
 }
