@@ -39,6 +39,7 @@ const StyledHeader = styled.header`
     div {
       flex-grow: 1;
       .profile {
+        margin-right: 25px;
         flex-grow: 0;
         display: inline-block;
         width: 40px;

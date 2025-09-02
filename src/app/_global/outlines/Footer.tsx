@@ -3,31 +3,48 @@
 import React from 'react'
 import styled from 'styled-components'
 import color from '../styles/color'
-const { primary, dark } = color
+const { dark, light } = color
 
 const StyledFooter = styled.footer`
-  min-height: 200px;
-  background: ${primary}25;
-  color: ${dark};
+  min-height: 140px;
+  background: #1A1A1A;
+  color: ${light};
   font-size: 14px;
   padding: 30px 20px;
   line-height: 1.8;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+
+  hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 15px auto;
+    width: 80%;
+  }
+
+  .corp {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 1px;
+  }
 `
 
 const Footer = () => {
   return (
     <StyledFooter>
       <div>
-        <p>철푸닥\chulfudoc | 대표자명 : 주용현</p>
+        <p>철푸닥 - chulfudoc  |  대표 : 주용현</p>
         <p>주소 : 서울특별시 강서구 공항대로 200</p>
-        <p>사업자등록번호 : -</p>
-        <p>전화(고객센터) : 010-1234-5678</p>
-        <p>이메일 : juyonghyeon@gmail.com</p>
-        <p>
-          홈페이지 : <a href="https://chulfudoc.xyz">chulfudoc.xyz</a> |
-          관리자페이지 :{' '}
-          <a href="https://admin.chulfudoc.xyz">admin.chulfudoc.xyz</a>
-        </p>
+        <p>고객센터 : 010-1234-5678  |  이메일 : juyonghyeon@gmail.com</p>
+        <p>홈페이지 : chulfudoc.xyz  |  관리자 : admin.chulfudoc.xyz </p>
+      </div>
+      <hr />
+      <div className="corp">
+        © 2025 chulfudoc Corp. All rights reserved.
       </div>
     </StyledFooter>
   )
