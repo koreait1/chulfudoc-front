@@ -389,9 +389,17 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 - main/ 메인페이지 UI 구현
 
 ### 🖼️ 구현 이미지
-<a href="https://chulfudoc.xyz">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/1.png" alt="철푸닥" width="300"/>
-</a><br />
+<p align="center">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/1.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/2.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/3.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/4.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/5.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/6.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/7.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/8.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/9.png" alt="철푸닥" width="800"/>
+</p>
 
 ---
 ## 👤 김용준
