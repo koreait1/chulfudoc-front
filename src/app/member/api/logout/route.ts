@@ -11,6 +11,6 @@ export async function GET(request: NextRequest) {
   cookie.delete('token')
 
   const redirectUrl =
-    request.nextUrl.searchParams.get('redirectUrl') ?? '/member/login'
+    request.nextUrl.searchParams.get('redirectUrl') ?? '/'
   redirect(redirectUrl)
 }
