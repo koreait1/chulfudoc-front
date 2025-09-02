@@ -4,6 +4,7 @@ import Papa from 'papaparse'
 import styled from 'styled-components'
 import Loading from '@/app/loading'
 import LocalLoadingWrapper from '@/app/_global/styles/LocalLoadingWrapper'
+import type { Hospital } from '@/app/tmap/types/Hospital'
 
 const TableWrap = styled.div`
   min-width: 600px;
@@ -98,16 +99,6 @@ const TableWrap = styled.div`
     color: #555;
   }
 `
-
-
-interface Hospital {
-  응급의료기관명: string
-  위도: string
-  경도: string
-  소재지: string
-  연락처: string
-  distance?: number
-}
 
 // Haversine 공식으로 직선 거리 계산
 // tmap Api의 하루 호출 제한 횟수 문제가 있어 이를 대처하고자 직선거리로 먼저 20개를 추린 후 tmap Api로 20번 호출만 하여 가까운 병원을 추림

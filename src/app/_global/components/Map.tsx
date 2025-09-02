@@ -2,20 +2,13 @@
 import { memo, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import Papa from 'papaparse'
+import type { Hospital } from '@/app/tmap/types/Hospital'
 import useAPIAlertDialog from '@/app/tmap/hooks/useAPIAlertDialog'
 
 declare global {
   interface Window {
     Tmapv3: any
   }
-}
-
-interface Hospital {
-  응급의료기관명: string
-  위도: string
-  경도: string
-  소재지: string
-  연락처: string
 }
 
 type MapType = {
