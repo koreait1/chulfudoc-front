@@ -7,7 +7,7 @@ import BoardTabs from '@/app/board/_components/BoardTabs'
 import { unstable_noStore as noStore } from 'next/cache'
 import { cookies } from 'next/headers'
 
-export default async function MypageLayout({ children }) {
+export default async function BoardLayout({ children }) {
   noStore()
 
   const base = (
@@ -26,13 +26,13 @@ export default async function MypageLayout({ children }) {
   } catch {}
 
   return (
-    <>
+    <div style={{ padding: 15 }}>
       <Header />
       <Contents>
         <div style={{ height: 8 }} /> <BoardTabs boards={boards as any} />
         {children}
       </Contents>
       <Footer />
-    </>
+    </div>
   )
 }

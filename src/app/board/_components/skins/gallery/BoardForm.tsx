@@ -167,7 +167,9 @@ const BoardForm = ({
                       location="editor"
                       imageOnly={true}
                       callback={fileUploadCallback}
-                    />
+                    >
+                      이미지 첨부
+                    </FileUpload>
                     <FileItems
                       items={data.editorImages}
                       callback={fileDeleteCallback}
@@ -193,7 +195,9 @@ const BoardForm = ({
                 gid={data.gid}
                 location="attach"
                 callback={fileUploadCallback}
-              />
+              >
+                파일 첨부
+              </FileUpload>
               <FileItems
                 items={data.attachFiles}
                 callback={fileDeleteCallback}

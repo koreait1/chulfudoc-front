@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback } from 'react'
+import React, { Children, ReactNode, useCallback } from 'react'
 import { MdFileUpload } from 'react-icons/md'
 import { Button } from './Buttons'
 import useFetchCSR from '../hooks/useFetchCSR'
@@ -20,6 +20,7 @@ const UploadWrapper = styled.div`
 `
 
 type FileType = {
+  children: React.ReactNode
   gid: string | number
   location?: string | number
   single?: boolean
@@ -27,7 +28,14 @@ type FileType = {
   callback?: (items: Array<any>) => void
 }
 
-const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
+const FileBox = ({
+  gid,
+  location,
+  single,
+  imageOnly,
+  callback,
+  children,
+}: FileType) => {
   const fetchCSR = useFetchCSR()
   const alertDialog = useAlertDialog()
 
@@ -103,9 +111,10 @@ const FileBox = ({ gid, location, single, imageOnly, callback }: FileType) => {
     <>
       <Button type="button" onClick={onUploadClick} width={150}>
         <UploadWrapper>
-        <MdFileUpload size="100" />
-        <div>프로필 업로드</div>
-        </UploadWrapper></Button>
+          <MdFileUpload size="100" />
+          <div>{children}</div>
+        </UploadWrapper>
+      </Button>
     </>
   )
 }

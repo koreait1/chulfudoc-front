@@ -1,12 +1,12 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import type { Hospital } from '../types/SearchERInfoTypes'
+import type { Hospital } from '@/app/tmap/types/Hospital'
 
 const TableWrap = styled.div`
   max-width: 1100px;
   margin: 0 auto;
-  padding: 12px;      /* 패딩 줄임 */
+  padding: 12px; /* 패딩 줄임 */
   background: #fff;
   border-radius: 10px;
 
@@ -22,7 +22,8 @@ const TableWrap = styled.div`
     border-bottom: 1px solid #ddd;
   }
 
-  th, td {
+  th,
+  td {
     padding: 10px 8px; /* 세로 패딩 줄임 */
     white-space: nowrap;
     overflow: hidden;
@@ -30,7 +31,8 @@ const TableWrap = styled.div`
     border-right: 1px solid #f1f3f5;
   }
 
-  th:last-of-type, td:last-of-type {
+  th:last-of-type,
+  td:last-of-type {
     border-right: none;
   }
 
@@ -38,21 +40,23 @@ const TableWrap = styled.div`
     background: #f9fafb;
   }
 
-  th:nth-of-type(1), td:nth-of-type(1) {
+  th:nth-of-type(1),
+  td:nth-of-type(1) {
     width: 30%;
     font-weight: 600;
   }
 
-  th:nth-of-type(2), td:nth-of-type(2) {
+  th:nth-of-type(2),
+  td:nth-of-type(2) {
     width: 50%;
   }
 
-  th:nth-of-type(3), td:nth-of-type(3) {
+  th:nth-of-type(3),
+  td:nth-of-type(3) {
     width: 10%;
     font-weight: 500;
   }
 `
-
 
 interface PropType {
   hospitals: Hospital[]

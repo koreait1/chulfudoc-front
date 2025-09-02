@@ -5,7 +5,7 @@ import Papa from 'papaparse'
 import SearchERInfo from '../_components/SearchERInfo'
 import ERSearchForm from '../_components/ERSearchForm'
 import Pagination from '@/app/_global/components/Pagination'
-import type { Hospital } from '../types/SearchERInfoTypes'
+import type { Hospital } from '../types/Hospital'
 
 interface PaginationType {
   pages: Array<[string, string]>
@@ -21,7 +21,10 @@ interface SearchProps {
   initialOption?: 'ALL' | 'NAME' | 'ADDR'
 }
 
-export default function SearchERInfoContainer({ initialKeyword = '', initialOption = 'ALL' }: SearchProps) {
+export default function SearchERInfoContainer({
+  initialKeyword = '',
+  initialOption = 'ALL',
+}: SearchProps) {
   const [hospitals, setHospitals] = useState<Hospital[]>([])
   const [filteredHospitals, setFilteredHospitals] = useState<Hospital[]>([])
   const [keyword, setKeyword] = useState(initialKeyword)
@@ -101,7 +104,9 @@ export default function SearchERInfoContainer({ initialKeyword = '', initialOpti
 
   return (
     <>
-      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>응급의료기관 검색</h1>
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>
+        응급의료기관 검색
+      </h1>
       <ERSearchForm
         keyword={keyword}
         setKeyword={setKeyword}

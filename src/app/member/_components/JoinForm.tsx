@@ -10,6 +10,8 @@ import AuthNumButton from '@/app/_global/components/AuthNumButton'
 import { ApiUrl } from '@/app/_global/constants/ApiUrl'
 import AuthCount from '@/app/_global/components/AuthCount'
 import useAlertDialog from '@/app/_global/hooks/useAlertDialog'
+import color from '@/app/_global/styles/color'
+import Terms from './Terms'
 
 const StyledForm = styled.form`
   .row {
@@ -71,6 +73,41 @@ const StyledForm = styled.form`
     border: 1px solid #ffeeba;
     border-radius: 6px;
   }
+  .upload-button {
+    position: relative;
+    ul {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      left: 50%;
+      transform: translate(-50%);
+      img {
+        width: 200px;
+        height: 200px;
+      }
+      svg {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: ${color.danger};
+      }
+    }
+    button {
+      width: 200px;
+      height: 200px;
+      display: block;
+      margin: 0 auto;
+      border: 1px solid ${color.primary};
+      background: #fff;
+      color: #333;
+      svg {
+        color: #333;
+      }
+      &:hover {
+        background: ${color.primary};
+      }
+    }
+  }
 
   @media (max-width: 560px) {
     .row {
@@ -110,7 +147,6 @@ const JoinForm = ({
       {/* hidden 값 */}
       <input type="hidden" name="gid" value={form.gid} />
       <input type="hidden" name="termsAgree" value={form.termsAgree} />
-
       {/* 소셜 회원가입 분기 */}
       {form.socialChannel && form.socialToken && (
         <>
@@ -123,7 +159,6 @@ const JoinForm = ({
           <div>{form.socialChannel} 연동 회원가입</div>
         </>
       )}
-
       {/* 일반 회원가입 입력 */}
       {(!form?.socialChannel || !form?.socialToken) && (
         <>
@@ -161,7 +196,6 @@ const JoinForm = ({
           </div>
         </>
       )}
-
       <Input
         type="text"
         name="name"
@@ -172,7 +206,6 @@ const JoinForm = ({
       <div className="msg">
         <MessageBox color="danger">{errors?.name}</MessageBox>
       </div>
-
       <Input
         type="text"
         name="mobile"
@@ -183,7 +216,6 @@ const JoinForm = ({
       <div className="msg">
         <MessageBox color="danger">{errors?.mobile}</MessageBox>
       </div>
-
       {/* 이메일 + 발송 버튼 */}
       <div className="row">
         <div className="field">
@@ -227,7 +259,6 @@ const JoinForm = ({
           </AuthNumButton>
         </div>
       </div>
-
       {/* 인증번호 + 확인 버튼 + 타이머 */}
       <div className="row code">
         <div className="field">
@@ -256,8 +287,8 @@ const JoinForm = ({
                     title: '인증 실패',
                     text: '이메일이 변경되었습니다. 다시 발송 후 인증해주세요.',
                     icon: 'error',
-                  });
-                  return;
+                  })
+                  return
                 }
                 if (res.status >= 200 && res.status < 300) {
                   setEmailVerified(true)
@@ -287,22 +318,26 @@ const JoinForm = ({
           )}
         </div>
       </div>
-
       <h3>프로필 이미지</h3>
-      <FileImages
-        items={form.profileImage}
-        callback={fileDeleteCallback}
-        viewOrgImage={true}
-      />
-      <FileUpload
-        gid={form.gid}
-        imageOnly={true}
-        single={true}
-        callback={fileUploadCallback}
-      />
-
+      <div className="upload-button">
+        <FileImages
+          items={form.profileImage}
+          callback={fileDeleteCallback}
+          viewOrgImage={true}
+        />
+        <FileUpload
+          gid={form.gid}
+          imageOnly={true}
+          single={true}
+          callback={fileUploadCallback}
+        >
+          프로필 업로드
+        </FileUpload>
+      </div>
       <h3>약관동의</h3>
-      <div>약관 동의 작성...</div>
+      <div>
+        <Terms />
+      </div>
       <div className="terms-agree" onClick={onToggle}>
         {form.termsAgree ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />} 회원가입
         약관에 동의합니다.
@@ -310,7 +345,6 @@ const JoinForm = ({
       <div className="msg">
         <MessageBox color="danger">{errors?.termsAgree}</MessageBox>
       </div>
-
       {/* 가입 버튼 */}
       {!verified ? (
         <SubmitButton
@@ -332,7 +366,6 @@ const JoinForm = ({
           가입하기
         </SubmitButton>
       )}
-
       <div className="msg">
         <MessageBox color="danger">{errors?.global}</MessageBox>
       </div>

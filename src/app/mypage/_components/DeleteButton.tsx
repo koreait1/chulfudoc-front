@@ -20,19 +20,13 @@ export default function DeleteButton() {
       if (res.ok) {
         const data = await res.json().catch(() => ({ message: "회원 탈퇴가 완료되었습니다." }));
 
-        // 로그아웃 먼저 처리
-        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/member/logout`, {
-          method: "POST",
-          credentials: "include",
-        }).catch(() => {});
-
         alertDialog({
           title: "탈퇴 완료",
           text: data.message,
           icon: "success",
           callback: () => {
             localStorage.removeItem("accessToken");
-            window.location.href = "/";
+            window.location.href = '/member/api/logout';
           },
         });
         return;
@@ -85,7 +79,7 @@ export default function DeleteButton() {
 
   return (
   <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '24px'}}>
-    <Button onClick={handleDelete}>
+    <Button onClick={handleDelete} style={{background:'red', marginRight:"140px"}}>
       회원 탈퇴
     </Button>
   </div>

@@ -4,4 +4,5 @@ export interface Hospital {
   경도: string
   소재지: string
   연락처: string
+  distance?: number
 }
