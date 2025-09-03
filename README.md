@@ -35,17 +35,16 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 - 커뮤니티 게시판<br />
 실제 경험한 위급 상황이나 병원 정보를 공유하고 소통할 수 있습니다.
 
----
 ## 👥 역할 분담
 - 주용현 : 쓰러진 사람 감지 후 응급 상황 처리 기능, Tmap API 기반 응급의료기관 위치 안내 서비스
 - 최상준 : 이메일 인증 서비스, 회원 아이디 및 비밀번호 찾기, 회원 수정 및 탈퇴
 - 김문수 : 회원 인증/관리 서비스 | 메인페이지 전체 기능
 - 김용준 : 모달(LayerPopup), Alert(알림), 스타일(styled-components), 파일 업로드 UI
 - 주예성 : 관리자 멤버, 게시판 작성 및 관리 
----
-## 👤 주용현
+
+#### 📌 주요 담당 업무
 <details>
-	<summary><strong>📌 주요 담당 업무</strong></summary>
+	<summary><strong>👤 주용현</strong></summary>
 
 ### ⚙️ 기능 설명
 - 낙상 감지 서비스
@@ -359,10 +358,8 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 </details>
 
----
-## 👤 최상준
 <details>
-	<summary><strong>📌 주요 담당 업무</strong></summary>
+	<summary><strong>👤 최상준</strong></summary>
 
 ### ⚙️ 기능 설명
 - 회원 탈퇴
@@ -446,10 +443,8 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 </details>
 
----
-## 👤 김문수
 <details>
-	<summary><strong>📌 주요 담당 업무</strong></summary>
+	<summary><strong>👤 김문수</strong></summary>
 
 ### ⚙️ 기능 설명
 **회원 인증/관리 서비스**
@@ -490,10 +485,8 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 </p>
 </details>
 
----
-## 👤 김용준
 <details>
-	<summary><strong>📌 주요 담당 업무</strong></summary>
+	<summary><strong>👤 김용준</strong></summary>
 
 ### ⚙️ 기능 설명
 - **모달 (LayerPopup)**
@@ -560,10 +553,8 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 </details>
 
----
-## 👤 주예성
 <details>
-	<summary><strong>📌 주요 담당 업무</strong></summary>
+	<summary><strong>👤 주예성</strong></summary>
 
 ### ⚙️ 기능 설명
 회원 관리
