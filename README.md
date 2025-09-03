@@ -1,18 +1,3 @@
-## 백엔드 원격 레포지토리 (최하단으로 이동 예정)
-### API 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-api
-### AI 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-detection
-
-## 환경변수 (삭제 예정)
-NEXT_PUBLIC_DOMAIN=http://localhost:3000
-NEXT_PUBLIC_AI_API_URL=http://127.0.0.1:5000/
-NEXT_PUBLIC_API_URL=https://api.chulfudoc.xyz/api/v1
-API_URL=https://api.chulfudoc.xyz/api/v1
-NEXT_PUBLIC_KAKAO_API_KEY=7ce8ab10624f37de367ba371f1cbbb64
-NEXT_PUBLIC_GAPID=5560860040510064
-NEXT_PUBLIC_NAVER_API_KEY=zOO0YFons6SoSf762rxU
-NEXT_PUBLIC_NAVER_API_SECRET=nObxHaBpoE
-NEXT_PUBLIC_TMAP_API_KEY=dF7fZsugeb1ubM2N0WCb02arxtDbMcXH4KEtXlV2
-
 # 프로젝트 : [철푸닥](https://chulfudoc.xyz)
 <div align="center">
   <a href="https://chulfudoc.xyz">
@@ -347,9 +332,16 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 
 ### 🖼️ 구현 이미지
-<a href="https://chulfudoc.xyz">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/1.png" alt="철푸닥" width="300"/>
-</a><br />
+<p align="center">
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/1.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/2.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/3.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/4.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/5.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/6.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/7.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/8.png" alt="철푸닥" width="800"/>
+</p>
 
 ---
 ## 👤 최상준
@@ -792,3 +784,8 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/8.png" alt="철푸닥" width="800"/>
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/9.png" alt="철푸닥" width="800"/>
 </p>
+---
+
+## 백엔드 원격 레포지토리
+### API 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-api
+### AI 백엔드 레포지토리 : https://github.com/koreait1/chulfudoc-detection
