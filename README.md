@@ -15,6 +15,7 @@
 철푸닥 프로젝트는 이러한 긴급 상황을 미연에 방지하고, 신속한 대응을 돕기 위해 만들어졌습니다.<br />
 
 ### 시연 영상
+- 주소 : https://youtu.be/A1iIsN803bc
 <div align="center">
   <a href="https://youtu.be/A1iIsN803bc">
     <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/resources/alt.png" alt="철푸닥 시연영상" width="500"/>
