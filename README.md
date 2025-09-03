@@ -438,11 +438,24 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 	- 홈페이지 컨셉에 맞는 스타일링
 	- UI 기획 및 제작
 
+- 전반적인 QA 업무
+  - 서비스 전반적인 검증
+
+### ⚙ 개발환경
+
+<img src="https://img.shields.io/badge/nextdotjs-61DAFB?style=flat&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=flat&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/mysql-4479A1?style=flat&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/docker-2496ED?style=flat&logo=React&logoColor=white"/>
+
 ### 📝 코드 리뷰
 - AuthNumButton.tsx : CSR 방식 이메일 인증에 사용되는 공통 버튼 컴포넌트(메일 발송, 이메일 인증 등 어떤 목적에도 대응할 수 있도록 설계)
 - member/_services/actions.ts : 회원 가입, 로그인, 회원정보 조회를 위한 메서드 통합 정의
-- member/_component : 회원 가입, 로그인 등에 필요한 폼 정의
-- main/ 메인페이지 UI 구현
+- member/_component & _container : 회원 가입, 로그인 등에 필요한 각종 폼 및 컨테이너 정의
+- admin/membership : 관리자가 회원 목록을 조회할 수 있는 서비스 정의
+- main/ : 메인페이지 UI 구현
+
+  ※ 상세한 코드가 궁금하시다면 `kiana507680@gmali.com`으로 연락주세요.
 
 ### 🖼️ 구현 이미지
 <a href="https://chulfudoc.xyz">
