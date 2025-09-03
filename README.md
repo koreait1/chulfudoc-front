@@ -443,10 +443,15 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### ⚙ 개발환경
 
-<img src="https://img.shields.io/badge/nextdotjs-61DAFB?style=flat&logo=React&logoColor=white"/>
-<img src="https://img.shields.io/badge/springboot-6DB33F?style=flat&logo=React&logoColor=white"/>
-<img src="https://img.shields.io/badge/mysql-4479A1?style=flat&logo=React&logoColor=white"/>
-<img src="https://img.shields.io/badge/docker-2496ED?style=flat&logo=React&logoColor=white"/>
+<div style="display: flex; justify-content: space-between;">
+	<img src="https://img.shields.io/badge/Nextjs-000000?style=for-the-badge&logo=nextdotjs&logoColor=white">
+	<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+	<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+	<img src="https://img.shields.io/badge/Mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+	<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
+	<img src="https://img.shields.io/badge/Jenkins-D24939D?style=for-the-badge&logo=jenkins&logoColor=white">
+	<img src="https://img.shields.io/badge/Roboflow-6706CE?style=for-the-badge&logo=roboflow&logoColor=white">
+</div> 
 
 ### 📝 코드 리뷰
 - AuthNumButton.tsx : CSR 방식 이메일 인증에 사용되는 공통 버튼 컴포넌트(메일 발송, 이메일 인증 등 어떤 목적에도 대응할 수 있도록 설계)
