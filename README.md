@@ -44,6 +44,8 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 - 주예성 : 관리자 멤버, 게시판 작성 및 관리 
 ---
 ## 👤 주용현
+<details>
+	<summary><strong>📌 주요 담당 업무</strong></summary>
 
 ### ⚙️ 기능 설명
 - 낙상 감지 서비스
@@ -355,8 +357,12 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/8.png" alt="철푸닥" width="800"/>
 </p>
 
+</details>
+
 ---
 ## 👤 최상준
+<details>
+	<summary><strong>📌 주요 담당 업무</strong></summary>
 
 ### ⚙️ 기능 설명
 - 회원 탈퇴
@@ -438,8 +444,12 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/9.png" alt="철푸닥" width="800"/>
 </p>
 
+</details>
+
 ---
 ## 👤 김문수
+<details>
+	<summary><strong>📌 주요 담당 업무</strong></summary>
 
 ### ⚙️ 기능 설명
 **회원 인증/관리 서비스**
@@ -478,9 +488,12 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/join.png" alt="철푸닥" width="800"/>
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/authNum.png" alt="철푸닥" width="800"/>
 </p>
+</details>
 
 ---
 ## 👤 김용준
+<details>
+	<summary><strong>📌 주요 담당 업무</strong></summary>
 
 ### ⚙️ 기능 설명
 - **모달 (LayerPopup)**
@@ -531,19 +544,26 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### 🖼️ 구현 이미지
 <p align="center">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/1.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/2.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/3.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/4.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/5.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/6.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/7.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/8.PNG" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/9.PNG" alt="철푸닥" width="800"/>
-</p>
+	<div>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/1.PNG" alt="철푸닥" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/2.PNG" alt="철푸닥" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/3.PNG" alt="철푸닥" height="100"/>
+	</div><div>
+		<img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/4.PNG" alt="철푸닥" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/5.PNG" alt="철푸닥" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/6.PNG" alt="철푸닥" height="100"/>
+	</div><div>
+		<img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/7.PNG" alt="철푸닥" height="200"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/8.PNG" alt="철푸닥" height="200"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/9.PNG" alt="철푸닥" width="400"/>
+	</div></p>
+
+</details>
 
 ---
 ## 👤 주예성
+<details>
+	<summary><strong>📌 주요 담당 업무</strong></summary>
 
 ### ⚙️ 기능 설명
 회원 관리
@@ -814,6 +834,8 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/8.png" alt="철푸닥" width="800"/>
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/9.png" alt="철푸닥" width="800"/>
 </p>
+</details>
+
 ---
 
 ## 백엔드 원격 레포지토리
