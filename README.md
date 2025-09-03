@@ -14,6 +14,13 @@
 근처 병원은 알지만, 응급실이 있는지 알 수 없다면?<br />
 철푸닥 프로젝트는 이러한 긴급 상황을 미연에 방지하고, 신속한 대응을 돕기 위해 만들어졌습니다.<br />
 
+### 시연 영상
+<div align="center">
+  <a href="https://youtu.be/A1iIsN803bc">
+    <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/resources/alt.png" alt="철푸닥 시연영상" width="500"/>
+  </a><br />
+</div>
+
 ### ⚙ 개발환경
 
 <div style="display: flex; justify-content: space-between;">
@@ -346,14 +353,14 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### 🖼️ 구현 이미지
 <p align="center">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/1.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/2.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/3.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/4.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/5.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/6.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/7.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/8.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/1.png" alt="jyh1" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/2.png" alt="jyh2" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/3.png" alt="jyh3" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/4.png" alt="jyh4" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/5.png" alt="jyh5" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/6.png" alt="jyh6" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/7.png" alt="jyh7" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jyh/8.png" alt="jyh8" width="800"/>
 </p>
 
 </details>
@@ -430,15 +437,15 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### 🖼️ 구현 이미지
 <p align="center">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/1.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/2.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/3.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/4.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/5.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/6.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/7.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/8.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/9.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/1.png" alt="sang1" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/2.png" alt="sang2" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/3.png" alt="sang3" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/4.png" alt="sang4" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/5.png" alt="sang5" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/6.png" alt="sang6" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/7.png" alt="sang7" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/8.png" alt="sang8" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/sang/9.png" alt="sang9" width="800"/>
 </p>
 
 </details>
@@ -477,11 +484,11 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### 🖼️ 구현 이미지
 <p align="center">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/main.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/serviceOn.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/main2.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/join.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/authNum.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/main.png" alt="main" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/serviceOn.png" alt="serviceOn" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/main2.png" alt="main2" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/join.png" alt="join" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/authNum.png" alt="authNum" width="800"/>
 </p>
 </details>
 
@@ -538,17 +545,17 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 ### 🖼️ 구현 이미지
 <p align="center">
 	<div>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/1.PNG" alt="철푸닥" height="100"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/2.PNG" alt="철푸닥" height="100"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/3.PNG" alt="철푸닥" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/1.PNG" alt="kyj1" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/2.PNG" alt="kyj2" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/3.PNG" alt="kyj3" height="100"/>
 	</div><div>
-		<img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/4.PNG" alt="철푸닥" height="100"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/5.PNG" alt="철푸닥" height="100"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/6.PNG" alt="철푸닥" height="100"/>
+		<img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/4.PNG" alt="kyj4" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/5.PNG" alt="kyj5" height="100"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/6.PNG" alt="kyj6" height="100"/>
 	</div><div>
-		<img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/7.PNG" alt="철푸닥" height="200"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/8.PNG" alt="철푸닥" height="200"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/9.PNG" alt="철푸닥" width="400"/>
+		<img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/7.PNG" alt="kyj7" height="200"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/8.PNG" alt="kyj8" height="200"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kyj/9.PNG" alt="kyj9" width="400"/>
 	</div></p>
 
 </details>
@@ -815,15 +822,15 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
 
 ### 🖼️ 구현 이미지
 <p align="center">
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/1.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/2.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/3.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/4.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/5.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/6.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/7.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/8.png" alt="철푸닥" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/9.png" alt="철푸닥" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/1.png" alt="jys1" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/2.png" alt="jys2" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/3.png" alt="jys3" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/4.png" alt="jys4" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/5.png" alt="jys5" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/6.png" alt="jys6" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/7.png" alt="jys7" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/8.png" alt="jys8" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/jys/9.png" alt="jys8" width="800"/>
 </p>
 </details>
 
