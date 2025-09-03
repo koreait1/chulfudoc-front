@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
   },
   images: {
-    domains: [ 'localhost','chulfudoc.xyz'],
+    domains: ['localhost', 'chulfudoc.xyz', 'api.chulfudoc.xyz'],
   },
 }
 

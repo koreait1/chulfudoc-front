@@ -61,7 +61,7 @@ const FileItems = ({ items, callback }: FileType) => {
     <StyledItems>
       {items.map(({ seq, fileName, fileDownloadUrl }) => (
         <li key={'file-' + seq}>
-          <a href={fileDownloadUrl}>
+          <a href={fileDownloadUrl.replace('http:', 'https:')}>
             #{fileName}
             <FaDownload className="icon-download" />
           </a>

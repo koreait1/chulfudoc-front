@@ -92,7 +92,10 @@ const ImageItem = ({
           />
         )}
         <Image
-          src={`${thumbBaseUrl}&width=${width}&height=${height}&crop=true`}
+          src={`${thumbBaseUrl.replace(
+            'http:',
+            'https:',
+          )}&width=${width}&height=${height}&crop=true`}
           alt={fileName}
           width={width}
           height={height}
