@@ -488,7 +488,7 @@ Tmap API를 통해 응급실 보유 병원을 지도와 목록으로 확인할 �
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/main.png" alt="main" width="800"/>
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/serviceOn.png" alt="serviceOn" width="800"/>
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/main2.png" alt="main2" width="800"/>
-  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/join.png" alt="join" width="800"/>
+  <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/join.png" alt="join" width="300"/>
   <img src="https://raw.githubusercontent.com/koreait1/chulfudoc-front/master/img/kms/authNum.png" alt="authNum" width="800"/>
 </p>
 </details>
